@@ -1,0 +1,442 @@
+{
+  "$schema": "https://sdaiaacademy.github.io/engine/schemas/course.schema.json",
+  "engine": "1",
+  "id": "ds-201",
+  "code": "DS-201",
+  "version": "2027.1.0",
+  "lang": "en",
+  "title": {
+    "en": "Statistical Inference by Simulation",
+    "ar": "الاستدلال الإحصائي بالمحاكاة"
+  },
+  "tagline": "REPLACE: one line under the title: what participants can do after the course",
+  "description": "Participants learn inference by computing it. On synthetic data from a fictional water utility whose true population is known, they draw repeated samples, build bootstrap intervals, run permutation tests beside classical ones, and report effect sizes with intervals instead of bare p-values. They see how testing 30 districts at once produces false findings and correct for it, then fit and read a first linear regression.",
+  "track": "data-science",
+  "level": 200,
+  "badge": {
+    "name": "Data Science",
+    "level": "Assistant"
+  },
+  "audience": "Practitioners. Graduates and early-career analysts who have completed the FN courses or passed the placement test, and analysts moving into data science.",
+  "prerequisites": [
+    "FN-101 Python for Data and AI Work",
+    "FN-103 Mathematics for Machine Learning: Vectors, Gradients and Probability",
+    "Filters and groups a table with a dataframe library",
+    "Computes a mean, a standard deviation and a simple probability"
+  ],
+  "site": {
+    "url": "https://sdaiaacademy.github.io/ds-201/",
+    "repo": "SDAIAAcademy/ds-201"
+  },
+  "outcomes": [
+    {
+      "id": "LO1",
+      "text": "Explain what a sampling distribution, a standard error, a confidence interval and a p-value describe, and identify common misreadings, given eight statements from utility reports",
+      "level": "Awareness",
+      "evidence": "a marked sheet with reasons, at least six of eight correct"
+    },
+    {
+      "id": "LO2",
+      "text": "Compute bootstrap intervals for a mean, a median and a group difference, resampling the correct unit, given skewed repair times with the population known",
+      "level": "Applied",
+      "evidence": "each interval with its coverage over 1,000 simulated samples"
+    },
+    {
+      "id": "LO3",
+      "text": "Implement a permutation test, compare it with the matching classical test and report an effect size with an interval, given satisfaction scores for two contractors",
+      "level": "Applied",
+      "evidence": "a script reporting both p-values and the effect size"
+    },
+    {
+      "id": "LO4",
+      "text": "Apply family-wise and false discovery rate corrections to many tests and measure the false findings without them, given 30 districts of unequal size, five with a planted difference",
+      "level": "Applied",
+      "evidence": "true and false discoveries under no correction, Holm and Benjamini-Hochberg"
+    },
+    {
+      "id": "LO5",
+      "text": "Analyse a linear regression of water consumption on household size and temperature, with slope intervals and residual checks, given 2,000 synthetic metered households",
+      "level": "Applied",
+      "evidence": "a regression summary, a residual plot and a two-sentence interpretation"
+    },
+    {
+      "id": "LO6",
+      "text": "Deliver an inference brief that answers a manager's question with an estimate, an interval, a test, an effect size and stated limits, given a question and a dataset not seen in class",
+      "level": "Performance",
+      "evidence": "a two-page brief and a notebook that reruns from raw data, defended live"
+    }
+  ],
+  "case_study": {
+    "name": "REPLACE: the name of the fictional organisation every lab works on",
+    "summary": "REPLACE: two sentences on the case study and its synthetic data"
+  },
+  "format": "intensive",
+  "format_note": "Intensive: 4 teaching days of four sessions and a capstone day, with guided pre-work and a tracked follow-up task",
+  "hours": {
+    "instruction": 6,
+    "lab": 7,
+    "guided_self_study": 6,
+    "assessment": 1,
+    "capstone": 6
+  },
+  "unit": "day",
+  "days": [
+    {
+      "id": "day1",
+      "kind": "day",
+      "title": "Variation",
+      "deck": "slides/day1.html",
+      "sessions": [
+        {
+          "title": "A sample is one draw of many",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO1"
+          ],
+          "lab": {
+            "id": "1.1",
+            "title": "Draw 1,000 samples of 50 households and plot their means",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D1_1_draw_1_000.ipynb"
+          }
+        },
+        {
+          "title": "Standard error by simulation and by formula",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO1"
+          ],
+          "lab": {
+            "id": "1.2",
+            "title": "Compare simulated and formula standard errors at three sample sizes",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D1_2_compare_simulated_formula.ipynb"
+          }
+        },
+        {
+          "title": "Skew, outliers and the median",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO1"
+          ],
+          "lab": {
+            "id": "1.3",
+            "title": "Measure how one extreme repair time moves mean and median",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D1_3_measure_how_one.ipynb"
+          }
+        },
+        {
+          "title": "Describing a sample honestly",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO1"
+          ],
+          "lab": {
+            "id": "1.4",
+            "title": "Summarise repair times in five numbers and a histogram",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D1_4_summarise_repair_times.ipynb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day2",
+      "kind": "day",
+      "title": "Intervals",
+      "deck": "slides/day2.html",
+      "sessions": [
+        {
+          "title": "The bootstrap idea",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO2"
+          ],
+          "lab": {
+            "id": "2.1",
+            "title": "Bootstrap the median repair time and compare with the truth",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D2_1_bootstrap_median_repair.ipynb"
+          }
+        },
+        {
+          "title": "Coverage is a testable claim",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO2"
+          ],
+          "lab": {
+            "id": "2.2",
+            "title": "Count how often two interval methods cover the truth in 500 studies",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D2_2_count_how_often.ipynb"
+          }
+        },
+        {
+          "title": "Resample the right unit",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO2"
+          ],
+          "lab": {
+            "id": "2.3",
+            "title": "Bootstrap satisfaction by household and by district; explain the difference",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D2_3_bootstrap_satisfaction_household.ipynb"
+          }
+        },
+        {
+          "title": "Intervals for differences and ratios",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO2"
+          ],
+          "lab": {
+            "id": "2.4",
+            "title": "Build intervals for the difference and ratio of contractor medians",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D2_4_build_intervals_difference.ipynb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day3",
+      "kind": "day",
+      "title": "Tests",
+      "deck": "slides/day3.html",
+      "sessions": [
+        {
+          "title": "A test is a shuffling rule",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO3"
+          ],
+          "lab": {
+            "id": "3.1",
+            "title": "Run a permutation test and compare its p-value with a t-test",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D3_1_run_permutation_test.ipynb"
+          }
+        },
+        {
+          "title": "p-values and their misreadings",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO1"
+          ],
+          "lab": {
+            "id": "3.2",
+            "title": "Mark eight report sentences about p-values right or wrong, with reasons",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D3_2_mark_eight_report.ipynb"
+          }
+        },
+        {
+          "title": "Effect size and practical significance",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO3"
+          ],
+          "lab": {
+            "id": "3.3",
+            "title": "Report the contractor effect with an interval against the utility's threshold",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D3_3_report_contractor_effect.ipynb"
+          }
+        },
+        {
+          "title": "Thirty districts, many false alarms",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO4"
+          ],
+          "lab": {
+            "id": "3.4",
+            "title": "Test 30 districts with and without correction; note where small districts land",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D3_4_test_30_districts.ipynb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day4",
+      "kind": "day",
+      "title": "Regression and reporting",
+      "deck": "slides/day4.html",
+      "sessions": [
+        {
+          "title": "Least squares as a summary",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO5"
+          ],
+          "lab": {
+            "id": "4.1",
+            "title": "Fit consumption on household size; state the slope in a manager's units",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D4_1_fit_consumption_household.ipynb"
+          }
+        },
+        {
+          "title": "Slopes with intervals",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO5"
+          ],
+          "lab": {
+            "id": "4.2",
+            "title": "Bootstrap the slope and compare with the reported standard error",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D4_2_bootstrap_slope_compare.ipynb"
+          }
+        },
+        {
+          "title": "Residuals and confounding",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO5"
+          ],
+          "lab": {
+            "id": "4.3",
+            "title": "Add temperature, plot residuals and explain why the slope moved",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D4_3_add_temperature_plot.ipynb"
+          }
+        },
+        {
+          "title": "Writing an inference brief",
+          "outcomes": [
+            "REPLACE: what a participant can do after this session"
+          ],
+          "lo": [
+            "LO6"
+          ],
+          "lab": {
+            "id": "4.4",
+            "title": "Draft an estimate, interval and limits paragraph; choose the capstone question",
+            "summary": "REPLACE: one line on what participants build and take away; then list the steps of the lab in course.json, their minutes adding up to 25",
+            "minutes": 25,
+            "href": "D4_4_draft_estimate_interval.ipynb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "capstone",
+      "kind": "capstone",
+      "title": "Capstone project presentations",
+      "deck": "slides/capstone.html",
+      "subtitle": "REPLACE: the catalog gives 8 minutes for each presentation and nothing about questions; decide whether the questions are inside those minutes, set capstone.talk_minutes and capstone.qa_minutes in course.json and the timers of the now-presenting slide, and remove this line"
+    }
+  ],
+  "capstone": {
+    "summary": "An inference brief on one of three synthetic questions or an approved public dataset, in a public repository whose README reports estimates, intervals, tests, effect sizes and a coverage check; eight-minute defence plus questions",
+    "submission": "REPLACE: what participants submit and how: a public repository link, or a shared folder for a course without code",
+    "talk_minutes": 8,
+    "rubric": [
+      {
+        "criterion": "Question and estimand",
+        "weight": 15
+      },
+      {
+        "criterion": "Intervals and coverage",
+        "weight": 25
+      },
+      {
+        "criterion": "Tests and effect sizes",
+        "weight": 25
+      },
+      {
+        "criterion": "Regression and limits",
+        "weight": 20
+      },
+      {
+        "criterion": "Reproducibility",
+        "weight": 15
+      }
+    ]
+  },
+  "labs": {
+    "kind": "notebooks",
+    "base": "labs/"
+  },
+  "tools": [
+    {
+      "slot": "Analysis environment and notebooks",
+      "examples": [
+        "Python with uv and JupyterLab or marimo",
+        "R with Quarto"
+      ]
+    },
+    {
+      "slot": "Arrays, statistics and resampling",
+      "examples": [
+        "NumPy, SciPy and statsmodels",
+        "R with the infer package"
+      ]
+    },
+    {
+      "slot": "Plotting",
+      "examples": [
+        "Matplotlib",
+        "Vega-Altair",
+        "ggplot2"
+      ]
+    },
+    {
+      "slot": "Hint-only course tutor",
+      "examples": [
+        "a locally served open-weight model with a tutor instruction",
+        "an approved assistant in a study mode"
+      ]
+    }
+  ]
+}
