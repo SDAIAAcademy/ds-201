@@ -1,158 +1,616 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes">REPLACE: welcome; introduce yourself; one question to the room that calibrates the pace; the rhythm of the day</aside>
+  <aside class="notes"><p>Welcome. Two calibration questions: who has reported a p-value at work, and who could say in one sentence what it means. Expect many hands for the first and few for the second; say that the gap is the reason for this course. The rhythm of every session: about 25 minutes of ideas, one checkpoint, then a 25-minute lab on a population whose truth we can look up.</p></aside>
 </section>
 
-<section class="slide" id="agenda" data-auto="agenda"></section>
+<section class="slide" id="agenda" data-auto="agenda">
+  <aside class="notes"><p>Today has no intervals and no tests. It builds the one idea they all rest on: a statistic changes from sample to sample, and the size of that change can be measured. Sessions 1 and 2 use household consumption, sessions 3 and 4 use repair times, which are skewed.</p></aside>
+</section>
 
-<!-- Session 1 -->
+<section class="slide" id="the-utility" data-label="The case">
+  <div class="kicker">The case study</div>
+  <h2>Zulal Water Utility: a population you can see whole</h2>
+  <div class="cols cols-4">
+    <div class="stat"><div class="big">80,000</div><div class="lbl">metered households</div></div>
+    <div class="stat"><div class="big">12,000</div><div class="lbl">leak repairs, two contractors</div></div>
+    <div class="stat"><div class="big">9,000</div><div class="lbl">survey responses, scored 1 to 10</div></div>
+    <div class="stat"><div class="big">30</div><div class="lbl">districts, from 700 to 10,079 households</div></div>
+  </div>
+  <p class="small mt">You work as <b>Shadin Al-Qaisi</b>, junior analyst. <b>Jamila Al-Shuraim</b>, head of customer operations, asks the questions. Nizar Al-Khayyat owns the two repair contracts, Ilyas Al-Tuwaijri writes the district report, Wafa Al-Enezi is the data protection officer. The utility, its people and every record are fictional and generated with a fixed seed.</p>
+  <aside class="notes"><p>Say it once and clearly: no real utility, no real households. The reason for a synthetic population is the method of the course, on the next slide: a real analyst sees one sample and never the truth; here the truth is on file, so every interval and every test can be marked right or wrong.</p></aside>
+</section>
 
+<section class="slide" id="method" data-label="How the course works">
+  <div class="kicker">The method of this course</div>
+  <h2>Compute the inference, then check it against the truth</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>1 · Draw</b>a sample from the population, with a seed</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>2 · Infer</b>an estimate, an interval or a test, from the sample alone</div>
+    <div class="arrow">→</div>
+    <div class="step c-coral"><b>3 · Check</b>against the population, over hundreds of repeats</div>
+  </div>
+  <table class="t small mt">
+    <tr><th>Part of the course</th><th>Assistant</th></tr>
+    <tr><td>Quizzes and each day's first core computation (labs 1.1, 2.1, 3.1, 4.1, and the marking in 3.2)</td><td>Off</td></tr>
+    <tr><td>The other lab steps and the stretch items</td><td>A tutor that hints one step at a time and never writes the simulation</td></tr>
+    <tr><td>The capstone</td><td>Free; the result is defended live</td></tr>
+  </table>
+  <aside class="notes"><p>This slide is the contract. Step 3 is what no textbook formula gives: a count of how often the method was right. The tutor instruction is the file tutor_instruction.md in the labs folder; participants paste it into an assistant the Academy has approved. No lab calls a model.</p></aside>
+</section>
+
+<section class="slide" id="setup-and-keys" data-label="Setup and data handling">
+  <div class="kicker">Before the first lab</div>
+  <h2>One check proves the setup; two rules govern the data</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>Setup check</h4><p class="small">Open <code>00_setup_check.ipynb</code> in Colab or locally and run all cells. It imports the libraries, reads the four population files and prints their row counts.</p><pre class="code s"><code class="language-text">uv sync
+uv run jupyter lab</code></pre></div>
+    <div class="card c-coral"><h4>Treated as personal data</h4><p class="small mb0">The survey is synthetic, and the course still handles it as personal data under the Personal Data Protection Law:</p><ul class="bullets tight small"><li>households appear only as pseudonymised keys</li><li>results are reported by district or contractor, never by household</li><li>every conclusion names the population it applies to</li></ul></div>
+  </div>
+  <aside class="notes"><p>Give five minutes for the setup check if the pre-work did not settle it. Nothing calls or downloads a model, so the usual failures are a missing uv or a blocked Colab. The two data rules come from the course's responsible-use statement; Wafa Al-Enezi is the persona who would ask about them. Lab 1.4 applies the district rule with a small-count threshold.</p></aside>
+</section>
+
+<!-- ======================= SESSION 1 ======================= -->
 <section class="slide section" id="s1" data-auto="section" data-session="1"></section>
 
-<section class="slide" id="s1-idea" data-lo="LO1">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
-  </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+<section class="slide" id="four-words" data-lo="LO1" data-label="Four words">
+  <div class="kicker">The vocabulary</div>
+  <h2>Four words separate what is true from what you saw</h2>
+  <table class="t">
+    <tr><th></th><th>All of it</th><th>What you measured</th></tr>
+    <tr><td><b>The units</b></td><td><b>Population</b>: 80,000 households</td><td><b>Sample</b>: the 50 whose meters you read</td></tr>
+    <tr><td><b>The number</b></td><td><b>Parameter</b>: their mean, 470.4 litres a day</td><td><b>Statistic</b>: the sample's mean, 458.8</td></tr>
+    <tr><td><b>How many values it has</b></td><td>One, fixed, usually unknown</td><td>One per sample: it varies</td></tr>
+  </table>
+  <div class="callout tip mt"><b>Inference</b> is a statement about the left column made from the right column, with a measure of how wrong it may be.</div>
+  <aside class="notes"><p>Numbers from lab 1.1. Ask which of the four a monthly report usually prints: a statistic, written as if it were the parameter. The rest of the course is about the phrase "with a measure of how wrong it may be".</p></aside>
 </section>
 
-<section class="slide" id="s1-steps" data-lo="LO1">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="one-sample-misses" data-lo="LO1" data-label="One sample misses">
+  <div class="kicker">Lab 1.1, step 2</div>
+  <h2>One sample of 50 lands near the truth, never on it</h2>
+  <div class="cols cols-3">
+    <div class="stat"><div class="big">470.4</div><div class="lbl">the parameter: mean litres a day, all households</div></div>
+    <div class="stat"><div class="big">458.8</div><div class="lbl">the statistic: mean of one sample of 50</div></div>
+    <div class="stat"><div class="big">-11.5</div><div class="lbl">the miss, which a real analyst cannot see</div></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <ul class="bullets mt">
+    <li>The miss is not an error of method. Read 50 other meters and the number changes.</li>
+    <li>The useful question is not "is 458.8 right?" but "how far do samples of 50 typically land?"</li>
+  </ul>
+  <aside class="notes"><p>Solution run of lab 1.1, seed 201. In the room every participant has the same seed and so the same 458.8; ask one of them to change the seed offset and read out the new mean. Two or three values on the whiteboard prepare the next slide.</p></aside>
+</section>
+
+<section class="slide" id="sampling-distribution" data-lo="LO1" data-label="The sampling distribution">
+  <div class="kicker">Lab 1.1, steps 3 and 4</div>
+  <h2>Do it 1,000 times and the misses form a distribution</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:sampling_dist-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Histogram of 1,000 sample means of 50 households, bell-shaped and centred on the population mean 470 litres, running from about 390 to 570">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="356.0" y2="356.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="361.0" text-anchor="end" font-size="14" fill="var(--muted)">0</text>
+<line x1="64" x2="700" y1="259.4" y2="259.4" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="264.4" text-anchor="end" font-size="14" fill="var(--muted)">40</text>
+<line x1="64" x2="700" y1="162.9" y2="162.9" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="167.9" text-anchor="end" font-size="14" fill="var(--muted)">80</text>
+<line x1="64" x2="700" y1="66.3" y2="66.3" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="71.3" text-anchor="end" font-size="14" fill="var(--muted)">120</text>
+<line x1="130.9" x2="130.9" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="130.9" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">400</text>
+<line x1="264.8" x2="264.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="264.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">440</text>
+<line x1="398.7" x2="398.7" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="398.7" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">480</text>
+<line x1="532.6" x2="532.6" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="532.6" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">520</text>
+<line x1="666.5" x2="666.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="666.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">560</text>
+<rect x="65.0" y="351.2" width="31.5" height="4.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="98.5" y="348.8" width="31.5" height="7.2" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="131.9" y="322.2" width="31.5" height="33.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="165.4" y="317.4" width="31.5" height="38.6" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="198.9" y="254.6" width="31.5" height="101.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="232.4" y="184.6" width="31.5" height="171.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="265.8" y="112.2" width="31.5" height="243.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="299.3" y="83.2" width="31.5" height="272.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="332.8" y="44.6" width="31.5" height="311.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="366.3" y="54.2" width="31.5" height="301.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="399.7" y="51.8" width="31.5" height="304.2" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="433.2" y="131.5" width="31.5" height="224.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="466.7" y="194.2" width="31.5" height="161.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="500.2" y="254.6" width="31.5" height="101.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="533.6" y="283.6" width="31.5" height="72.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="567.1" y="317.4" width="31.5" height="38.6" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="600.6" y="341.5" width="31.5" height="14.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="634.1" y="348.8" width="31.5" height="7.2" fill="var(--teal)" fill-opacity="0.85"/>
+<line x1="366.4" x2="366.4" y1="18" y2="356" stroke="var(--muted)" stroke-width="2.5" stroke-dasharray="6 5"/>
+<text x="372.4" y="34" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">population mean 470</text>
+<line x1="327.8" x2="327.8" y1="18" y2="356" stroke="var(--coral)" stroke-width="2.5" stroke-dasharray="0"/>
+<text x="321.8" y="58" text-anchor="end" font-size="15" fill="var(--ink, currentColor)">one sample 459</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">mean consumption of a sample of 50, litres a day</text>
+</svg>
+<!--/FIG:sampling_dist-->
+      <div class="caption">1,000 samples of 50 households each. One bar counts samples, not households.</div>
+    </div>
+    <ul class="bullets">
+      <li>This is the <b>sampling distribution</b> of the mean for n = 50.</li>
+      <li>Centre 471.1: on the truth.</li>
+      <li>Spread 29.6 litres, from 387.5 to 571.1.</li>
+      <li>49% of samples within 20 litres of the truth; 94% within 57.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The picture to return to all week. Every interval is a statement about its width; every test asks whether a result sits in its tail. Stress the caption: the histogram of households is three times wider and not bell-shaped.</p></aside>
+</section>
+
+<section class="slide" id="three-distributions" data-lo="LO1" data-label="Three distributions">
+  <div class="kicker">Do not mix them up</div>
+  <h2>Three distributions carry three different spreads</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>The population</h4><p class="small mb0">80,000 households, from 30 to 1,536 litres a day. Standard deviation 206 litres. Skewed to the right.</p></div>
+    <div class="card c-cyan"><h4>One sample</h4><p class="small mb0">50 households. Looks like a rough copy of the population. Its standard deviation is near 206 too.</p></div>
+    <div class="card c-coral"><h4>The sampling distribution</h4><p class="small mb0">Means of many samples. Standard deviation 29.6 litres. Bell-shaped. You never see it in real work.</p></div>
+  </div>
+  <div class="callout warn mt"><b>What goes wrong.</b> A report quotes the narrow third spread as if it described households, or the wide first one as if it described the estimate.</div>
+  <aside class="notes"><p>Draw the three on the whiteboard one under another on the same axis. The third exists only because we can resample the population here. Tomorrow's bootstrap is a way to get an imitation of the third from the second alone.</p></aside>
+</section>
+
+<section class="slide" id="seeded-draws" data-lo="LO1" data-label="Seeds">
+  <div class="kicker">The tool</div>
+  <h2>A seeded generator makes every simulation repeatable</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">gen = np.random.default_rng(201)
+
+def sample_mean(x, n, gen):
+    s = gen.choice(x, size=n, replace=False)
+    return s.mean()
+
+means = np.array([sample_mean(x, 50, gen)
+                  for _ in range(1000)])</code></pre>
+    <ul class="bullets">
+      <li><b>One generator, passed along</b>: the 1,000 samples differ, and the whole run repeats exactly.</li>
+      <li><code>replace=False</code>: no meter is read twice within a sample.</li>
+      <li>The capstone asks for a seeded run log. The habit starts here.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>FN-103 introduced default_rng and seeds; this is a reminder, not a lesson. The failure to name: creating a new generator with the same seed inside the loop, which gives 1,000 identical samples and a spread of zero.</p></aside>
+</section>
+
+<section class="slide" id="bigger-sample" data-lo="LO1" data-label="A bigger sample">
+  <div class="kicker">Lab 1.1, stretch</div>
+  <h2>Four times the sample halves the spread of the means</h2>
+  <div class="bars">
+    <div class="row"><span>samples of 50</span><div class="bar c-coral" style="--w:100%"></div><span class="val">29.6 litres</span></div>
+    <div class="row"><span>samples of 200</span><div class="bar c-teal" style="--w:50%"></div><span class="val">14.8 litres</span></div>
+  </div>
+  <ul class="bullets mt">
+    <li>The population did not change. Only the precision of the estimate did.</li>
+    <li>The ratio is 2.00: session 2 gives the rule behind it.</li>
+  </ul>
+  <aside class="notes"><p>From the stretch of lab 1.1. Ask what it would cost Zulal to read 200 meters by hand instead of 50, and whether halving the uncertainty is worth four times the visits. That trade-off is the manager's, and it needs this number.</p></aside>
+</section>
+
+<section class="slide" id="check-sampling-distribution" data-lo="LO1">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which sentence describes a sampling distribution?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1">
+    <p class="lead">Ilyas reads 50 meters each month and reports the mean. Over the year his twelve means ran from 430 to 515 litres. Which statement explains the range best?</p>
+    <div class="opts">
+      <div class="opt" data-why="Takes the spread of the means for the spread of households: single households range far wider, from 30 to over 1,500 litres">Households use between 430 and 515 litres a day</div>
+      <div class="opt" data-why="Reads sampling variation as a real change: the population mean can stay at 470 while samples of 50 move by about 30 litres">Consumption rose and fell during the year</div>
+      <div class="opt" data-ok>Means of samples of 50 scatter by about 30 litres around the truth</div>
+      <div class="opt" data-why="Treats variation between samples as a fault: every correctly drawn sample of 50 misses by a different amount">Some of the monthly samples were drawn incorrectly</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Twelve sample means are twelve draws from the sampling distribution, whose spread for n = 50 is about 30 litres. A range of 430 to 515 needs no other explanation.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. If the room splits between B and C, say that B could also be true, and that the data cannot tell the two apart until the size of sampling variation is known. That is the argument for a standard error.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-1-1" data-auto="lab" data-lab="1.1">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>Steps 1 to 3 are done without an assistant: the day's first core computation. Watch for the generator created inside the loop (a spread of zero) and for sampling with replacement. Anyone who is stuck runs on: the safety net supplies the reference result and the plot still appears. Nothing from another lab is needed.</p></aside>
 </section>
 
-<!-- Session 2 -->
-
+<!-- ======================= SESSION 2 ======================= -->
 <section class="slide section" id="s2" data-auto="section" data-session="2"></section>
 
-<section class="slide" id="s2-idea" data-lo="LO1">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="se-is-a-spread" data-lo="LO1" data-label="Standard error">
+  <div class="kicker">A name for the spread</div>
+  <h2>The standard error is the standard deviation of a statistic</h2>
   <div class="cols cols-2">
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>It is the spread of the sampling distribution: 29.6 litres for the mean of 50 households.</li>
+      <li>It says how far an estimate typically lands from the truth.</li>
+      <li>Every statistic has one: a mean, a median, a difference, a slope.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <div class="card c-teal"><h4>You met a cousin in FN-103</h4><p class="small mb0">The Monte Carlo error of a simulated average was a spread divided by √N. The standard error of a sample mean is the same idea, with households in place of simulated months.</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>One slide of recap, not a re-teach: FN-103 Day 4 covered the square-root law and the central limit theorem for simulation runs. What is new here is that the "runs" are households drawn from a real population, and that in practice there is one sample only.</p></aside>
 </section>
 
-<section class="slide" id="s2-steps" data-lo="LO1">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="se-by-simulation" data-lo="LO1" data-label="By simulation">
+  <div class="kicker">Lab 1.2, step 1</div>
+  <h2>By simulation: draw 2,000 samples at each size and measure</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">def simulated_se(x, n, reps, gen):
+    means = np.array([
+        gen.choice(x, size=n, replace=False).mean()
+        for _ in range(reps)])
+    return means.std(ddof=1)</code></pre>
+    <table class="t">
+      <tr><th class="num">households n</th><th class="num">simulated standard error</th></tr>
+      <tr><td class="num">25</td><td class="num">41.45</td></tr>
+      <tr><td class="num">100</td><td class="num">20.76</td></tr>
+      <tr><td class="num">400</td><td class="num">10.14</td></tr>
+    </table>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>Solution run of lab 1.2. This route needs the population, so it is a classroom route. Its value is that it is the definition made visible: no assumption, only counting.</p></aside>
+</section>
+
+<section class="slide" id="se-by-formula" data-lo="LO1" data-label="By formula">
+  <div class="kicker">Lab 1.2, steps 2 and 3</div>
+  <h2>By formula: the spread of households divided by √n</h2>
+  <table class="t">
+    <tr><th class="num">n</th><th class="num">simulated</th><th class="num">σ / √n, population known</th><th class="num">s / √n, from one sample</th></tr>
+    <tr><td class="num">25</td><td class="num">41.45</td><td class="num">41.29</td><td class="num">46.72</td></tr>
+    <tr><td class="num">100</td><td class="num">20.76</td><td class="num">20.64</td><td class="num">20.03</td></tr>
+    <tr><td class="num">400</td><td class="num">10.14</td><td class="num">10.32</td><td class="num">10.31</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>σ is the population's standard deviation, 206.4 litres. Nobody has it in real work.</li>
+    <li><b>s</b> is the sample's own standard deviation. One sample estimates its own standard error.</li>
+    <li>At n = 25 the one-sample value is 13% off: small samples know little about their own spread.</li>
+  </ul>
+  <aside class="notes"><p>The last column is the practical one and the surprise of the session: a single sample carries enough information to say how far it probably is from the truth. That is what makes inference possible at all. The 46.72 against 41.29 is honest: s is itself a statistic and varies.</p></aside>
+</section>
+
+<section class="slide" id="sd-versus-se" data-lo="LO1" data-label="SD or SE">
+  <div class="kicker">The most common mix-up</div>
+  <h2>The standard deviation describes households; the standard error describes your estimate</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>Standard deviation: 200 litres</h4><p class="small mb0">"Households differ a lot: a typical household is about 200 litres away from the sample mean of 490."</p><p class="small mb0"><b>Does not shrink</b> when you read more meters.</p></div>
+    <div class="card c-coral"><h4>Standard error: 20 litres</h4><p class="small mb0">"Our estimate of the average, 490 litres, is typically within about 20 litres of the true average."</p><p class="small mb0"><b>Shrinks</b> with √n.</p></div>
+  </div>
+  <div class="callout warn mt"><b>What goes wrong.</b> "490 ± 20" printed without a word on which of the two the 20 is. Always name it.</div>
+  <aside class="notes"><p>Both sentences come from the sample of 100 in lab 1.2, step 5. Ask which sentence answers "how much water must the network deliver to one street?" (the first) and which answers "is this year's average different from last year's?" (the second).</p></aside>
+</section>
+
+<section class="slide" id="sqrt-law-samples" data-lo="LO1" data-label="The price of precision">
+  <div class="kicker">Lab 1.2, step 4</div>
+  <h2>Half the error costs four times the sample</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th class="num">n</th><th class="num">standard error</th><th class="num">× √n</th></tr>
+      <tr><td class="num">25</td><td class="num">41.45</td><td class="num">207.3</td></tr>
+      <tr><td class="num">100</td><td class="num">20.76</td><td class="num">207.6</td></tr>
+      <tr><td class="num">400</td><td class="num">10.14</td><td class="num">202.8</td></tr>
+    </table>
+    <ul class="bullets">
+      <li>The last column is nearly constant: it is σ, 206.4.</li>
+      <li>From 25 to 400 households, 16 times the work, the error fell 4.1 times.</li>
+      <li>Precision has a price list. A manager can read it before the survey is commissioned.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The planning use: "how many meters for an error of 5 litres?" is (206/5) squared, about 1,700. Let the room compute it. The checkpoint in the notebook asks the same with other numbers.</p></aside>
+</section>
+
+<section class="slide" id="estimate-plus-minus" data-lo="LO1" data-label="A first interval">
+  <div class="kicker">Where this leads</div>
+  <h2>Estimate ± 2 standard errors is the first interval</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>In lab 1.1, 94% of sample means lay within 57 litres of the truth: about 2 standard errors.</li>
+      <li>Turn it around: the truth lies within 2 standard errors of most sample means.</li>
+      <li>For the sample of 100: 490 ± 2 × 20, from 450 to 530 litres. The truth, 470.4, is inside.</li>
+    </ul>
+    <div class="card c-purple"><h4>Not every statistic has a formula</h4><p class="small mb0">The median's standard error at n = 100 is 25.5 litres by simulation (lab 1.2, stretch). No σ/√n gives it. Day 2 gets it from one sample by resampling.</p></div>
+  </div>
+  <aside class="notes"><p>Do not call it a confidence interval yet and do not define 95%: Day 2, session 2 does that and tests the claim. The point here is the direction of the argument, from "samples land near the truth" to "the truth is near my sample".</p></aside>
+</section>
+
+<section class="slide" id="check-sd-or-se" data-lo="LO1">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which number answers the manager?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1">
+    <p class="lead">From 400 households: mean 468 litres, standard deviation 204, standard error 10. Jamila asks: "How sure are we about the 468?" Which reply is right?</p>
+    <div class="opts">
+      <div class="opt" data-ok>The true average is very likely within about 20 litres of 468</div>
+      <div class="opt" data-why="Uses the standard deviation, which describes how households differ, to describe the precision of the average">The true average could be anywhere within 204 litres of 468</div>
+      <div class="opt" data-why="Applies the standard error to single households: most households are far more than 20 litres from 468">Nearly all households use between 448 and 488 litres</div>
+      <div class="opt" data-why="Assumes a large sample removes uncertainty: 400 households give an error of about 10 litres, not zero">With 400 households the 468 is exact</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Her question is about the estimate, so the standard error answers it: 468 give or take about 2 × 10 litres.</div>
+  </div>
+  <aside class="notes"><p>Answer: A. Option C is the one to dwell on: it is the same confusion as B, seen from the other side, and it reappears on Day 3 as sentence 5 of the marked sheet.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-1-2" data-auto="lab" data-lab="1.2">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The simulation in step 1 takes a few seconds for 2,000 samples at three sizes. A typical slip in step 3 is ddof: the sample standard deviation divides by n - 1. Step 5 is two sentences in words; ask two participants to read theirs out before the next session. The lab loads the population itself and needs nothing from lab 1.1.</p></aside>
 </section>
 
-<!-- Session 3 -->
-
+<!-- ======================= SESSION 3 ======================= -->
 <section class="slide section" id="s3" data-auto="section" data-session="3"></section>
 
-<section class="slide" id="s3-idea" data-lo="LO1">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
+<section class="slide" id="repairs-are-skewed" data-lo="LO1 LO2" data-label="Skew">
+  <div class="kicker">A different kind of data</div>
+  <h2>Repair times are skewed: most are short, a few are very long</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:repairs_hist-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Histogram of 12,000 repair times, peaking between 2 and 6 hours with a long tail to the right; median 6.5 hours, mean 9.9 hours">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="356.0" y2="356.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="361.0" text-anchor="end" font-size="14" fill="var(--muted)">0</text>
+<line x1="64" x2="700" y1="226.0" y2="226.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="231.0" text-anchor="end" font-size="14" fill="var(--muted)">1,000</text>
+<line x1="64" x2="700" y1="96.0" y2="96.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="101.0" text-anchor="end" font-size="14" fill="var(--muted)">2,000</text>
+<line x1="64.0" x2="64.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="64.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0</text>
+<line x1="223.0" x2="223.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="223.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">10</text>
+<line x1="382.0" x2="382.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="382.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">20</text>
+<line x1="541.0" x2="541.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="541.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">30</text>
+<line x1="700.0" x2="700.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="700.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">40</text>
+<rect x="65.0" y="264.2" width="29.8" height="91.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="96.8" y="53.6" width="29.8" height="302.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="128.6" y="48.9" width="29.8" height="307.1" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="160.4" y="125.5" width="29.8" height="230.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="192.2" y="189.2" width="29.8" height="166.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="224.0" y="235.0" width="29.8" height="121.0" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="255.8" y="274.1" width="29.8" height="81.9" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="287.6" y="294.2" width="29.8" height="61.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="319.4" y="314.4" width="29.8" height="41.6" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="351.2" y="321.3" width="29.8" height="34.7" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="383.0" y="329.6" width="29.8" height="26.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="414.8" y="337.3" width="29.8" height="18.7" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="446.6" y="342.1" width="29.8" height="13.9" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="478.4" y="345.7" width="29.8" height="10.3" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="510.2" y="346.9" width="29.8" height="9.1" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="542.0" y="347.8" width="29.8" height="8.2" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="573.8" y="350.4" width="29.8" height="5.6" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="605.6" y="351.6" width="29.8" height="4.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="637.4" y="351.8" width="29.8" height="4.2" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="669.2" y="352.5" width="29.8" height="3.5" fill="var(--teal)" fill-opacity="0.85"/>
+<line x1="167.4" x2="167.4" y1="18" y2="356" stroke="var(--ink, currentColor)" stroke-width="2.5" stroke-dasharray="6 5"/>
+<text x="161.4" y="34" text-anchor="end" font-size="15" fill="var(--ink, currentColor)">median 6.5</text>
+<line x1="220.8" x2="220.8" y1="18" y2="356" stroke="var(--coral)" stroke-width="2.5" stroke-dasharray="0"/>
+<text x="226.8" y="58" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">mean 9.9</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">repair time, hours (bins of 2 hours; 125 repairs beyond 40 hours not shown)</text>
+</svg>
+<!--/FIG:repairs_hist-->
+      <div class="caption">All 12,000 leak repairs of the year.</div>
+    </div>
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>Median 6.5 hours, mean 9.9 hours.</li>
+      <li>70% of repairs are shorter than the mean.</li>
+      <li>Durations, costs, waiting times and consumption in litres are usually skewed like this.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Population numbers from repairs.csv. Ask which of the two numbers a customer would call "typical". When seven repairs in ten are shorter than the "average", the average is a poor word for typical.</p></aside>
 </section>
 
-<section class="slide" id="s3-steps" data-lo="LO1">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="mean-follows-tail" data-lo="LO1" data-label="Balance point and middle">
+  <div class="kicker">Two meanings of "the middle"</div>
+  <h2>The mean is a balance point; the median is the middle ticket</h2>
+  <div class="cols cols-2">
+    <div class="card c-coral"><h4>Mean</h4><p class="small mb0">Add all hours, divide by the count. Every hour of every ticket counts, so one long ticket moves it. Mean × count = total hours.</p></div>
+    <div class="card c-teal"><h4>Median</h4><p class="small mb0">Sort the tickets, take the middle one. Only the order counts, so a ticket of 50 hours and one of 2,000 hours pull equally.</p></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <p class="small mt">Sample of 200 regular repairs (lab 1.3): mean 8.11 hours, median 6.40 hours, 63% of repairs shorter than the mean, longest 48.4 hours.</p>
+  <aside class="notes"><p>The line "mean times count equals total" matters later in the session: it is the reason the mean cannot simply be abandoned.</p></aside>
+</section>
+
+<section class="slide" id="one-open-ticket" data-lo="LO1" data-label="One ticket">
+  <div class="kicker">Lab 1.3, step 2</div>
+  <h2>One ticket left open for two months nearly doubles the mean</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th></th><th class="num">mean, hours</th><th class="num">median, hours</th></tr>
+      <tr><td>200 regular repairs</td><td class="num">8.11</td><td class="num">6.40</td></tr>
+      <tr class="hl"><td>plus one ticket of 1,450 hours</td><td class="num">15.28</td><td class="num">6.50</td></tr>
+      <tr><td>the move</td><td class="num">+7.17</td><td class="num">+0.10</td></tr>
+    </table>
+    <ul class="bullets">
+      <li>The crew finished in an afternoon. Nobody closed the ticket.</li>
+      <li>Twelve such tickets sit among Zulal's 12,000 repairs, from 598 to 2,090 hours.</li>
+      <li>In the whole population they lift the mean from 8.86 to 9.86 hours and leave the median at 6.5.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Solution run of lab 1.3. The headline "average repair time rose from 8 to 15 hours" would be written about a month in which one clerk forgot one ticket. Ask the room what they would check before forwarding such a headline.</p></aside>
+</section>
+
+<section class="slide" id="sweep-extreme" data-lo="LO1" data-label="The sweep">
+  <div class="kicker">Lab 1.3, step 3</div>
+  <h2>The mean follows the extreme value without limit; the median stops caring</h2>
+  <table class="t">
+    <tr><th class="num">the extra ticket, hours</th><th class="num">10</th><th class="num">50</th><th class="num">100</th><th class="num">500</th><th class="num">1,000</th><th class="num">2,000</th></tr>
+    <tr><td>mean of the 201 repairs</td><td class="num">8.12</td><td class="num">8.32</td><td class="num">8.56</td><td class="num">10.55</td><td class="num">13.04</td><td class="num">18.02</td></tr>
+    <tr><td>median of the 201 repairs</td><td class="num">6.50</td><td class="num">6.50</td><td class="num">6.50</td><td class="num">6.50</td><td class="num">6.50</td><td class="num">6.50</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>Each extra hour on the one ticket adds 1/201 of an hour to the mean.</li>
+    <li>It takes 27 such tickets, 12% of the sample, to move the median by one hour (stretch).</li>
+  </ul>
+  <aside class="notes"><p>The word for this property is robustness. The median tolerates up to half the data being wild; the mean tolerates none. Do not oversell it: robust is not the same as correct for every question, which is the next slide.</p></aside>
+</section>
+
+<section class="slide" id="which-summary" data-lo="LO1" data-label="Which summary">
+  <div class="kicker">Lab 1.3, steps 4 and 5</div>
+  <h2>The question decides the summary</h2>
+  <table class="t">
+    <tr><th>The question</th><th>The summary</th><th>Why</th></tr>
+    <tr><td>How long does a typical repair take?</td><td><b>Median</b></td><td>Half the repairs are shorter, half longer</td></tr>
+    <tr><td>How many crew hours do we pay for?</td><td><b>Mean</b></td><td>A total is the mean times the count</td></tr>
+    <tr><td>A stable mean when a few records are suspect?</td><td><b>Trimmed mean</b></td><td>Drops the top and bottom 5%: 7.29 hours, and 7.37 with the open ticket</td></tr>
+  </table>
+  <div class="callout warn mt"><b>What goes wrong.</b> Deleting the long tickets in silence. An extreme value is reported and explained, then kept or set aside in the open.</div>
+  <aside class="notes"><p>Statistics cannot say whether the 1,450 hours is an error; the crew log can. The analyst's duty is to make the choice visible: "12 tickets closed late, shown separately". Session 4 turns this into the rules of an honest description.</p></aside>
+</section>
+
+<section class="slide" id="skew-and-inference" data-lo="LO2" data-label="Skew and inference">
+  <div class="kicker">Why this matters tomorrow</div>
+  <h2>Skew makes the mean a harder target for inference too</h2>
+  <ul class="bullets">
+    <li>A sample of 40 repairs usually contains none of the rare long tickets, so its mean runs low and its standard error looks small.</li>
+    <li>Intervals for the mean then miss the truth more often than they promise. Lab 2.2 counts how often.</li>
+    <li>The median has no σ/√n formula. Lab 2.1 gets its interval by resampling.</li>
+  </ul>
+  <aside class="notes"><p>A bridge slide: no new numbers, a promise of two labs. If time is short, say the three lines and move to the checkpoint.</p></aside>
+</section>
+
+<section class="slide" id="check-which-summary" data-lo="LO1">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which summary goes in the monthly report?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1">
+    <p class="lead">The contract promises customers that "a typical leak is repaired within 8 hours". This month: mean 15.3 hours, median 6.5 hours, one ticket of 1,450 hours. What should Nizar report against the promise?</p>
+    <div class="opts">
+      <div class="opt" data-why="Lets one unclosed ticket stand for the typical repair: 199 of 200 repairs did not change">The mean, 15.3 hours: the promise was broken</div>
+      <div class="opt" data-why="Removes a record without saying so: the reader can no longer check the number or learn about the ticketing fault">The mean after deleting the long ticket, with no note</div>
+      <div class="opt" data-why="Hides the choice from the reader: an average of two summaries answers neither question">The midpoint of mean and median, 10.9 hours</div>
+      <div class="opt" data-ok>The median, 6.5 hours, and the long ticket named separately</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> "Typical" is a question about the middle ticket. The long ticket is a fact about the ticketing process and is reported as one.</div>
+  </div>
+  <aside class="notes"><p>Answer: D. If someone defends B, agree that the number would be close to right, and ask what the reader loses: the ability to check, and the news that tickets are being left open.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-1-3" data-auto="lab" data-lab="1.3">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The lab draws its own 200 repairs with a seed from the tickets closed on time, so it needs nothing from the morning. Step 5 has a two-part answer on purpose: median for "typical", mean for a total. The stretch loop needs a guard; a participant who appends to the wrong array waits for ever.</p></aside>
 </section>
 
-<!-- Session 4 -->
-
+<!-- ======================= SESSION 4 ======================= -->
 <section class="slide section" id="s4" data-auto="section" data-session="4"></section>
 
-<section class="slide" id="s4-idea" data-lo="LO1">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="five-numbers" data-lo="LO1" data-label="Five numbers">
+  <div class="kicker">Lab 1.4, step 1</div>
+  <h2>Five numbers describe a skewed sample without pretending it is a bell</h2>
   <div class="cols cols-2">
+    <table class="t">
+      <tr><th>300 repairs</th><th class="num">hours</th></tr>
+      <tr><td>minimum</td><td class="num">1.0</td></tr>
+      <tr><td>first quartile</td><td class="num">3.7</td></tr>
+      <tr class="hl"><td>median</td><td class="num">6.2</td></tr>
+      <tr><td>third quartile</td><td class="num">10.4</td></tr>
+      <tr><td>maximum</td><td class="num">663.5</td></tr>
+    </table>
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>The <b>interquartile range</b>, 6.7 hours, is the width of the middle half.</li>
+      <li>The same sample as "mean ± SD": 10.4 ± 38.4 hours, a range that starts below zero.</li>
+      <li>The maximum is one late-entry ticket. The five numbers show it without being bent by it.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Solution run of lab 1.4 on a sample of 300 that happens to contain one late-entry ticket. Mean plus or minus SD is a habit from symmetric data; on skewed data it describes nothing that exists.</p></aside>
 </section>
 
-<section class="slide" id="s4-steps" data-lo="LO1">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="histogram-choices" data-lo="LO1" data-label="Histogram choices">
+  <div class="kicker">Lab 1.4, steps 2 and 3</div>
+  <h2>A histogram is a set of choices: state them</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Bin width</h4><p class="small mb0">2 hours here. Too wide hides the peak; too narrow draws noise. Write the width on the axis.</p></div>
+    <div class="card c-cyan"><h4>Where the axis ends</h4><p class="small mb0">The plot stops at 40 hours. The title says "4 longer than 40 hours not shown".</p></div>
+    <div class="card c-coral"><h4>Plain or log axis</h4><p class="small mb0">On a log axis all 300 fit. Skewness falls from 16.5 to 0.8, and the late ticket stands apart as its own group.</p></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <div class="callout tip mt"><b>Rule.</b> A reader should be able to redraw your picture from its caption: count, bin width, axis, what is left out.</div>
+  <aside class="notes"><p>Demonstrate in the notebook: change the bin width from 2 to 10 hours and to 0.25 hours and let the room say which picture they would trust. The log histogram is the more truthful picture of a duration and the harder one for a manager to read; show both.</p></aside>
+</section>
+
+<section class="slide" id="groups-with-counts" data-lo="LO1" data-label="Groups with counts">
+  <div class="kicker">Lab 1.4, step 4</div>
+  <h2>A group summary always carries its count</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th>contractor</th><th class="num">n</th><th class="num">median</th><th class="num">quartiles</th></tr>
+      <tr><td>A</td><td class="num">150</td><td class="num">5.2</td><td class="num">3.4 to 8.9</td></tr>
+      <tr><td>B</td><td class="num">150</td><td class="num">7.5</td><td class="num">4.7 to 11.6</td></tr>
+    </table>
+    <ul class="bullets">
+      <li>B's median is 2.3 hours higher in this sample.</li>
+      <li>A description shows the gap. It does not say whether the gap is more than the luck of 300 tickets.</li>
+      <li>That judgement needs an interval (Day 2) and a test (Day 3).</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The true medians are 5.9 and 7.3 hours, a gap of 1.4: this sample overstates it. Do not reveal that yet unless asked; lab 2.4 puts an interval on the gap and compares it with the truth.</p></aside>
+</section>
+
+<section class="slide" id="small-counts" data-lo="LO1 LO6" data-label="Small counts">
+  <div class="kicker">Lab 1.4, stretch</div>
+  <h2>By district only, and not when the count is small</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>Zulal reports by district or contractor, never by household.</li>
+      <li>A district's number is withheld when it rests on fewer than 20 repairs.</li>
+      <li>In the sample of 300, that withholds 24 of the 29 districts that appear.</li>
+    </ul>
+    <div class="card c-coral"><h4>Two reasons, one rule</h4><p class="small mb0"><b>Statistics:</b> a median of 8 tickets jumps with every new ticket.</p><p class="small mb0"><b>Protection:</b> in a small district a number can point at single households.</p></div>
+  </div>
+  <aside class="notes"><p>The threshold of 20 is the course's working rule for the labs, not a quotation from a regulation. The statistical half of the argument returns in lab 3.4: the smallest districts give the most extreme estimates by chance.</p></aside>
+</section>
+
+<section class="slide" id="honest-description" data-lo="LO1 LO6" data-label="An honest description">
+  <div class="kicker">Lab 1.4, step 5</div>
+  <h2>An honest description can be checked line by line</h2>
+  <div class="card tint c-navy"><p class="mb0">"We looked at <b>300</b> leak repairs drawn at random from Zulal's <b>12,000</b> repairs of the year. The median repair took <b>6.2</b> hours; the middle half took between <b>3.7</b> and <b>10.4</b> hours. <b>One</b> ticket in the sample was closed in the system weeks late and is reported separately; the longest regular repair took 42.8 hours. These numbers describe the 300 sampled repairs, by contractor and never by household."</p></div>
+  <div class="cols cols-4 mt">
+    <div class="card flat c-teal"><h4>Count</h4><p class="small mb0">300 of 12,000</p></div>
+    <div class="card flat c-cyan"><h4>Middle and spread</h4><p class="small mb0">median, quartiles</p></div>
+    <div class="card flat c-coral"><h4>Exclusions</h4><p class="small mb0">named, not hidden</p></div>
+    <div class="card flat c-purple"><h4>Population</h4><p class="small mb0">what the sample stands for</p></div>
+  </div>
+  <aside class="notes"><p>The four cards are the checklist the notebook applies to each participant's paragraph. What the paragraph does not yet contain is any statement of uncertainty: it describes the 300, not the 12,000. Tomorrow adds the interval. The capstone brief opens with exactly such a paragraph.</p></aside>
+</section>
+
+<section class="slide" id="description-is-not-inference" data-lo="LO1" data-label="Describe, then infer">
+  <div class="kicker">The line between today and tomorrow</div>
+  <h2>A description is about the sample; an inference is about the population</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>Description, today</h4><p class="small mb0">"In these 300 repairs the median was 6.2 hours." True by arithmetic. No uncertainty needed.</p></div>
+    <div class="card c-coral"><h4>Inference, from tomorrow</h4><p class="small mb0">"The median of all 12,000 repairs is between two stated values." A claim that can be wrong, and whose error rate can be measured.</p></div>
+  </div>
+  <p class="small mt">The true median is 6.5 hours. The sample said 6.2. Tomorrow's interval has to be wide enough to admit 6.5, and you will count how often it is.</p>
+  <aside class="notes"><p>Close the content of Day 1 here. The move from the left card to the right card is the whole subject of the next three days.</p></aside>
+</section>
+
+<section class="slide" id="check-honest-description" data-lo="LO1">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which description would you sign?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1">
+    <p class="lead">Four drafts describe the same 300 repairs, one of which is a late-entry ticket of 663.5 hours. Which one can a reader check and rely on?</p>
+    <div class="opts">
+      <div class="opt" data-why="Uses mean and SD on skewed data: the range starts below zero hours and is driven by one ticket">Repairs took 10.4 ± 38.4 hours on average</div>
+      <div class="opt" data-ok>Of 300 sampled repairs the median was 6.2 hours (quartiles 3.7 and 10.4); one late-entry ticket is listed apart</div>
+      <div class="opt" data-why="Gives a number with no count, no spread and no population: the reader cannot judge how much it rests on">Repairs typically take about six hours</div>
+      <div class="opt" data-why="States a sample result as a fact about every repair: a description of 300 tickets says nothing certain about all 12,000">All of Zulal's repairs have a median of exactly 6.2 hours</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Count, middle, spread and the exclusion are all there, and nothing is claimed beyond the 300.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Option C is the tempting one because it is short and roughly true. Ask what a reader would do with it if next month's number were seven hours.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-1-4" data-auto="lab" data-lab="1.4">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The sample of 300 is drawn in the notebook with a seed and contains one late-entry ticket. The check of step 5 looks for the count, the median and the two quartiles as printed with one decimal, and for the population size written as 12,000; a paragraph that rounds differently fails the check and is still a fine paragraph, so read a few on screen.</p></aside>
 </section>
 
-<section class="slide" id="wrap-up">
-  <div class="kicker">Day 1 · wrap-up</div>
-  <h2>Three things to keep</h2>
+<section class="slide" id="wrap-up" data-label="Wrap-up">
+  <div class="kicker">Day 1 in three lines</div>
+  <h2>What to keep</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-coral"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-purple"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
+    <div class="card c-teal"><h4>A statistic varies</h4><p class="small mb0">One sample is one draw of many. The sampling distribution shows all the draws you did not get.</p></div>
+    <div class="card c-cyan"><h4>The standard error measures it</h4><p class="small mb0">The spread of a statistic, s / √n for a mean, from one sample. Not the standard deviation of households.</p></div>
+    <div class="card c-coral"><h4>Describe before you infer</h4><p class="small mb0">Median and quartiles for skewed data, the count, the exclusions, the population.</p></div>
   </div>
+  <aside class="notes"><p>Ask one participant for the difference between a standard deviation and a standard error in one sentence each. If it does not come easily, start Day 2 with the checkpoint of session 2 again.</p></aside>
 </section>
 
 <section class="slide dark" id="next" data-label="Next">
   <div class="kicker">Next</div>
-  <h2>Day 2: Intervals</h2>
-  <p class="lead">REPLACE: what participants prepare before then; unfinished labs can be finished at home</p>
-  <aside class="notes">REPLACE: accounts, installs or reading participants need before the next unit</aside>
+  <h1>Day 2: Intervals</h1>
+  <p class="lead">From "samples land near the truth" to an interval built from one sample, and a count of how often it holds.</p>
+  <ul class="bullets">
+    <li>Keep your environment as it is: tomorrow's labs use the same four files.</li>
+    <li>Think about it tonight: with one sample and no population, how could you see a sampling distribution?</li>
+  </ul>
+  <aside class="notes"><p>The overnight question is the bootstrap. Do not answer it today.</p></aside>
 </section>

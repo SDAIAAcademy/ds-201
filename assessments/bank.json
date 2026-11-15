@@ -3,166 +3,376 @@
   "version": 1,
   "questions": [
     {
-      "id": "q-example-1",
+      "id": "q-sampling-01",
       "type": "single",
-      "prompt": "REPLACE: a practice question on LO1, as a short scenario",
+      "prompt": "A utility has 60,000 customers. An analyst phones 80 of them and finds that 35% would pay bills through an app. Which of these is the statistic?",
       "options": [
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: the right answer",
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: a wrong option that a common misconception makes tempting"
+        "The share of all 60,000 customers who would pay by app",
+        "The 35% found among the 80 customers phoned",
+        "The 80 customers who were phoned",
+        "The 60,000 customers of the utility"
       ],
       "correct": [
         1
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "A statistic is a number computed from the sample: the 35% among the 80. The share among all 60,000 is the parameter it estimates.",
       "misconceptions": [
-        "REPLACE: the misconception behind this option",
+        "Names the parameter: the number that describes the whole population",
         "",
-        "REPLACE: the misconception behind this option",
-        "REPLACE: the misconception behind this option"
+        "Names the sample, which is a set of units, not a number",
+        "Names the population, which is a set of units, not a number"
       ],
       "lo": [
         "LO1"
       ],
       "day": "day1",
       "session": 1,
-      "level": "apply",
+      "slide": "four-words",
+      "level": "understand",
       "pool": "practice",
-      "weight": 1
+      "weight": 1,
+      "timer": 60
     },
     {
-      "id": "q-example-2",
-      "type": "tf",
-      "prompt": "REPLACE: a statement on LO2 that is true",
+      "id": "q-sampling-02",
+      "type": "single",
+      "prompt": "An analyst draws 500 samples of 40 households and plots a histogram of the 500 sample means. What does one bar of this histogram count?",
       "options": [
-        "True",
-        "False"
+        "Households whose consumption falls in that range",
+        "Litres consumed by the households in that range",
+        "Samples whose mean falls in that range",
+        "Households that appear in more than one sample"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The histogram is a sampling distribution: each of its 500 entries is the mean of one sample.",
+      "misconceptions": [
+        "Reads the sampling distribution as the distribution of households",
+        "Confuses the count on the vertical axis with the quantity on the horizontal axis",
+        "",
+        "Invents a quantity the histogram does not show"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day1",
+      "session": 1,
+      "slide": "sampling-distribution",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-sampling-03",
+      "type": "single",
+      "prompt": "Two analysts each read 60 meters drawn at random from the same population, on the same day. One reports a mean of 452 litres, the other 489 litres. Both followed the method correctly. What explains the gap best?",
+      "options": [
+        "Each sample is one draw of many, and means of 60 vary from draw to draw",
+        "One of the two samples must contain a recording error",
+        "The population mean changed between the two samples",
+        "Samples of 60 are too small to give any usable mean"
       ],
       "correct": [
         0
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "Two correctly drawn samples of 60 give two different means: the gap is ordinary sampling variation.",
       "misconceptions": [
         "",
-        "REPLACE: the misconception behind this option"
+        "Treats sampling variation as a fault that needs a culprit",
+        "Reads a difference between samples as a change in the population",
+        "Overstates the problem: the mean is usable once its standard error is given"
       ],
       "lo": [
-        "LO2"
+        "LO1"
       ],
       "day": "day1",
       "session": 1,
-      "level": "understand",
+      "slide": "one-sample-misses",
+      "level": "analyze",
       "pool": "practice",
-      "weight": 1
+      "weight": 1,
+      "timer": 60
     },
     {
-      "id": "q-example-3",
+      "id": "q-se-01",
       "type": "single",
-      "prompt": "REPLACE: a practice question on LO3, as a short scenario",
+      "prompt": "A sample of 225 households has a mean consumption of 480 litres and a standard deviation of 180 litres. What is the estimated standard error of the mean?",
       "options": [
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: the right answer",
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: a wrong option that a common misconception makes tempting"
+        "0.8 litres",
+        "12 litres",
+        "32 litres",
+        "180 litres"
       ],
       "correct": [
         1
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "s / √n = 180 / 15 = 12 litres.",
       "misconceptions": [
-        "REPLACE: the misconception behind this option",
+        "Divides the standard deviation by n and not by its square root",
         "",
-        "REPLACE: the misconception behind this option",
-        "REPLACE: the misconception behind this option"
+        "Divides the mean by the square root of n",
+        "Gives the standard deviation of households, which is not the error of the mean"
       ],
       "lo": [
-        "LO3"
+        "LO1"
       ],
       "day": "day1",
-      "session": 1,
+      "session": 2,
+      "slide": "se-by-formula",
       "level": "apply",
       "pool": "practice",
-      "weight": 1
+      "weight": 1,
+      "timer": 60
     },
     {
-      "id": "q-example-4",
-      "type": "tf",
-      "prompt": "REPLACE: a statement on LO4 that is true",
+      "id": "q-se-02",
+      "type": "single",
+      "prompt": "With 100 households the standard error of mean consumption is 20 litres. The manager wants a standard error of 5 litres. About how many households are needed?",
       "options": [
-        "True",
-        "False"
+        "200 households",
+        "400 households",
+        "800 households",
+        "1,600 households"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "The error must fall 4 times, which costs 4² = 16 times the sample: 1,600 households.",
+      "misconceptions": [
+        "Assumes the error halves each time the sample doubles",
+        "Assumes the error falls in proportion to the sample",
+        "Doubles twice more than a proportional rule without squaring",
+        ""
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day1",
+      "session": 2,
+      "slide": "sqrt-law-samples",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-se-03",
+      "type": "single",
+      "prompt": "A report on 900 households says: \"Mean consumption 465 litres (SD 210, SE 7)\". A planner needs to know how much a single household can differ from the average. Which number answers the planner?",
+      "options": [
+        "The SD, 210 litres",
+        "The SE, 7 litres",
+        "Twice the SE, 14 litres",
+        "The mean, 465 litres"
       ],
       "correct": [
         0
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "How far single households lie from the average is the standard deviation. The standard error describes the precision of the mean.",
       "misconceptions": [
         "",
-        "REPLACE: the misconception behind this option"
+        "Applies the precision of the mean to single households",
+        "Builds an interval for the mean, which still says nothing about single households",
+        "Gives the centre, not the spread"
       ],
       "lo": [
-        "LO4"
+        "LO1"
       ],
       "day": "day1",
-      "session": 1,
-      "level": "understand",
+      "session": 2,
+      "slide": "sd-versus-se",
+      "level": "analyze",
       "pool": "practice",
-      "weight": 1
+      "weight": 1,
+      "timer": 60
     },
     {
-      "id": "q-example-5",
+      "id": "q-skew-01",
       "type": "single",
-      "prompt": "REPLACE: a practice question on LO5, as a short scenario",
+      "prompt": "Complaint resolution times at a call centre have a median of 4 hours and a mean of 9 hours. What does that pair of numbers tell you about the distribution?",
       "options": [
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: the right answer",
-        "REPLACE: a wrong option that a common misconception makes tempting",
-        "REPLACE: a wrong option that a common misconception makes tempting"
+        "It is symmetric around 6.5 hours",
+        "It has a long tail of short resolutions",
+        "It has a long tail of long resolutions",
+        "It contains a calculation error"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "A mean well above the median is the mark of a long right tail: a few very long resolutions pull the mean up.",
+      "misconceptions": [
+        "Averages the two summaries as if neither were informative",
+        "Reverses the direction: a tail of small values would pull the mean below the median",
+        "",
+        "Assumes mean and median must agree"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day1",
+      "session": 3,
+      "slide": "mean-follows-tail",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-skew-02",
+      "type": "single",
+      "prompt": "A sample of 99 repairs has a mean of 8.0 hours and a median of 6.0 hours. One more ticket of 808 hours is added. What happens to the two summaries, approximately?",
+      "options": [
+        "Mean 8.1 hours, median 14 hours",
+        "Mean 16 hours, median 6 hours",
+        "Mean 16 hours, median 14 hours",
+        "Mean 8.1 hours, median 6 hours"
       ],
       "correct": [
         1
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "The new mean is (99 × 8 + 808) / 100 = 16 hours. The median only moves to a neighbouring ticket, so it stays near 6.",
       "misconceptions": [
-        "REPLACE: the misconception behind this option",
+        "Swaps the behaviour of the two summaries",
         "",
-        "REPLACE: the misconception behind this option",
-        "REPLACE: the misconception behind this option"
+        "Lets the extreme value move the median as much as the mean",
+        "Assumes one value in a hundred cannot matter"
       ],
       "lo": [
-        "LO5"
+        "LO1"
       ],
       "day": "day1",
-      "session": 1,
+      "session": 3,
+      "slide": "one-open-ticket",
       "level": "apply",
       "pool": "practice",
-      "weight": 1
+      "weight": 1,
+      "timer": 60
     },
     {
-      "id": "q-example-6",
-      "type": "tf",
-      "prompt": "REPLACE: a statement on LO6 that is true",
+      "id": "q-skew-03",
+      "type": "single",
+      "prompt": "The finance team asks how many crew hours were paid for 3,000 repairs last quarter. The repair times are strongly skewed. Which summary should the analyst multiply by 3,000?",
       "options": [
-        "True",
-        "False"
+        "The median repair time",
+        "The trimmed mean repair time",
+        "The mean repair time",
+        "The most frequent repair time"
       ],
       "correct": [
-        0
+        2
       ],
-      "explanation": "REPLACE: why the right answer is right, in one sentence",
+      "explanation": "A total equals the mean times the count, whatever the shape of the distribution. The median times the count would understate the hours.",
       "misconceptions": [
+        "Uses the typical repair where a total is asked for",
+        "Drops the long repairs, whose hours were paid all the same",
         "",
-        "REPLACE: the misconception behind this option"
+        "Uses the peak of the histogram, which ignores the tail entirely"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day1",
+      "session": 3,
+      "slide": "which-summary",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-describe-01",
+      "type": "single",
+      "prompt": "A sample of waiting times has first quartile 12 minutes, median 20 minutes and third quartile 34 minutes. What is the interquartile range?",
+      "options": [
+        "8 minutes",
+        "14 minutes",
+        "20 minutes",
+        "22 minutes"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "The interquartile range is the third quartile minus the first: 34 - 12 = 22 minutes.",
+      "misconceptions": [
+        "Takes the median minus the first quartile",
+        "Takes the third quartile minus the median",
+        "Gives the median itself",
+        ""
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day1",
+      "session": 4,
+      "slide": "five-numbers",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-describe-02",
+      "type": "single",
+      "prompt": "An analyst summarises 250 skewed repair times, three of which are tickets closed weeks late. Which sentence gives a reader what is needed to rely on the summary?",
+      "options": [
+        "Repairs took 11 hours on average, give or take 40",
+        "Of 250 sampled repairs the median was 6 hours and the quartiles 4 and 10; 3 late tickets are listed apart",
+        "The typical repair at the utility takes 6 hours",
+        "After cleaning, the mean repair time was 7 hours"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "It gives the count, the middle, the spread and the exclusion, and claims nothing beyond the sample.",
+      "misconceptions": [
+        "Uses mean and standard deviation on skewed data, with a range that goes below zero",
+        "",
+        "Gives no count, no spread and states a sample result as a fact about all repairs",
+        "Hides what \"cleaning\" removed, so the number cannot be checked"
       ],
       "lo": [
         "LO6"
       ],
       "day": "day1",
-      "session": 1,
-      "level": "understand",
+      "session": 4,
+      "slide": "honest-description",
+      "level": "evaluate",
       "pool": "practice",
-      "weight": 1
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-describe-03",
+      "type": "single",
+      "prompt": "A table of median repair time by district is built from a sample of 300 repairs. District D30 has 4 repairs in the sample and the highest median of all. What should the analyst do with that row?",
+      "options": [
+        "Report it as the worst district",
+        "Withhold the number and state that the count is too small",
+        "Replace it with the overall median",
+        "Delete the district from the table without a note"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A median of 4 tickets is unstable and, in a small district, can point at single households. The row is withheld with the reason stated.",
+      "misconceptions": [
+        "Ranks on a number that four tickets cannot support",
+        "",
+        "Invents a value the data did not give",
+        "Removes the row in silence, so the reader cannot tell it was ever there"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": "day1",
+      "session": 4,
+      "slide": "small-counts",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
     }
   ]
 }
