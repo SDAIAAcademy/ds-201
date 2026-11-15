@@ -199,8 +199,7 @@ def brief_check(paragraph: str, numbers: dict, words: list[str]) -> bool:
         found = w.lower() in low
         ok &= found
         print(f"{'✅' if found else '❌'} says: {w}")
-    n_sent = sum(paragraph.count(c) for c in ".?!")
-    print(f"length: {len(paragraph.split())} words, about {n_sent} sentences")
+    print(f"length: {len(paragraph.split())} words")
     if STRICT and not ok:
         raise AssertionError("the brief paragraph misses a number or a required statement")
     return ok

@@ -1,0 +1,27 @@
+{
+ "funnel": [
+  39.82200541719264,
+  111.08276167866704
+ ],
+ "link": [
+  0.38054265453433717,
+  3.371859296482412,
+  5.191950464396285
+ ],
+ "predicted_move": [
+  0.6194326357324403,
+  12.291907473124356
+ ],
+ "text": "Among households in areas of the same summer temperature, one more person goes with about 86 litres more a day (95% interval 84 to 89), and each degree of summer temperature with about 20 litres more. These are comparisons between different households in 2,000 metered homes, not the effect of adding a person to a home, and other differences between areas that we did not measure may still be mixed into both numbers.",
+ "trend1": 16.970179501183495,
+ "trend2": -4.331549770696131e-13,
+ "two": [
+  86.18712313460782,
+  19.843816363646944,
+  1.3192899737769348,
+  [
+   0.7921766274404057,
+   0.8650598572094378
+  ]
+ ]
+}

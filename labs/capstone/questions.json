@@ -1,0 +1,29 @@
+[
+ {
+  "id": "q1",
+  "title": "The meter-replacement programme",
+  "file": "capstone/data/q1_meter_replacement.csv",
+  "from": "Jamila Al-Shuraim, head of customer operations",
+  "question": "We replaced the old meters with smart meters in 8 of 20 districts. An estimated bill is one we could not read and had to guess. Did the smart meters reduce estimated bills, and by how much? I have to decide whether to fund the other 12 districts.",
+  "columns": "household_key (pseudonym), district, meter (old or smart), household_size, estimated_bills_12m (estimated bills in the last 12 months, 0 to 12)",
+  "think_about": "The rollout was by district, not by household. Counts of bills are skewed."
+ },
+ {
+  "id": "q2",
+  "title": "The conservation-message pilot",
+  "file": "capstone/data/q2_conservation_message.csv",
+  "from": "Jamila Al-Shuraim, head of customer operations",
+  "question": "Forty neighbourhoods took part in a pilot. Twenty, chosen by lot, received a monthly message comparing their consumption with their neighbours'. Did the message reduce consumption, by how many litres a day, and is it worth sending to everyone? Our planners say a saving below 10 litres a day per household does not pay for the programme.",
+  "columns": "household_key (pseudonym), neighbourhood, arm (message or control), household_size, litres_day_before, litres_day_after",
+  "think_about": "The lot was drawn by neighbourhood. Every neighbourhood changed between the two months for reasons of its own. There is a threshold."
+ },
+ {
+  "id": "q3",
+  "title": "The call-back change",
+  "file": "capstone/data/q3_call_back.csv",
+  "from": "Nizar Al-Khayyat, maintenance contracts lead",
+  "question": "Since the new rule, the complaints desk calls every customer back within one working day. Did complaints get resolved faster after the change, for which types of complaint, and by how much? I am asked to extend the rule to both centres permanently.",
+  "columns": "complaint_key (pseudonym), period (before or after), centre (North or South), type (six types), complexity (1 to 5), resolution_hours",
+  "think_about": "Resolution times are skewed. Six types are six comparisons. Before and after is not a randomised comparison."
+ }
+]
