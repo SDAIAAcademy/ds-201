@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-ax="page" data-track="data-science">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistical Inference by Simulation · SDAIA Academy</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<meta name="description" content="Answer a manager's question with an estimate, an interval, a test and an effect size, each computed by simulation and checked against a known truth">
+<link rel="icon" href="_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="index.md">
+<link rel="describedby" href="llms.txt">
+<link rel="stylesheet" href="_engine/academy.css">
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="top"><div class="logo" id="logo"></div><nav><a href="slides/day1.html">Slides</a><a href="practice.html">Practice</a><a href="index.md" type="text/markdown">Markdown</a></nav></div>
+<div class="kicker">Data Science Track · SDAIA Academy · DS-201</div>
+<h1>Statistical Inference by Simulation<span class="sub ar" lang="ar" dir="rtl">الاستدلال الإحصائي بالمحاكاة</span></h1>
+<p>Answer a manager's question with an estimate, an interval, a test and an effect size, each computed by simulation and checked against a known truth</p>
+<div class="meta"><span class="track">Data Science Track</span><span>4 teaching days + capstone day</span><span>26 hours</span><span>Level 200</span><span>Data Science · Assistant badge</span></div>
+</div>
+</header>
+<main class="wrap">
+<h2>About the course</h2>
+<p>Participants learn inference by computing it. On synthetic data from a fictional water utility whose true population is known, they draw repeated samples, build bootstrap intervals, run permutation tests beside classical ones, and report effect sizes with intervals instead of bare p-values. They see how testing 30 districts at once produces false findings and correct for it, then fit and read a first linear regression.</p>
+<p><b>Who it is for:</b> Practitioners. Graduates and early-career analysts who have completed the FN courses or passed the placement test, and analysts moving into data science.</p>
+<p><b>Format:</b> Intensive: 4 teaching days of four sessions and a capstone day, with guided pre-work and a tracked follow-up task</p>
+<h2>The case study</h2>
+<div class="note info"><b>Zulal Water Utility.</b> Zulal Water Utility (مرفق زلال للمياه) is a fictional regional water utility whose whole population is on file: 80,000 metered households, 12,000 leak repairs by two contractors, 9,000 survey responses and 30 districts of unequal size, all synthetic and generated with a fixed seed. Because the truth is known, every interval and test in the labs is checked against it: repair times are skewed and hold twelve tickets left open for weeks, the survey has a district effect, five districts truly differ in repair time, and larger households live in hotter districts. Participants work as Shadin Al-Qaisi, a junior analyst answering questions from Jamila Al-Shuraim, head of customer operations; household keys are pseudonyms and results are reported by district only.</div>
+<h2>The course</h2>
+<div class="day">
+<div class="day-head c-teal"><div><div class="t">Day 1 · 4 sessions · 4 labs</div><h3>Variation</h3></div><a class="btn" href="slides/day1.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>A sample is one draw of many</b><br>Population and sample, parameter and statistic, and the distribution of a statistic over many samples<ul><li>Distinguish a parameter of the population from a statistic of one sample</li><li>Draw repeated samples with a seed and collect a statistic from each</li><li>Describe a sampling distribution by its centre and its spread</li></ul></td><td><a href="labs/D1_1_sampling_means.ipynb">Lab 1.1 · One sample, then a thousand</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D1_1_sampling_means.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Standard error by simulation and by formula</b><br>The standard error is the spread of a sampling distribution; one sample is enough to estimate it<ul><li>Measure a standard error by simulation at several sample sizes</li><li>Compute the standard error of a mean from one sample</li><li>Separate the standard deviation of households from the standard error of a mean</li></ul></td><td><a href="labs/D1_2_standard_error.ipynb">Lab 1.2 · Standard error twice</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D1_2_standard_error.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>Skew, outliers and the median</b><br>Repair times are skewed: the mean follows the tail and the median stays with the typical repair<ul><li>Recognise skew from a histogram and from mean against median</li><li>Measure the effect of one extreme value on the mean, the median and a trimmed mean</li><li>Choose the summary that answers the question asked, and say why</li></ul></td><td><a href="labs/D1_3_extreme_repair.ipynb">Lab 1.3 · One ticket left open</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D1_3_extreme_repair.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Describing a sample honestly</b><br>A description a reader can trust: five numbers, a histogram with its choices stated, the count and what was left out<ul><li>Summarise a skewed sample in five numbers and an interquartile range</li><li>Draw a histogram and state the bin width and the axis</li><li>Write a description that gives the count, the exclusions and the population</li></ul></td><td><a href="labs/D1_4_five_numbers.ipynb">Lab 1.4 · Five numbers and a histogram</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D1_4_five_numbers.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-cyan"><div><div class="t">Day 2 · 4 sessions · 4 labs</div><h3>Intervals</h3></div><a class="btn" href="slides/day2.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>The bootstrap idea</b><br>The sample stands in for the population: resample it with replacement and watch the statistic move<ul><li>Explain why resampling the sample imitates sampling the population</li><li>Compute a percentile bootstrap interval for a median</li><li>Compare a bootstrap distribution with the real sampling distribution</li></ul></td><td><a href="labs/D2_1_bootstrap_median.ipynb">Lab 2.1 · Bootstrap a median</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D2_1_bootstrap_median.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Coverage is a testable claim</b><br>A 95% interval is a claim about the method over many studies, and the claim can fail<ul><li>State what 95% coverage promises</li><li>Measure the coverage of two interval methods over simulated studies</li><li>Name two situations in which the bootstrap fails</li></ul></td><td><a href="labs/D2_2_coverage.ipynb">Lab 2.2 · Count the coverage</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D2_2_coverage.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>Resample the right unit</b><br>Rows that share a district are not independent: the unit you resample must be the unit that was sampled<ul><li>Identify the sampling unit of a two-stage sample</li><li>Bootstrap by household and by district and compare the intervals</li><li>Show by coverage which unit keeps the promise</li></ul></td><td><a href="labs/D2_3_resampling_unit.ipynb">Lab 2.3 · Household or district</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D2_3_resampling_unit.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Intervals for differences and ratios</b><br>Managers ask about gaps and ratios: resample each group, recompute the comparison, read the interval against 0 or 1<ul><li>Compute a bootstrap interval for a difference between two groups</li><li>Compute a bootstrap interval for a ratio</li><li>Read an interval for a comparison against no difference</li></ul></td><td><a href="labs/D2_4_difference_ratio.ipynb">Lab 2.4 · Difference and ratio of medians</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D2_4_difference_ratio.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-coral"><div><div class="t">Day 3 · 4 sessions · 4 labs</div><h3>Tests</h3></div><a class="btn" href="slides/day3.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>A test is a shuffling rule</b><br>The null hypothesis is a rule for shuffling labels; the p-value counts how often the rule beats your result<ul><li>State a null hypothesis as a shuffling rule</li><li>Implement a permutation test for a difference in means</li><li>Compare the permutation p-value with the matching classical test</li></ul></td><td><a href="labs/D3_1_permutation_test.ipynb">Lab 3.1 · Shuffle the contractor labels</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D3_1_permutation_test.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>p-values and their misreadings</b><br>What a p-value says, the misreadings found in reports, and how a simulation with the truth known settles them<ul><li>Explain what a p-value describes and what it does not</li><li>Identify five common misreadings of p-values and intervals</li><li>Check a claim about p-values by simulating studies with the truth known</li></ul></td><td><a href="labs/D3_2_report_sentences.ipynb">Lab 3.2 · Mark eight report sentences</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D3_2_report_sentences.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>Effect size and practical significance</b><br>How big, and does it matter: an effect with its interval set against the threshold the business named<ul><li>Report a raw and a standardised effect size with an interval</li><li>Place an interval against zero and against a practical threshold</li><li>Estimate Type I error and power by simulation</li></ul></td><td><a href="labs/D3_3_effect_threshold.ipynb">Lab 3.3 · The effect against the threshold</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D3_3_effect_threshold.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Thirty districts, many false alarms</b><br>Test 30 districts and some will cross 0.05 by chance: family-wise error, false discovery rate and where small districts land<ul><li>Measure the false findings of 30 uncorrected tests</li><li>Apply the Holm and Benjamini-Hochberg corrections</li><li>Explain why the smallest districts give the most extreme estimates</li></ul></td><td><a href="labs/D3_4_thirty_districts.ipynb">Lab 3.4 · Thirty districts at once</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D3_4_thirty_districts.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-purple"><div><div class="t">Day 4 · 4 sessions · 4 labs</div><h3>Regression and reporting</h3></div><a class="btn" href="slides/day4.html">Open the slides</a></div>
+<div class="scroll"><table>
+<tr><th>Session</th><th>Topic</th><th>Lab</th></tr>
+<tr><td>1</td><td><b>Least squares as a summary</b><br>A fitted line is a summary of group averages, and its slope is a number in the manager's units<ul><li>Fit a line by least squares and read its slope and intercept</li><li>Translate a slope into the units a manager uses</li><li>Separate a description of a pattern from a claim about cause</li></ul></td><td><a href="labs/D4_1_fit_line.ipynb">Lab 4.1 · Consumption on household size</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D4_1_fit_line.ipynb">Open in Colab</a></td></tr>
+<tr><td>2</td><td><b>Slopes with intervals</b><br>A slope is a statistic: it has a sampling distribution, a bootstrap interval and a reported standard error that rests on an assumption<ul><li>Bootstrap a regression slope by resampling households</li><li>Compare a bootstrap standard error with the one a library reports</li><li>Explain which assumption makes the two differ</li></ul></td><td><a href="labs/D4_2_slope_interval.ipynb">Lab 4.2 · An interval for the slope</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D4_2_slope_interval.ipynb">Open in Colab</a></td></tr>
+<tr><td>3</td><td><b>Residuals and confounding</b><br>Residuals show what the line missed; a second variable can move the first slope, and that is confounding<ul><li>Read a residual plot for curvature and unequal spread</li><li>Add a second variable and explain why the first slope moved</li><li>State what a regression on observed data cannot settle</li></ul></td><td><a href="labs/D4_3_residuals_confounding.ipynb">Lab 4.3 · Add temperature</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D4_3_residuals_confounding.ipynb">Open in Colab</a></td></tr>
+<tr><td>4</td><td><b>Writing an inference brief</b><br>The brief a manager can act on: the question, the estimate, the interval, the test, the effect size and the limits<ul><li>Turn a manager's question into an estimand</li><li>Write an estimate, an interval and the limits in one paragraph</li><li>State the population a conclusion applies to</li></ul></td><td><a href="labs/D4_4_brief_paragraph.ipynb">Lab 4.4 · One paragraph of a brief</a> <span class="muted">(25 min)</span><br><a href="https://colab.research.google.com/github/SDAIAAcademy/ds-201/blob/main/labs/D4_4_brief_paragraph.ipynb">Open in Colab</a></td></tr>
+</table></div>
+</div>
+<div class="day">
+<div class="day-head c-amber"><div><div class="t">Capstone</div><h3>Capstone: the inference brief and its defence</h3></div><a class="btn" href="slides/capstone.html">Open the slides</a></div>
+<div class="scroll"><table><tr><td>Each participant defends one result of a brief on an unseen question in eight minutes, then answers questions for four</td></tr></table></div>
+</div>
+<h2>Capstone</h2>
+<div class="two">
+<div><p>An inference brief on one of three synthetic questions or an approved public dataset, in a public repository whose README reports estimates, intervals, tests, effect sizes and a coverage check; eight-minute defence plus questions</p><p><b>What you submit:</b> A link to a public GitHub repository with a two-page brief, a notebook that reruns from the raw data with a fixed seed, and a README that reports the estimates, intervals, tests, effect sizes and a coverage check, with the commit history and the seeded run log. Then an eight-minute live defence of one result and four minutes of questions, in which the assessor names a different resampling unit and the participant predicts, then shows, the effect.</p><p><b>Format:</b> 8 min talk and demo · 4 min Q&amp;A</p></div>
+<div><h3>Rubric</h3><div class="bar c-teal"><span>Question and estimand<i style="--w:60%"></i></span><b>15%</b></div><div class="bar c-cyan"><span>Intervals and coverage<i style="--w:100%"></i></span><b>25%</b></div><div class="bar c-coral"><span>Tests and effect sizes<i style="--w:100%"></i></span><b>25%</b></div><div class="bar c-purple"><span>Regression and limits<i style="--w:80%"></i></span><b>20%</b></div><div class="bar c-amber"><span>Reproducibility<i style="--w:60%"></i></span><b>15%</b></div></div>
+</div>
+<h2>Outcomes</h2>
+<p>By the end of the course, participants can:</p>
+<div class="day"><div class="scroll"><table>
+<tr><th></th><th>Outcomes</th><th>Level</th><th>Evidence</th></tr>
+<tr><td><b>LO1</b></td><td>Explain what a sampling distribution, a standard error, a confidence interval and a p-value describe, and identify common misreadings, given eight statements from utility reports</td><td>Awareness</td><td>a marked sheet with reasons, at least six of eight correct</td></tr>
+<tr><td><b>LO2</b></td><td>Compute bootstrap intervals for a mean, a median and a group difference, resampling the correct unit, given skewed repair times with the population known</td><td>Applied</td><td>each interval with its coverage over 1,000 simulated samples</td></tr>
+<tr><td><b>LO3</b></td><td>Implement a permutation test, compare it with the matching classical test and report an effect size with an interval, given satisfaction scores for two contractors</td><td>Applied</td><td>a script reporting both p-values and the effect size</td></tr>
+<tr><td><b>LO4</b></td><td>Apply family-wise and false discovery rate corrections to many tests and measure the false findings without them, given 30 districts of unequal size, five with a planted difference</td><td>Applied</td><td>true and false discoveries under no correction, Holm and Benjamini-Hochberg</td></tr>
+<tr><td><b>LO5</b></td><td>Analyse a linear regression of water consumption on household size and temperature, with slope intervals and residual checks, given 2,000 synthetic metered households</td><td>Applied</td><td>a regression summary, a residual plot and a two-sentence interpretation</td></tr>
+<tr><td><b>LO6</b></td><td>Deliver an inference brief that answers a manager's question with an estimate, an interval, a test, an effect size and stated limits, given a question and a dataset not seen in class</td><td>Performance</td><td>a two-page brief and a notebook that reruns from raw data, defended live</td></tr>
+</table></div></div>
+<h2>Tools</h2>
+<div class="grid">
+<div class="card c-teal"><h3>Analysis environment and notebooks</h3><p>Python with uv and JupyterLab or marimo · R with Quarto</p></div>
+<div class="card c-cyan"><h3>Arrays, statistics and resampling</h3><p>NumPy, SciPy and statsmodels · R with the infer package</p></div>
+<div class="card c-coral"><h3>Plotting</h3><p>Matplotlib · Vega-Altair · ggplot2</p></div>
+<div class="card c-purple"><h3>Hint-only course tutor</h3><p>a locally served open-weight model with a tutor instruction · an approved assistant in a study mode</p></div>
+</div>
+<h2>Before you start</h2>
+<h3>Prerequisites</h3>
+<ul><li>FN-101 Python for Data and AI Work</li><li>FN-103 Mathematics for Machine Learning: Vectors, Gradients and Probability</li><li>Filters and groups a table with a dataframe library</li><li>Computes a mean, a standard deviation and a simple probability</li><li>Pre-work: about two hours on sampling and plotting, labs/P0_prework_sampling_plotting.ipynb, before the supervised entry quiz</li><li>Setup: a laptop with uv, or Google Colab. Nothing calls or downloads a model. Run 00_setup_check before Day 1; see labs/README.md.</li></ul>
+<div class="note tip">The labs are notebooks. Open each one in Google Colab from the table above, or clone the repository and run them locally.</div>
+<h2>Sources</h2>
+<h3>National references</h3>
+<ul><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/PersonalDataProtectionLaw.pdf">Personal Data Protection Law (SDAIA)</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/ImplementingRegulationPersonalDataProtectionLaw.pdf">Implementing Regulation of the Personal Data Protection Law (SDAIA)</a></li><li><a href="https://sdaia.gov.sa/en/SDAIA/about/Documents/OpenDataPolicy.pdf">Open Data Policy (National Data Management Office, SDAIA)</a></li><li><a href="https://open.data.gov.sa/en/home">Open Data Platform (the follow-up task takes one of its tables)</a></li></ul>
+<h3>Libraries used in the labs</h3>
+<ul><li><a href="https://numpy.org/doc/stable/reference/random/generator.html">NumPy: random generators and seeds</a></li><li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html">SciPy: scipy.stats.bootstrap</a></li><li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.permutation_test.html">SciPy: scipy.stats.permutation_test</a></li><li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html">SciPy: scipy.stats.ttest_ind (Welch's t-test)</a></li><li><a href="https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html">statsmodels: multipletests (Holm, Benjamini-Hochberg)</a></li><li><a href="https://www.statsmodels.org/stable/regression.html">statsmodels: linear regression</a></li><li><a href="https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLSResults.get_robustcov_results.html">statsmodels: robust covariance of a fitted regression</a></li><li><a href="https://docs.astral.sh/uv/">uv: Python projects and environments</a></li></ul>
+<h3>Reading on inference</h3>
+<ul><li><a href="https://link.springer.com/article/10.1007/s10654-016-0149-3">Greenland and others (2016): Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations</a></li><li><a href="http://www.stat.columbia.edu/~gelman/research/unpublished/p_hacking.pdf">Gelman and Loken (2013): The garden of forking paths</a></li><li><a href="https://moderndive.com/">Ismay, Kim and Valdivia: Statistical Inference via Data Science (ModernDive)</a></li><li><a href="https://openintro-ims.netlify.app/">Çetinkaya-Rundel and Hardin: Introduction to Modern Statistics</a></li></ul>
+<h2>Files and links</h2>
+<div class="files">
+<a href="practice.html"><b>practice.html</b><span>Practice questions with feedback</span></a>
+<a href="index.md"><b>index.md</b><span>This page as Markdown, for an AI assistant</span></a>
+<a href="llms.txt"><b>llms.txt</b><span>The course for AI assistants (llms.txt)</span></a>
+<a href="https://github.com/SDAIAAcademy/ds-201"><b>SDAIAAcademy/ds-201</b><span>The course repository</span></a>
+</div>
+</main>
+<footer><div class="wrap">SDAIA Academy · Data Science Track · Statistical Inference by Simulation<br><span class="muted">Course version 2027.1.0 · engine 1.0.0 · built 2026-11-15 · commit 705e303</span></div></footer>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-15T11:16:10Z","version":"2027.1.0","commit":"705e303"},"course":{"id":"ds-201","code":"DS-201","title":"Statistical Inference by Simulation","track":"data-science","lang":"en","dir":"ltr","url":"https://sdaiaacademy.github.io/ds-201/","repo":"SDAIAAcademy/ds-201","home":"index.html"},"ai":{"context":{"course":"context/course.md","courseJs":"context/course.js","day":null,"llms":"llms.txt"},"tasks":[],"tools":[]},"features":{},"strings":{}}</script>
+<script src="_engine/academy.js"></script>
+</body>
+</html>

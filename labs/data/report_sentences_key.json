@@ -1,0 +1,50 @@
+[
+ {
+  "id": 1,
+  "text": "The difference between the contractors gave p = 0.03, so there is a 3% chance that the two contractors are really the same.",
+  "verdict": "wrong",
+  "reason": "A p-value is computed assuming no difference; it is not the probability that the assumption is true."
+ },
+ {
+  "id": 2,
+  "text": "District D07 showed no significant change (p = 0.40), which proves that the new valve schedule has no effect there.",
+  "verdict": "wrong",
+  "reason": "A large p-value is absence of evidence: a small sample or a small effect gives it too. The interval shows what is still possible."
+ },
+ {
+  "id": 3,
+  "text": "If the two contractors truly had the same satisfaction, a difference at least as large as the one we observed would turn up in about 3 studies in 100.",
+  "verdict": "right",
+  "reason": "This is the definition: how often the null rule produces a result at least this extreme."
+ },
+ {
+  "id": 4,
+  "text": "With p = 0.001 the effect of the reminder message is large and worth rolling out.",
+  "verdict": "wrong",
+  "reason": "A p-value mixes effect size and sample size. A tiny effect in a huge sample gives a tiny p-value. Size needs an estimate with an interval."
+ },
+ {
+  "id": 5,
+  "text": "The 95% interval for the mean repair time is 8.1 to 9.6 hours, so 95% of repairs take between 8.1 and 9.6 hours.",
+  "verdict": "wrong",
+  "reason": "The interval is about the mean, not about single repairs. Single repairs spread far wider: that is the standard deviation, not the standard error."
+ },
+ {
+  "id": 6,
+  "text": "We used a 95% method: across many studies run this way, about 95 in 100 of the intervals it produces would contain the true mean.",
+  "verdict": "right",
+  "reason": "Coverage is a property of the method over repeated studies."
+ },
+ {
+  "id": 7,
+  "text": "We tested all 30 districts at the 0.05 level and found two significant ones, so each of the two findings has only a 5% chance of being a false alarm.",
+  "verdict": "wrong",
+  "reason": "With 30 tests and no true differences, one or two results below 0.05 are expected. The chance that a flagged district is a false alarm can be far above 5%."
+ },
+ {
+  "id": 8,
+  "text": "The standard error of the mean consumption, 4.1 litres, describes how far a sample mean of this size typically lands from the population mean.",
+  "verdict": "right",
+  "reason": "The standard error is the spread of the sampling distribution of the statistic."
+ }
+]

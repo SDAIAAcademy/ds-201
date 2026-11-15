@@ -1,0 +1,47 @@
+# Statistical Inference by Simulation
+
+> Answer a manager's question with an estimate, an interval, a test and an effect size, each computed by simulation and checked against a known truth. SDAIA Academy course DS-201, version 2027.1.0, in English.
+
+Each slide is a heading such as "#### [day1#slide-id] Title": cite slides by that id, and each citation is a link (slides/day1.html#slide-id). These files are what a trainee sees: no speaker notes and no answer keys.
+
+## Course
+
+- [Course page](https://sdaiaacademy.github.io/ds-201/index.md): overview, outcomes, schedule and labs; the page itself is https://sdaiaacademy.github.io/ds-201/index.html
+- [The whole course](https://sdaiaacademy.github.io/ds-201/llms-full.txt): every unit, session and slide in one file, about 23,335 tokens
+- [Practice questions](https://sdaiaacademy.github.io/ds-201/practice.html): questions to check yourself, with feedback after each answer
+
+## Slides
+
+- [Day 1: Variation](https://sdaiaacademy.github.io/ds-201/slides/day1.md): Before any interval or test: a sample is one draw of many, and its statistics move from draw to draw; sessions: A sample is one draw of many, Standard error by simulation and by formula, Skew, outliers and the median, Describing a sample honestly; page: https://sdaiaacademy.github.io/ds-201/slides/day1.html; about 5,536 tokens
+- [Day 2: Intervals](https://sdaiaacademy.github.io/ds-201/slides/day2.md): An interval is a method with a promise, and on a known population the promise can be counted; sessions: The bootstrap idea, Coverage is a testable claim, Resample the right unit, Intervals for differences and ratios; page: https://sdaiaacademy.github.io/ds-201/slides/day2.html; about 5,080 tokens
+- [Day 3: Tests](https://sdaiaacademy.github.io/ds-201/slides/day3.md): A test asks one narrow question; the answer needs an effect size beside it and a count of how many questions were asked; sessions: A test is a shuffling rule, p-values and their misreadings, Effect size and practical significance, Thirty districts, many false alarms; page: https://sdaiaacademy.github.io/ds-201/slides/day3.html; about 5,711 tokens
+- [Day 4: Regression and reporting](https://sdaiaacademy.github.io/ds-201/slides/day4.md): A line summarises how one quantity moves with another; its slope needs an interval, its residuals a look, and its reader a brief; sessions: Least squares as a summary, Slopes with intervals, Residuals and confounding, Writing an inference brief; page: https://sdaiaacademy.github.io/ds-201/slides/day4.html; about 5,633 tokens
+- [Capstone: Capstone: the inference brief and its defence](https://sdaiaacademy.github.io/ds-201/slides/capstone.md): Each participant defends one result of a brief on an unseen question in eight minutes, then answers questions for four; page: https://sdaiaacademy.github.io/ds-201/slides/capstone.html; about 825 tokens
+
+## Labs
+
+- [Lab 1.1: One sample, then a thousand](https://sdaiaacademy.github.io/ds-201/labs/D1_1_sampling_means.ipynb): Day 1, Session 1, 25 min
+- [Lab 1.2: Standard error twice](https://sdaiaacademy.github.io/ds-201/labs/D1_2_standard_error.ipynb): Day 1, Session 2, 25 min
+- [Lab 1.3: One ticket left open](https://sdaiaacademy.github.io/ds-201/labs/D1_3_extreme_repair.ipynb): Day 1, Session 3, 25 min
+- [Lab 1.4: Five numbers and a histogram](https://sdaiaacademy.github.io/ds-201/labs/D1_4_five_numbers.ipynb): Day 1, Session 4, 25 min
+- [Lab 2.1: Bootstrap a median](https://sdaiaacademy.github.io/ds-201/labs/D2_1_bootstrap_median.ipynb): Day 2, Session 1, 25 min
+- [Lab 2.2: Count the coverage](https://sdaiaacademy.github.io/ds-201/labs/D2_2_coverage.ipynb): Day 2, Session 2, 25 min
+- [Lab 2.3: Household or district](https://sdaiaacademy.github.io/ds-201/labs/D2_3_resampling_unit.ipynb): Day 2, Session 3, 25 min
+- [Lab 2.4: Difference and ratio of medians](https://sdaiaacademy.github.io/ds-201/labs/D2_4_difference_ratio.ipynb): Day 2, Session 4, 25 min
+- [Lab 3.1: Shuffle the contractor labels](https://sdaiaacademy.github.io/ds-201/labs/D3_1_permutation_test.ipynb): Day 3, Session 1, 25 min
+- [Lab 3.2: Mark eight report sentences](https://sdaiaacademy.github.io/ds-201/labs/D3_2_report_sentences.ipynb): Day 3, Session 2, 25 min
+- [Lab 3.3: The effect against the threshold](https://sdaiaacademy.github.io/ds-201/labs/D3_3_effect_threshold.ipynb): Day 3, Session 3, 25 min
+- [Lab 3.4: Thirty districts at once](https://sdaiaacademy.github.io/ds-201/labs/D3_4_thirty_districts.ipynb): Day 3, Session 4, 25 min
+- [Lab 4.1: Consumption on household size](https://sdaiaacademy.github.io/ds-201/labs/D4_1_fit_line.ipynb): Day 4, Session 1, 25 min
+- [Lab 4.2: An interval for the slope](https://sdaiaacademy.github.io/ds-201/labs/D4_2_slope_interval.ipynb): Day 4, Session 2, 25 min
+- [Lab 4.3: Add temperature](https://sdaiaacademy.github.io/ds-201/labs/D4_3_residuals_confounding.ipynb): Day 4, Session 3, 25 min
+- [Lab 4.4: One paragraph of a brief](https://sdaiaacademy.github.io/ds-201/labs/D4_4_brief_paragraph.ipynb): Day 4, Session 4, 25 min
+
+## Context files
+
+- [context/course.md](https://sdaiaacademy.github.io/ds-201/context/course.md): the whole course, for an assistant that takes a file, about 23,335 tokens
+- [context/day1.md](https://sdaiaacademy.github.io/ds-201/context/day1.md): Day 1, about 5,536 tokens
+- [context/day2.md](https://sdaiaacademy.github.io/ds-201/context/day2.md): Day 2, about 5,080 tokens
+- [context/day3.md](https://sdaiaacademy.github.io/ds-201/context/day3.md): Day 3, about 5,711 tokens
+- [context/day4.md](https://sdaiaacademy.github.io/ds-201/context/day4.md): Day 4, about 5,633 tokens
+- [context/capstone.md](https://sdaiaacademy.github.io/ds-201/context/capstone.md): Capstone, about 825 tokens

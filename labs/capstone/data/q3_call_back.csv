@@ -1,0 +1,2401 @@
+complaint_key,period,centre,type,complexity,resolution_hours
+CP62f39f32,before,North,billing,4,25.0
+CP43d58019,after,North,meter,2,22.9
+CP258ba06a,before,North,billing,1,8.2
+CP316e764d,before,South,low pressure,2,23.4
+CP921d0e08,after,North,water quality,5,168.3
+CP5c1f9454,before,South,billing,1,9.3
+CP2ed34e06,after,North,billing,3,47.5
+CPd7bf7224,before,South,water quality,2,34.1
+CP526c20a2,before,North,low pressure,2,20.7
+CP91f1c346,before,North,meter,5,16.1
+CP10f68623,before,South,leak,1,53.5
+CP1f549d11,after,North,leak,1,14.4
+CP25587f26,after,South,water quality,4,68.1
+CP197e10f5,before,North,billing,1,17.6
+CP2afecf2b,after,North,low pressure,2,86.1
+CPea4a7f46,before,South,water quality,1,34.4
+CPa9d72b6d,before,South,water quality,2,43.8
+CP126c35d7,after,North,low pressure,4,11.5
+CP8e6c28e4,after,North,low pressure,3,10.0
+CP29dbfad0,after,North,meter,3,8.9
+CP02a0b232,after,North,low pressure,2,33.5
+CP0c94f225,after,North,billing,4,10.9
+CP8302f922,before,North,billing,4,22.0
+CPc2c713ec,before,North,water quality,5,58.7
+CPbb26d104,before,North,low pressure,3,15.8
+CPde52d1b5,before,South,billing,4,7.4
+CP2665b588,after,North,low pressure,1,43.7
+CPcf76ff1a,after,South,water quality,2,38.7
+CP54290ae5,after,North,low pressure,5,71.7
+CPa56ad7f9,after,North,water quality,2,19.1
+CP37779798,after,North,leak,1,41.9
+CP39477b71,before,North,billing,5,29.9
+CPaff331b2,before,North,billing,2,32.6
+CPa1888f9a,before,South,billing,4,77.9
+CP5d75bfd1,after,South,leak,3,33.5
+CP4f3073a7,after,South,water quality,1,22.5
+CP06ec423b,after,South,leak,4,21.0
+CP69b55f44,before,South,water quality,5,120.2
+CP2ac14cf8,after,North,billing,3,25.5
+CPc192ff7d,after,North,billing,2,4.8
+CPca8d1032,after,North,low pressure,4,48.6
+CPd0a5267c,after,North,billing,3,27.8
+CP417c9e31,before,North,billing,5,8.8
+CP02fba554,before,North,other,2,3.1
+CP4ad57f8d,before,South,leak,1,16.1
+CP27380d85,after,South,leak,2,33.8
+CPdcb79035,before,North,billing,5,52.1
+CP32056a5b,before,North,other,4,32.0
+CPcc933a4e,before,North,other,1,60.6
+CPb152b47d,after,North,meter,5,19.7
+CP402b9607,before,North,water quality,2,43.6
+CP82aee633,before,South,low pressure,2,24.3
+CP92aa3e13,after,North,other,5,31.9
+CP21b469fe,before,North,billing,5,23.1
+CP466db3ad,before,North,leak,5,101.3
+CPb53d48e9,after,South,water quality,4,31.8
+CP684782d6,after,North,billing,5,34.2
+CP336a6f9a,before,North,other,4,20.0
+CP17e90a27,before,South,meter,4,74.0
+CP4a78d082,after,North,meter,3,5.5
+CPd7c11549,after,North,other,5,16.0
+CP0ce30ed8,before,South,leak,1,16.7
+CP89bafa50,before,North,water quality,2,31.3
+CP94a5cfbe,after,North,billing,5,77.8
+CP29d79b2d,after,North,billing,5,10.7
+CP21ac294d,before,North,low pressure,3,37.4
+CPa8014459,before,North,billing,3,26.1
+CPf2bd9d83,before,North,meter,1,6.2
+CP7c8edd21,after,North,billing,2,34.4
+CPec10c1f8,after,South,meter,3,14.1
+CP2c4d5e94,after,South,water quality,5,19.6
+CP846e9914,before,North,leak,1,9.7
+CP90fbad6c,after,North,leak,3,4.6
+CPa1e9199c,before,North,low pressure,4,9.5
+CPdae8bc03,after,South,other,4,9.9
+CP8d62f0f2,before,North,low pressure,1,40.3
+CP9f459c0d,before,South,low pressure,4,24.3
+CPd085b7c1,before,North,low pressure,2,23.4
+CPd2ffc3b9,after,North,meter,4,27.0
+CP972d914e,after,South,meter,1,8.4
+CP3902e216,after,North,water quality,4,34.2
+CP27cbbdc4,before,South,low pressure,4,10.9
+CP33ef16b0,before,South,leak,4,24.1
+CP83dcd889,after,South,leak,2,14.2
+CPc4e3ece6,after,North,low pressure,4,27.6
+CP31a27816,after,North,billing,3,15.7
+CPab42b4a9,before,South,low pressure,2,13.7
+CPa4072b1e,before,South,water quality,3,50.0
+CP2e9b3c4f,after,North,leak,3,30.9
+CP2eb09fbd,after,North,billing,2,4.1
+CP36001021,before,North,water quality,1,49.1
+CP8f270451,before,North,billing,2,9.5
+CP8f182f3e,after,South,leak,5,10.6
+CP17c158ef,before,South,leak,2,52.5
+CPb855511e,before,North,meter,1,51.7
+CP4bc0146b,after,North,billing,5,19.7
+CPb190dc95,before,South,other,4,14.2
+CPef484ca9,after,North,leak,5,30.6
+CP63ee93a0,after,North,low pressure,3,35.1
+CP5d37d753,before,South,leak,2,10.1
+CPcae64637,before,North,water quality,1,17.9
+CP8a1f9550,before,North,billing,3,22.4
+CPf1660a42,after,South,billing,3,4.0
+CP6941b739,after,South,billing,3,5.9
+CP5c0ed99e,after,North,meter,4,23.3
+CPad3ffec1,after,North,billing,5,15.3
+CPe457014c,after,North,billing,4,4.9
+CP86973bc7,after,South,leak,4,26.0
+CP9063c4a1,after,North,billing,5,26.6
+CP6edaffe5,before,North,water quality,3,22.9
+CP9cd5e7b0,before,North,billing,5,45.1
+CPb82c1c99,after,South,billing,4,22.8
+CP8a06eeef,before,South,billing,2,34.1
+CPa6376ab2,after,North,water quality,5,40.0
+CP8e4e5a9f,before,South,meter,2,8.0
+CPbb433b98,before,North,meter,3,13.6
+CP0ba973c0,after,North,billing,5,14.7
+CP373f85f7,after,North,billing,4,7.7
+CP24142d1e,after,North,water quality,3,45.9
+CP2c9202dc,before,South,meter,3,25.5
+CP204f164c,before,North,water quality,3,76.6
+CP5391a787,after,North,low pressure,4,19.0
+CP8ea572bb,before,North,low pressure,2,4.4
+CP75b11c22,before,North,billing,4,18.0
+CP33f2d404,before,South,low pressure,2,41.3
+CPc2299e3b,before,South,low pressure,2,16.8
+CP6965d43f,before,North,meter,5,37.3
+CP51c88d41,after,North,water quality,2,24.6
+CP3706c091,before,South,leak,2,6.3
+CP03779144,after,North,meter,4,8.5
+CP44a9d2d4,before,South,water quality,1,9.3
+CP636e36a0,after,North,leak,1,39.2
+CP31c36fe1,after,South,low pressure,3,29.0
+CP28feeda0,after,North,water quality,1,32.8
+CP85d87431,before,South,leak,4,31.3
+CPd2229683,before,North,billing,5,19.0
+CPce702653,after,South,leak,3,175.6
+CPbafad383,before,South,billing,4,41.8
+CPa97da1b3,after,North,other,4,12.6
+CPfa04e3c1,after,North,other,4,26.3
+CPe08dc24a,before,North,billing,5,9.4
+CP37188f4e,after,North,low pressure,5,25.7
+CP0afaf7c0,before,North,billing,4,31.6
+CPd2860f8d,after,South,other,2,5.9
+CP1551c1d9,after,North,other,1,8.1
+CP22d3981c,before,South,billing,5,21.3
+CPa5147a19,before,North,leak,3,106.1
+CPe21ce822,after,North,meter,2,12.7
+CP4b15ab39,after,South,meter,4,22.4
+CP0ca6de70,before,North,meter,3,41.0
+CP19843321,before,North,other,4,47.0
+CPfbc62c96,before,North,billing,1,7.6
+CPab60aeb3,before,South,water quality,2,95.1
+CPdb328524,before,North,leak,3,32.3
+CPfbf071c3,after,North,low pressure,2,77.7
+CP5f9e449e,after,North,billing,1,4.5
+CPa6aa3215,after,North,other,2,7.2
+CP29c771d1,before,North,billing,1,13.3
+CPd73ee66a,before,South,billing,2,6.2
+CPc0020d74,after,North,meter,5,5.8
+CP5ec410dd,before,North,low pressure,2,22.2
+CP5d856097,before,North,water quality,4,56.8
+CPbc6b5923,after,South,other,2,15.3
+CP7cdff5c9,after,North,low pressure,4,38.7
+CPbd341f0a,after,North,low pressure,4,10.4
+CPdc040b0a,after,South,other,5,11.4
+CPf1d514bb,before,South,billing,2,15.5
+CPd803ee2b,after,North,meter,2,11.6
+CP901575a5,after,North,billing,5,13.4
+CP82808d8c,before,South,billing,2,11.3
+CP2d440766,before,South,billing,4,24.3
+CPce98bfd4,before,North,other,4,16.9
+CP780579e4,before,South,water quality,1,37.8
+CP3a532dec,before,South,low pressure,3,30.1
+CPdb8b2c9d,before,North,low pressure,3,14.6
+CP28dee801,before,South,leak,5,42.4
+CPb1f37561,before,South,low pressure,3,16.2
+CPff4e69ef,after,North,billing,5,24.0
+CPaf241075,after,North,leak,4,166.9
+CP38c89f96,after,North,water quality,5,33.7
+CPaba4f618,before,South,low pressure,3,14.4
+CP52feed05,before,North,meter,4,14.9
+CP2c8dd387,before,North,billing,4,11.8
+CP238a2dd1,before,North,water quality,5,141.7
+CPbe9bb06d,before,North,leak,4,31.3
+CPb589de4a,before,North,leak,3,53.8
+CPa2655ed4,after,North,water quality,1,35.6
+CP63e01b69,after,North,billing,3,25.1
+CP2f1a34a5,after,North,billing,4,14.4
+CPe1fad94b,after,South,other,4,40.0
+CP8aaeab42,after,North,low pressure,5,89.1
+CPa23f8dde,before,North,leak,5,33.8
+CPedb34d81,before,North,leak,2,4.4
+CP9acf06f4,after,South,meter,4,41.5
+CP2069d16d,before,North,billing,2,14.2
+CP95abad83,before,North,water quality,3,72.4
+CPffd02eb9,after,South,meter,3,5.3
+CPeeef98b6,before,North,low pressure,1,53.8
+CP5cb987a1,before,South,water quality,1,16.9
+CPf13fb109,before,South,leak,3,115.7
+CPabfdb1f0,before,North,leak,5,6.2
+CPc1cc41d7,before,South,meter,5,21.7
+CPda4756f8,after,South,low pressure,2,30.1
+CPf6aabfa6,after,North,billing,3,13.2
+CPab433635,after,North,leak,4,12.5
+CP27dd6748,before,North,billing,3,20.6
+CPf2eb5e05,before,South,other,1,8.5
+CPced9bb2d,before,South,leak,5,128.4
+CP15c13d85,after,South,leak,5,13.6
+CP61e44bbe,before,North,leak,1,7.7
+CPf6d2a904,after,North,billing,3,27.3
+CP61bc200d,after,North,low pressure,3,38.1
+CP71c6dc85,before,North,other,1,4.9
+CPa23ba483,before,North,meter,5,100.3
+CP0207b6d7,after,South,leak,3,13.5
+CPcebea49d,after,North,billing,2,19.6
+CP002a8b23,after,North,leak,2,11.2
+CP306ea09c,after,South,billing,5,55.7
+CPd30a5b50,before,North,billing,4,37.4
+CPe0f30e88,after,South,other,5,18.2
+CP53e4f187,after,North,leak,2,82.0
+CP148cd8a8,before,South,other,5,45.5
+CPe713ba71,after,North,low pressure,3,24.7
+CP93731ba5,after,South,water quality,2,19.4
+CP37b80a01,after,South,meter,2,4.4
+CPb986b48e,before,North,meter,3,47.3
+CP00461b77,before,South,leak,2,13.6
+CP5230a2ae,after,South,leak,1,89.5
+CPca4d2e66,before,South,billing,3,42.2
+CPd0e7deeb,before,South,billing,3,7.8
+CPd32b7836,before,North,billing,3,82.2
+CP4ee0c9e6,after,North,other,1,11.9
+CP1efeee9a,before,North,billing,1,35.8
+CP7d63dd37,before,South,other,2,30.2
+CP5a122d97,before,North,low pressure,5,169.9
+CPc5e66555,after,North,billing,2,13.7
+CP83b0b341,after,North,low pressure,1,8.8
+CPf5b73d49,before,South,leak,5,19.0
+CP15dc8093,before,South,leak,1,4.0
+CP8516d56c,before,South,meter,3,23.7
+CP62c9ad2c,before,South,water quality,2,16.5
+CP83a77cf3,before,North,billing,1,20.3
+CPc5816b82,after,South,water quality,1,26.4
+CPd38233b6,after,South,water quality,3,39.3
+CPe943b9b6,before,South,other,4,5.0
+CPc3fa7247,before,North,leak,3,69.8
+CPd31ddfa4,after,North,other,1,19.0
+CPc6daaa19,before,South,billing,3,8.8
+CPfa85d57f,after,South,leak,3,21.4
+CP7cc700b6,after,North,billing,3,3.6
+CPb8f8c1f0,before,South,billing,2,8.8
+CPfa4b5d67,before,South,meter,4,51.3
+CP99c529b8,before,South,low pressure,5,49.5
+CP5d22de7c,before,North,billing,3,21.2
+CP22370056,before,North,billing,2,11.1
+CPaffbbf1d,before,North,billing,5,23.9
+CP31716095,before,South,water quality,5,13.4
+CP97d171d7,before,South,meter,3,69.0
+CPee6a7ae7,after,South,low pressure,1,3.2
+CPc56b1d69,after,North,billing,4,32.0
+CPc6367479,after,South,billing,5,4.5
+CP77cecb6f,before,South,leak,1,10.9
+CP09007d13,before,North,water quality,3,177.1
+CP3fb3b892,after,South,leak,3,31.2
+CPfde1efed,after,North,meter,2,9.7
+CPf6911fd1,after,North,meter,4,13.6
+CP2f945df6,before,South,leak,1,29.3
+CP95f98963,after,North,water quality,4,33.9
+CP6f042de0,before,South,other,4,8.9
+CP5146763d,after,North,low pressure,1,35.3
+CP0ae30824,after,South,leak,4,41.0
+CPdb4ba74d,before,North,billing,1,2.9
+CPaf4e0cc4,before,North,billing,3,24.9
+CPcb949ec7,before,North,low pressure,4,34.2
+CP254ba9b1,before,North,billing,4,12.9
+CP78240569,after,North,leak,3,8.4
+CP4d20e45d,before,North,other,4,21.9
+CP17769595,before,North,low pressure,1,23.0
+CP630aac61,before,North,leak,5,22.7
+CP34a85f41,before,South,other,3,16.9
+CPdd38ac4f,before,South,leak,2,36.2
+CP51df23d8,before,South,leak,1,13.1
+CPfcf8d0c4,before,South,billing,5,9.7
+CPd24c3b26,before,South,low pressure,2,11.9
+CP2bbdec7d,before,North,billing,3,21.0
+CPe23c100c,after,North,billing,1,8.9
+CP5e3a62d3,after,South,water quality,3,34.3
+CP47541567,after,North,low pressure,5,14.9
+CPe116a191,before,North,leak,5,100.5
+CP2a904eba,after,North,low pressure,4,31.1
+CPaccd8232,after,North,other,2,6.3
+CPf4fdbe13,before,South,other,1,13.7
+CPde7dab1a,after,South,leak,5,18.8
+CP9b7a7dff,after,South,billing,3,3.8
+CPd114f583,before,South,leak,4,39.9
+CPe42357d0,before,North,leak,1,18.7
+CP689dcf9c,after,South,billing,1,5.3
+CPb9af0682,before,North,billing,2,2.5
+CPd232604c,after,North,billing,1,5.0
+CPf92afef6,after,North,meter,2,15.6
+CPcab85552,before,South,meter,1,7.2
+CP8a167829,after,North,low pressure,4,36.2
+CP60a5953a,before,North,billing,1,22.8
+CPbd96b3f0,after,South,leak,3,14.8
+CP8429973a,after,North,billing,3,32.2
+CP34032fdc,before,North,water quality,1,33.5
+CPd0437ad1,before,South,leak,5,83.8
+CP799a8e96,after,South,leak,2,11.8
+CPaf89bf21,after,South,leak,5,30.8
+CP72d71933,before,North,billing,3,25.5
+CP3a07336f,after,North,low pressure,1,7.3
+CPd9768f21,after,South,leak,2,25.3
+CP2aadcf37,before,South,meter,4,50.2
+CP31ed1d8e,after,North,meter,1,31.2
+CPdbc00fed,after,South,low pressure,2,14.6
+CP53de9424,after,South,low pressure,1,21.7
+CP34b60991,after,South,low pressure,3,189.7
+CPe1a1a4d2,after,North,billing,4,7.2
+CP27607c50,before,South,meter,2,61.6
+CP15fe386f,after,North,water quality,4,210.2
+CP5e2434da,before,North,water quality,3,82.9
+CP91294ce3,before,North,low pressure,2,14.8
+CP09c114bb,before,North,meter,1,23.0
+CP50932cdc,before,South,low pressure,5,74.0
+CPa351ab24,after,North,billing,3,19.9
+CP97d6192c,before,North,billing,4,103.5
+CP08700d64,before,South,billing,1,11.9
+CPfef93777,before,North,other,5,19.5
+CP97c1b9fe,before,South,billing,1,7.1
+CP02930cfa,before,North,leak,3,28.8
+CP726dc464,after,South,leak,4,47.5
+CP07dff653,before,South,billing,2,21.4
+CPcd2157be,before,North,low pressure,3,30.1
+CP1466d888,before,North,billing,1,6.2
+CPc85a4632,before,South,water quality,1,12.2
+CP890d0585,after,South,low pressure,3,69.0
+CP13696683,after,South,billing,4,9.5
+CP1f3994e0,after,South,billing,4,2.3
+CPd03a9c85,after,South,billing,4,14.4
+CP4c881947,before,North,water quality,2,21.7
+CPf914c5fb,after,North,low pressure,3,62.5
+CP119c7b59,before,South,leak,2,6.0
+CP4aef2869,after,South,low pressure,4,16.3
+CPb3212f07,before,South,low pressure,4,128.0
+CPa072443e,before,North,low pressure,3,32.5
+CPfe5c135e,after,South,leak,3,27.5
+CP3a42f54e,after,North,meter,2,5.2
+CP1e91de51,before,North,meter,4,10.0
+CPeae07a44,after,North,meter,1,64.7
+CPa8b91483,after,North,low pressure,4,19.6
+CP2050d1fb,before,North,meter,4,65.0
+CP047b7e14,after,North,meter,2,5.1
+CP9c3bb64b,before,South,water quality,3,31.4
+CP3d21e99c,before,North,low pressure,1,23.4
+CPc391665c,after,North,leak,1,4.4
+CPd4f93c13,after,North,leak,2,2.8
+CP6cceb8e7,before,South,water quality,3,57.8
+CP8f35cdf4,after,South,meter,1,15.9
+CP0afa3aad,before,South,meter,1,79.9
+CP2dc34140,after,South,low pressure,1,8.8
+CP0e348781,after,South,meter,4,32.1
+CPa2d75273,after,North,billing,2,9.6
+CPc482bda5,before,South,billing,3,8.0
+CP64997ec1,before,South,low pressure,5,29.3
+CP81727787,after,North,billing,1,14.8
+CP20906a2c,after,North,billing,1,5.2
+CP96eb2af5,after,South,low pressure,2,27.2
+CP39b18c20,after,South,other,4,65.6
+CP10e4cb77,after,South,billing,1,17.0
+CP2f6aa55f,after,North,billing,4,31.2
+CPd275d915,before,South,low pressure,1,14.3
+CP682c8f71,before,South,low pressure,4,38.7
+CP3f56a2db,after,North,leak,3,72.7
+CP1bc13b24,before,South,meter,2,9.1
+CP94bfb8d8,before,North,low pressure,5,70.0
+CPfb2628cb,before,North,billing,4,120.0
+CPc48366f3,before,North,other,2,11.8
+CPc11d1f25,after,South,meter,1,8.1
+CP8d7e79cf,after,South,leak,4,96.9
+CP836bddaf,before,North,billing,5,9.0
+CPf131b1d0,before,South,low pressure,4,19.7
+CPd4e67247,after,North,leak,1,54.8
+CPbc2babcb,after,North,leak,3,71.1
+CP84683beb,after,North,billing,3,24.1
+CP2a4feb6a,before,South,leak,1,23.8
+CPb883fc0f,after,South,water quality,5,305.2
+CP0a5f3d9c,before,South,billing,4,43.5
+CPee89c07d,before,South,billing,5,16.2
+CP4a9760fd,after,South,billing,2,4.1
+CPc9eb40fa,after,South,low pressure,1,7.2
+CP34276ec2,before,South,other,2,62.2
+CP713fdee9,before,North,meter,5,36.9
+CP8beb3896,after,South,other,3,96.0
+CP26ffb05e,after,North,billing,1,18.2
+CP190a1b31,after,North,low pressure,1,5.1
+CP37e6e546,before,South,meter,4,8.8
+CP254c87e9,before,South,billing,2,9.4
+CP01aa0aa8,after,South,low pressure,1,74.4
+CP5528679b,before,South,meter,2,22.3
+CP996a875f,after,North,meter,4,18.7
+CP4d7e533c,after,North,leak,2,21.2
+CP50bcbc47,after,South,billing,2,10.1
+CPc0dcec94,before,North,low pressure,2,260.6
+CP5ff9307c,before,South,low pressure,5,31.7
+CPf7bfc748,after,North,low pressure,2,60.7
+CP1057fe47,before,North,billing,2,19.8
+CP6e4d37f9,after,South,billing,5,11.7
+CP0f3b5edb,after,North,billing,1,5.3
+CP628eb0dd,before,North,water quality,3,33.0
+CPfe4d8606,after,South,low pressure,1,8.0
+CPc68a5440,before,South,water quality,5,40.8
+CPce230c02,after,North,billing,3,23.7
+CP91a4fcc8,after,North,billing,4,73.8
+CP704ea5b0,before,South,water quality,4,35.1
+CPe57f7da9,before,South,meter,3,5.8
+CP6d481d36,before,North,meter,2,20.6
+CPeb63bf4d,before,South,billing,5,75.8
+CP8952cdff,before,North,water quality,4,15.5
+CPaf2ac25a,after,North,water quality,4,47.0
+CP2999cc6d,after,South,low pressure,1,14.7
+CP01ee3936,after,South,other,2,7.3
+CPf5db1136,before,North,billing,3,10.5
+CPf85d7ab7,after,North,other,1,6.4
+CP78e1de16,before,South,billing,4,28.3
+CP8fb18abe,before,North,billing,5,21.8
+CPc991c835,after,North,billing,2,6.3
+CPf9ee5b86,after,North,billing,2,12.5
+CP460188eb,after,North,billing,2,3.2
+CP0ae5e51b,after,South,water quality,4,30.0
+CP01d56b6e,before,North,low pressure,3,61.6
+CP3586c9b9,before,North,billing,3,5.3
+CP42463c53,before,North,low pressure,2,14.3
+CPab52b114,before,South,meter,5,53.7
+CPf2d5ccca,before,North,water quality,2,24.6
+CP4c7c1dc2,before,South,low pressure,2,42.0
+CP531feb50,before,North,billing,4,85.2
+CP6153fbb4,after,North,leak,3,32.0
+CPc6f350e0,after,South,other,1,11.5
+CP358c5b39,after,South,water quality,1,22.4
+CP80f091b5,before,South,other,2,6.8
+CP745fbced,before,North,other,1,3.3
+CPc7cf8e64,before,South,other,1,17.3
+CP55efee6f,after,South,billing,2,14.6
+CPad7c8dbb,before,North,low pressure,2,15.1
+CP109252cf,after,South,billing,1,12.3
+CP1840ee82,before,North,billing,3,171.4
+CPd397a515,after,South,billing,4,15.5
+CP62fac030,before,South,low pressure,5,53.8
+CP2c14406f,after,South,water quality,3,51.0
+CP891bb67d,after,South,low pressure,1,41.6
+CP43025e0b,after,South,water quality,1,24.6
+CP4e0ee884,after,South,low pressure,5,6.8
+CP7105796e,before,North,water quality,1,90.3
+CPac40bfd1,before,North,billing,4,27.4
+CP17e1e587,after,South,low pressure,4,23.9
+CP60bb145a,after,North,billing,1,5.4
+CP74dc7be3,after,North,billing,2,3.0
+CPf88c34a7,before,South,water quality,2,72.2
+CPace7268b,after,North,other,2,7.3
+CPecac1c0d,before,South,other,1,3.5
+CPb723b6be,after,South,billing,2,11.0
+CP7ddc96e5,after,North,leak,4,20.0
+CP2d310e57,after,North,billing,4,10.5
+CP8b17b72f,after,North,billing,3,10.3
+CP8167617f,after,North,low pressure,3,129.7
+CP9ebbfa6d,after,North,meter,1,9.8
+CP5e6e0b98,after,North,meter,3,32.0
+CP7ec22ec5,after,North,other,4,10.8
+CP1a9c56a8,after,North,billing,5,33.5
+CPbe1b0fd7,before,South,billing,2,12.5
+CP2d1b51a7,before,South,leak,4,47.5
+CPd2503da8,before,North,meter,1,34.6
+CPe4202317,before,South,low pressure,5,29.0
+CP0d1e2b05,after,South,other,1,30.4
+CP2e41efa6,before,North,leak,3,3.6
+CPc20582ec,after,South,leak,3,63.2
+CP9cc91818,before,North,low pressure,3,51.3
+CP802dccf2,before,South,billing,3,31.0
+CP512a4615,before,South,low pressure,1,43.9
+CPb9db217f,before,North,water quality,4,233.7
+CPbbd3b400,after,South,billing,1,2.6
+CP374b6a73,before,North,low pressure,4,15.2
+CP1ec475dc,after,North,billing,5,23.7
+CP411c7503,before,North,billing,5,12.7
+CPd09a357a,before,North,billing,2,3.4
+CP0a36bb7b,before,North,billing,2,14.2
+CP4df69c91,after,North,low pressure,4,37.4
+CPad1018df,before,South,billing,3,7.1
+CPd61bb4c7,after,South,low pressure,2,2.7
+CP4ceb831f,after,North,other,1,6.2
+CP7b65f82b,after,North,leak,2,35.6
+CP0fc462c0,before,North,meter,5,64.1
+CP776c0c8b,before,North,billing,1,22.6
+CPd42f4e12,before,North,water quality,2,45.0
+CP114bc7ea,before,North,low pressure,2,35.9
+CP5a658f62,before,South,low pressure,2,11.8
+CPac4ed8b3,before,South,billing,1,17.6
+CP90e63853,before,South,meter,2,14.7
+CP25eff2bc,after,South,low pressure,1,6.4
+CP4385cff7,before,South,leak,2,13.6
+CP17c01971,after,North,billing,3,31.4
+CPdae6d447,before,South,billing,1,4.7
+CPeb9d21a6,before,North,billing,4,25.8
+CP75947920,before,South,leak,2,26.7
+CPc79a6b5a,after,South,other,3,4.9
+CP5d64fd60,before,South,billing,5,15.3
+CPeab300a8,after,South,meter,1,5.5
+CP11f7fcfb,before,North,leak,4,18.3
+CP367f8cd8,after,North,billing,2,11.2
+CP6fc362e2,after,South,leak,4,103.8
+CP2c194509,after,South,low pressure,2,51.4
+CP7231ace7,after,South,billing,4,68.1
+CPb6d53782,after,North,billing,4,22.2
+CP11287196,after,North,billing,1,8.7
+CP9d507526,before,North,billing,2,6.3
+CP1c4892f6,before,South,billing,3,15.9
+CP68179d13,after,South,leak,2,15.0
+CP174b38f9,after,South,billing,2,20.1
+CP346e4b5d,before,North,water quality,2,10.1
+CPad1da2c6,before,North,low pressure,2,4.9
+CPa5619faa,before,South,water quality,5,52.4
+CPd6d9d917,before,North,billing,1,32.2
+CPf86d1ed4,after,North,low pressure,1,10.9
+CPd0bea22a,before,South,billing,1,6.8
+CPcdac4942,before,North,billing,2,44.8
+CP776a4f3b,before,North,low pressure,2,100.0
+CP808a1853,after,North,leak,1,35.2
+CP5c836327,before,North,water quality,2,63.8
+CP6a588aa1,before,North,low pressure,1,4.2
+CP52ee28c0,after,North,billing,3,19.9
+CP59ba1135,before,South,billing,2,27.8
+CPb3915e83,after,North,other,5,27.9
+CPc16c32d4,before,South,water quality,5,130.3
+CPa59e311b,before,North,billing,2,9.8
+CP16ddcbdd,before,North,low pressure,2,39.1
+CP3cbee6f0,before,South,billing,3,14.2
+CP889efc92,after,South,low pressure,4,32.8
+CPc6c8090c,after,North,billing,4,19.0
+CP75609337,before,South,low pressure,4,21.1
+CP374f5987,before,South,billing,3,15.9
+CPdba2faee,after,North,billing,3,6.3
+CP40e62bae,before,South,billing,2,6.2
+CP5674c6df,before,North,billing,3,31.5
+CP2e3697e1,after,South,water quality,3,6.3
+CP8e0b6195,after,South,leak,2,18.5
+CPf9426497,after,North,meter,3,11.1
+CP707728a2,before,South,billing,4,29.0
+CP456669fb,before,North,low pressure,2,18.3
+CP3e0cf485,after,South,meter,5,27.8
+CPe85735e9,before,South,billing,3,17.2
+CPf67bc659,after,North,low pressure,4,21.9
+CPd836da7d,before,South,other,4,82.8
+CPdfb9f6b1,before,North,other,3,44.0
+CPa22d3def,before,South,billing,4,42.2
+CPe95e006c,after,South,billing,4,19.3
+CPfbb3aef9,after,North,billing,1,5.7
+CP59c23d50,after,North,billing,5,15.5
+CP9ce4c091,before,North,billing,3,16.8
+CPf8e0242c,before,North,low pressure,2,20.7
+CP9440865b,after,South,billing,1,1.6
+CP1b797257,before,South,billing,1,8.7
+CP58dcc327,after,South,other,3,26.6
+CP66ac6cfd,before,South,water quality,2,49.1
+CP6f422a88,before,North,low pressure,3,42.7
+CP2410c7c3,after,North,meter,1,5.0
+CP94319c7d,before,South,leak,1,5.7
+CP1c175826,after,South,other,1,47.6
+CP21f11038,before,North,water quality,3,19.2
+CP7d1a0edd,after,South,leak,5,14.2
+CPca94ddcf,after,North,billing,3,26.3
+CP45e1b941,after,North,billing,2,8.9
+CP1bdc8c66,after,South,meter,3,9.1
+CPa877fa93,after,South,water quality,1,4.3
+CPccadf143,before,North,water quality,2,9.3
+CP7e77eeac,before,North,other,1,28.3
+CPf95bbbe9,after,North,leak,5,22.3
+CPb16bbea6,before,South,meter,4,34.4
+CP40befab2,before,North,low pressure,5,201.2
+CPca873225,after,North,billing,1,4.5
+CPd45f98f2,after,North,water quality,2,44.6
+CP9ffcbaba,after,North,meter,1,20.9
+CP221fce0a,after,North,low pressure,5,16.7
+CP45f82f10,after,South,billing,5,39.0
+CPc4bbbac5,before,North,leak,1,3.6
+CP1e52742a,before,South,leak,2,31.9
+CPac4bef9b,after,North,billing,2,23.5
+CP5b4c8b66,before,North,billing,5,6.3
+CPe61e12b0,after,North,leak,1,14.9
+CP2bc72e1d,before,South,water quality,5,111.2
+CPfecf3a63,before,North,leak,5,17.7
+CP179d196a,before,South,meter,2,19.2
+CPfc96f15b,before,North,billing,2,33.6
+CP783b57d6,after,North,billing,4,30.7
+CP6e2aa8cb,after,South,low pressure,3,8.0
+CP572eb20b,after,North,low pressure,3,24.5
+CP8bc33ef7,before,North,billing,2,72.6
+CPfedf7fc8,after,South,leak,2,13.6
+CPac340dfc,after,North,billing,1,4.6
+CP104fbddc,before,South,other,2,58.1
+CPb12c690a,before,South,water quality,3,12.3
+CPe645a285,after,South,low pressure,2,60.1
+CPe164910e,after,North,billing,2,16.9
+CP820683b9,after,South,other,3,31.7
+CPb9758a8a,after,North,water quality,4,107.4
+CP46f1d543,before,South,billing,5,90.2
+CP590db882,before,North,billing,2,18.3
+CPb7c9368b,after,North,billing,4,6.6
+CPe6ac233e,after,South,low pressure,2,24.4
+CP49b699a3,before,North,billing,4,110.8
+CP04c14f34,before,North,low pressure,1,20.6
+CP1fa204d0,after,North,water quality,3,23.1
+CPd23ca7a2,after,North,billing,2,10.3
+CPb5b77dc9,before,North,billing,3,9.0
+CP552dc8b0,before,North,low pressure,2,78.0
+CPfd154764,after,South,billing,1,11.0
+CP60d9dde3,before,South,leak,4,19.5
+CP20b34f1c,before,South,water quality,2,68.3
+CPa6a58f37,before,South,other,1,30.4
+CPdd104a3e,after,North,meter,3,3.4
+CPa0b1788f,after,South,leak,3,45.3
+CP97867b2a,after,North,meter,3,5.3
+CPda1b65d2,after,North,meter,4,17.6
+CP5bd602be,after,South,meter,1,17.6
+CP3f42cc31,before,North,low pressure,2,41.0
+CPfed61e0b,before,South,billing,5,17.1
+CP3935ffa6,before,South,billing,4,35.4
+CP0d4806a0,before,North,low pressure,2,62.3
+CPc1d90f14,before,North,billing,2,23.3
+CPa3636311,before,South,meter,2,7.5
+CP6fadc5d8,after,South,other,4,6.9
+CP8822659e,after,North,billing,3,69.5
+CPd1e8b8b5,after,North,leak,4,4.8
+CP0c4c1cca,after,North,leak,4,38.4
+CP9bfb0ee0,after,South,other,5,44.1
+CP4360cff8,after,North,meter,4,58.0
+CPe2a38f95,before,North,leak,4,17.3
+CPc053b49d,after,South,low pressure,1,24.2
+CPb9a73a37,before,South,leak,4,17.1
+CPb2b95fb3,after,North,water quality,5,26.2
+CP9cca70e3,after,North,low pressure,4,110.2
+CP18028717,before,North,meter,1,11.7
+CP9456f8b3,before,South,low pressure,3,17.3
+CPbf5bea64,before,South,meter,2,25.6
+CPbabdc9ba,before,South,meter,2,32.7
+CP104e9c7d,after,North,low pressure,3,19.5
+CP27f6e20b,before,South,low pressure,2,16.4
+CP10254f5a,before,South,low pressure,2,84.9
+CP4ff095d0,after,South,low pressure,4,147.2
+CP4b0c09f7,before,North,other,5,23.4
+CP9de750ba,before,North,meter,5,30.7
+CPfcef03de,after,North,other,4,35.9
+CP49b041c2,after,South,low pressure,3,22.3
+CP8b1eca7d,before,North,low pressure,2,21.3
+CP5e728019,before,South,billing,4,13.6
+CPf0b59f5d,before,South,water quality,4,15.8
+CPed7a04f1,after,North,billing,3,34.5
+CP4d071e6c,before,South,billing,5,20.5
+CP2e6234c5,before,South,billing,3,23.6
+CPbdce0112,before,North,low pressure,3,6.5
+CP14aa8977,after,North,water quality,4,39.8
+CP2b830a94,after,North,other,1,10.9
+CP6e69e6d6,before,North,leak,3,27.5
+CPc3896805,after,North,meter,1,4.3
+CPbacb1028,after,North,leak,2,115.2
+CP43a0e820,before,North,low pressure,4,26.5
+CPe5d4ff7b,before,North,meter,3,24.0
+CPb4de044e,after,South,billing,2,4.4
+CP528762c0,before,North,billing,4,89.9
+CPb299380f,before,North,leak,1,18.4
+CP44056172,before,South,leak,5,53.0
+CP909bbd1e,after,North,leak,3,57.1
+CP4abfd73c,before,South,billing,3,15.1
+CP57365040,after,South,low pressure,3,15.9
+CP3c6a3ed6,before,North,meter,2,4.3
+CP8f5b6c71,before,South,billing,4,102.1
+CP76d5a05f,after,South,leak,4,55.9
+CP299fe752,after,South,low pressure,2,53.4
+CP4289fb8d,after,South,billing,2,7.7
+CP122f331a,before,South,water quality,2,26.9
+CPd852b04b,before,South,water quality,2,13.8
+CP8ecb45d2,before,South,billing,4,28.3
+CP85ad1769,after,North,meter,5,21.4
+CPdc55b894,before,North,low pressure,4,5.0
+CP78829c4a,after,North,other,2,75.1
+CP37a84a98,before,North,leak,2,34.6
+CP871e25f1,after,North,leak,2,5.0
+CP478947bb,after,North,low pressure,2,56.6
+CPaa755ee9,before,South,leak,4,102.1
+CPed7b98cc,before,South,low pressure,2,12.4
+CP180ef306,before,North,low pressure,5,47.7
+CP2498f78d,before,South,billing,3,69.7
+CPcd22f5c1,after,North,other,2,18.8
+CPefe7e9ea,before,North,billing,4,33.4
+CP64f48840,before,North,water quality,1,34.7
+CP21ce9263,after,North,billing,2,21.3
+CPf5f87c55,after,North,leak,3,47.1
+CPa7e9331d,after,South,leak,2,7.3
+CPbeceb367,before,North,meter,2,9.2
+CP6ed183b4,after,North,meter,2,64.3
+CP1607b12c,before,South,other,2,40.6
+CP7a9df869,before,North,billing,5,49.1
+CP38de2cc5,after,North,low pressure,5,32.1
+CP997eeb8f,after,South,billing,2,5.5
+CP969bb081,before,South,leak,5,410.5
+CPdc02fd75,before,South,leak,5,11.1
+CPe2802809,before,South,other,3,21.2
+CP9d3717ae,before,South,billing,1,6.6
+CPb00c28ae,before,North,billing,2,20.1
+CPf54cb67a,after,North,other,3,33.6
+CP18e8f825,before,South,billing,2,12.0
+CPb4bd46ef,after,North,water quality,1,95.8
+CP2018f25d,before,North,low pressure,3,72.6
+CPaf7de354,before,South,leak,2,6.6
+CP2090b6df,after,North,leak,1,83.6
+CPad3038b7,after,North,water quality,4,192.6
+CP51a23b08,after,North,meter,2,16.9
+CPd7a65ecc,after,North,other,5,11.0
+CP91a40489,after,North,leak,1,18.8
+CPe69dc885,after,North,billing,5,7.9
+CPdb483379,before,North,meter,5,18.3
+CP339d4f0e,after,South,billing,1,16.3
+CP070ae43b,before,North,billing,1,20.5
+CPaef7f552,before,South,low pressure,3,109.6
+CP583126b0,after,South,low pressure,3,30.1
+CP29547d40,after,North,leak,1,6.8
+CP75a4130d,after,South,billing,4,42.9
+CPc9d3bf0e,after,South,billing,5,49.7
+CP07214938,before,South,leak,1,19.9
+CP4873f8d0,before,North,billing,1,37.9
+CP7ab5949e,after,South,leak,1,70.9
+CPe93bef56,before,North,billing,2,23.0
+CP46ad818c,after,South,meter,2,4.5
+CP8383017b,after,South,billing,5,34.9
+CP2f5d09f0,before,North,other,1,21.7
+CPe4837eaf,after,South,meter,5,28.8
+CPda1b71c4,after,North,low pressure,2,11.5
+CP15fb2713,before,South,low pressure,1,11.1
+CPf808a6c2,after,North,billing,5,89.2
+CP57df0c1b,before,South,billing,1,24.2
+CPba2ac556,before,South,billing,2,17.3
+CP835553d7,before,North,low pressure,3,25.2
+CP0f8bdbf1,after,South,billing,1,9.9
+CPc6eb1839,after,North,leak,5,39.1
+CP1ecd87ee,before,North,water quality,2,48.9
+CPbb921c23,after,South,water quality,2,36.9
+CP2b0adad0,before,North,other,3,18.7
+CPe77bcf1b,before,South,low pressure,2,10.4
+CP2409d0a9,before,South,billing,4,38.6
+CP78b15aa4,before,South,low pressure,1,62.0
+CP110f6e2c,after,South,other,3,4.9
+CPaf481885,after,South,other,5,7.0
+CP67bc57c9,before,South,low pressure,5,20.8
+CPcfadd483,before,North,other,2,54.6
+CP104db368,before,North,leak,2,23.3
+CPdf2d1c1f,after,South,low pressure,4,52.2
+CP577c8c29,before,South,leak,5,7.8
+CP056f5dff,after,South,meter,3,28.7
+CP7c34d278,before,North,meter,1,12.4
+CP16702694,after,North,billing,4,4.6
+CP3e881ea7,before,North,other,2,58.7
+CPa4f654d3,before,South,low pressure,2,78.6
+CP59a8d34e,after,South,billing,3,10.5
+CP177474ff,before,South,billing,4,181.1
+CP4916f314,before,North,billing,4,12.0
+CP98ac5d09,before,North,meter,4,97.3
+CP8bd56ccb,before,North,leak,5,61.3
+CPd9e9ee34,before,North,meter,3,21.2
+CP785add63,after,North,meter,5,16.0
+CP087e64ff,before,North,billing,5,29.5
+CPbb1fc0d0,before,South,meter,3,35.1
+CPd99dc499,after,South,meter,3,60.7
+CP309d9ab7,before,North,billing,3,3.1
+CP882fef92,after,North,billing,3,10.5
+CPb5a1a7dd,after,South,other,1,12.9
+CP3dbae1c1,after,South,other,5,44.9
+CP937e6ab4,before,South,leak,2,54.1
+CP8301b532,after,South,leak,2,55.7
+CP4e5eff48,before,South,meter,3,12.7
+CP4f91e6dc,before,North,leak,1,28.5
+CPbc5249be,before,South,other,3,34.9
+CP513d8aa6,before,South,leak,2,56.5
+CP65ced8ac,after,North,billing,4,9.0
+CPfc34f046,before,North,billing,1,2.4
+CP3cb2170d,after,North,other,5,20.4
+CPc0d4bfcf,before,North,low pressure,1,16.5
+CP32dc922e,after,South,low pressure,1,11.3
+CPcae15912,after,North,billing,2,51.2
+CP3cd13ced,after,North,low pressure,3,55.6
+CP8ff4a2f1,before,South,leak,4,26.3
+CP09b3ad8a,after,South,water quality,4,29.4
+CP099085af,before,South,leak,4,5.4
+CP95b3a290,before,South,billing,3,14.9
+CP8a0d1178,after,North,meter,3,4.2
+CP619ac20a,after,North,billing,5,62.6
+CP6475814a,after,North,water quality,4,74.0
+CPc45d5469,before,South,billing,5,24.1
+CPeca72ed2,before,North,billing,5,26.3
+CPa4badb16,before,North,billing,2,11.5
+CP1d985c32,after,South,leak,4,13.5
+CP77e06f28,before,South,water quality,3,11.3
+CPde764efb,after,North,billing,4,17.1
+CP6bbed75a,before,North,leak,5,20.0
+CPc640e790,after,North,low pressure,4,14.5
+CP0eae8474,after,South,billing,4,5.7
+CPc3cb2e50,after,South,other,5,15.6
+CP4429e9fe,before,South,water quality,2,31.4
+CP9b9f5599,before,North,low pressure,3,13.3
+CP7843610c,after,South,billing,4,12.1
+CP69c59931,after,South,low pressure,3,151.1
+CP9d1a27a8,before,North,meter,1,3.1
+CP38318626,before,North,meter,4,19.9
+CPb140f12b,before,South,other,4,5.7
+CPe74680ae,before,South,leak,1,64.1
+CP8683205d,before,South,leak,3,14.1
+CPdd14240c,after,North,billing,1,25.5
+CPd123e507,after,North,meter,1,4.5
+CP9f0a3f49,after,South,billing,4,23.0
+CPd5502cef,before,South,meter,1,17.5
+CP565a63af,before,South,billing,3,27.7
+CP037af007,before,North,low pressure,4,61.2
+CP7c2c3b47,before,North,low pressure,2,57.6
+CP8ec204a7,after,South,leak,2,48.5
+CP63d55362,before,South,leak,5,62.2
+CP8b60166b,after,South,other,4,67.8
+CP259c57ed,after,South,billing,2,15.8
+CP5fb92f3e,after,North,billing,3,27.2
+CPd6389d6a,before,South,water quality,1,11.8
+CPf520c7ec,before,North,water quality,2,10.5
+CPc7f3dad5,before,North,low pressure,5,69.5
+CPe8ebac8c,after,North,billing,5,19.0
+CPa23391e3,after,South,water quality,2,17.5
+CPb3f47e63,after,North,billing,3,44.6
+CP33088c3e,before,North,billing,4,25.1
+CP846d44ad,before,South,billing,1,8.5
+CPa51ae39b,after,South,low pressure,4,116.9
+CP243412ed,before,North,low pressure,2,71.7
+CP8c0a52d4,before,North,low pressure,1,36.5
+CP34cc20ca,before,North,other,3,41.4
+CPcdee5354,before,North,billing,3,36.8
+CP7e812310,after,South,billing,4,78.5
+CP80973adb,before,North,billing,1,32.9
+CPe1ff47b4,after,South,billing,5,68.9
+CPaf7aa7e3,after,South,low pressure,3,12.8
+CP6c1f9357,after,North,billing,4,12.2
+CP3245ce9c,before,South,leak,4,175.9
+CP9fcb259b,after,North,leak,4,24.0
+CP34069c4b,after,North,meter,4,3.5
+CP7e73d465,before,North,low pressure,2,42.9
+CP6aa63cf3,before,South,billing,2,7.1
+CPb716bf00,before,North,billing,3,50.1
+CPdb026485,before,South,billing,3,11.2
+CP82e642b4,after,North,other,1,8.7
+CP75c73b85,before,North,low pressure,2,17.2
+CPcdc9cb54,before,South,low pressure,4,69.6
+CP61399795,before,North,billing,3,23.8
+CP142a2380,before,South,water quality,3,58.0
+CP4ae0b5b2,before,North,other,1,18.7
+CP80f5d26f,before,North,meter,4,13.2
+CPbff5c57c,before,North,leak,4,91.1
+CPed95d086,before,North,billing,5,24.7
+CP105390f9,after,North,leak,2,29.0
+CP3a28f460,after,South,low pressure,2,6.6
+CP0c15b4c4,before,South,other,4,84.4
+CP6d69f748,before,North,leak,3,26.0
+CP3ba41c3b,before,North,leak,1,26.3
+CPd73eeb54,before,South,leak,3,14.3
+CP138986d0,after,North,billing,2,9.5
+CP02edb187,before,South,low pressure,1,30.3
+CP570886de,before,North,other,3,26.0
+CP5c395e67,before,North,leak,4,86.5
+CP52a1dff8,after,South,billing,3,53.3
+CP4b87f2bd,before,North,meter,4,39.6
+CPa2f26a29,after,North,leak,5,170.4
+CP90a06221,before,South,billing,3,8.9
+CP604a4e13,before,North,leak,4,18.8
+CPed5a8c08,after,North,billing,1,11.2
+CPdc4789d2,after,North,billing,4,36.0
+CP337e8912,before,South,low pressure,1,34.4
+CP4f548138,before,South,leak,4,43.4
+CP4d0c39d2,after,South,leak,5,29.1
+CP9caa0c36,after,North,low pressure,2,22.7
+CPb0c6a25d,after,North,leak,4,59.6
+CP2e125838,after,North,leak,4,22.5
+CPa6e891a2,after,South,water quality,3,64.4
+CPa0383d58,after,South,billing,1,20.8
+CP691f73f7,after,North,meter,2,34.0
+CP5747d009,after,North,low pressure,5,11.7
+CPcad5476f,after,North,low pressure,3,65.6
+CP8f855024,before,North,low pressure,2,59.8
+CP06152fd1,before,South,meter,2,51.1
+CP345f408e,after,North,water quality,5,78.3
+CP13e34872,after,North,leak,4,31.2
+CPc63d2b12,before,North,meter,2,14.8
+CP07e47838,before,North,leak,2,63.1
+CP7a8d1889,after,North,billing,1,9.6
+CP857e8759,before,South,billing,2,9.6
+CP5420bb35,after,South,meter,2,21.2
+CP18233ad6,after,North,billing,2,7.5
+CP9ea97601,after,North,water quality,2,25.7
+CP1730d874,before,South,leak,4,71.7
+CP4b9edd56,after,North,low pressure,4,33.9
+CPd091ded2,before,South,billing,5,70.9
+CP769789f3,before,South,leak,1,29.2
+CP2578f3b8,after,South,billing,4,67.7
+CPeb67911d,before,North,leak,4,18.5
+CP7bc51ba2,after,South,billing,3,33.6
+CP45739240,before,South,low pressure,3,69.2
+CP3d8d9405,before,South,water quality,2,40.7
+CP107b4619,before,South,water quality,1,21.2
+CPb5695aec,after,South,water quality,5,75.7
+CP49f6d6ed,before,South,low pressure,1,10.8
+CP65da41ad,before,South,other,5,28.5
+CP6fe3a8ac,before,North,low pressure,3,18.0
+CPcdb5913a,before,South,other,2,8.3
+CP44de8e68,after,South,low pressure,4,29.4
+CP42ccf198,before,South,billing,3,15.1
+CP0c28cfdf,after,South,water quality,4,76.3
+CP46c1ded5,before,North,meter,1,9.1
+CP3f35c3ee,before,North,other,1,57.6
+CPeefc5e5c,after,North,billing,3,9.9
+CPc9d4bb97,after,South,billing,2,18.6
+CP28a343ea,after,South,meter,1,29.4
+CP10776ff6,after,South,billing,1,9.7
+CPe50cc48c,after,North,low pressure,2,48.5
+CP3171b7b4,after,South,water quality,1,35.5
+CPbcd457fe,before,North,low pressure,5,63.3
+CP2e190fe3,before,North,billing,4,24.3
+CPceb849ca,before,South,billing,2,33.5
+CP2b34f8c3,after,North,water quality,1,25.7
+CPbafe66d1,before,North,low pressure,3,25.4
+CP2ed2d89a,before,South,low pressure,2,87.4
+CPfa891662,before,South,billing,4,30.6
+CP639e4395,after,North,low pressure,5,43.7
+CPa3697c45,after,South,leak,3,41.4
+CP81dbc180,after,South,other,4,20.2
+CP34fa4d92,after,North,billing,4,10.4
+CP39772550,after,South,billing,1,13.3
+CPa8242e9d,before,North,water quality,1,48.1
+CPdd0f0033,before,North,water quality,4,37.2
+CP0a0f290b,before,North,other,3,6.7
+CP72bc31d3,after,South,other,3,16.7
+CPc6aa9740,after,North,low pressure,5,16.3
+CP1a92a839,before,North,low pressure,2,73.5
+CP76a1c219,before,North,water quality,4,51.7
+CP8b60fd2b,after,North,low pressure,1,37.2
+CP98dc861c,after,South,low pressure,2,78.1
+CPaef69db1,before,South,billing,1,4.9
+CP98ac268a,before,North,water quality,2,26.3
+CPfdabd96a,before,South,low pressure,5,97.9
+CP1b618473,before,South,billing,3,42.8
+CP751426b7,after,South,billing,4,8.6
+CPd18a7345,after,North,meter,4,12.9
+CPc3f3a268,before,South,leak,3,23.6
+CPf8aad0a5,after,South,leak,3,22.6
+CP89505622,before,North,billing,3,19.0
+CPee2da87c,before,South,water quality,4,63.1
+CPbf6d546c,after,South,leak,2,8.2
+CP4ced8d7f,after,North,low pressure,1,16.5
+CPe54ab22c,after,North,leak,2,19.7
+CP868eede0,before,North,water quality,5,37.4
+CP6e587a71,after,North,billing,2,21.3
+CP31c68d96,before,North,water quality,1,20.1
+CPb5fe5edc,after,North,low pressure,5,65.3
+CP3d5cefa2,before,North,leak,2,15.5
+CPc7ac3a35,after,South,leak,2,25.5
+CP270d5e8a,after,North,low pressure,3,16.7
+CPa1eba4a0,before,South,water quality,5,50.2
+CP150502a6,after,North,other,3,6.6
+CP4c943696,after,South,leak,2,31.6
+CPc1968a07,after,North,leak,1,10.7
+CP8e1b3e72,before,South,water quality,5,59.9
+CP008c9b1b,before,North,billing,4,57.4
+CP0f7a8351,before,North,water quality,2,31.9
+CPe8a07d72,before,South,billing,4,21.1
+CPe2fb2bce,after,South,water quality,4,72.0
+CP91d5edef,after,South,low pressure,5,80.5
+CPbc06dbce,after,South,leak,5,51.9
+CPc99dd9e7,after,South,other,5,59.8
+CP2a3064fd,before,North,billing,5,4.4
+CPca905748,before,South,billing,1,6.8
+CPc360f243,after,North,low pressure,5,152.2
+CPaa5acfe5,before,South,billing,4,60.9
+CP5cc566bf,before,North,leak,4,100.2
+CPece12685,after,North,leak,4,57.4
+CPb308d094,after,South,low pressure,5,151.7
+CP0d20f892,before,North,meter,1,3.2
+CP9eae60cc,before,South,low pressure,4,59.3
+CP074ff457,after,South,leak,4,29.8
+CP5b200d99,before,South,meter,4,53.4
+CPa9a4a25b,before,North,billing,5,31.9
+CP27e4e261,after,North,leak,4,43.9
+CPa378e04c,before,North,other,5,24.2
+CP98952795,before,South,other,3,22.8
+CPf7aa115d,after,North,water quality,3,13.1
+CPa5b60e08,before,North,leak,3,20.2
+CP08e8ab44,after,South,water quality,3,48.4
+CP7d9d39e8,after,South,billing,1,4.5
+CP2374baf2,after,North,meter,5,79.2
+CPdb6567b9,after,South,billing,1,15.1
+CP769df268,before,South,billing,3,13.7
+CP8d0dd68c,before,South,billing,2,26.8
+CP334c66fa,before,North,meter,1,17.9
+CP17f5fff9,after,South,billing,5,7.6
+CPe92a8e03,after,North,low pressure,3,44.7
+CP002735fa,before,South,billing,4,5.9
+CPb446679e,after,North,billing,5,8.4
+CP89586f22,before,South,leak,1,18.9
+CP535162b6,before,North,meter,1,27.8
+CP5ad9bee3,before,South,billing,1,7.7
+CPedcf6095,before,North,billing,4,7.3
+CP77f9ca38,before,North,leak,2,23.2
+CPd070395f,after,South,low pressure,4,61.7
+CPcaeec876,after,North,meter,2,105.9
+CP3ab62e12,after,North,water quality,3,6.2
+CP7d236ba8,after,South,billing,5,60.9
+CP3ac00e6b,after,North,billing,4,16.0
+CP344685ba,before,South,billing,1,16.6
+CPb535d80a,after,South,meter,5,14.4
+CP5b6d0053,before,South,billing,3,41.4
+CP96daaebd,after,North,water quality,5,151.5
+CP1eb43259,before,North,leak,3,13.8
+CPfb1b6e4d,before,North,other,5,31.9
+CPb197d9e8,before,North,leak,5,78.3
+CPca4a809e,after,South,billing,1,14.8
+CPdd3fe977,before,North,low pressure,5,52.7
+CP0ee5a909,after,North,leak,1,48.6
+CP11dca6b5,after,South,water quality,2,93.7
+CP4aab2012,before,North,billing,3,13.5
+CP3f1edcd9,before,North,billing,2,18.4
+CP97317387,before,North,billing,3,34.4
+CPa37c28c4,after,South,low pressure,1,18.5
+CPda83f420,before,North,low pressure,5,33.9
+CPd8cecab5,before,North,other,1,14.9
+CP236cca1b,before,South,leak,4,242.8
+CP682414f3,before,North,leak,4,19.5
+CP3c7ebb62,after,North,billing,5,56.8
+CP58f76f39,after,North,billing,5,25.4
+CP7bc34daa,before,South,low pressure,2,16.8
+CP989a89fe,before,North,leak,3,86.8
+CPf4c14593,before,North,billing,4,15.3
+CPd557a5bf,before,South,low pressure,3,48.4
+CP219e0784,after,North,billing,1,3.6
+CPbe810449,after,North,water quality,1,31.5
+CP3a4b932e,after,North,low pressure,4,34.8
+CP95eff5d1,before,South,low pressure,1,19.2
+CPe5d3f273,before,South,leak,1,8.7
+CP80caf204,after,North,meter,3,30.8
+CP817b409a,before,South,meter,1,15.9
+CP0b039d06,before,North,low pressure,4,115.8
+CPf2e3901e,before,North,billing,1,11.9
+CP29016140,before,North,leak,2,14.1
+CP0852dcbb,before,South,low pressure,3,53.2
+CP7598d875,after,North,billing,1,12.6
+CP70523c82,after,North,water quality,4,132.7
+CPd2520bec,after,North,billing,2,2.0
+CP28259b20,before,North,leak,5,56.5
+CP6582e64b,after,North,leak,1,7.4
+CP76257db2,after,North,leak,5,41.5
+CP5485e1d5,before,North,water quality,5,43.3
+CP155ddf61,before,North,meter,5,60.0
+CPf95fd146,before,North,water quality,3,60.6
+CP9dd8e8bd,before,South,low pressure,1,29.0
+CP6e5e09ff,before,North,low pressure,2,17.4
+CP87531e1d,before,South,low pressure,3,204.5
+CP40dbe811,after,South,leak,5,52.1
+CP2c5fef81,after,South,leak,5,21.6
+CP02122ac9,after,North,leak,5,52.0
+CP2e77bf40,before,North,meter,5,12.7
+CPf9ccbb21,after,South,water quality,1,65.1
+CPc8eb0c74,before,South,other,4,23.9
+CP6982cc1b,after,North,meter,5,11.7
+CP3c039b29,before,North,leak,1,19.3
+CP5e9619f9,after,North,other,5,16.5
+CP250d69ae,after,South,low pressure,1,14.6
+CP01f1f4c3,before,South,billing,4,168.7
+CP59512b59,before,South,meter,1,10.9
+CPe56e3f75,before,South,low pressure,4,73.2
+CPefc1a89f,after,South,other,5,30.7
+CPa1569eab,after,South,leak,1,9.5
+CPe7528734,after,North,billing,3,4.5
+CPb0931724,after,North,meter,2,5.3
+CPb66af272,before,North,meter,3,27.0
+CPb798eed1,before,South,low pressure,4,87.6
+CP9c013369,after,South,billing,2,24.1
+CP7eda14c8,before,South,other,3,11.4
+CP30ab232e,after,South,billing,1,10.4
+CP11aa9bc5,before,North,low pressure,1,4.5
+CP82481422,after,North,water quality,2,76.0
+CP9987db91,after,North,meter,2,9.6
+CPc5833a98,before,South,leak,1,32.9
+CPcf097dc5,before,South,other,2,28.0
+CP3f584e4f,before,South,leak,1,56.8
+CP524f6aec,before,South,billing,3,15.7
+CP1ad1d358,after,North,leak,4,26.9
+CPc6c160ad,before,South,other,3,22.9
+CP302f5fd3,after,North,billing,3,28.3
+CP8d3a4f1e,before,South,billing,2,11.6
+CPad8118c5,before,North,low pressure,2,10.6
+CPef45d58b,before,South,leak,3,131.5
+CPd2edd17e,before,North,leak,1,8.7
+CPb2d68d87,before,North,billing,4,4.5
+CPc581ae36,after,South,meter,5,53.5
+CPb016ea02,after,North,water quality,3,86.7
+CP51aa4aeb,after,South,low pressure,4,199.8
+CP224038cc,before,South,other,1,15.7
+CPcb56394a,before,North,water quality,5,11.1
+CP972475ae,after,South,billing,1,22.2
+CP9dc4c78a,after,South,billing,2,16.2
+CPeffe52f2,before,North,billing,2,14.1
+CP44a46044,after,North,low pressure,4,22.4
+CPf95dd3c4,before,North,leak,3,42.8
+CPf2875ce2,before,North,low pressure,3,95.5
+CP9d6dbad0,before,South,leak,1,42.5
+CPd10fd269,before,North,billing,3,9.6
+CPf28c0d28,before,North,billing,3,25.1
+CPbc416143,before,South,leak,5,28.2
+CP6bb0f6d0,after,South,billing,1,5.3
+CP0daf2fb3,after,North,leak,5,25.4
+CP5df93980,before,North,low pressure,2,36.2
+CP6b6e5684,after,South,leak,1,10.5
+CP9aa4450b,before,North,billing,5,15.4
+CPc4e13301,before,South,other,5,4.5
+CPf1feeff8,before,North,low pressure,5,17.5
+CP1f528fc5,after,North,other,2,2.6
+CPe4e315f7,before,South,low pressure,4,26.8
+CPc93b22ae,after,North,leak,3,34.5
+CP44e9285a,before,North,water quality,3,28.6
+CPa51ab908,after,North,leak,4,8.0
+CP31e1e0dd,after,North,other,3,69.1
+CPc62c575c,before,North,low pressure,4,9.3
+CPeb4d8441,after,North,low pressure,2,15.4
+CPdac6bb1a,before,South,billing,4,56.1
+CP1f9769a4,before,North,low pressure,3,50.9
+CP6cee56db,before,North,leak,4,38.3
+CPebe8d5cb,after,South,low pressure,5,26.2
+CPc9e6d692,after,South,meter,5,22.6
+CP1243ecae,before,North,billing,4,19.3
+CPa4b41d02,before,North,low pressure,2,15.5
+CPcf4b2b67,before,North,water quality,1,20.4
+CP0f22806f,before,South,low pressure,2,46.9
+CP03a13ffb,after,North,leak,5,54.9
+CP82d52f71,after,South,leak,5,20.1
+CP433cd277,after,South,billing,5,11.6
+CPede5c9f3,after,North,meter,2,2.4
+CP441bb28b,after,South,other,2,11.0
+CP5e029633,after,North,leak,3,7.4
+CPdcd020ad,before,North,leak,3,13.8
+CP44ba6db6,before,North,other,2,12.7
+CPc45b3055,after,North,billing,5,15.4
+CPc34e45b1,after,North,leak,2,37.3
+CP1041e02f,after,North,low pressure,1,43.3
+CPe79c61b1,after,North,water quality,1,50.1
+CP45d54bb0,after,South,billing,3,39.6
+CP0c397f2e,after,South,water quality,3,150.9
+CPfce0ab8f,after,North,billing,2,10.6
+CPf095c144,after,South,billing,4,18.9
+CPcd0d804c,before,North,billing,3,17.5
+CPf9164acf,after,South,leak,5,10.8
+CPc4e6ed46,before,North,low pressure,2,23.6
+CP93fd957a,before,North,low pressure,2,12.2
+CPad29d25f,before,South,other,5,20.8
+CP67203bbf,after,North,leak,4,66.8
+CPd7d280d9,before,North,leak,4,16.0
+CP59ed4b61,after,South,leak,3,44.7
+CP7a623c6e,before,North,water quality,5,53.2
+CP483245f7,before,North,meter,5,10.6
+CP8f7a7175,before,South,billing,5,42.6
+CP496f9305,after,South,water quality,4,40.3
+CP00af4a56,after,North,low pressure,2,52.0
+CP2808925f,after,South,leak,3,16.2
+CP327627d5,before,North,leak,5,39.0
+CPe8de6e72,before,South,water quality,4,93.5
+CPc4af3c42,before,South,low pressure,4,22.7
+CP41da47f1,before,South,low pressure,4,305.5
+CP5c61f4b8,before,North,other,5,18.4
+CP8be48a32,before,North,billing,5,77.8
+CP54fe4477,before,South,water quality,3,55.4
+CPe59427f8,before,South,billing,4,23.9
+CPb9dd76be,before,North,billing,1,10.6
+CP2b6c5df1,before,North,billing,3,11.7
+CPb879fa98,after,South,low pressure,5,19.1
+CP91a7bd3d,after,South,meter,3,12.6
+CPeb9aa0b9,after,South,meter,4,5.6
+CP78190b38,before,South,leak,3,16.8
+CP554983d6,before,North,meter,1,28.1
+CP77975907,before,South,low pressure,2,28.3
+CP8fbd129b,after,North,meter,4,26.2
+CP7e751390,before,South,low pressure,3,27.5
+CP55709ab7,before,South,water quality,4,42.7
+CP0726df36,before,North,low pressure,1,16.8
+CP8dfd93be,after,North,water quality,3,21.1
+CPb2aed293,after,South,water quality,1,36.2
+CP45551cdc,before,North,leak,1,12.4
+CP367e55c5,after,South,billing,1,7.9
+CP289025f5,after,North,billing,5,3.6
+CP74b0540d,before,South,water quality,5,68.9
+CP5428da92,before,North,low pressure,4,58.3
+CP475530fa,before,North,other,4,13.0
+CP30cf744c,before,South,water quality,4,79.6
+CPf5b8ad4a,before,South,billing,3,29.8
+CPabd4e6bd,after,North,leak,3,48.8
+CPb6ae95d4,after,North,meter,1,21.4
+CPfde6f055,before,South,low pressure,2,13.6
+CP024a7213,after,North,leak,1,12.0
+CP42331a57,after,North,water quality,3,85.5
+CPfd5e20f3,before,South,billing,2,16.9
+CP28b2be85,before,North,other,1,26.8
+CP18b5bbea,before,North,meter,3,8.1
+CPc48e135d,before,North,billing,2,25.8
+CPbd7bbd7f,before,North,billing,5,56.1
+CPadfc7282,before,South,billing,3,17.6
+CPa13e4cc2,after,South,other,5,12.0
+CP1ae748de,before,South,leak,2,25.7
+CP06d53767,after,North,billing,5,9.2
+CP8a4a2558,after,North,billing,2,29.2
+CPed790c1c,after,North,meter,1,2.7
+CP8da8c2c8,after,North,meter,1,8.4
+CP0a3ef064,after,North,low pressure,4,59.8
+CP13d725d0,after,North,leak,4,35.1
+CPb23c41e7,before,North,low pressure,5,10.9
+CP17029d2e,after,South,billing,5,7.0
+CP3dae4831,after,North,billing,4,2.0
+CP67d17b84,before,South,leak,5,21.0
+CPf837f9ed,before,South,other,1,5.4
+CP88e7ce56,before,South,water quality,4,48.7
+CPba127255,before,North,low pressure,3,53.7
+CP9209bc8b,before,North,low pressure,5,11.8
+CPe2d7c4d9,after,South,leak,4,42.9
+CPb0a46f14,after,South,billing,4,12.2
+CP82474257,before,North,other,1,29.1
+CPfbcc66b8,after,North,leak,5,17.1
+CP2b4cb33d,before,South,billing,4,11.7
+CPec68b08c,after,North,low pressure,1,13.4
+CP287805c9,after,North,low pressure,5,17.0
+CP18122249,before,North,water quality,4,418.9
+CP3f0a9cd7,before,North,low pressure,3,18.8
+CP8ee2d8cd,before,South,low pressure,1,47.5
+CP972bf75a,before,North,leak,4,37.9
+CP7a9d25ed,after,South,low pressure,3,7.6
+CP86a29ac3,after,South,water quality,1,38.4
+CP26aa10b3,before,North,meter,5,24.1
+CP6b1ea898,after,South,other,2,44.7
+CP7f37f52f,before,North,low pressure,4,55.2
+CP094285fe,after,South,low pressure,4,40.1
+CP32257664,before,South,billing,3,73.3
+CPb3dcd3ed,before,North,other,4,3.0
+CP0ec51e6b,after,North,low pressure,2,34.3
+CP0a5167c6,after,South,low pressure,3,13.9
+CPb6de44e7,after,South,low pressure,3,8.8
+CP6212a1f0,before,South,low pressure,4,91.8
+CP4af078fa,before,South,low pressure,4,5.3
+CP47830e68,after,South,leak,4,50.0
+CPcaf2f1f9,before,North,other,5,3.2
+CP207635d2,before,South,low pressure,2,22.4
+CP424e77ae,after,North,billing,4,17.3
+CP07ef6dd6,after,South,leak,2,18.3
+CP48df328b,before,North,low pressure,3,26.7
+CPa21ff944,before,South,water quality,1,10.7
+CP378d8cb1,after,South,billing,2,11.9
+CP739bd083,after,North,low pressure,3,61.1
+CPd5449a56,before,North,low pressure,3,27.0
+CP7bba7c2d,before,South,other,2,20.7
+CP1f910ead,before,South,low pressure,5,8.5
+CPc09dd346,after,South,leak,5,31.9
+CP29aa1cdb,after,North,billing,3,7.2
+CP40fc948b,after,North,low pressure,4,37.7
+CP0d2e63d7,after,North,leak,1,12.0
+CP60e827cd,after,North,other,3,13.5
+CP15a60442,after,North,other,2,5.2
+CP6bb13748,before,South,meter,5,15.4
+CP86bb6843,after,North,meter,5,44.1
+CPbebb3405,before,South,billing,4,29.7
+CPbf3f66df,after,North,billing,4,7.4
+CP43eda624,before,North,meter,4,14.3
+CP721f1566,after,North,billing,1,8.5
+CPc743cb7a,before,North,low pressure,2,83.8
+CPa656d762,before,North,billing,2,24.5
+CP02b71ef5,after,North,leak,2,33.1
+CP3edcef06,before,North,low pressure,3,58.5
+CPd17c870b,after,North,other,2,12.8
+CP9173084d,after,North,leak,3,27.2
+CP62d0a3a6,before,South,billing,2,24.7
+CP96121f44,before,North,low pressure,2,52.0
+CPe6f58e9f,before,North,low pressure,3,74.2
+CP84cfacd8,before,North,billing,1,11.2
+CP657fad70,after,North,leak,5,15.5
+CPbf8bb9a1,after,South,water quality,3,34.1
+CP07bc3f82,after,North,low pressure,2,12.6
+CPe3365dbe,before,South,water quality,1,17.6
+CP1fa09394,after,North,low pressure,4,84.0
+CP52649efe,before,South,low pressure,4,19.4
+CP9e334aee,before,North,low pressure,1,46.3
+CP4d5246d6,after,South,billing,3,17.5
+CP1f80df02,before,South,leak,4,76.5
+CP1b603d15,before,South,billing,1,21.9
+CP95036ed0,before,South,leak,4,20.4
+CPe960100d,before,South,meter,2,25.1
+CP4539ea95,after,North,leak,1,13.7
+CPa215311d,before,South,low pressure,1,21.6
+CPa1fddcba,after,North,water quality,1,78.0
+CPef0e0944,after,South,leak,4,130.4
+CP6b03ab1d,before,North,low pressure,5,221.2
+CPf7074c17,after,South,leak,4,68.2
+CP3a52bdf9,after,South,meter,4,58.5
+CP180f5128,after,North,meter,5,14.5
+CP12bbbea0,before,North,meter,4,19.1
+CP5289cdbf,after,South,billing,4,28.5
+CPdf38b849,after,South,low pressure,5,42.4
+CP2caaa379,after,South,meter,1,47.3
+CP1ab2ef19,before,South,other,2,80.0
+CP41ae93c6,after,South,billing,5,43.0
+CP2b0137de,after,North,leak,4,59.9
+CP1f76b67a,after,North,billing,1,16.9
+CP550f1082,after,South,billing,1,11.2
+CP5a757132,after,North,water quality,1,123.5
+CP5ec0fc85,after,North,leak,3,20.6
+CPc6f6371a,before,South,billing,3,6.2
+CP1fc21788,after,North,billing,3,11.3
+CP9882e606,after,South,leak,2,27.8
+CP4f9fc44a,before,North,leak,2,53.4
+CP02295581,before,North,billing,4,11.1
+CP92acfec6,before,North,water quality,1,21.8
+CPef1bb0ab,before,North,meter,2,31.8
+CP60c130e9,before,South,low pressure,4,43.3
+CP6a7ab74a,after,North,low pressure,5,165.7
+CP88309a1a,after,North,billing,1,7.5
+CPa07d8c58,before,South,other,2,39.3
+CP66f88ba0,before,South,low pressure,2,77.6
+CP8a9f7361,after,North,billing,3,12.8
+CP4865c4cb,before,South,billing,5,76.3
+CP72ecace7,after,South,leak,5,12.3
+CP6ed49afd,after,South,leak,5,23.8
+CP29a03112,after,North,low pressure,5,85.5
+CPf0b9e898,after,North,water quality,4,142.5
+CPbf55db92,after,North,low pressure,5,24.6
+CPe5e7bfe7,after,South,water quality,5,121.9
+CPc387c051,after,South,meter,2,9.1
+CP0fd6ac65,after,North,water quality,3,37.0
+CPaba4cd66,before,South,billing,2,49.0
+CPed7b8606,after,South,leak,4,43.1
+CP832e6d18,before,South,billing,1,25.7
+CP88348857,after,South,meter,5,8.9
+CPc4a6e5e0,after,South,leak,5,44.1
+CP2cd29748,after,North,billing,4,10.8
+CPc89874b0,before,North,billing,3,6.5
+CP65b0f39a,after,North,billing,2,17.8
+CPb1c19362,after,North,billing,2,2.4
+CP5f7f7f99,before,North,water quality,4,42.6
+CPb5699de2,before,North,billing,5,43.5
+CP98a1fded,after,North,billing,4,33.9
+CP04b752db,before,North,leak,2,9.0
+CPc0811925,after,North,billing,3,31.3
+CPc291aa11,before,North,meter,4,35.9
+CP02596747,after,South,meter,4,85.4
+CPc1fa88cb,after,South,other,2,4.5
+CP83bdb55a,before,South,water quality,3,23.6
+CP84e3013d,after,North,leak,2,47.9
+CPda414ef2,after,North,leak,3,12.4
+CP19d7fd53,after,North,water quality,4,32.8
+CPe13d385c,before,South,low pressure,1,6.1
+CP8dade5c4,before,South,other,2,7.0
+CPbfd7dfe4,before,South,other,3,48.4
+CPde443359,after,North,low pressure,4,7.3
+CP4c06431c,after,North,other,4,7.8
+CPcf4f41b0,after,North,water quality,1,27.9
+CPcad75deb,before,North,billing,5,39.5
+CP601b834e,after,South,low pressure,3,62.0
+CP25ee870b,before,North,low pressure,3,12.9
+CP96bb361e,before,North,other,4,13.8
+CP5864bef5,after,North,billing,1,7.4
+CPc5e3f4dd,before,North,low pressure,1,11.0
+CP8fe30ec2,before,North,low pressure,3,10.6
+CPa201e787,after,North,billing,3,26.0
+CP7db36a16,after,South,leak,5,14.8
+CP0f9cb0f4,before,North,low pressure,2,17.8
+CPf2b34c6a,before,South,billing,2,12.3
+CP05e2cdee,before,South,leak,2,18.2
+CPf611c7b4,after,North,low pressure,2,31.4
+CP510b8afd,before,North,leak,2,16.5
+CP2edc069f,before,North,leak,3,24.3
+CPac524552,after,North,leak,2,15.7
+CP317d8bd8,after,North,water quality,1,50.1
+CP1c08228f,before,North,leak,4,52.7
+CP005426a4,before,South,water quality,1,16.6
+CP531479aa,after,North,other,1,21.4
+CP095294e3,before,North,leak,2,19.2
+CP4ebed2f3,after,North,water quality,4,54.2
+CPcc9635e1,after,North,billing,3,5.9
+CP981cd97d,before,North,leak,4,50.4
+CP63496144,before,South,meter,3,10.0
+CP8b88f46f,after,South,low pressure,5,57.0
+CPd9c69576,before,North,billing,4,21.7
+CP4c3dc857,after,North,low pressure,2,15.3
+CPebc2daca,after,North,billing,4,17.4
+CPd7ac6cec,after,South,leak,4,115.6
+CP31ac0589,after,South,low pressure,1,41.2
+CP5db3e818,after,South,billing,3,26.2
+CP92b61f89,before,North,low pressure,1,22.8
+CP683fe71a,after,South,leak,2,10.1
+CPbb1cdd1b,before,South,billing,3,16.5
+CP61261b25,before,North,leak,3,28.3
+CP5faf56b7,after,North,billing,1,8.7
+CP0cfc6310,before,North,other,1,5.8
+CP580e17c3,before,South,water quality,3,38.6
+CPff50684b,after,South,billing,4,45.0
+CP924c67d2,after,South,water quality,4,18.7
+CPf2fa1656,after,South,leak,4,21.3
+CP5dd7894f,after,North,low pressure,5,84.1
+CPe1b2e924,before,North,leak,5,46.8
+CPdfa13682,before,South,low pressure,5,33.6
+CP0740ce12,after,North,low pressure,2,62.0
+CP05c69f22,after,North,meter,2,17.0
+CPd09671fd,after,North,billing,2,5.9
+CPc70d436f,after,North,other,3,17.8
+CPe8779da3,before,North,leak,5,8.4
+CPbae4ccbe,after,South,low pressure,3,79.6
+CP671ca6fc,after,South,billing,1,6.8
+CPcf76e0a5,before,South,water quality,4,17.3
+CP496600c5,before,South,billing,2,55.1
+CP9c08c275,after,North,low pressure,3,33.2
+CP536bf448,after,South,leak,4,321.5
+CP77e9059d,after,South,low pressure,3,31.4
+CP41a55143,after,South,leak,4,74.4
+CPe774c971,before,South,other,2,51.6
+CP23249bea,before,South,billing,2,19.7
+CP203f06f3,after,South,billing,2,13.1
+CP4c034117,after,South,other,2,11.6
+CPb954d58c,after,South,low pressure,3,28.2
+CP7c52688c,before,South,billing,5,33.3
+CP8500b537,after,South,water quality,2,59.8
+CP379dad1c,after,North,low pressure,5,100.2
+CP1ba2c67f,before,South,leak,2,72.2
+CP00feff22,before,North,leak,2,8.6
+CPe79220f8,after,South,leak,5,10.7
+CP96a0a228,after,South,low pressure,2,4.4
+CPfe307be6,after,South,leak,5,33.3
+CP86122b63,after,North,meter,2,6.2
+CP8f958e04,after,North,billing,1,11.6
+CPfa96e400,before,South,other,3,10.0
+CPff8d9b76,after,South,water quality,3,20.1
+CP86798d09,after,South,low pressure,5,93.9
+CPd57bd81b,after,South,water quality,4,116.9
+CP44b9bae4,after,North,meter,1,24.6
+CP0b119642,before,South,other,2,36.8
+CP72e1bbb7,before,South,leak,1,5.8
+CP05799094,before,North,leak,1,18.3
+CPad775461,after,South,low pressure,1,13.4
+CPb2c95012,after,South,low pressure,4,71.7
+CPf2e4b01b,after,North,leak,4,31.2
+CP4bef0b98,after,North,billing,2,24.7
+CP79d4960f,after,North,billing,2,11.0
+CP89d31395,after,North,meter,3,12.7
+CPbec7a394,before,South,leak,4,71.9
+CP9bffc7f7,after,South,low pressure,2,54.7
+CP9ff2d121,after,South,other,5,8.5
+CPdb2baf87,after,North,other,1,24.7
+CP80e175d5,after,North,leak,3,11.1
+CP4cc92b95,before,North,low pressure,3,115.4
+CP6323d630,after,North,billing,5,13.7
+CP5538ea61,before,South,other,5,8.6
+CP5ef5d94a,after,North,meter,4,14.7
+CPa0a7d33a,after,South,meter,5,8.1
+CPf6dfee88,before,North,meter,4,17.3
+CPa5cb46fb,before,South,other,2,5.7
+CP4ff75ad1,after,North,billing,4,21.0
+CPd3974616,before,North,meter,5,41.4
+CPb7802c3e,after,North,low pressure,5,18.3
+CP21f37f31,after,North,other,5,22.6
+CPbc0bfff7,after,North,billing,3,5.0
+CP455c860b,after,South,other,4,30.9
+CPa25dd82a,after,South,leak,1,7.0
+CP7dc59e83,before,South,billing,2,17.3
+CP52c5f137,after,North,other,4,18.7
+CP010cbc36,after,South,low pressure,5,42.3
+CP1c589f69,before,South,billing,5,43.5
+CPe256cc1f,after,North,low pressure,1,29.7
+CPa26c1553,after,North,billing,3,9.8
+CPb14215e9,before,North,leak,1,26.3
+CP40f2406b,after,North,other,3,35.7
+CP6b3ac790,after,North,leak,4,75.9
+CPb874ae5c,after,North,low pressure,1,22.8
+CP322b5d6c,after,South,leak,1,3.3
+CPcf38fc83,before,North,low pressure,5,152.6
+CPe3b5d51e,after,South,other,4,24.3
+CP222ce3eb,after,South,meter,2,10.0
+CP623ad0a1,before,North,other,5,52.5
+CP8dced66c,before,South,billing,2,18.9
+CP9dba479f,before,South,meter,4,6.2
+CP271c95bc,after,North,leak,1,8.2
+CP8268a62a,after,North,billing,4,39.0
+CP11b03517,after,North,billing,1,17.6
+CP553b7f08,before,North,water quality,2,35.4
+CPcc8436bd,after,North,water quality,5,9.8
+CP4357a616,before,North,water quality,4,142.7
+CP0066e542,before,North,billing,4,49.5
+CP64a8a3f0,after,South,leak,3,19.9
+CP66fc4f39,before,North,other,3,21.9
+CP30e50ddf,before,South,low pressure,1,22.4
+CPec090b1e,before,South,low pressure,1,13.1
+CP5a11e090,after,South,low pressure,5,21.9
+CP575d6e4a,after,North,low pressure,4,215.0
+CP839d6793,before,South,other,3,12.5
+CPb87f7d35,before,North,leak,1,18.5
+CPaeed3ac2,after,North,leak,1,21.8
+CP2ae40550,after,North,other,5,11.9
+CP1070b0fb,after,South,leak,4,34.5
+CPa25d73ba,after,North,billing,1,52.6
+CPc31f70e8,after,North,other,5,12.6
+CP21b56db7,before,South,water quality,5,30.9
+CP94b2c799,before,North,meter,4,5.3
+CP1d40f321,before,North,leak,1,14.9
+CP57847490,before,North,leak,5,31.3
+CP93e3de6a,after,North,water quality,4,62.5
+CP7d207ff9,before,South,other,3,19.4
+CP2ddee287,before,North,water quality,5,14.5
+CP5a3f3f3a,after,North,low pressure,4,35.1
+CP4f0e2d46,after,North,meter,5,14.8
+CPfa2a77fa,after,North,low pressure,5,26.3
+CP3687cc5a,before,North,leak,1,8.4
+CPc109f12a,before,South,billing,2,22.3
+CP1e8fe8fe,after,South,billing,3,36.1
+CPa29c3fe3,before,South,meter,1,20.6
+CPdefdf141,before,North,leak,3,63.3
+CP01dd46d7,after,South,billing,2,5.7
+CPaa43e0b5,before,North,billing,5,19.9
+CP4837d09c,before,South,other,5,50.3
+CP8ecf1219,after,North,low pressure,4,82.8
+CP79883223,before,North,leak,2,74.4
+CP7c69215d,after,North,meter,1,10.5
+CP397e0e4a,after,North,billing,1,20.0
+CP0c832568,after,South,leak,3,16.2
+CP7836036e,after,North,billing,1,15.0
+CP6fc744d3,after,South,water quality,1,11.1
+CPecf88d3e,before,South,billing,1,16.3
+CP74affca3,after,South,leak,2,126.6
+CPe2af252e,after,North,leak,2,16.3
+CP83619233,after,North,meter,1,26.9
+CP6a648f89,after,South,meter,3,3.3
+CP422e636c,after,South,low pressure,5,41.3
+CPb79b6f5e,after,South,billing,4,9.4
+CP7208ae05,before,North,billing,1,24.8
+CP51afc67c,after,South,leak,5,41.1
+CP4436b07a,before,South,billing,2,5.3
+CP47feda75,after,North,billing,2,15.6
+CP0af16ea3,after,North,billing,5,12.9
+CP153e0480,before,North,other,4,20.4
+CPe66ee845,after,South,low pressure,3,70.3
+CP67eb5e9a,before,North,low pressure,3,34.2
+CPce94b148,before,North,low pressure,4,24.3
+CPf0f7eb46,before,North,billing,1,51.1
+CP079065eb,after,South,low pressure,1,51.7
+CP1ed64578,before,North,billing,1,15.0
+CPb6aff9a2,before,North,low pressure,3,8.6
+CP897c1039,before,North,billing,3,1.6
+CPf924596d,before,North,billing,4,19.2
+CP1384e6cb,after,North,leak,4,10.8
+CP3cf9ae3c,after,North,water quality,3,53.1
+CPefe224d2,after,South,billing,1,24.4
+CP49887d41,after,North,billing,2,88.1
+CP0cee3edf,before,North,leak,1,7.8
+CP5e0ffcc3,after,South,other,4,10.2
+CP38ca79f0,before,North,billing,1,4.8
+CP305b44da,before,South,leak,5,93.7
+CPe9455703,before,North,meter,3,19.4
+CP4d2a7ecb,after,North,other,2,29.9
+CPc123d6cc,after,South,low pressure,1,17.4
+CPa779a581,after,North,water quality,3,16.4
+CP876d9923,after,North,billing,2,3.5
+CPbfc7654c,before,South,other,3,13.6
+CP47a0f43c,after,North,low pressure,2,7.6
+CPd7ed5612,after,North,leak,5,20.0
+CP103a0de7,after,North,leak,3,40.9
+CPa2b7e671,after,South,water quality,2,67.6
+CP1f7704ec,after,North,meter,4,87.9
+CPde199008,before,South,water quality,5,153.7
+CP8e712189,after,South,billing,3,12.4
+CP0ca70523,after,North,water quality,2,19.9
+CP2a26d362,after,North,low pressure,1,45.5
+CP1317ac30,before,South,meter,5,84.0
+CP81ac1135,before,South,low pressure,4,42.2
+CPc8ff1318,before,North,leak,4,18.3
+CPcc1a0ce6,after,South,billing,5,64.4
+CPc47af715,before,South,billing,4,13.8
+CPfdec82fb,before,South,meter,5,7.4
+CPed308d89,after,North,water quality,4,36.4
+CP8bec56d5,before,North,other,4,17.3
+CP39e4b49a,after,South,leak,3,89.4
+CP3c224dda,after,North,other,3,30.2
+CP9ac61dff,before,South,water quality,1,86.8
+CPf1945f81,after,North,leak,4,27.4
+CP32c516fc,after,North,low pressure,1,2.7
+CP1621ed79,before,North,leak,1,16.4
+CP1e084d06,before,North,billing,2,14.6
+CP7d1049fb,before,South,low pressure,3,70.6
+CP60e05a62,after,North,low pressure,4,69.2
+CP667162ec,after,North,leak,5,51.3
+CPf6b8a622,before,North,leak,3,3.9
+CPdf1d3f49,before,North,leak,2,9.8
+CP1ab4c2bb,after,South,meter,2,17.3
+CPb7b058f7,before,North,billing,2,67.5
+CPf8f3a176,before,North,leak,1,34.3
+CP0df48c73,before,South,low pressure,5,27.5
+CP19b6c957,after,North,billing,2,5.0
+CP1f576aa5,after,North,billing,1,13.8
+CP04daa293,before,North,billing,3,45.0
+CPdf853e22,before,North,billing,3,13.7
+CPc2bb6f43,after,South,water quality,3,54.2
+CPb5ebf5fb,after,North,low pressure,2,30.1
+CPf9c6ca05,before,South,billing,2,9.1
+CPa855d798,before,South,billing,5,33.6
+CP12b92aa5,before,North,leak,4,66.5
+CP58d48a3b,before,North,billing,1,20.3
+CP2e4cb6fc,before,South,leak,3,47.8
+CP52d0c74f,after,North,low pressure,2,20.5
+CPbb1b6b66,after,South,meter,1,10.9
+CPbc7b3722,after,South,low pressure,1,28.3
+CPb2c87887,before,North,low pressure,5,89.8
+CPa9768d7f,after,North,leak,2,24.5
+CPce7b8a1a,before,South,billing,3,48.3
+CPa565129b,after,North,leak,5,77.6
+CP4cb72e81,before,South,low pressure,1,11.7
+CP9b9f4545,before,North,meter,2,13.5
+CP6acca362,before,South,billing,5,151.1
+CP0cfa7e23,after,South,billing,3,34.6
+CP645574d3,after,South,low pressure,4,67.3
+CP579f1be7,after,North,billing,5,18.2
+CP4c5ba1a6,before,South,billing,3,49.2
+CPd152b88e,before,North,water quality,2,45.1
+CP35b4037f,before,South,low pressure,1,12.8
+CP2a34c978,before,North,other,5,35.1
+CP2afc2497,after,North,leak,3,22.6
+CP401c6897,after,North,billing,4,19.1
+CP6a13e019,before,South,billing,5,16.6
+CP2cd7577d,after,North,billing,3,3.0
+CP1334579d,after,North,billing,1,48.7
+CP74e9f425,after,South,billing,1,13.7
+CP7987ec2b,before,South,water quality,1,45.5
+CPba5728b6,before,North,low pressure,4,31.1
+CP97e60f06,before,South,other,1,15.8
+CPf272e52b,before,North,meter,5,99.6
+CP0bfb4682,before,South,low pressure,3,29.3
+CP7537daf3,before,North,meter,2,23.6
+CP74348de4,after,North,water quality,1,31.9
+CP18bf0966,before,South,water quality,1,33.8
+CPc296334c,before,South,low pressure,5,85.8
+CPda2f8f54,before,South,low pressure,1,56.3
+CP3d25c2bc,after,North,billing,4,3.5
+CP1012e182,after,North,leak,3,5.8
+CPbfa34856,before,North,billing,1,2.1
+CP13e1ddba,after,South,billing,5,230.3
+CP87d8bb39,before,North,other,5,14.6
+CP65763480,before,South,billing,3,4.2
+CPda18c98f,before,North,low pressure,3,58.9
+CPde590237,after,South,low pressure,5,130.5
+CP3799e6a0,before,North,water quality,4,58.4
+CP416a338b,after,North,water quality,1,18.0
+CP4efd82b6,before,North,billing,1,48.6
+CP52c5f056,before,North,other,5,13.1
+CP538843e4,after,South,leak,1,22.0
+CPb540414b,before,South,leak,4,30.4
+CP4d7699f2,after,North,water quality,3,8.3
+CPc0f1af52,before,North,billing,2,9.9
+CP6c4e5285,before,South,meter,4,38.2
+CPc54c5943,after,South,water quality,2,22.4
+CP06922377,after,North,low pressure,1,19.0
+CPd8eb0fa7,after,North,leak,4,21.5
+CP8d3acf66,before,North,low pressure,3,37.6
+CP9fb39bd3,after,South,billing,4,10.4
+CPae5007a8,before,South,leak,2,9.9
+CPb80951aa,after,South,low pressure,1,41.1
+CP95509c6c,after,South,meter,5,21.8
+CPaa599520,before,South,billing,3,30.0
+CP294a384a,before,North,leak,4,23.2
+CP1646ad45,before,North,billing,1,8.6
+CP6c392df2,after,South,low pressure,2,27.7
+CP2ed16cac,before,South,meter,5,10.7
+CP3bbf0685,after,North,billing,1,9.6
+CP02d4880a,before,North,meter,5,7.1
+CP3213099e,after,South,billing,2,10.2
+CP41a2c7b5,before,South,leak,1,42.7
+CP6575ffae,after,South,low pressure,4,35.7
+CP1a0aa7f1,before,South,water quality,5,141.8
+CPd894ecb9,before,North,low pressure,1,24.8
+CP7b554c28,after,North,water quality,4,30.5
+CP480914fc,before,North,water quality,4,28.4
+CPf5b053d2,before,South,low pressure,2,26.0
+CP7d663615,before,North,water quality,1,22.2
+CP13cf11ac,after,South,billing,2,6.8
+CP6dfd1236,after,North,billing,5,14.5
+CPe2464d64,before,South,billing,1,19.8
+CPc4fac7bf,before,South,water quality,2,21.8
+CPa9d5959d,before,North,billing,1,12.3
+CP9c8454ef,before,North,meter,3,13.4
+CPab50068c,after,North,low pressure,2,33.6
+CPccf88c43,before,South,other,3,5.2
+CP190cf40e,before,North,meter,3,13.2
+CP0540f7e6,before,North,meter,2,18.6
+CP93a27819,before,North,billing,2,24.9
+CP1946e976,before,South,billing,1,2.2
+CP9e62047a,before,North,low pressure,5,101.1
+CP62003afd,after,South,leak,1,30.5
+CPfeeed2b1,before,South,leak,2,12.1
+CP5ad4deff,after,North,low pressure,4,4.5
+CPaffa553e,before,North,low pressure,3,26.9
+CP1ab5030f,before,North,billing,1,9.9
+CPb6990447,before,South,water quality,1,98.3
+CPd407c584,before,South,leak,5,49.3
+CPc26bbe79,after,North,water quality,2,56.2
+CPeb633b79,before,North,other,1,5.0
+CP6c11db03,after,North,low pressure,4,57.2
+CPd55a0c7d,after,South,billing,1,2.9
+CP91b887fe,before,South,leak,2,22.7
+CP5efcab7f,after,North,billing,2,13.8
+CPd6bc2f5c,before,South,low pressure,3,60.4
+CP74a499b7,before,North,low pressure,2,28.2
+CP1b8f9b67,after,South,meter,3,84.4
+CPe3763a0e,after,North,billing,5,7.7
+CPe40e7cbf,before,North,meter,5,20.5
+CPaa6da218,before,North,water quality,4,33.4
+CP46932463,before,South,billing,5,10.2
+CP96b4a193,before,North,low pressure,4,24.6
+CP22bf3d3d,after,South,leak,2,15.6
+CP83d07c73,after,North,low pressure,3,28.2
+CP748dc930,before,North,meter,3,61.6
+CP6e9c55d1,before,South,water quality,3,37.4
+CP9dd77932,before,North,leak,2,8.8
+CP90994dc2,before,South,meter,1,12.5
+CP66f05573,before,South,billing,2,25.8
+CPa241031e,before,North,low pressure,1,20.3
+CPbcdfb0e9,before,North,meter,4,185.9
+CPfc96554e,before,North,billing,5,21.9
+CP47f71d69,before,South,low pressure,3,84.9
+CP4ee3aab1,before,North,low pressure,5,61.5
+CP8bdd109b,after,North,water quality,4,158.3
+CP3456c1ca,before,South,meter,2,4.3
+CPc8ab5801,before,North,other,2,13.5
+CP709b317c,after,North,low pressure,1,45.0
+CPa7bf7c00,before,North,low pressure,5,113.9
+CPc2d79377,after,North,billing,3,26.3
+CPbcc0f275,after,North,leak,5,24.5
+CP09ff3792,after,South,billing,3,5.5
+CPf398002d,before,North,low pressure,5,28.5
+CP46a05c88,before,South,billing,3,78.2
+CP48739ea8,before,South,billing,3,32.4
+CP63b9826b,before,South,billing,2,11.7
+CP7fe2f247,before,North,meter,4,57.5
+CP4d2debff,after,North,billing,2,18.8
+CP7ef66e50,before,North,water quality,4,23.8
+CPc557a6e6,after,South,low pressure,2,83.3
+CPba7d8031,after,North,billing,4,13.7
+CP128180b3,before,North,billing,1,14.0
+CP188cd775,after,South,billing,2,7.5
+CPf1760937,after,North,leak,2,18.9
+CPca83ec88,before,North,billing,1,5.2
+CPf7a6bc68,after,South,meter,2,12.2
+CPd7a1c893,before,South,billing,5,43.1
+CP6cdc49df,after,North,other,3,35.2
+CPa3326c1a,after,South,billing,2,14.6
+CPa791d0e1,before,North,meter,2,31.5
+CP9814ac84,after,North,billing,1,18.8
+CP8eb13da8,after,North,leak,4,19.1
+CP9374a0fc,before,North,billing,3,10.0
+CP54e3661b,after,North,billing,1,13.5
+CP0873a517,before,North,meter,2,21.0
+CPa8a22117,after,South,billing,4,52.8
+CP3c05d995,after,South,low pressure,1,16.2
+CPaee810bf,after,North,low pressure,1,23.4
+CPe2a871f8,after,North,meter,2,11.1
+CPf729827f,before,North,billing,5,13.9
+CP81ee0715,before,South,billing,2,23.5
+CPbbdfd473,before,South,billing,3,9.3
+CP1fddfe74,before,North,billing,1,6.8
+CPe2ccd78c,after,South,other,3,8.4
+CPc031209f,after,North,billing,3,37.4
+CPf5589d9d,after,North,other,1,32.3
+CP54720f10,before,South,billing,2,9.0
+CPae620c3a,after,North,other,3,21.1
+CP3d4c280a,before,North,leak,2,25.4
+CPa6de27cb,before,South,low pressure,4,47.0
+CP4e50104a,after,North,meter,4,13.7
+CPcc4745da,before,North,billing,2,7.8
+CP9a027228,before,North,leak,1,19.5
+CPc179e04f,before,South,leak,2,24.8
+CPcbcfa191,before,South,other,1,4.4
+CPb2ff352a,before,South,low pressure,5,4.8
+CP03cc8142,before,North,billing,2,18.4
+CPacbff12a,before,North,billing,5,18.9
+CPbe840495,after,North,leak,3,21.3
+CPee8519d5,after,North,billing,3,28.8
+CPe5fc8bf5,after,North,billing,2,8.2
+CPefa6e526,after,South,meter,5,5.4
+CPfcf87e58,after,North,low pressure,4,14.8
+CP5f40f885,before,North,billing,1,19.2
+CPd7ae8f36,before,North,billing,5,21.4
+CP9c4435b7,before,South,low pressure,1,10.7
+CP1a61620e,after,North,other,1,13.7
+CPa9ea7467,after,South,other,1,18.5
+CPa658f58a,after,South,leak,3,47.2
+CPb7068edb,before,South,meter,1,10.6
+CP8c0759d7,after,South,meter,1,6.1
+CP538d4346,before,South,low pressure,4,5.4
+CP859def3f,before,North,low pressure,4,16.7
+CP122f42f1,before,South,billing,5,17.4
+CPb4310eb1,after,North,billing,3,17.2
+CPbb72f2e8,before,South,billing,5,39.5
+CPf10381b1,after,South,billing,4,31.1
+CP29290fb1,after,North,meter,1,6.0
+CPb2d197c1,before,North,water quality,5,36.1
+CP3e48a7e7,after,South,low pressure,3,17.2
+CPfba81de7,before,South,low pressure,2,61.2
+CP57fc809b,after,North,leak,2,25.9
+CP4db69e77,after,South,leak,2,23.3
+CP42f7239f,before,South,water quality,3,102.2
+CP05af3ec9,before,North,meter,2,52.9
+CPaece2915,before,South,billing,3,21.7
+CPbbfcb286,before,South,leak,1,23.9
+CPa6e84075,before,North,meter,2,51.7
+CPb7925de6,before,South,billing,2,22.6
+CPf0748a9d,before,North,billing,4,18.7
+CP78e82c9e,after,South,billing,4,5.9
+CP4571b2ba,after,North,meter,1,3.8
+CPb707f245,before,North,leak,2,28.0
+CP01b97bb2,before,North,billing,2,6.1
+CP0c5406b1,before,South,low pressure,2,7.3
+CP8764372d,before,South,water quality,3,40.4
+CP70e7703d,after,North,billing,3,6.1
+CP3ea6ad2c,before,South,billing,4,55.9
+CP87209aef,after,North,meter,4,10.5
+CP7d614159,after,South,low pressure,2,97.7
+CPaae7f1c6,after,North,water quality,4,62.1
+CP4740715d,before,North,low pressure,1,8.9
+CP1b667821,before,South,water quality,5,20.2
+CPf3dbbcaa,after,South,other,1,70.5
+CP4d9c6c6c,after,South,leak,5,30.7
+CP3d50ef79,before,North,leak,3,34.9
+CP48fca11b,before,South,meter,4,2.2
+CP68e08d4a,after,North,meter,2,13.4
+CP4cf29459,before,South,meter,2,6.4
+CP2395ebbd,after,South,leak,2,10.0
+CP9b045575,before,South,leak,4,34.9
+CPa7cae47b,before,North,other,1,9.5
+CP5eea705c,before,South,low pressure,4,17.6
+CP14c63f2d,before,North,water quality,1,40.3
+CP7c4240c6,before,North,leak,4,25.2
+CPdabba06d,after,North,leak,3,11.4
+CP3dd554d8,after,North,water quality,1,22.8
+CP8113e5a3,before,South,meter,5,46.3
+CP5c7e2952,after,South,leak,5,192.2
+CPc77f5291,after,South,low pressure,5,30.5
+CP3ded38e1,after,South,water quality,5,58.4
+CP60a64ab1,before,South,water quality,4,31.9
+CP6261634e,before,South,low pressure,4,55.5
+CP8e428679,before,South,low pressure,1,13.2
+CPd5c59ea5,after,North,billing,1,5.2
+CP9c8e4db9,after,North,billing,1,5.2
+CP0eebafff,before,North,meter,5,66.5
+CPa75b1dfd,before,North,leak,1,22.2
+CPb84fa01e,after,South,low pressure,3,13.2
+CP37ae837e,before,North,low pressure,3,61.6
+CPfc96df5f,after,South,billing,2,42.8
+CP722237a8,before,North,leak,2,28.9
+CP08b71e27,before,North,billing,3,12.6
+CPb9b68bca,after,North,leak,2,16.4
+CP65b63414,after,North,billing,2,22.7
+CP7f9fb350,after,North,low pressure,5,48.1
+CP2e1104b2,before,North,meter,2,23.8
+CP8237a364,after,North,other,4,38.5
+CP95f58fb5,before,North,billing,3,14.8
+CP88a6ce77,after,North,leak,3,23.5
+CP7cbe2591,before,North,low pressure,2,23.0
+CP003e732f,after,South,billing,2,7.3
+CPeb3c480a,after,South,low pressure,4,80.0
+CP9d7daf13,after,South,water quality,1,103.9
+CPa901a579,after,North,billing,1,136.6
+CPe3de4a93,after,South,other,1,9.3
+CP16d2019e,after,North,billing,5,48.2
+CP97f542f1,after,South,water quality,4,233.2
+CPee503c18,before,North,billing,4,10.0
+CPc91daadf,after,North,billing,4,36.9
+CP3d5039f9,after,South,billing,5,69.0
+CPfebaf77e,before,South,low pressure,4,44.8
+CP05d690e2,after,North,billing,2,35.3
+CPb59c8073,after,South,billing,4,13.7
+CP1c19d79a,before,North,water quality,3,25.8
+CP9563019c,before,South,water quality,4,100.0
+CPe0b9389e,before,North,meter,3,27.1
+CPf55fdca2,after,North,low pressure,1,10.0
+CP2fabb7de,after,North,billing,5,10.0
+CP6bc91eb8,after,North,leak,1,23.0
+CP6fdad97a,after,North,leak,1,24.2
+CPd5e4fa13,after,North,billing,5,20.4
+CP12b64617,after,South,leak,2,5.4
+CP9acca54d,before,North,billing,3,17.0
+CP22d95248,before,South,meter,2,8.4
+CPab4e5fa4,before,North,billing,2,6.3
+CP2aefa77e,after,North,billing,5,50.4
+CP5c8ebcc6,after,North,meter,2,25.7
+CP16a963aa,after,North,leak,3,28.6
+CP9bbda3f4,after,North,other,2,7.1
+CPe58bbeaf,after,North,leak,1,17.8
+CP0e6751b6,before,North,other,1,27.7
+CP343a3626,after,South,other,1,3.1
+CPf22e7141,before,North,meter,5,55.2
+CP84f5b3f7,after,South,water quality,5,123.6
+CP77342e3a,before,South,low pressure,5,91.1
+CPb98bc228,before,South,low pressure,3,100.9
+CP95ebd110,after,South,billing,5,16.0
+CP6f53d429,after,North,billing,1,23.3
+CP39f956a2,before,North,low pressure,3,34.3
+CPdfb1720d,after,North,meter,2,19.7
+CP6dc1c8a8,after,North,leak,5,35.5
+CPa604548a,before,North,billing,2,18.8
+CPeba88763,before,North,billing,4,63.4
+CPafd0ed12,after,North,other,1,1.0
+CP8dcc3de2,after,South,low pressure,1,40.1
+CP01ce0a5d,before,North,water quality,2,20.8
+CP28790361,after,South,water quality,1,28.7
+CP433987c7,before,South,low pressure,1,33.9
+CP7224f8aa,after,North,low pressure,3,15.2
+CP97febe64,before,North,billing,4,24.4
+CP8235259c,after,South,low pressure,3,11.7
+CP3e9f721d,before,South,billing,3,34.7
+CP33dd9bb5,before,North,low pressure,5,252.5
+CP1e88ecc3,after,North,billing,5,11.4
+CP5f7619d7,after,North,water quality,3,31.4
+CPa6c99d19,after,North,billing,5,44.9
+CP4a034ae1,after,North,other,4,80.9
+CPd464ff18,after,South,water quality,3,88.8
+CP15fcbc48,before,North,other,3,22.5
+CPea2a359f,after,North,billing,2,3.5
+CP1005d19b,before,North,billing,2,53.6
+CP6c156d6d,before,North,billing,4,51.0
+CP82a3be08,after,North,leak,2,9.3
+CPc3a850cf,before,South,billing,3,22.4
+CPfdcb7fce,before,South,other,3,16.3
+CP24e13c97,before,South,billing,5,59.7
+CP0b27ed55,before,South,leak,1,14.3
+CPc7ec28db,before,North,low pressure,3,13.5
+CP98ed3dee,before,North,billing,1,51.2
+CPa933ff68,before,South,billing,2,29.8
+CP93b4babd,before,South,billing,4,33.5
+CP90f957db,after,North,water quality,3,16.6
+CP278c4c8b,after,South,meter,5,8.7
+CP4847a312,before,South,billing,3,145.7
+CP57a7a9ed,before,South,billing,4,17.0
+CPdf3005b7,before,South,leak,2,40.5
+CP436caa91,before,South,low pressure,1,45.1
+CPf8aab647,before,North,billing,3,4.5
+CPcfc94ff9,after,North,billing,3,12.8
+CP41715c38,before,South,water quality,4,96.8
+CPb6c44d89,before,South,water quality,2,19.9
+CPa6f36123,after,South,billing,2,28.4
+CP8aab7e4c,after,South,low pressure,5,52.1
+CPbd55d791,after,North,other,5,13.1
+CPf469c210,after,South,water quality,4,64.0
+CPe228679f,after,North,leak,5,66.3
+CP0fd18836,after,North,other,5,39.6
+CP05205914,before,South,meter,3,10.1
+CPaa87fd13,after,North,leak,4,259.2
+CP8e5ca257,after,North,water quality,3,61.4
+CPdfb4a9b3,before,North,other,4,10.1
+CP5b867b95,before,North,billing,5,21.8
+CPe03c5480,before,South,leak,2,43.5
+CP6f378d93,after,South,billing,1,17.8
+CPc7cff9b9,before,South,water quality,3,27.2
+CP8305ccf2,before,South,water quality,3,157.5
+CP4ec7fea1,after,South,other,3,12.2
+CP738e1413,after,North,billing,3,9.5
+CP05136b59,before,South,water quality,5,90.8
+CP831441ef,after,South,low pressure,2,56.4
+CPa671a041,after,South,leak,1,26.2
+CP0d708cf4,after,North,leak,1,27.4
+CP4db8be57,before,South,billing,4,19.8
+CP27bfa75f,before,South,meter,5,38.4
+CP44bd1b4c,after,North,meter,1,8.1
+CPdd534d0b,after,North,low pressure,3,26.9
+CPff2d9f23,before,North,billing,3,4.2
+CPace78467,before,North,leak,5,334.4
+CP593445fa,after,South,water quality,3,10.0
+CPb9c02ba7,after,North,other,1,29.6
+CP01fe1ca8,before,North,low pressure,5,79.8
+CP80f12d92,after,South,billing,5,16.8
+CP62241b10,after,North,low pressure,5,28.7
+CP9d4eb6e1,after,North,billing,3,5.9
+CP42f6e54e,after,North,water quality,3,33.9
+CP224b00aa,after,North,low pressure,1,8.4
+CP909be541,after,South,leak,5,67.1
+CPa928b7f1,before,South,low pressure,3,77.1
+CPff4ef68e,before,South,low pressure,4,28.3
+CPb8f8f07f,after,North,leak,5,46.1
+CPd60f1064,before,North,leak,4,63.3
+CP03d6dc40,before,South,billing,1,24.7
+CPf1cfcd57,after,North,water quality,1,5.7
+CP007afcc2,after,North,leak,1,13.4
+CPdffe42e6,before,North,billing,1,13.7
+CPd91304d0,after,North,meter,2,3.2
+CPc83fc37d,before,North,low pressure,3,65.9
+CPcaa3159e,before,South,other,3,10.7
+CPc5269148,after,North,water quality,1,85.1
+CPf13bd278,before,North,low pressure,5,19.3
+CP59cd5425,before,North,billing,2,18.2
+CPcd9de4f9,before,South,leak,2,56.7
+CP2dd21a2f,before,North,water quality,2,55.8
+CPe8e490d1,after,North,leak,5,15.9
+CP414bb6f5,after,North,billing,4,12.7
+CP77e561d9,after,South,low pressure,5,18.2
+CP4bffe0bb,after,South,billing,1,21.9
+CPd464c9ca,before,South,billing,4,32.0
+CP7c315df6,after,North,billing,5,5.9
+CP9efb70ef,after,South,water quality,5,25.6
+CP90f26829,after,North,low pressure,5,40.6
+CPc6fe5804,before,South,low pressure,2,12.0
+CP5b7c3fb2,after,North,billing,3,14.7
+CPe634c58b,before,South,meter,2,77.1
+CPd805fa0f,after,South,billing,1,11.4
+CP3458f4ea,before,North,billing,3,26.8
+CPbbcf17f3,after,South,leak,2,12.6
+CP42f55bd3,before,South,leak,4,12.9
+CPeae55078,after,South,leak,4,48.9
+CPfd981016,after,South,leak,1,18.1
+CP6c47b0c4,before,South,water quality,3,31.1
+CP9d7b2ed3,before,South,leak,2,55.1
+CP322d31d3,after,South,leak,1,10.4
+CPb1ef114b,before,North,other,1,5.5
+CP5d5f1594,before,South,meter,2,18.9
+CP6d1185f7,after,North,leak,4,21.7
+CP70079e22,before,South,billing,4,89.1
+CP5b007a46,before,South,meter,5,99.5
+CP6bac62a7,after,North,low pressure,4,71.7
+CPae3272ff,before,South,leak,4,18.9
+CP0a4ea1fc,after,North,water quality,1,9.6
+CP8e5b3d72,before,North,water quality,5,75.1
+CP84f2bd81,after,North,low pressure,2,47.9
+CPc807e0ae,after,North,billing,1,4.6
+CP06aa1b70,before,North,other,5,16.1
+CP1f954739,before,North,meter,2,46.6
+CPd6eaaade,before,North,billing,1,4.1
+CP83679ef9,before,South,leak,5,26.2
+CP874b02fa,after,North,leak,1,32.4
+CP6cbda1be,before,North,leak,4,28.8
+CPb21def5e,after,North,other,1,115.0
+CP54b97cfb,before,North,leak,1,35.5
+CPcf672f19,after,North,billing,3,126.5
+CP94c76dd8,before,North,billing,5,27.9
+CPc20f95cf,before,North,other,1,15.2
+CP8c1b8fcb,after,South,billing,4,17.9
+CP7f8f093f,after,North,meter,3,13.6
+CP22294ae2,after,South,low pressure,3,14.6
+CP1250b47f,before,North,billing,5,39.3
+CP99748afe,after,North,low pressure,5,57.8
+CP8a96514e,before,North,billing,4,26.9
+CPcff2529d,before,South,billing,1,10.7
+CP09b6fcab,after,North,other,1,7.3
+CPeca43ac6,after,North,billing,5,36.0
+CPea737d85,before,South,leak,4,71.5
+CP0e5ed535,before,South,low pressure,2,95.1
+CP78a60f94,after,North,water quality,5,15.5
+CPae1ef96b,after,North,low pressure,4,45.3
+CPf35ee4a5,after,South,low pressure,3,18.0
+CPd50d27cc,after,North,water quality,3,14.8
+CPedddbe2e,after,North,other,3,17.2
+CPcd92c57b,before,South,billing,3,24.4
+CP5a79f314,after,North,billing,5,18.0
+CPdf1df97f,after,North,leak,5,26.2
+CP5fd93d52,before,North,meter,4,11.1
+CP97fab4a6,after,South,low pressure,4,18.2
+CP3ec624bd,before,South,leak,2,22.5
+CPf80ddd72,before,North,billing,1,10.4
+CP0e2291da,after,North,meter,1,7.2
+CP1bd659b0,after,North,meter,5,27.4
+CPa55a88f2,before,North,meter,5,50.0
+CPd0dd3a66,before,South,low pressure,3,18.5
+CP8bc3fc62,after,North,billing,1,2.6
+CP299fa856,before,South,leak,3,17.5
+CP08c6acde,after,South,billing,2,1.4
+CPf94d3eb9,before,North,billing,4,16.8
+CPc6d9c1f3,after,South,billing,4,28.8
+CPf27d64b9,before,North,leak,1,1.6
+CPf84a6bdd,before,North,water quality,2,23.3
+CPeba08b4a,after,North,meter,3,28.2
+CP6f6463b4,before,South,billing,4,23.6
+CP0302537c,after,South,water quality,2,34.8
+CPc45d1718,before,North,billing,2,17.0
+CPab4874cc,before,North,meter,4,41.0
+CP75dfbc82,after,North,billing,3,15.0
+CP190d4cfe,before,North,other,4,31.3
+CP2568eb7b,after,North,meter,4,31.3
+CP8201ce8a,before,North,leak,5,36.1
+CP47d71bf4,before,North,leak,1,35.2
+CP18ed5f75,before,North,leak,2,43.5
+CP5fbeed44,before,South,low pressure,5,59.3
+CPc8c1ecd5,after,North,billing,3,61.5
+CP4c352b03,before,North,low pressure,4,20.5
+CPa18d3bb3,after,South,billing,5,16.6
+CP681c2bae,after,North,meter,4,67.7
+CP19378991,after,South,water quality,5,123.6
+CPeb233200,before,South,billing,2,10.6
+CP9bccdde0,before,North,billing,2,15.6
+CPf95e6046,after,South,billing,2,31.9
+CPf4164580,after,North,billing,1,4.9
+CPff00ecef,before,South,water quality,1,55.8
+CP77d53ceb,before,North,billing,2,14.8
+CP29565285,before,South,billing,5,136.5
+CP21b2d67d,after,North,water quality,2,53.3
+CPbfd72cb5,before,South,low pressure,1,47.8
+CP0af5f3c3,after,North,billing,5,8.9
+CP5333ecf4,after,South,billing,5,84.9
+CP8710d5e7,before,South,billing,1,9.8
+CPec759995,before,North,billing,5,13.6
+CPb01f0830,after,South,billing,2,17.9
+CP78f7b249,before,North,meter,5,109.4
+CP7c977517,after,North,meter,4,58.7
+CPe634800d,after,North,water quality,5,8.0
+CP0d1c33d2,before,North,billing,3,22.7
+CPa64dab8c,before,South,billing,3,7.2
+CPb9ec71d4,after,South,billing,4,8.0
+CPe9f2728c,before,South,low pressure,3,236.5
+CPdd78a077,before,South,meter,3,5.3
+CPb3aab809,before,North,leak,4,35.7
+CPb8f7c547,before,North,meter,5,93.4
+CPeee85f77,before,South,water quality,5,88.1
+CPe5c4b158,before,North,billing,1,14.3
+CPb6655d4d,before,North,water quality,3,40.4
+CP0af87718,after,North,meter,5,16.4
+CP82c67b36,before,North,meter,2,17.8
+CPb9953507,before,North,low pressure,3,38.4
+CP349ca508,before,North,billing,3,17.7
+CP2874a954,after,North,meter,2,10.5
+CP776d5ba2,before,South,meter,5,15.6
+CP63f9dc5b,after,North,billing,1,2.1
+CPf39fe7bc,after,North,low pressure,5,32.6
+CP0448330c,after,North,leak,1,15.2
+CPd29ba9ed,before,North,billing,5,18.8
+CP1b2b163f,before,South,billing,4,35.2
+CPdea7daa7,before,South,leak,5,166.2
+CP7a4a3331,before,North,low pressure,5,30.5
+CP3242929b,before,South,billing,5,196.2
+CP2d9890e9,after,North,leak,5,63.3
+CP312b8da3,after,South,low pressure,3,127.2
+CPf0b67d42,before,North,low pressure,3,34.4
+CPd3d5d3db,after,North,leak,1,40.9
+CP97092605,after,North,billing,1,15.5
+CP3498212c,before,North,leak,1,9.3
+CP564bb17f,after,South,leak,5,22.2
+CPb22f60e9,after,South,billing,4,12.1
+CP97c4cacd,after,South,low pressure,5,151.1
+CPc7d4fb62,before,South,meter,5,44.2
+CP90fe99ed,before,South,low pressure,2,35.8
+CP8965b6aa,before,North,water quality,1,5.3
+CP85bc4a88,before,South,water quality,2,10.1
+CP7103246f,after,South,billing,2,10.9
+CP58f743b5,before,South,low pressure,3,136.5
+CPcfd5be84,before,South,other,1,83.1
+CPcb66c978,after,North,low pressure,4,165.7
+CP80a60cab,before,North,billing,5,25.0
+CP601fcf3d,after,North,leak,4,6.3
+CP5a5e3d9f,before,North,meter,3,37.9
+CPf6cce6fc,after,South,leak,3,182.6
+CP2a7e54f8,after,North,meter,4,7.7
+CP1e53b0eb,after,North,water quality,5,10.9
+CP1a40c56f,before,North,other,3,20.3
+CP09afda33,after,South,leak,5,26.5
+CPdca648f8,after,South,leak,4,38.6
+CP1b1753fe,after,North,billing,4,6.2
+CPa12feb28,before,North,leak,3,11.0
+CPbdc5a303,before,North,low pressure,5,11.4
+CP9c5cd2ea,before,North,leak,3,51.0
+CP7024df1d,after,South,billing,1,4.7
+CPea8a4437,after,North,billing,1,14.3
+CP4412162a,before,North,leak,4,51.0
+CP8a69c9d6,before,North,low pressure,1,19.8
+CP1b2dedc2,after,South,billing,5,10.1
+CPccea0268,after,North,billing,3,8.3
+CP34153717,before,South,billing,1,11.4
+CPbf710c0c,before,North,billing,1,36.8
+CPda55f919,before,South,leak,5,22.3
+CP5c4fb443,after,South,water quality,1,25.0
+CP42afbb03,after,South,meter,3,34.9
+CP850186d8,after,North,low pressure,4,68.2
+CPe4da54a1,after,North,billing,4,17.5
+CP8b678187,after,North,leak,5,18.4
+CP159dccff,before,South,other,2,71.8
+CP24c071fb,after,North,meter,4,20.7
+CPf2426a8f,before,North,leak,3,71.4
+CP094bb281,before,North,billing,5,40.0
+CP59a8166f,before,South,billing,5,25.7
+CPea9cf640,after,South,water quality,4,88.8
+CP70ed6ac7,before,North,low pressure,4,18.3
+CP35c2dcdd,before,North,meter,1,21.3
+CP9c722945,before,South,billing,1,16.0
+CPacb1b274,after,North,low pressure,4,70.7
+CP378111c8,after,North,leak,4,24.7
+CP1d4ab9fe,after,North,leak,5,16.5
+CP3925ce4d,before,North,billing,1,15.3
+CP6f62bf88,after,North,water quality,2,4.1
+CPd710a30d,before,North,billing,4,49.7
+CP43179bee,before,North,low pressure,4,28.8
+CP66158485,before,North,billing,5,35.1
+CPb4690b36,after,North,billing,1,4.6
+CP7876db45,after,North,water quality,5,126.8
+CP81097aed,after,North,water quality,5,62.4
+CPcd3492ff,before,North,low pressure,3,25.5
+CP9b3b1dc0,before,North,meter,2,27.1
+CP06ca357d,after,South,leak,1,25.1
+CPd7020693,before,South,low pressure,5,35.6
+CP0eb6ab0a,before,South,low pressure,3,86.3
+CP816267c2,before,North,low pressure,5,4.5
+CPd45419e0,before,North,leak,5,37.2
+CPd063238f,after,North,meter,4,6.9
+CPd034f471,after,North,low pressure,1,27.1
+CPff080ca6,after,South,low pressure,1,15.5
+CP70033120,before,North,low pressure,2,27.9
+CP3556562e,after,North,leak,3,26.1
+CP188ffd86,before,North,leak,4,9.3
+CP17898e8b,before,South,billing,5,17.6
+CPf2ecd553,after,North,other,1,9.2
+CPe7e79067,after,South,meter,5,15.0
+CPe583d18c,before,South,water quality,1,3.1
+CPa46e790b,before,North,billing,2,25.5
+CP6e9c8cc6,after,North,billing,1,6.0
+CP9164fbc4,before,North,low pressure,3,11.4
+CP699e00a8,before,North,billing,2,42.8
+CPf4f407bf,before,North,low pressure,3,15.1
+CP182f449c,before,North,water quality,5,53.1
+CP8b402b3e,after,South,water quality,4,45.3
+CPa2a4285a,after,North,leak,2,35.4
+CPf4ecdaea,before,North,meter,1,9.5
+CP9e37d3e9,before,North,billing,5,39.2
+CPfeba5301,before,South,billing,4,64.2
+CP1b992177,after,South,billing,1,11.3
+CP22275d05,before,North,low pressure,4,10.8
+CP489c7693,before,North,meter,1,25.5
+CP85a0de80,after,South,low pressure,5,114.8
+CPe3c9b405,before,South,billing,5,34.6
+CPe0872e93,after,South,billing,2,12.6
+CP46b69024,before,South,leak,3,18.4
+CPf8106c8e,before,North,low pressure,1,37.7
+CP2b169c63,after,North,low pressure,5,41.1
+CP512b3484,before,North,low pressure,1,71.3
+CPa6ca4296,after,North,other,4,34.9
+CP45e71266,before,South,leak,1,10.2
+CPf806ffbb,after,South,meter,2,23.9
+CP019bb042,after,South,leak,4,10.3
+CPd26bf43a,before,South,low pressure,2,28.1
+CP9fb38351,after,North,billing,3,11.1
+CP07c9d260,before,North,water quality,4,11.0
+CPfc79c59f,after,North,low pressure,2,26.3
+CPc4921b9e,after,North,low pressure,1,26.5
+CPa4c3ae97,after,South,billing,3,8.7
+CP4321cfbf,after,South,water quality,1,12.8
+CP9683493c,after,North,billing,4,22.4
+CP69454b89,after,South,billing,3,33.9
+CP83a934fa,after,North,low pressure,2,17.2
+CPd6c2a169,before,North,leak,5,10.7
+CP9c016605,before,North,billing,3,12.6
+CPab91f51e,before,South,leak,4,50.1
+CP7c9b7844,before,North,meter,2,25.3
+CP32917a71,after,North,other,3,18.2
+CP1d2f7d16,after,North,other,4,12.7
+CPd232a37f,after,South,billing,1,8.6
+CPc9a97f58,before,South,billing,1,20.6
+CPe08e452f,after,North,leak,5,139.3
+CPe4a392f8,after,North,billing,4,22.9
+CP4f4c6cee,after,North,water quality,1,21.4
+CPefcd71aa,before,North,other,1,21.3
+CPc2ed95a3,before,South,billing,2,33.2
+CPde6a39ec,before,North,water quality,2,63.8
+CP9f866ac4,after,South,low pressure,2,12.1
+CP8e55c672,before,South,billing,1,17.3
+CP32008423,after,North,billing,1,42.9
+CPb0d4f540,after,South,water quality,2,48.1
+CP0bc7026b,after,North,leak,4,35.8
+CP6c428795,after,South,low pressure,2,40.5
+CP526faac4,after,North,leak,1,20.8
+CP0b75dc77,after,North,water quality,5,148.0
+CP7efe128b,after,South,low pressure,2,20.5
+CP49519ffa,before,North,billing,5,30.1
+CP750e5b5b,before,South,billing,5,28.0
+CPf688d9c1,after,South,billing,2,17.2
+CPbe31fb3e,before,South,other,4,12.7
+CPdcea14aa,before,South,billing,5,34.2
+CP4d356ec0,before,South,meter,3,62.5
+CPb90b9a3b,before,North,billing,4,43.0
+CP52961689,after,North,other,2,6.5
+CPd8e256f3,after,South,water quality,5,28.7
+CPc534ebe9,after,South,leak,4,111.1
+CP162cadb2,after,North,billing,3,18.2
+CP4996cd6d,after,North,billing,3,15.6
+CPcc9cf0f0,after,South,leak,3,18.6
+CP2633231f,before,North,other,5,14.1
+CP4d459736,after,North,leak,5,54.9
+CP3e323061,before,North,billing,2,13.5
+CP70325f32,after,North,water quality,1,15.1
+CP468a97ef,before,South,water quality,4,157.8
+CP8bc5ea41,after,North,meter,4,16.5
+CP68ab4c28,after,North,billing,2,4.5
+CP3b9c7b38,before,North,billing,4,35.7
+CP00a55fde,after,North,meter,2,6.8
+CPe3354b14,after,North,billing,3,7.6
+CP394244a7,before,South,low pressure,5,65.2
+CP1e095d62,before,North,other,4,20.4
+CPcab6d120,after,North,other,5,104.6
+CP4f297419,before,North,low pressure,4,35.7
+CP64a631ff,after,North,billing,1,19.7
+CP708b7d80,before,South,meter,2,30.1
+CP1a2d4cde,after,North,leak,3,60.1
+CPce3c54cc,after,North,meter,4,15.8
+CP6cae936e,after,South,meter,4,13.2
+CP65884417,after,South,other,1,47.2
+CP220b937c,before,South,billing,3,24.7
+CP1cc5c331,before,South,other,2,35.8
+CP31f4a07f,after,North,billing,4,8.4
+CP8ce045bd,before,North,meter,4,39.1
+CP0df18617,after,North,billing,2,12.9
+CPf652eecd,before,South,low pressure,4,55.8
+CP08a1490a,after,North,water quality,4,77.6
+CP53cd9acb,after,South,leak,5,31.8
+CP0de304c4,after,North,low pressure,4,56.5
+CP36bbcf40,before,North,other,4,19.5
+CPa3adb9b5,before,South,meter,3,62.0
+CP2778c06a,before,South,low pressure,4,72.2
+CP70aa595d,before,North,other,1,3.5
+CP7fd54182,before,South,billing,2,16.0
+CP8bc6889c,before,North,leak,4,85.8
+CPd7b2c13d,after,South,meter,3,30.7
+CPed3e948f,before,North,water quality,5,68.1
+CPd3ee4dab,after,South,low pressure,2,34.7
+CP4314040c,after,South,billing,3,11.5
+CP22eea209,after,North,billing,4,7.6
+CPbe24772a,before,North,billing,1,21.0
+CPa7340b6a,after,North,leak,3,212.9
+CP03459d82,before,North,meter,2,39.7
+CP5dfce5c8,after,North,meter,5,39.4
+CP64d4fabb,after,North,billing,3,3.3
+CPb08efb0f,after,North,leak,5,35.2
+CPcd647158,after,South,billing,2,23.2
+CPd1a909f9,after,North,other,1,18.9
+CP5d08f73a,after,South,billing,2,8.7
+CP6e9ec191,before,North,billing,4,48.2
+CPce7aedf1,after,South,billing,3,38.4
+CP949a8fc3,before,North,leak,2,22.9
+CPa823f191,after,North,billing,3,26.3
+CP48f88e32,before,North,leak,4,49.2
+CP62321d58,before,South,billing,2,17.8
+CPff6ce4a8,after,South,leak,3,53.6
+CPd6fdc437,before,South,low pressure,2,51.3
+CP56eeacd4,before,North,low pressure,5,26.0
+CPdbb61e46,before,North,meter,2,16.6
+CP4cdfb389,after,South,billing,1,3.4
+CP67a2be97,after,South,billing,2,26.8
+CPf5ea68c1,before,South,billing,5,6.4
+CP35c55778,after,South,other,4,16.9
+CP225d3d26,after,North,leak,3,40.0
+CP759a26bc,after,North,meter,3,27.2
+CP79448a84,after,South,billing,5,22.9
+CP235a9517,before,North,low pressure,3,14.3
+CP146a5d6a,before,South,low pressure,2,15.4
+CPda32506f,after,North,low pressure,5,34.0
+CP059e7028,before,South,meter,4,13.0
+CP288f775a,before,North,billing,1,16.4
+CPc8d0502a,before,South,other,2,20.9
+CP7967355a,before,North,low pressure,3,11.6
+CPee0ae4fb,after,North,leak,1,8.2
+CP6fac5be8,before,North,water quality,5,23.0
+CPe409094a,before,North,other,2,65.6
+CP171dd30e,before,South,billing,4,16.9
+CPedd8261b,before,North,billing,3,122.8
+CP64dffe17,after,South,billing,1,5.8
+CP1a5c3270,before,South,leak,1,17.8
+CP40b08b3e,before,South,billing,4,39.3
+CPa9535195,before,South,low pressure,3,12.3
+CP6f729099,after,North,water quality,5,58.7
+CP4ab6a9bf,before,North,leak,1,40.5
+CPf327a776,after,South,meter,5,4.7
+CPc038a0d3,after,South,billing,5,43.3
+CPd448fd9a,before,South,leak,2,10.9
+CPb7c0c584,after,South,meter,1,19.5
+CPa9aa84a0,before,North,low pressure,5,19.4
+CP9d073735,before,North,leak,2,17.8
+CPc71f7595,before,South,leak,1,41.2
+CPa3874033,before,North,low pressure,2,22.3
+CP6d410fe0,after,South,low pressure,2,41.0
+CPf250ca4c,before,North,leak,4,5.3
+CP6a3f0111,before,North,billing,2,12.9
+CP487740f7,after,South,other,4,13.5
+CPc8a87b8b,after,South,meter,2,8.2
+CP9429459d,before,North,low pressure,2,18.3
+CPe51210f5,after,South,billing,4,12.5
+CP07338bdc,after,North,other,1,16.2
+CP5847515a,before,South,meter,5,95.7
+CP45475483,before,South,water quality,1,25.1
+CPbfd5c6d1,after,South,billing,2,53.7
+CP2478f899,before,North,water quality,2,25.4
+CP0e6799d0,after,North,other,5,33.0
+CP297a2e3e,after,North,billing,4,7.2
+CP692cde32,after,South,leak,1,23.6
+CP932e4869,after,North,meter,5,26.1
+CP146f64d3,after,North,leak,5,57.2
+CP2d93ca75,before,North,low pressure,5,29.1
+CP3f9ef101,before,South,meter,3,11.1

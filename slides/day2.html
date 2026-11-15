@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-ax="deck" data-track="data-science">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 2 · Intervals · Statistical Inference by Simulation</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<link rel="icon" href="../_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="day2.md">
+<link rel="describedby" href="../llms.txt">
+<link rel="stylesheet" href="../_engine/academy.css">
+</head>
+<body>
+<div class="deck" data-course="Statistical Inference by Simulation" data-track="data-science" data-day="Day 2">
+<section class="slide title" id="title" data-auto="title" data-label="Welcome" data-n="1">
+  <div class="kicker">SDAIA Academy · Statistical Inference by Simulation</div>
+  <h1>Intervals</h1>
+  <p class="lead mt">Day 2: An interval is a method with a promise, and on a known population the promise can be counted</p>
+  <div class="meta"><span class="track">Data Science Track</span><span>4 teaching days + capstone day</span><span>4 sessions · 4 labs</span><span>DS-201</span></div>
+  <aside class="notes"><p>Yesterday ended with a question: with one sample and no population, how could you see a sampling distribution? Take two or three answers before the agenda. Someone usually proposes "pretend the sample is the population". That is today's first session.</p></aside>
+</section>
+
+<section class="slide" id="agenda" data-auto="agenda" data-label="Agenda" data-n="2">
+  <div class="kicker">Today</div>
+  <h2>Intervals</h2>
+  <div class="agenda"><div class="item"><div><b>Session 1 · The bootstrap idea</b><small>The sample stands in for the population: resample it with replacement and watch the statistic move</small></div></div><div class="item"><div><b>Session 2 · Coverage is a testable claim</b><small>A 95% interval is a claim about the method over many studies, and the claim can fail</small></div></div><div class="item"><div><b>Session 3 · Resample the right unit</b><small>Rows that share a district are not independent: the unit you resample must be the unit that was sampled</small></div></div><div class="item"><div><b>Session 4 · Intervals for differences and ratios</b><small>Managers ask about gaps and ratios: resample each group, recompute the comparison, read the interval against 0 or 1</small></div></div></div>
+  <aside class="notes"><p>Session 1 builds an interval, session 2 tests whether the interval keeps its promise, session 3 breaks it by resampling the wrong unit, session 4 applies it to the question managers ask most: a gap between two groups.</p></aside>
+</section>
+
+<section class="slide" id="review-day1" data-lo="LO1" data-label="Review" data-n="3">
+  <div class="kicker">Review of Day 1</div>
+  <h2>Which number shrinks when you read more meters?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1" data-id="review-day1-q1">
+    <p class="lead">From 100 households: mean 490 litres, standard deviation 200, standard error 20. Zulal reads 400 households next time. What do you expect?</p>
+    <div class="opts">
+      <div class="opt" data-why="Lets the spread of households shrink with the sample: households differ as much as before" data-k="A">Standard deviation about 100, standard error about 20</div>
+      <div class="opt" data-ok data-k="B">Standard deviation about 200, standard error about 10</div>
+      <div class="opt" data-why="Divides the standard error by 4 and not by the square root of 4" data-k="C">Standard deviation about 200, standard error about 5</div>
+      <div class="opt" data-why="Shrinks both: only the precision of the estimate improves with more data" data-k="D">Standard deviation about 100, standard error about 10</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Households differ as much as ever. Four times the sample halves the standard error: 200 / √400 = 10.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Two minutes. If the room is unsure, redo the two sentences of lab 1.2, step 5, before going on: today's intervals are built on the standard error.</p></aside>
+</section>
+
+<!-- ======================= SESSION 1 ======================= -->
+<section class="slide section" id="s1" data-auto="section" data-session="1" data-n="4">
+  <div class="kicker">Session 1</div>
+  <h1>The bootstrap idea</h1>
+  <ul class="bullets outcomes"><li>Explain why resampling the sample imitates sampling the population</li><li>Compute a percentile bootstrap interval for a median</li><li>Compare a bootstrap distribution with the real sampling distribution</li></ul>
+  <div class="sess-no">01</div>
+</section>
+
+<section class="slide" id="one-sample-only" data-lo="LO2" data-label="The problem" data-n="5" data-session="1">
+  <div class="kicker">The problem</div>
+  <h2>A real analyst has one sample and no population to resample</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>Yesterday's sampling distributions came from drawing 1,000 samples from the population.</li>
+      <li>In real work you can afford one sample. The other 999 do not exist.</li>
+      <li>For a mean, a formula fills the gap: s / √n. For a median, a ratio or a slope there is often none.</li>
+    </ul>
+    <div class="card c-teal"><h4>Nizar's question</h4><p class="small mb0">"What is the typical repair time, with an honest range around it?" You hold 150 tickets. Median 6.15 hours. How far could that be from the truth?</p></div>
+  </div>
+  <aside class="notes"><p>Sample and numbers from lab 2.1. Ask the room for ideas before the next slide. The idea needed is brazen: use the sample as a stand-in for the population.</p></aside>
+</section>
+
+<section class="slide" id="bootstrap-idea" data-lo="LO2" data-label="The idea" data-n="6" data-session="1">
+  <div class="kicker">The bootstrap idea</div>
+  <h2>Treat the sample as the population and sample from it</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>1 · One sample</b>150 repair times, the best picture of the population you have</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>2 · Resample</b>draw 150 from the 150, with replacement</div>
+    <div class="arrow">→</div>
+    <div class="step c-purple"><b>3 · Recompute</b>the median of the resample</div>
+    <div class="arrow">→</div>
+    <div class="step c-coral"><b>4 · Repeat</b>2,000 times: an imitation of the sampling distribution</div>
+  </div>
+  <div class="callout tip mt"><b>With replacement</b> is the whole trick. Without it, every resample is the sample itself.</div>
+  <aside class="notes"><p>The name comes from "pulling yourself up by your own bootstraps": getting the uncertainty out of the sample that has it. The method needed cheap computing to become ordinary. Stress step 2: same size as the sample, with replacement.</p></aside>
+</section>
+
+<section class="slide" id="one-resample" data-lo="LO2" data-label="One resample" data-n="7" data-session="1">
+  <div class="kicker">Lab 2.1, step 2</div>
+  <h2>One resample repeats some tickets and leaves others out</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">resample</span>(<span class="hljs-params">v, gen</span>):
+    <span class="hljs-keyword">return</span> gen.choice(v, size=<span class="hljs-built_in">len</span>(v),
+                      replace=<span class="hljs-literal">True</span>)
+
+one = resample(sample, gen)
+<span class="hljs-built_in">len</span>(np.unique(one))   <span class="hljs-comment"># 77 distinct values</span>
+np.median(one)        <span class="hljs-comment"># 6.40 hours</span></code></pre>
+    <ul class="bullets">
+      <li>150 values drawn, 77 distinct values. Many tickets appear twice or more; many do not appear.</li>
+      <li>Its median is 6.40 hours; the sample's was 6.15.</li>
+      <li>That difference imitates the difference between two real samples.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Solution run of lab 2.1. On average about 63% of the original values appear in a resample; with repeated values among the tickets the count of distinct values is lower. Step 2 of the lab is done by hand on purpose, before the vectorised version of step 3.</p></aside>
+</section>
+
+<section class="slide" id="bootstrap-distribution" data-lo="LO2" data-label="The bootstrap distribution" data-n="8" data-session="1">
+  <div class="kicker">Lab 2.1, steps 3 and 4</div>
+  <h2>The middle 95% of the resampled medians is the interval</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:boot_median-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Histogram of 2,000 bootstrap medians of repair time from one sample of 150, lumpy, between 4.5 and 8 hours; the 95 percent interval runs from 5.0 to 7.5 hours and contains the true median 6.5">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="356.0" y2="356.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="361.0" text-anchor="end" font-size="14" fill="var(--muted)">0</text>
+<line x1="64" x2="700" y1="230.8" y2="230.8" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="235.8" text-anchor="end" font-size="14" fill="var(--muted)">200</text>
+<line x1="64" x2="700" y1="105.6" y2="105.6" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="110.6" text-anchor="end" font-size="14" fill="var(--muted)">400</text>
+<line x1="164.4" x2="164.4" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="164.4" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">5</text>
+<line x1="331.8" x2="331.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="331.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6</text>
+<line x1="499.2" x2="499.2" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="499.2" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">7</text>
+<line x1="666.5" x2="666.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="666.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">8</text>
+<rect x="65.0" y="354.7" width="31.5" height="1.3" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="98.5" y="351.0" width="31.5" height="5.0" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="131.9" y="323.5" width="31.5" height="32.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="165.4" y="312.2" width="31.5" height="43.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="198.9" y="291.5" width="31.5" height="64.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="232.4" y="323.5" width="31.5" height="32.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="265.8" y="329.7" width="31.5" height="26.3" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="299.3" y="51.8" width="31.5" height="304.2" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="332.8" y="118.8" width="31.5" height="237.2" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="366.3" y="93.1" width="31.5" height="262.9" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="399.7" y="275.9" width="31.5" height="80.1" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="433.2" y="331.6" width="31.5" height="24.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="466.7" y="319.7" width="31.5" height="36.3" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="500.2" y="330.3" width="31.5" height="25.7" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="533.6" y="315.9" width="31.5" height="40.1" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="567.1" y="336.0" width="31.5" height="20.0" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="600.6" y="342.9" width="31.5" height="13.1" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="634.1" y="354.1" width="31.5" height="1.9" fill="var(--teal)" fill-opacity="0.85"/>
+<line x1="164.4" x2="164.4" y1="18" y2="356" stroke="var(--coral)" stroke-width="2.5" stroke-dasharray="0"/>
+<text x="158.4" y="34" text-anchor="end" font-size="15" fill="var(--ink, currentColor)">2.5%: 5.0</text>
+<line x1="582.8" x2="582.8" y1="18" y2="356" stroke="var(--coral)" stroke-width="2.5" stroke-dasharray="0"/>
+<text x="588.8" y="34" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">97.5%: 7.5</text>
+<line x1="415.5" x2="415.5" y1="18" y2="356" stroke="var(--ink, currentColor)" stroke-width="2.5" stroke-dasharray="6 5"/>
+<text x="421.5" y="58" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">truth 6.5</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">median of a resample of 150 repairs, hours</text>
+</svg>
+<!--/FIG:boot_median-->
+      <div class="caption">2,000 bootstrap medians from one sample of 150 repairs.</div>
+    </div>
+    <ul class="bullets">
+      <li><b>Percentile interval</b>: from the 2.5th to the 97.5th percentile, 5.00 to 7.50 hours.</li>
+      <li>The true median, 6.50 hours, is inside.</li>
+      <li>The histogram is lumpy: a median of 150 tickets can only take values in the sample, or halfway between two of them.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The sentence for Nizar: "The typical repair takes about 6.2 hours; the data are consistent with anything from 5.0 to 7.5." Do not say yet what 95% means: session 2 defines it and tests it.</p></aside>
+</section>
+
+<section class="slide" id="width-not-centre" data-lo="LO2" data-label="What the bootstrap gets right" data-n="9" data-session="1">
+  <div class="kicker">Lab 2.1, step 5</div>
+  <h2>The bootstrap gets the width right, not the centre</h2>
+  <div class="cols cols-3">
+    <div class="stat"><div class="big">0.553</div><div class="lbl">standard error of the median by bootstrap, from one sample</div></div>
+    <div class="stat"><div class="big">0.513</div><div class="lbl">the real one, from 2,000 samples of the population</div></div>
+    <div class="stat"><div class="big">6.15</div><div class="lbl">where the bootstrap is centred: the sample median, not the truth, 6.50</div></div>
+  </div>
+  <ul class="bullets mt">
+    <li>The bootstrap cannot repair a sample that landed low. It can tell you how far samples land.</li>
+    <li>That is exactly what an interval needs.</li>
+  </ul>
+  <aside class="notes"><p>The comparison on the left is the Zulal privilege again: no real analyst can compute 0.513. The agreement, within 8%, is the evidence that the trick works for this statistic at this sample size.</p></aside>
+</section>
+
+<section class="slide" id="b-is-not-n" data-lo="LO2" data-label="B is not n" data-n="10" data-session="1">
+  <div class="kicker">Two numbers people confuse</div>
+  <h2>More resamples smooth the picture; only more data narrow the interval</h2>
+  <table class="t">
+    <tr><th></th><th>n, the sample size</th><th>B, the number of resamples</th></tr>
+    <tr><td>What it is</td><td>150 tickets you collected</td><td>2,000 loops your laptop ran</td></tr>
+    <tr><td>What it costs</td><td>Field work</td><td>Seconds</td></tr>
+    <tr><td>What more of it buys</td><td>A narrower interval</td><td>A steadier estimate of the same interval</td></tr>
+  </table>
+  <div class="callout warn mt"><b>What goes wrong.</b> "We ran a million resamples, so the result is very precise." The interval for 150 tickets is 2.5 hours wide at any B.</div>
+  <aside class="notes"><p>A practical rule for the labs: 1,000 to 2,000 resamples for an interval, 5,000 or more for a small p-value. The stretch of lab 2.1 counts the coverage of this interval method for the median: 958 of 1,000 fresh samples of 150, or 95.8%. Session 2 explains why that count is the real test of a method.</p></aside>
+</section>
+
+<section class="slide" id="check-resample" data-lo="LO2" data-n="11" data-session="1">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which procedure is a bootstrap resample?</h2>
+  <div class="quiz" data-type="single" data-lo="LO2" data-id="check-resample-q1">
+    <p class="lead">You have 80 survey scores and want an interval for their median. Which step, repeated 2,000 times, gives the bootstrap distribution?</p>
+    <div class="opts">
+      <div class="opt" data-why="Draws without replacement: 80 from 80 returns the same sample each time and the median never moves" data-k="A">Shuffle the 80 scores and take their median</div>
+      <div class="opt" data-why="Changes the sample size: the spread of a median of 40 is wider than that of a median of 80" data-k="B">Draw 40 of the 80 scores at random and take their median</div>
+      <div class="opt" data-why="Goes back to the population, which a real analyst does not have" data-k="C">Draw 80 new scores from all customers and take their median</div>
+      <div class="opt" data-ok data-k="D">Draw 80 scores from the 80 with replacement and take their median</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Same size as the sample, from the sample, with replacement: that imitates drawing a new sample of 80 from the population.</div>
+  </div>
+  <aside class="notes"><p>Answer: D. Option A is the instructive one: ask what the 2,000 medians would look like. All equal. Shuffling without replacement returns on Day 3, where it is the right tool for a different job.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-2-1" data-auto="lab" data-lab="2.1" data-label="Lab 2.1" data-n="12" data-session="1">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 2.1 · 25 min</div><h2>Bootstrap a median</h2><p class="lead small">Bootstrap the median repair time from one sample of 150 repairs, read the percentile interval, and compare both the interval and the bootstrap spread with the truth.</p><a class="nb" href="../labs/D2_1_bootstrap_median.ipynb">D2_1_bootstrap_median.ipynb</a></div><ul class="checklist"><li>One sample of 150 repairs and its median <span class="min">4 min</span></li><li>One resample, by hand <span class="min">4 min</span></li><li>2,000 resamples: the bootstrap distribution <span class="min">7 min</span></li><li>The percentile interval beside the truth <span class="min">5 min</span></li><li>Bootstrap spread against the real sampling spread <span class="min">5 min</span></li><li class="stretch">✱ Stretch: Count the coverage of the median's interval over 1,000 studies</li></ul></div>
+  <aside class="notes"><p>Steps 1 to 3 without an assistant. The vectorised bootstrap in step 3 uses an index array of shape (B, n); participants who prefer a loop may write one, it is only slower. Watch for resampling without replacement, which gives a spread of zero and a failed check. The lab draws its own sample: nothing from Day 1 is needed.</p></aside>
+</section>
+
+<!-- ======================= SESSION 2 ======================= -->
+<section class="slide section" id="s2" data-auto="section" data-session="2" data-n="13">
+  <div class="kicker">Session 2</div>
+  <h1>Coverage is a testable claim</h1>
+  <ul class="bullets outcomes"><li>State what 95% coverage promises</li><li>Measure the coverage of two interval methods over simulated studies</li><li>Name two situations in which the bootstrap fails</li></ul>
+  <div class="sess-no">02</div>
+</section>
+
+<section class="slide" id="what-95-promises" data-lo="LO1 LO2" data-label="The promise" data-n="14" data-session="2">
+  <div class="kicker">What the number means</div>
+  <h2>95% is a promise about the method, not about one interval</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>The promise</h4><p class="small mb0">"Use this method on many studies and about 95 in 100 of the intervals it produces will contain the true value." That share is the <b>coverage</b>.</p></div>
+    <div class="card c-coral"><h4>Not the promise</h4><p class="small mb0">"There is a 95% chance that the truth is between 5.0 and 7.5." The truth is a fixed number. This one interval contains it or it does not.</p></div>
+  </div>
+  <div class="callout tip mt"><b>At Zulal the promise can be checked.</b> Draw 500 studies, build 500 intervals, count how many contain the truth.</div>
+  <aside class="notes"><p>The distinction sounds pedantic until the next slides, where the same method delivers 93%, 81% or 62% depending on the data. A promise about a method can be broken; this session counts when.</p></aside>
+</section>
+
+<section class="slide" id="two-methods" data-lo="LO2" data-label="Two methods" data-n="15" data-session="2">
+  <div class="kicker">Lab 2.2, step 1</div>
+  <h2>Two ways to an interval for a mean</h2>
+  <div class="cols cols-2">
+    <div class="card c-cyan"><h4>The t interval</h4><p class="small">mean ± t × s / √n, with t about 2.02 for 40 tickets. Symmetric by construction.</p><p class="small mb0">One study of 40: <b>5.83 to 10.76</b> hours.</p></div>
+    <div class="card c-teal"><h4>The bootstrap interval</h4><p class="small">Percentiles of 1,000 resampled means. Follows the skew of the sample.</p><p class="small mb0">The same study: <b>6.16 to 10.91</b> hours.</p></div>
+  </div>
+  <p class="small mt">Mean of the 40 tickets: 8.29 hours. True mean of tickets closed on time: 8.86 hours. Both intervals contain it, in this study.</p>
+  <aside class="notes"><p>Solution run of lab 2.2. "In this study" is the phrase to lean on. One hit proves nothing about a method. The t interval is the classical one from any textbook; t rather than 2 allows for the fact that s is itself estimated.</p></aside>
+</section>
+
+<section class="slide" id="coverage-loop" data-lo="LO2" data-label="The coverage loop" data-n="16" data-session="2">
+  <div class="kicker">Lab 2.2, step 2</div>
+  <h2>Coverage is measured by a loop and a count</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">hits = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">500</span>):
+    study = gen.choice(pool, size=<span class="hljs-number">40</span>,
+                       replace=<span class="hljs-literal">False</span>)
+    low, high = t_interval(study)
+    hits += low &lt;= truth &lt;= high
+coverage = hits / <span class="hljs-number">500</span></code></pre>
+    <ul class="bullets">
+      <li>Each pass is one imaginary study, analysed the way you would analyse a real one.</li>
+      <li>The count has its own error: with 500 studies, a true 95% shows as 95% give or take 1.9 points.</li>
+      <li>The capstone asks for this loop on your own method.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The give or take is two standard errors of a share: the square root of 0.95 times 0.05 over 500, doubled. So 93.4% is not evidence of a broken method; 81% is. Make the room say which results on the next slide are outside the counting error.</p></aside>
+</section>
+
+<section class="slide" id="coverage-results" data-lo="LO2" data-label="What the count shows" data-n="17" data-session="2">
+  <div class="kicker">Lab 2.2, steps 2 to 4</div>
+  <h2>The promise holds for ordinary skew and collapses with rare extremes</h2>
+  <table class="t">
+    <tr><th>The population sampled</th><th class="num">tickets per study</th><th class="num">t interval</th><th class="num">bootstrap</th></tr>
+    <tr><td>tickets closed on time</td><td class="num">40</td><td class="num">93.4%</td><td class="num">93.2%</td></tr>
+    <tr><td>tickets closed on time</td><td class="num">200</td><td class="num">94.2%</td><td class="num">93.6%</td></tr>
+    <tr class="hl"><td>all tickets, with the 12 late entries</td><td class="num">40</td><td class="num">81.4%</td><td class="num">81.8%</td></tr>
+    <tr class="hl"><td>all tickets, with the 12 late entries</td><td class="num">200</td><td class="num">62.4%</td><td class="num">63.0%</td></tr>
+  </table>
+  <p class="small mt">Share of 500 studies whose 95% interval for the mean contained the true mean.</p>
+  <aside class="notes"><p>Rows 1 and 2: a point or two short, inside the counting error. Rows 3 and 4: one ticket in a thousand carries a tenth of all hours; most samples hold none, so most samples cannot know the true mean. More data make it worse, not better: the interval narrows around the wrong value until a late ticket finally appears. Neither method is at fault. The mean of this population is not learnable from small samples.</p></aside>
+</section>
+
+<section class="slide" id="when-bootstrap-fails" data-lo="LO2" data-label="When the bootstrap fails" data-n="18" data-session="2">
+  <div class="kicker">Know the limits</div>
+  <h2>The bootstrap fails where the sample cannot stand in for the population</h2>
+  <div class="cols cols-3">
+    <div class="card c-coral"><h4>Rare extreme values</h4><p class="small mb0">The sample usually misses them. Coverage for the mean fell to 62% (lab 2.2).</p></div>
+    <div class="card c-coral"><h4>Statistics at the edge</h4><p class="small mb0">A resample never exceeds the sample's maximum. Coverage for the maximum repair time: 1.3% (stretch).</p></div>
+    <div class="card c-coral"><h4>Very small samples</h4><p class="small mb0">Ten tickets hold too few distinct values to imitate a population. Intervals come out too short.</p></div>
+  </div>
+  <div class="callout tip mt"><b>And one more, next session:</b> resampling rows that were not sampled independently.</div>
+  <aside class="notes"><p>The honest summary of the method: it works for statistics from the middle of the data (means without wild tails, medians, differences, slopes) at moderate sample sizes, and you can check any particular use by simulation. Improved variants exist, for example BCa intervals; they are named here and not taught.</p></aside>
+</section>
+
+<section class="slide" id="what-to-do-about-it" data-lo="LO2 LO6" data-label="What to do" data-n="19" data-session="2">
+  <div class="kicker">In a brief</div>
+  <h2>When coverage fails, change the question or say so</h2>
+  <ul class="bullets">
+    <li><b>Change the target:</b> the median repair time, or the mean of tickets closed on time, with the late entries reported apart.</li>
+    <li><b>Say what the sample cannot know:</b> "this sample contains no late-entry ticket; the mean over all tickets may be an hour higher."</li>
+    <li><b>Check your own method:</b> a coverage count on data like yours, reported next to the interval.</li>
+  </ul>
+  <aside class="notes"><p>The second bullet is a "limits" sentence of the kind the capstone brief requires. The population mean with late entries is 9.86 hours against 8.86 without: one hour. Day 1 already told them which summary answers "typical".</p></aside>
+</section>
+
+<section class="slide" id="check-reading-95" data-lo="LO1" data-n="20" data-session="2">
+  <div class="kicker">Checkpoint</div>
+  <h2>What may Ilyas write about his interval?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1" data-id="check-reading-95-q1">
+    <p class="lead">From 150 repairs Ilyas computes a 95% interval for the median repair time: 5.0 to 7.5 hours. Which sentence is correct?</p>
+    <div class="opts">
+      <div class="opt" data-ok data-k="A">The method that gave this interval catches the true median in about 95 of 100 studies</div>
+      <div class="opt" data-why="Reads the interval for a median as a range for single repairs, which spread far wider" data-k="B">About 95% of repairs take between 5.0 and 7.5 hours</div>
+      <div class="opt" data-why="Puts the probability on the fixed true value: this one interval contains it or does not" data-k="C">The true median has a 95% chance of lying between 5.0 and 7.5 hours</div>
+      <div class="opt" data-why="Treats sample medians as if they would fall inside this one interval: other samples have other intervals" data-k="D">In 95% of future samples the median will be between 5.0 and 7.5 hours</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Coverage belongs to the method over repeated studies. And as lab 2.2 shows, even that figure has to be earned by the data.</div>
+  </div>
+  <aside class="notes"><p>Answer: A. C is what almost everyone says in conversation, and in a brief for a manager the looser wording does little harm. B is the harmful one: it is sentence 5 of tomorrow's marked sheet.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-2-2" data-auto="lab" data-lab="2.2" data-label="Lab 2.2" data-n="21" data-session="2">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 2.2 · 25 min</div><h2>Count the coverage</h2><p class="lead small">Run 500 studies of 40 repairs, count how often a t interval and a percentile bootstrap interval for the mean contain the true mean, then repeat with 200 repairs and with the late-entry tickets left in.</p><a class="nb" href="../labs/D2_2_coverage.ipynb">D2_2_coverage.ipynb</a></div><ul class="checklist"><li>Two intervals for the mean from one study of 40 <span class="min">6 min</span></li><li>500 studies: count the coverage of each method <span class="min">8 min</span></li><li>The same count with 200 repairs <span class="min">4 min</span></li><li>Leave the late-entry tickets in and count again <span class="min">4 min</span></li><li>State what 95% promised and what it delivered <span class="min">3 min</span></li><li class="stretch">✱ Stretch: Bootstrap the maximum repair time and count its coverage</li></ul></div>
+  <aside class="notes"><p>The two bootstrap functions are supplied in the notebook, so nothing from lab 2.1 is needed. The 500-study loop with 1,000 resamples each takes well under a minute. Step 4 is the surprise; let participants predict the coverage before they run it. Quick mode runs 120 studies, where the counting error is about 4 points: do not read small differences there.</p></aside>
+</section>
+
+<!-- ======================= SESSION 3 ======================= -->
+<section class="slide section" id="s3" data-auto="section" data-session="3" data-n="22">
+  <div class="kicker">Session 3</div>
+  <h1>Resample the right unit</h1>
+  <ul class="bullets outcomes"><li>Identify the sampling unit of a two-stage sample</li><li>Bootstrap by household and by district and compare the intervals</li><li>Show by coverage which unit keeps the promise</li></ul>
+  <div class="sess-no">03</div>
+</section>
+
+<section class="slide" id="two-stage-sample" data-lo="LO2" data-label="How the survey was drawn" data-n="23" data-session="3">
+  <div class="kicker">How the data were collected</div>
+  <h2>The survey team drew districts first, then households</h2>
+  <div class="cols cols-2">
+    <div class="flow v">
+      <div class="step c-teal"><b>Stage 1</b>6 of the 30 districts, chosen at random</div>
+      <div class="arrow">↓</div>
+      <div class="step c-cyan"><b>Stage 2</b>60 households phoned in each chosen district</div>
+      <div class="arrow">↓</div>
+      <div class="step c-coral"><b>The file</b>360 rows of satisfaction scores</div>
+    </div>
+    <table class="t small">
+      <tr><th>district</th><th class="num">responses</th><th class="num">mean score</th></tr>
+      <tr><td>D05</td><td class="num">60</td><td class="num">7.58</td></tr>
+      <tr><td>D09</td><td class="num">60</td><td class="num">6.53</td></tr>
+      <tr><td>D10</td><td class="num">60</td><td class="num">6.67</td></tr>
+      <tr><td>D11</td><td class="num">60</td><td class="num">5.92</td></tr>
+      <tr><td>D17</td><td class="num">60</td><td class="num">6.70</td></tr>
+      <tr><td>D28</td><td class="num">60</td><td class="num">6.22</td></tr>
+    </table>
+  </div>
+  <aside class="notes"><p>Sample of lab 2.3. This is how field surveys are usually done, to save travel. The district means run from 5.92 to 7.58: households of one district resemble each other. The file does not show how it was drawn; the analyst has to ask.</p></aside>
+</section>
+
+<section class="slide" id="rows-not-independent" data-lo="LO2" data-label="Rows are not independent" data-n="24" data-session="3">
+  <div class="kicker">The hidden assumption</div>
+  <h2>360 rows are not 360 independent pieces of information</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>Households of one district share the same pipes, crews and service office.</li>
+      <li>The 60th household of D05 tells you little that the first 59 did not.</li>
+      <li>Another survey would have visited six <b>other districts</b>. That is the largest source of variation, and the rows alone do not show it.</li>
+    </ul>
+    <div class="card c-coral"><h4>The estimate</h4><p class="mb0">6.60 from this sample.</p><p class="small mb0">Truth, all 9,000 responses: 6.67. The question is the width of the interval.</p></div>
+  </div>
+  <aside class="notes"><p>The technical name is clustering, and the households of one district are a cluster. The word is not needed; the question "what was drawn at random?" is.</p></aside>
+</section>
+
+<section class="slide" id="two-bootstraps" data-lo="LO2" data-label="Two bootstraps" data-n="25" data-session="3">
+  <div class="kicker">Lab 2.3, steps 2 and 3</div>
+  <h2>Same data, two resampling units, two different intervals</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:unit_intervals-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Two intervals for mean satisfaction from the same 360 responses: resampling households gives 6.41 to 6.79, resampling districts gives 6.24 to 7.03, about twice as wide; the truth is 6.67">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64.0" x2="64.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="64.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.0</text>
+<line x1="161.8" x2="161.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="161.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.2</text>
+<line x1="259.7" x2="259.7" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="259.7" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.4</text>
+<line x1="357.5" x2="357.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="357.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.6</text>
+<line x1="455.4" x2="455.4" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="455.4" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.8</text>
+<line x1="553.2" x2="553.2" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="553.2" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">7.0</text>
+<line x1="651.1" x2="651.1" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="651.1" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">7.2</text>
+<line x1="263.7" x2="451.3" y1="130.7" y2="130.7" stroke="var(--coral)" stroke-width="6" stroke-linecap="round"/>
+<text x="263.7" y="96.9" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">by household: 6.41 to 6.79</text>
+<line x1="182.1" x2="566.8" y1="243.3" y2="243.3" stroke="var(--teal)" stroke-width="6" stroke-linecap="round"/>
+<text x="182.1" y="209.5" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">by district: 6.24 to 7.03</text>
+<line x1="391.8" x2="391.8" y1="18" y2="356" stroke="var(--ink, currentColor)" stroke-width="2.5" stroke-dasharray="6 5"/>
+<text x="397.8" y="34" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">truth 6.67</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">mean satisfaction, 1 to 10</text>
+</svg>
+<!--/FIG:unit_intervals-->
+      <div class="caption">95% bootstrap intervals for mean satisfaction from the same 360 responses.</div>
+    </div>
+    <ul class="bullets">
+      <li><b>By household:</b> resample the 360 rows. Width 0.38 points.</li>
+      <li><b>By district:</b> resample the 6 districts, each with all its rows. Width 0.79 points.</li>
+      <li>Both contain the truth this time. Which width is honest?</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The household bootstrap keeps the same six districts in every resample: it answers "what if we had phoned other households in these six districts?" The district bootstrap answers "what if we had run the survey again?", which is the question an interval is for.</p></aside>
+</section>
+
+<section class="slide" id="unit-coverage" data-lo="LO2" data-label="Count it" data-n="26" data-session="3">
+  <div class="kicker">Lab 2.3, step 4</div>
+  <h2>Counted over 300 surveys, only the district bootstrap keeps the promise</h2>
+  <div class="bars">
+    <div class="row"><span>resampling households</span><div class="bar c-coral" style="--w:72.3%"></div><span class="val">72.3%</span></div>
+    <div class="row"><span>resampling districts</span><div class="bar c-teal" style="--w:93.7%"></div><span class="val">93.7%</span></div>
+    <div class="row"><span>promised</span><div class="bar c-navy" style="--w:95%"></div><span class="val">95%</span></div>
+  </div>
+  <ul class="bullets mt">
+    <li>The household interval misses the truth in more than one survey in four.</li>
+    <li>Six districts are few, so even the right unit falls a little short. It is honest about the size of the uncertainty.</li>
+  </ul>
+  <aside class="notes"><p>Coverage of the mean of all 9,000 responses over 300 two-stage samples. A manager given the household interval would believe the estimate is twice as precise as it is. This is the most common serious error in applied inference, and no library warns about it.</p></aside>
+</section>
+
+<section class="slide" id="find-the-unit" data-lo="LO2" data-label="Find the unit" data-n="27" data-session="3">
+  <div class="kicker">The question to ask of every dataset</div>
+  <h2>Resample the unit that was drawn at random</h2>
+  <table class="t">
+    <tr><th>The data</th><th>Rows</th><th>Unit to resample</th></tr>
+    <tr><td>360 households phoned at random across the region</td><td>households</td><td>household</td></tr>
+    <tr><td>60 households in each of 6 districts chosen at random</td><td>households</td><td><b>district</b></td></tr>
+    <tr><td>Five pressure readings on each of 40 pumps</td><td>readings</td><td><b>pump</b></td></tr>
+    <tr><td>Twelve monthly bills for each of 500 customers</td><td>bills</td><td><b>customer</b></td></tr>
+  </table>
+  <div class="callout tip mt"><b>Design beats arithmetic.</b> The same 360 calls spread over 12 districts of 30 give a narrower honest interval: 0.64 against 0.79 points (stretch).</div>
+  <aside class="notes"><p>In the capstone defence the assessor names a different resampling unit and the participant predicts what will happen. The prediction rule: a larger unit that groups similar rows widens the interval; if rows within the unit are no more alike than rows anywhere, nothing changes.</p></aside>
+</section>
+
+<section class="slide" id="unit-in-the-file" data-lo="LO2" data-label="In code" data-n="28" data-session="3">
+  <div class="kicker">Lab 2.3, step 3</div>
+  <h2>In code the change is one line: what you index</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python"><span class="hljs-comment"># by household: index the rows</span>
+idx = gen.integers(<span class="hljs-number">0</span>, <span class="hljs-number">360</span>, size=(B, <span class="hljs-number">360</span>))
+boot = scores[idx].mean(axis=<span class="hljs-number">1</span>)</code></pre>
+    <pre class="code"><code class="language-python"><span class="hljs-comment"># by district: index the districts</span>
+dm = df.groupby(<span class="hljs-string">&quot;district&quot;</span>)[<span class="hljs-string">&quot;satisfaction&quot;</span>].mean()
+idx = gen.integers(<span class="hljs-number">0</span>, <span class="hljs-number">6</span>, size=(B, <span class="hljs-number">6</span>))
+boot = dm.to_numpy()[idx].mean(axis=<span class="hljs-number">1</span>)</code></pre>
+  </div>
+  <p class="small mt">With 60 responses in every district, the mean of a resample of districts is the mean of their district means. With unequal counts, carry each drawn district's rows along.</p>
+  <aside class="notes"><p>The simplicity is the danger: both versions run, both print an interval, and nothing in the output says which is right. Only the knowledge of how the data were collected does.</p></aside>
+</section>
+
+<section class="slide" id="check-unit" data-lo="LO2" data-n="29" data-session="3">
+  <div class="kicker">Checkpoint</div>
+  <h2>What is the unit to resample?</h2>
+  <div class="quiz" data-type="single" data-lo="LO2" data-id="check-unit-q1">
+    <p class="lead">To estimate mean water pressure, Zulal picks 25 streets at random and measures the pressure at 8 houses on each: 200 readings. Which bootstrap gives an honest interval for the mean?</p>
+    <div class="opts">
+      <div class="opt" data-why="Treats 200 readings as independent although houses on one street share a main: the interval comes out too narrow" data-k="A">Resample the 200 readings</div>
+      <div class="opt" data-why="Keeps every street in every resample, so the variation between streets, the largest part, is never imitated" data-k="B">Resample 8 readings within each street</div>
+      <div class="opt" data-ok data-k="C">Resample the 25 streets, each with its 8 readings</div>
+      <div class="opt" data-why="Changes the amount of data in each resample, which changes the spread being estimated" data-k="D">Resample 100 of the 200 readings</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The street was drawn at random and houses on a street move together, so the street is the unit.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. Option B is the subtle one: it sounds careful and it is the household bootstrap in disguise, with the same six, here 25, units in every resample.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-2-3" data-auto="lab" data-lab="2.3" data-label="Lab 2.3" data-n="30" data-session="3">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 2.3 · 25 min</div><h2>Household or district</h2><p class="lead small">Bootstrap mean satisfaction from a two-stage survey sample by household and by district, then count the coverage of both over 300 studies and explain the difference.</p><a class="nb" href="../labs/D2_3_resampling_unit.ipynb">D2_3_resampling_unit.ipynb</a></div><ul class="checklist"><li>Draw the two-stage sample and estimate <span class="min">4 min</span></li><li>Bootstrap by household <span class="min">5 min</span></li><li>Bootstrap by district <span class="min">6 min</span></li><li>Coverage of both over 300 studies <span class="min">6 min</span></li><li>Explain the difference in two sentences <span class="min">4 min</span></li><li class="stretch">✱ Stretch: Redraw with 12 districts of 30 responses and compare the widths</li></ul></div>
+  <aside class="notes"><p>The helper draws the two-stage sample, choosing districts with probability proportional to size so that the plain mean is a fair estimate; say so if asked and do not dwell on it. The 300-study coverage loop takes about half a minute. Step 5 is two written sentences: have two participants read theirs.</p></aside>
+</section>
+
+<!-- ======================= SESSION 4 ======================= -->
+<section class="slide section" id="s4" data-auto="section" data-session="4" data-n="31">
+  <div class="kicker">Session 4</div>
+  <h1>Intervals for differences and ratios</h1>
+  <ul class="bullets outcomes"><li>Compute a bootstrap interval for a difference between two groups</li><li>Compute a bootstrap interval for a ratio</li><li>Read an interval for a comparison against no difference</li></ul>
+  <div class="sess-no">04</div>
+</section>
+
+<section class="slide" id="managers-ask-gaps" data-lo="LO2 LO3" data-label="Comparisons" data-n="32" data-session="4">
+  <div class="kicker">The question behind most questions</div>
+  <h2>Managers rarely ask for a level; they ask for a gap</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>"Is contractor B slower than A, and by how much?"</li>
+      <li>A gap can be said two ways: a <b>difference</b> (hours) or a <b>ratio</b> (percent).</li>
+      <li>Either way it is a statistic, computed from two samples, with its own sampling distribution.</li>
+    </ul>
+    <table class="t">
+      <tr><th>200 repairs each</th><th class="num">median, hours</th></tr>
+      <tr><td>contractor A</td><td class="num">6.00</td></tr>
+      <tr><td>contractor B</td><td class="num">6.90</td></tr>
+      <tr class="hl"><td>difference B - A</td><td class="num">0.90</td></tr>
+      <tr class="hl"><td>ratio B / A</td><td class="num">1.15</td></tr>
+    </table>
+  </div>
+  <aside class="notes"><p>Study of lab 2.4, tickets closed on time. Jobs go to the two contractors by rota at Zulal, so neither gets the harder jobs; that is what makes the comparison fair. In real data that has to be argued.</p></aside>
+</section>
+
+<section class="slide" id="resample-each-group" data-lo="LO2" data-label="Two groups" data-n="33" data-session="4">
+  <div class="kicker">Lab 2.4, step 2</div>
+  <h2>Resample each group on its own, then recompute the comparison</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">ia = gen.integers(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(a), size=(B, <span class="hljs-built_in">len</span>(a)))
+ib = gen.integers(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(b), size=(B, <span class="hljs-built_in">len</span>(b)))
+ma = np.median(a[ia], axis=<span class="hljs-number">1</span>)
+mb = np.median(b[ib], axis=<span class="hljs-number">1</span>)
+
+diff_boot  = mb - ma      <span class="hljs-comment"># difference</span>
+ratio_boot = mb / ma      <span class="hljs-comment"># ratio</span></code></pre>
+    <ul class="bullets">
+      <li>The study fixed 200 repairs per contractor. Each resample keeps that.</li>
+      <li>One set of resamples serves both comparisons.</li>
+      <li>The interval is the percentile interval of the 2,000 differences, or ratios.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The recipe generalises to any comparison of two independent groups: resample each, recompute, repeat. The unit rule of session 3 still applies inside each group.</p></aside>
+</section>
+
+<section class="slide" id="difference-and-ratio" data-lo="LO2 LO3" data-label="Two intervals" data-n="34" data-session="4">
+  <div class="kicker">Lab 2.4, steps 2 to 4</div>
+  <h2>Two intervals, one story, in two units</h2>
+  <table class="t">
+    <tr><th></th><th class="num">estimate</th><th class="num">95% interval</th><th class="num">"no gap" is</th><th class="num">truth</th></tr>
+    <tr><td>difference of medians, B - A</td><td class="num">0.90 h</td><td class="num">-0.25 to 2.50 h</td><td class="num">0</td><td class="num">1.40 h</td></tr>
+    <tr><td>ratio of medians, B / A</td><td class="num">1.15</td><td class="num">0.96 to 1.44</td><td class="num">1</td><td class="num">1.24</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>Both intervals contain the truth, and both include "no gap".</li>
+    <li>In words: B's typical repair takes between 0.96 and 1.44 times as long as A's.</li>
+    <li>Hours suit the crew planner; a percentage suits the contract.</li>
+  </ul>
+  <aside class="notes"><p>The honest report from this study of 400 tickets: "B looks slower, about 15%; the data do not rule out no difference, nor 44% slower." The truth is 24% slower. A study this size was simply not large enough to settle it. That sets up tomorrow: tests, and the power of a study.</p></aside>
+</section>
+
+<section class="slide" id="reading-zero-and-one" data-lo="LO3" data-label="Reading the interval" data-n="35" data-session="4">
+  <div class="kicker">Reading a comparison</div>
+  <h2>An interval that includes "no gap" shows what is still possible, not that nothing is there</h2>
+  <div class="cols cols-2">
+    <div class="card c-coral"><h4>Wrong</h4><p class="small mb0">"The interval includes 1, so the contractors are equally fast."</p></div>
+    <div class="card c-teal"><h4>Right</h4><p class="small mb0">"The study cannot tell B from A. It is consistent with B being 4% faster and with B being 44% slower."</p></div>
+  </div>
+  <div class="callout warn mt"><b>And do not compare two separate intervals by eye.</b> Whether the interval for A and the interval for B overlap is not a test. Build the interval for the difference itself.</div>
+  <aside class="notes"><p>Two separate 95% intervals can overlap although the interval for the difference excludes zero. The overlap rule of thumb is too conservative and is a common slip in dashboards with error bars.</p></aside>
+</section>
+
+<section class="slide" id="ratio-coverage" data-lo="LO2" data-label="Checked" data-n="36" data-session="4">
+  <div class="kicker">Lab 2.4, step 5 and stretch</div>
+  <h2>Counted against the truth, both intervals keep their promise</h2>
+  <div class="cols cols-2">
+    <div class="stat"><div class="big">95.0%</div><div class="lbl">coverage of the ratio of medians, over 300 studies of 200 repairs per contractor</div></div>
+    <div class="stat"><div class="big">94.3%</div><div class="lbl">coverage of the difference of means on tickets closed on time, over 1,000 studies</div></div>
+  </div>
+  <ul class="bullets mt">
+    <li>A ratio of medians has no textbook formula. The bootstrap needs none.</li>
+    <li>The second figure is the course's evidence standard: an interval with its coverage over 1,000 simulated samples.</li>
+  </ul>
+  <aside class="notes"><p>These two counts, with the ones of lab 2.2 for a mean and lab 2.1 for a median, are the evidence for the second course outcome: intervals for a mean, a median and a group difference, each with its coverage.</p></aside>
+</section>
+
+<section class="slide" id="day2-method" data-lo="LO2" data-label="The recipe" data-n="37" data-session="4">
+  <div class="kicker">Day 2 as one recipe</div>
+  <h2>An interval for almost anything, in four questions</h2>
+  <ol class="bullets">
+    <li><b>What is the statistic?</b> A median, a difference, a ratio: whatever answers the manager.</li>
+    <li><b>What unit was drawn at random?</b> Resample that unit, within each group.</li>
+    <li><b>Where do the middle 95% of the resampled statistics lie?</b> That is the interval.</li>
+    <li><b>Does the method keep its promise on data like mine?</b> Count the coverage.</li>
+  </ol>
+  <aside class="notes"><p>Leave this slide up during the checkpoint if the room needs it. The fourth question is the one that separates this course from a recipe book.</p></aside>
+</section>
+
+<section class="slide" id="check-ratio" data-lo="LO2" data-n="38" data-session="4">
+  <div class="kicker">Checkpoint</div>
+  <h2>How do you read this ratio interval?</h2>
+  <div class="quiz" data-type="single" data-lo="LO2" data-id="check-ratio-q1">
+    <p class="lead">A study compares the median time to answer a call at two desks. Ratio North / South: 1.30, 95% interval 1.08 to 1.57. What may the analyst report?</p>
+    <div class="opts">
+      <div class="opt" data-why="Reads a ratio interval against 0: for a ratio, no gap is 1, and the interval can never include 0" data-k="A">No gap is shown, because the interval does not include 0</div>
+      <div class="opt" data-ok data-k="B">North is slower: between 8% and 57% longer than South</div>
+      <div class="opt" data-why="Reads the estimate as exact and drops the interval that says how uncertain it is" data-k="C">North is slower by exactly 30%</div>
+      <div class="opt" data-why="Turns a ratio into a difference in hours without knowing either median" data-k="D">North takes between 1.08 and 1.57 hours longer than South</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The interval lies wholly above 1, the value of no gap for a ratio, and its ends give the range in percent.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Option D is frequent in reports: a ratio read as an amount. Ask what unit a ratio has.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-2-4" data-auto="lab" data-lab="2.4" data-label="Lab 2.4" data-n="39" data-session="4">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 2.4 · 25 min</div><h2>Difference and ratio of medians</h2><p class="lead small">Build bootstrap intervals for the difference and the ratio of the two contractors' median repair times, compare them with the truth and count the coverage of the ratio interval.</p><a class="nb" href="../labs/D2_4_difference_ratio.ipynb">D2_4_difference_ratio.ipynb</a></div><ul class="checklist"><li>Sample 200 repairs for each contractor <span class="min">4 min</span></li><li>Bootstrap the difference of medians <span class="min">7 min</span></li><li>Bootstrap the ratio of medians <span class="min">5 min</span></li><li>Compare with the truth; read 0 and 1 <span class="min">4 min</span></li><li>Coverage of the ratio interval over 300 studies <span class="min">5 min</span></li><li class="stretch">✱ Stretch: Do the difference of means on closed tickets with coverage over 1,000 studies</li></ul></div>
+  <aside class="notes"><p>The study is drawn in the notebook: 200 tickets per contractor, closed on time. A typical slip in step 2 is to resample the pooled 400 tickets, which lets the group sizes vary. The stretch runs 1,000 studies and takes about a minute; it produces the coverage figure the course outcome names.</p></aside>
+</section>
+
+<section class="slide" id="wrap-up" data-label="Wrap-up" data-n="40" data-session="4">
+  <div class="kicker">Day 2 in three lines</div>
+  <h2>What to keep</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Resample the sample</h4><p class="small mb0">With replacement, same size, many times. The middle 95% of the recomputed statistic is the interval.</p></div>
+    <div class="card c-cyan"><h4>Count the coverage</h4><p class="small mb0">95% is a promise about the method. On a known population you can count whether it is kept: 93%, or 62%.</p></div>
+    <div class="card c-coral"><h4>Resample the right unit</h4><p class="small mb0">The unit that was drawn at random. Rows that share a district are not independent: 72% against 94%.</p></div>
+  </div>
+  <aside class="notes"><p>Ask one participant what they would check first when handed a file and asked for an interval: how the rows were collected.</p></aside>
+</section>
+
+<section class="slide dark" id="next" data-label="Next" data-n="41" data-session="4">
+  <div class="kicker">Next</div>
+  <h1>Day 3: Tests</h1>
+  <p class="lead">"Could this gap be luck?" A test answers by building the world in which it is luck.</p>
+  <ul class="bullets">
+    <li>Tomorrow starts with a shuffle, not a formula.</li>
+    <li>Bring one sentence about a p-value from a report you have read. Lab 3.2 marks eight of them.</li>
+  </ul>
+  <aside class="notes"><p>The contractors' satisfaction scores are tomorrow's data. Today's interval for the repair-time ratio included 1; tomorrow's question is what a study can and cannot detect.</p></aside>
+</section>
+</div>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-15T11:16:10Z","version":"2027.1.0","commit":"705e303"},"course":{"id":"ds-201","code":"DS-201","title":"Statistical Inference by Simulation","track":"data-science","lang":"en","dir":"ltr","url":"https://sdaiaacademy.github.io/ds-201/","repo":"SDAIAAcademy/ds-201","home":"../index.html"},"deck":{"id":"day2","kind":"day","day":2,"label":"Day 2","title":"Intervals","prev":"day1.html","next":"day3.html","md":"day2.md","alt":{}},"sessions":[{"n":1,"label":"Session 1","title":"The bootstrap idea","slide":"s1","outcomes":["Explain why resampling the sample imitates sampling the population","Compute a percentile bootstrap interval for a median","Compare a bootstrap distribution with the real sampling distribution"],"minutes":50,"lab":{"id":"2.1","title":"Bootstrap a median","minutes":25,"href":"../labs/D2_1_bootstrap_median.ipynb"}},{"n":2,"label":"Session 2","title":"Coverage is a testable claim","slide":"s2","outcomes":["State what 95% coverage promises","Measure the coverage of two interval methods over simulated studies","Name two situations in which the bootstrap fails"],"minutes":50,"lab":{"id":"2.2","title":"Count the coverage","minutes":25,"href":"../labs/D2_2_coverage.ipynb"}},{"n":3,"label":"Session 3","title":"Resample the right unit","slide":"s3","outcomes":["Identify the sampling unit of a two-stage sample","Bootstrap by household and by district and compare the intervals","Show by coverage which unit keeps the promise"],"minutes":50,"lab":{"id":"2.3","title":"Household or district","minutes":25,"href":"../labs/D2_3_resampling_unit.ipynb"}},{"n":4,"label":"Session 4","title":"Intervals for differences and ratios","slide":"s4","outcomes":["Compute a bootstrap interval for a difference between two groups","Compute a bootstrap interval for a ratio","Read an interval for a comparison against no difference"],"minutes":50,"lab":{"id":"2.4","title":"Difference and ratio of medians","minutes":25,"href":"../labs/D2_4_difference_ratio.ipynb"}}],"slides":[{"id":"title","n":1,"title":"Intervals","kind":"title","session":0,"hash":"68bbedb2","md":"#### [day2#title] Intervals\n\n*SDAIA Academy · Statistical Inference by Simulation*\n\nDay 2: An interval is a method with a promise, and on a known population the promise can be counted\n\nData Science Track · 4 teaching days + capstone day · 4 sessions · 4 labs · DS-201","notes":"Yesterday ended with a question: with one sample and no population, how could you see a sampling distribution? Take two or three answers before the agenda. Someone usually proposes \"pretend the sample is the population\". That is today's first session.","minutes":null,"lo":[]},{"id":"agenda","n":2,"title":"Intervals","kind":"content","session":0,"hash":"066e161d","md":"#### [day2#agenda] Intervals\n\n*Today*\n\n- **Session 1 · The bootstrap idea**: The sample stands in for the population: resample it with replacement and watch the statistic move\n- **Session 2 · Coverage is a testable claim**: A 95% interval is a claim about the method over many studies, and the claim can fail\n- **Session 3 · Resample the right unit**: Rows that share a district are not independent: the unit you resample must be the unit that was sampled\n- **Session 4 · Intervals for differences and ratios**: Managers ask about gaps and ratios: resample each group, recompute the comparison, read the interval against 0 or 1","notes":"Session 1 builds an interval, session 2 tests whether the interval keeps its promise, session 3 breaks it by resampling the wrong unit, session 4 applies it to the question managers ask most: a gap between two groups.","minutes":null,"lo":[]},{"id":"review-day1","n":3,"title":"Which number shrinks when you read more meters?","kind":"quiz","session":0,"hash":"3ba4c83b","md":"#### [day2#review-day1] Which number shrinks when you read more meters?\n\n*Review of Day 1*\n\n**Question:** From 100 households: mean 490 litres, standard deviation 200, standard error 20. Zulal reads 400 households next time. What do you expect?\n\n- A. Standard deviation about 100, standard error about 20\n- B. Standard deviation about 200, standard error about 10\n- C. Standard deviation about 200, standard error about 5\n- D. Standard deviation about 100, standard error about 10","notes":"Answer: B. Two minutes. If the room is unsure, redo the two sentences of lab 1.2, step 5, before going on: today's intervals are built on the standard error.","minutes":null,"lo":["LO1"]},{"id":"s1","n":4,"title":"The bootstrap idea","kind":"section","session":1,"hash":"84282f82","md":"#### [day2#s1] The bootstrap idea\n\n*Session 1*\n\n- Explain why resampling the sample imitates sampling the population\n- Compute a percentile bootstrap interval for a median\n- Compare a bootstrap distribution with the real sampling distribution","notes":"","minutes":null,"lo":["LO2"]},{"id":"one-sample-only","n":5,"title":"A real analyst has one sample and no population to resample","kind":"content","session":1,"hash":"ff5d1e07","md":"#### [day2#one-sample-only] A real analyst has one sample and no population to resample\n\n*The problem*\n\n- Yesterday's sampling distributions came from drawing 1,000 samples from the population.\n- In real work you can afford one sample. The other 999 do not exist.\n- For a mean, a formula fills the gap: s / √n. For a median, a ratio or a slope there is often none.\n\n- **Nizar's question.** \"What is the typical repair time, with an honest range around it?\" You hold 150 tickets. Median 6.15 hours. How far could that be from the truth?","notes":"Sample and numbers from lab 2.1. Ask the room for ideas before the next slide. The idea needed is brazen: use the sample as a stand-in for the population.","minutes":null,"lo":["LO2"]},{"id":"bootstrap-idea","n":6,"title":"Treat the sample as the population and sample from it","kind":"content","session":1,"hash":"564ac023","md":"#### [day2#bootstrap-idea] Treat the sample as the population and sample from it\n\n*The bootstrap idea*\n\n1. **1 · One sample** 150 repair times, the best picture of the population you have\n2. **2 · Resample** draw 150 from the 150, with replacement\n3. **3 · Recompute** the median of the resample\n4. **4 · Repeat** 2,000 times: an imitation of the sampling distribution\n\n> **With replacement** is the whole trick. Without it, every resample is the sample itself.","notes":"The name comes from \"pulling yourself up by your own bootstraps\": getting the uncertainty out of the sample that has it. The method needed cheap computing to become ordinary. Stress step 2: same size as the sample, with replacement.","minutes":null,"lo":["LO2"]},{"id":"one-resample","n":7,"title":"One resample repeats some tickets and leaves others out","kind":"content","session":1,"hash":"6a177ceb","md":"#### [day2#one-resample] One resample repeats some tickets and leaves others out\n\n*Lab 2.1, step 2*\n\n```python\ndef resample(v, gen):\n    return gen.choice(v, size=len(v),\n                      replace=True)\n\none = resample(sample, gen)\nlen(np.unique(one))   # 77 distinct values\nnp.median(one)        # 6.40 hours\n```\n\n- 150 values drawn, 77 distinct values. Many tickets appear twice or more; many do not appear.\n- Its median is 6.40 hours; the sample's was 6.15.\n- That difference imitates the difference between two real samples.","notes":"Solution run of lab 2.1. On average about 63% of the original values appear in a resample; with repeated values among the tickets the count of distinct values is lower. Step 2 of the lab is done by hand on purpose, before the vectorised version of step 3.","minutes":null,"lo":["LO2"]},{"id":"bootstrap-distribution","n":8,"title":"The middle 95% of the resampled medians is the interval","kind":"content","session":1,"hash":"5bbee539","md":"#### [day2#bootstrap-distribution] The middle 95% of the resampled medians is the interval\n\n*Lab 2.1, steps 3 and 4*\n\nFigure: 2,000 bootstrap medians from one sample of 150 repairs.\n\n- **Percentile interval**: from the 2.5th to the 97.5th percentile, 5.00 to 7.50 hours.\n- The true median, 6.50 hours, is inside.\n- The histogram is lumpy: a median of 150 tickets can only take values in the sample, or halfway between two of them.","notes":"The sentence for Nizar: \"The typical repair takes about 6.2 hours; the data are consistent with anything from 5.0 to 7.5.\" Do not say yet what 95% means: session 2 defines it and tests it.","minutes":null,"lo":["LO2"]},{"id":"width-not-centre","n":9,"title":"The bootstrap gets the width right, not the centre","kind":"content","session":1,"hash":"581c70a2","md":"#### [day2#width-not-centre] The bootstrap gets the width right, not the centre\n\n*Lab 2.1, step 5*\n\n- **0.553** standard error of the median by bootstrap, from one sample\n- **0.513** the real one, from 2,000 samples of the population\n- **6.15** where the bootstrap is centred: the sample median, not the truth, 6.50\n\n- The bootstrap cannot repair a sample that landed low. It can tell you how far samples land.\n- That is exactly what an interval needs.","notes":"The comparison on the left is the Zulal privilege again: no real analyst can compute 0.513. The agreement, within 8%, is the evidence that the trick works for this statistic at this sample size.","minutes":null,"lo":["LO2"]},{"id":"b-is-not-n","n":10,"title":"More resamples smooth the picture; only more data narrow the interval","kind":"content","session":1,"hash":"e90b48b2","md":"#### [day2#b-is-not-n] More resamples smooth the picture; only more data narrow the interval\n\n*Two numbers people confuse*\n\n|  | n, the sample size | B, the number of resamples |\n| --- | --- | --- |\n| What it is | 150 tickets you collected | 2,000 loops your laptop ran |\n| What it costs | Field work | Seconds |\n| What more of it buys | A narrower interval | A steadier estimate of the same interval |\n\n> **What goes wrong.** \"We ran a million resamples, so the result is very precise.\" The interval for 150 tickets is 2.5 hours wide at any B.","notes":"A practical rule for the labs: 1,000 to 2,000 resamples for an interval, 5,000 or more for a small p-value. The stretch of lab 2.1 counts the coverage of this interval method for the median: 958 of 1,000 fresh samples of 150, or 95.8%. Session 2 explains why that count is the real test of a method.","minutes":null,"lo":["LO2"]},{"id":"check-resample","n":11,"title":"Which procedure is a bootstrap resample?","kind":"quiz","session":1,"hash":"9d364514","md":"#### [day2#check-resample] Which procedure is a bootstrap resample?\n\n*Checkpoint*\n\n**Question:** You have 80 survey scores and want an interval for their median. Which step, repeated 2,000 times, gives the bootstrap distribution?\n\n- A. Shuffle the 80 scores and take their median\n- B. Draw 40 of the 80 scores at random and take their median\n- C. Draw 80 new scores from all customers and take their median\n- D. Draw 80 scores from the 80 with replacement and take their median","notes":"Answer: D. Option A is the instructive one: ask what the 2,000 medians would look like. All equal. Shuffling without replacement returns on Day 3, where it is the right tool for a different job.","minutes":null,"lo":["LO2"]},{"id":"lab-2-1","n":12,"title":"Bootstrap a median","kind":"lab","session":1,"hash":"dd90ead1","md":"#### [day2#lab-2-1] Bootstrap a median\n\nLab 2.1 · 25 min\n\nBootstrap the median repair time from one sample of 150 repairs, read the percentile interval, and compare both the interval and the bootstrap spread with the truth.\n\n[D2_1_bootstrap_median.ipynb](https://sdaiaacademy.github.io/ds-201/labs/D2_1_bootstrap_median.ipynb)\n\n- [ ] One sample of 150 repairs and its median (4 min)\n- [ ] One resample, by hand (4 min)\n- [ ] 2,000 resamples: the bootstrap distribution (7 min)\n- [ ] The percentile interval beside the truth (5 min)\n- [ ] Bootstrap spread against the real sampling spread (5 min)\n- [ ] ✱ Stretch: Count the coverage of the median's interval over 1,000 studies","notes":"Steps 1 to 3 without an assistant. The vectorised bootstrap in step 3 uses an index array of shape (B, n); participants who prefer a loop may write one, it is only slower. Watch for resampling without replacement, which gives a spread of zero and a failed check. The lab draws its own sample: nothing from Day 1 is needed.","minutes":null,"lo":[]},{"id":"s2","n":13,"title":"Coverage is a testable claim","kind":"section","session":2,"hash":"c913e870","md":"#### [day2#s2] Coverage is a testable claim\n\n*Session 2*\n\n- State what 95% coverage promises\n- Measure the coverage of two interval methods over simulated studies\n- Name two situations in which the bootstrap fails","notes":"","minutes":null,"lo":["LO1","LO2"]},{"id":"what-95-promises","n":14,"title":"95% is a promise about the method, not about one interval","kind":"content","session":2,"hash":"770e4565","md":"#### [day2#what-95-promises] 95% is a promise about the method, not about one interval\n\n*What the number means*\n\n- **The promise.** \"Use this method on many studies and about 95 in 100 of the intervals it produces will contain the true value.\" That share is the **coverage**.\n- **Not the promise.** \"There is a 95% chance that the truth is between 5.0 and 7.5.\" The truth is a fixed number. This one interval contains it or it does not.\n\n> **At Zulal the promise can be checked.** Draw 500 studies, build 500 intervals, count how many contain the truth.","notes":"The distinction sounds pedantic until the next slides, where the same method delivers 93%, 81% or 62% depending on the data. A promise about a method can be broken; this session counts when.","minutes":null,"lo":["LO1","LO2"]},{"id":"two-methods","n":15,"title":"Two ways to an interval for a mean","kind":"content","session":2,"hash":"32f6ca62","md":"#### [day2#two-methods] Two ways to an interval for a mean\n\n*Lab 2.2, step 1*\n\n- **The t interval.** mean ± t × s / √n, with t about 2.02 for 40 tickets. Symmetric by construction. One study of 40: **5.83 to 10.76** hours.\n- **The bootstrap interval.** Percentiles of 1,000 resampled means. Follows the skew of the sample. The same study: **6.16 to 10.91** hours.\n\nMean of the 40 tickets: 8.29 hours. True mean of tickets closed on time: 8.86 hours. Both intervals contain it, in this study.","notes":"Solution run of lab 2.2. \"In this study\" is the phrase to lean on. One hit proves nothing about a method. The t interval is the classical one from any textbook; t rather than 2 allows for the fact that s is itself estimated.","minutes":null,"lo":["LO2"]},{"id":"coverage-loop","n":16,"title":"Coverage is measured by a loop and a count","kind":"content","session":2,"hash":"1ace5c21","md":"#### [day2#coverage-loop] Coverage is measured by a loop and a count\n\n*Lab 2.2, step 2*\n\n```python\nhits = 0\nfor _ in range(500):\n    study = gen.choice(pool, size=40,\n                       replace=False)\n    low, high = t_interval(study)\n    hits += low \u003c= truth \u003c= high\ncoverage = hits / 500\n```\n\n- Each pass is one imaginary study, analysed the way you would analyse a real one.\n- The count has its own error: with 500 studies, a true 95% shows as 95% give or take 1.9 points.\n- The capstone asks for this loop on your own method.","notes":"The give or take is two standard errors of a share: the square root of 0.95 times 0.05 over 500, doubled. So 93.4% is not evidence of a broken method; 81% is. Make the room say which results on the next slide are outside the counting error.","minutes":null,"lo":["LO2"]},{"id":"coverage-results","n":17,"title":"The promise holds for ordinary skew and collapses with rare extremes","kind":"content","session":2,"hash":"896d9f43","md":"#### [day2#coverage-results] The promise holds for ordinary skew and collapses with rare extremes\n\n*Lab 2.2, steps 2 to 4*\n\n| The population sampled | tickets per study | t interval | bootstrap |\n| --- | --- | --- | --- |\n| tickets closed on time | 40 | 93.4% | 93.2% |\n| tickets closed on time | 200 | 94.2% | 93.6% |\n| all tickets, with the 12 late entries | 40 | 81.4% | 81.8% |\n| all tickets, with the 12 late entries | 200 | 62.4% | 63.0% |\n\nShare of 500 studies whose 95% interval for the mean contained the true mean.","notes":"Rows 1 and 2: a point or two short, inside the counting error. Rows 3 and 4: one ticket in a thousand carries a tenth of all hours; most samples hold none, so most samples cannot know the true mean. More data make it worse, not better: the interval narrows around the wrong value until a late ticket finally appears. Neither method is at fault. The mean of this population is not learnable from small samples.","minutes":null,"lo":["LO2"]},{"id":"when-bootstrap-fails","n":18,"title":"The bootstrap fails where the sample cannot stand in for the population","kind":"content","session":2,"hash":"37c06f6c","md":"#### [day2#when-bootstrap-fails] The bootstrap fails where the sample cannot stand in for the population\n\n*Know the limits*\n\n- **Rare extreme values.** The sample usually misses them. Coverage for the mean fell to 62% (lab 2.2).\n- **Statistics at the edge.** A resample never exceeds the sample's maximum. Coverage for the maximum repair time: 1.3% (stretch).\n- **Very small samples.** Ten tickets hold too few distinct values to imitate a population. Intervals come out too short.\n\n> **And one more, next session:** resampling rows that were not sampled independently.","notes":"The honest summary of the method: it works for statistics from the middle of the data (means without wild tails, medians, differences, slopes) at moderate sample sizes, and you can check any particular use by simulation. Improved variants exist, for example BCa intervals; they are named here and not taught.","minutes":null,"lo":["LO2"]},{"id":"what-to-do-about-it","n":19,"title":"When coverage fails, change the question or say so","kind":"content","session":2,"hash":"0f7ac30a","md":"#### [day2#what-to-do-about-it] When coverage fails, change the question or say so\n\n*In a brief*\n\n- **Change the target:** the median repair time, or the mean of tickets closed on time, with the late entries reported apart.\n- **Say what the sample cannot know:** \"this sample contains no late-entry ticket; the mean over all tickets may be an hour higher.\"\n- **Check your own method:** a coverage count on data like yours, reported next to the interval.","notes":"The second bullet is a \"limits\" sentence of the kind the capstone brief requires. The population mean with late entries is 9.86 hours against 8.86 without: one hour. Day 1 already told them which summary answers \"typical\".","minutes":null,"lo":["LO2","LO6"]},{"id":"check-reading-95","n":20,"title":"What may Ilyas write about his interval?","kind":"quiz","session":2,"hash":"7a98b414","md":"#### [day2#check-reading-95] What may Ilyas write about his interval?\n\n*Checkpoint*\n\n**Question:** From 150 repairs Ilyas computes a 95% interval for the median repair time: 5.0 to 7.5 hours. Which sentence is correct?\n\n- A. The method that gave this interval catches the true median in about 95 of 100 studies\n- B. About 95% of repairs take between 5.0 and 7.5 hours\n- C. The true median has a 95% chance of lying between 5.0 and 7.5 hours\n- D. In 95% of future samples the median will be between 5.0 and 7.5 hours","notes":"Answer: A. C is what almost everyone says in conversation, and in a brief for a manager the looser wording does little harm. B is the harmful one: it is sentence 5 of tomorrow's marked sheet.","minutes":null,"lo":["LO1"]},{"id":"lab-2-2","n":21,"title":"Count the coverage","kind":"lab","session":2,"hash":"3d0c078e","md":"#### [day2#lab-2-2] Count the coverage\n\nLab 2.2 · 25 min\n\nRun 500 studies of 40 repairs, count how often a t interval and a percentile bootstrap interval for the mean contain the true mean, then repeat with 200 repairs and with the late-entry tickets left in.\n\n[D2_2_coverage.ipynb](https://sdaiaacademy.github.io/ds-201/labs/D2_2_coverage.ipynb)\n\n- [ ] Two intervals for the mean from one study of 40 (6 min)\n- [ ] 500 studies: count the coverage of each method (8 min)\n- [ ] The same count with 200 repairs (4 min)\n- [ ] Leave the late-entry tickets in and count again (4 min)\n- [ ] State what 95% promised and what it delivered (3 min)\n- [ ] ✱ Stretch: Bootstrap the maximum repair time and count its coverage","notes":"The two bootstrap functions are supplied in the notebook, so nothing from lab 2.1 is needed. The 500-study loop with 1,000 resamples each takes well under a minute. Step 4 is the surprise; let participants predict the coverage before they run it. Quick mode runs 120 studies, where the counting error is about 4 points: do not read small differences there.","minutes":null,"lo":[]},{"id":"s3","n":22,"title":"Resample the right unit","kind":"section","session":3,"hash":"15728ad6","md":"#### [day2#s3] Resample the right unit\n\n*Session 3*\n\n- Identify the sampling unit of a two-stage sample\n- Bootstrap by household and by district and compare the intervals\n- Show by coverage which unit keeps the promise","notes":"","minutes":null,"lo":["LO2"]},{"id":"two-stage-sample","n":23,"title":"The survey team drew districts first, then households","kind":"content","session":3,"hash":"8cb07dea","md":"#### [day2#two-stage-sample] The survey team drew districts first, then households\n\n*How the data were collected*\n\n1. **Stage 1** 6 of the 30 districts, chosen at random\n2. **Stage 2** 60 households phoned in each chosen district\n3. **The file** 360 rows of satisfaction scores\n\n| district | responses | mean score |\n| --- | --- | --- |\n| D05 | 60 | 7.58 |\n| D09 | 60 | 6.53 |\n| D10 | 60 | 6.67 |\n| D11 | 60 | 5.92 |\n| D17 | 60 | 6.70 |\n| D28 | 60 | 6.22 |","notes":"Sample of lab 2.3. This is how field surveys are usually done, to save travel. The district means run from 5.92 to 7.58: households of one district resemble each other. The file does not show how it was drawn; the analyst has to ask.","minutes":null,"lo":["LO2"]},{"id":"rows-not-independent","n":24,"title":"360 rows are not 360 independent pieces of information","kind":"content","session":3,"hash":"fff15036","md":"#### [day2#rows-not-independent] 360 rows are not 360 independent pieces of information\n\n*The hidden assumption*\n\n- Households of one district share the same pipes, crews and service office.\n- The 60th household of D05 tells you little that the first 59 did not.\n- Another survey would have visited six **other districts**. That is the largest source of variation, and the rows alone do not show it.\n\n- **The estimate.** 6.60 from this sample. Truth, all 9,000 responses: 6.67. The question is the width of the interval.","notes":"The technical name is clustering, and the households of one district are a cluster. The word is not needed; the question \"what was drawn at random?\" is.","minutes":null,"lo":["LO2"]},{"id":"two-bootstraps","n":25,"title":"Same data, two resampling units, two different intervals","kind":"content","session":3,"hash":"05e9a3ce","md":"#### [day2#two-bootstraps] Same data, two resampling units, two different intervals\n\n*Lab 2.3, steps 2 and 3*\n\nFigure: 95% bootstrap intervals for mean satisfaction from the same 360 responses.\n\n- **By household:** resample the 360 rows. Width 0.38 points.\n- **By district:** resample the 6 districts, each with all its rows. Width 0.79 points.\n- Both contain the truth this time. Which width is honest?","notes":"The household bootstrap keeps the same six districts in every resample: it answers \"what if we had phoned other households in these six districts?\" The district bootstrap answers \"what if we had run the survey again?\", which is the question an interval is for.","minutes":null,"lo":["LO2"]},{"id":"unit-coverage","n":26,"title":"Counted over 300 surveys, only the district bootstrap keeps the promise","kind":"content","session":3,"hash":"ea16f9a9","md":"#### [day2#unit-coverage] Counted over 300 surveys, only the district bootstrap keeps the promise\n\n*Lab 2.3, step 4*\n\n| Item | Value |\n| --- | --- |\n| resampling households | 72.3% |\n| resampling districts | 93.7% |\n| promised | 95% |\n\n- The household interval misses the truth in more than one survey in four.\n- Six districts are few, so even the right unit falls a little short. It is honest about the size of the uncertainty.","notes":"Coverage of the mean of all 9,000 responses over 300 two-stage samples. A manager given the household interval would believe the estimate is twice as precise as it is. This is the most common serious error in applied inference, and no library warns about it.","minutes":null,"lo":["LO2"]},{"id":"find-the-unit","n":27,"title":"Resample the unit that was drawn at random","kind":"content","session":3,"hash":"79e2c14f","md":"#### [day2#find-the-unit] Resample the unit that was drawn at random\n\n*The question to ask of every dataset*\n\n| The data | Rows | Unit to resample |\n| --- | --- | --- |\n| 360 households phoned at random across the region | households | household |\n| 60 households in each of 6 districts chosen at random | households | **district** |\n| Five pressure readings on each of 40 pumps | readings | **pump** |\n| Twelve monthly bills for each of 500 customers | bills | **customer** |\n\n> **Design beats arithmetic.** The same 360 calls spread over 12 districts of 30 give a narrower honest interval: 0.64 against 0.79 points (stretch).","notes":"In the capstone defence the assessor names a different resampling unit and the participant predicts what will happen. The prediction rule: a larger unit that groups similar rows widens the interval; if rows within the unit are no more alike than rows anywhere, nothing changes.","minutes":null,"lo":["LO2"]},{"id":"unit-in-the-file","n":28,"title":"In code the change is one line: what you index","kind":"content","session":3,"hash":"d3f27c6f","md":"#### [day2#unit-in-the-file] In code the change is one line: what you index\n\n*Lab 2.3, step 3*\n\n```python\n# by household: index the rows\nidx = gen.integers(0, 360, size=(B, 360))\nboot = scores[idx].mean(axis=1)\n```\n\n```python\n# by district: index the districts\ndm = df.groupby(\"district\")[\"satisfaction\"].mean()\nidx = gen.integers(0, 6, size=(B, 6))\nboot = dm.to_numpy()[idx].mean(axis=1)\n```\n\nWith 60 responses in every district, the mean of a resample of districts is the mean of their district means. With unequal counts, carry each drawn district's rows along.","notes":"The simplicity is the danger: both versions run, both print an interval, and nothing in the output says which is right. Only the knowledge of how the data were collected does.","minutes":null,"lo":["LO2"]},{"id":"check-unit","n":29,"title":"What is the unit to resample?","kind":"quiz","session":3,"hash":"11f77125","md":"#### [day2#check-unit] What is the unit to resample?\n\n*Checkpoint*\n\n**Question:** To estimate mean water pressure, Zulal picks 25 streets at random and measures the pressure at 8 houses on each: 200 readings. Which bootstrap gives an honest interval for the mean?\n\n- A. Resample the 200 readings\n- B. Resample 8 readings within each street\n- C. Resample the 25 streets, each with its 8 readings\n- D. Resample 100 of the 200 readings","notes":"Answer: C. Option B is the subtle one: it sounds careful and it is the household bootstrap in disguise, with the same six, here 25, units in every resample.","minutes":null,"lo":["LO2"]},{"id":"lab-2-3","n":30,"title":"Household or district","kind":"lab","session":3,"hash":"66c28c6d","md":"#### [day2#lab-2-3] Household or district\n\nLab 2.3 · 25 min\n\nBootstrap mean satisfaction from a two-stage survey sample by household and by district, then count the coverage of both over 300 studies and explain the difference.\n\n[D2_3_resampling_unit.ipynb](https://sdaiaacademy.github.io/ds-201/labs/D2_3_resampling_unit.ipynb)\n\n- [ ] Draw the two-stage sample and estimate (4 min)\n- [ ] Bootstrap by household (5 min)\n- [ ] Bootstrap by district (6 min)\n- [ ] Coverage of both over 300 studies (6 min)\n- [ ] Explain the difference in two sentences (4 min)\n- [ ] ✱ Stretch: Redraw with 12 districts of 30 responses and compare the widths","notes":"The helper draws the two-stage sample, choosing districts with probability proportional to size so that the plain mean is a fair estimate; say so if asked and do not dwell on it. The 300-study coverage loop takes about half a minute. Step 5 is two written sentences: have two participants read theirs.","minutes":null,"lo":[]},{"id":"s4","n":31,"title":"Intervals for differences and ratios","kind":"section","session":4,"hash":"72b90a5f","md":"#### [day2#s4] Intervals for differences and ratios\n\n*Session 4*\n\n- Compute a bootstrap interval for a difference between two groups\n- Compute a bootstrap interval for a ratio\n- Read an interval for a comparison against no difference","notes":"","minutes":null,"lo":["LO2","LO3"]},{"id":"managers-ask-gaps","n":32,"title":"Managers rarely ask for a level; they ask for a gap","kind":"content","session":4,"hash":"c28c3780","md":"#### [day2#managers-ask-gaps] Managers rarely ask for a level; they ask for a gap\n\n*The question behind most questions*\n\n- \"Is contractor B slower than A, and by how much?\"\n- A gap can be said two ways: a **difference** (hours) or a **ratio** (percent).\n- Either way it is a statistic, computed from two samples, with its own sampling distribution.\n\n| 200 repairs each | median, hours |\n| --- | --- |\n| contractor A | 6.00 |\n| contractor B | 6.90 |\n| difference B - A | 0.90 |\n| ratio B / A | 1.15 |","notes":"Study of lab 2.4, tickets closed on time. Jobs go to the two contractors by rota at Zulal, so neither gets the harder jobs; that is what makes the comparison fair. In real data that has to be argued.","minutes":null,"lo":["LO2","LO3"]},{"id":"resample-each-group","n":33,"title":"Resample each group on its own, then recompute the comparison","kind":"content","session":4,"hash":"62f20780","md":"#### [day2#resample-each-group] Resample each group on its own, then recompute the comparison\n\n*Lab 2.4, step 2*\n\n```python\nia = gen.integers(0, len(a), size=(B, len(a)))\nib = gen.integers(0, len(b), size=(B, len(b)))\nma = np.median(a[ia], axis=1)\nmb = np.median(b[ib], axis=1)\n\ndiff_boot  = mb - ma      # difference\nratio_boot = mb / ma      # ratio\n```\n\n- The study fixed 200 repairs per contractor. Each resample keeps that.\n- One set of resamples serves both comparisons.\n- The interval is the percentile interval of the 2,000 differences, or ratios.","notes":"The recipe generalises to any comparison of two independent groups: resample each, recompute, repeat. The unit rule of session 3 still applies inside each group.","minutes":null,"lo":["LO2"]},{"id":"difference-and-ratio","n":34,"title":"Two intervals, one story, in two units","kind":"content","session":4,"hash":"4b368f45","md":"#### [day2#difference-and-ratio] Two intervals, one story, in two units\n\n*Lab 2.4, steps 2 to 4*\n\n|  | estimate | 95% interval | \"no gap\" is | truth |\n| --- | --- | --- | --- | --- |\n| difference of medians, B - A | 0.90 h | -0.25 to 2.50 h | 0 | 1.40 h |\n| ratio of medians, B / A | 1.15 | 0.96 to 1.44 | 1 | 1.24 |\n\n- Both intervals contain the truth, and both include \"no gap\".\n- In words: B's typical repair takes between 0.96 and 1.44 times as long as A's.\n- Hours suit the crew planner; a percentage suits the contract.","notes":"The honest report from this study of 400 tickets: \"B looks slower, about 15%; the data do not rule out no difference, nor 44% slower.\" The truth is 24% slower. A study this size was simply not large enough to settle it. That sets up tomorrow: tests, and the power of a study.","minutes":null,"lo":["LO2","LO3"]},{"id":"reading-zero-and-one","n":35,"title":"An interval that includes \"no gap\" shows what is still possible, not that nothing is there","kind":"content","session":4,"hash":"78ab2fd4","md":"#### [day2#reading-zero-and-one] An interval that includes \"no gap\" shows what is still possible, not that nothing is there\n\n*Reading a comparison*\n\n- **Wrong.** \"The interval includes 1, so the contractors are equally fast.\"\n- **Right.** \"The study cannot tell B from A. It is consistent with B being 4% faster and with B being 44% slower.\"\n\n> **And do not compare two separate intervals by eye.** Whether the interval for A and the interval for B overlap is not a test. Build the interval for the difference itself.","notes":"Two separate 95% intervals can overlap although the interval for the difference excludes zero. The overlap rule of thumb is too conservative and is a common slip in dashboards with error bars.","minutes":null,"lo":["LO3"]},{"id":"ratio-coverage","n":36,"title":"Counted against the truth, both intervals keep their promise","kind":"content","session":4,"hash":"7ed25129","md":"#### [day2#ratio-coverage] Counted against the truth, both intervals keep their promise\n\n*Lab 2.4, step 5 and stretch*\n\n- **95.0%** coverage of the ratio of medians, over 300 studies of 200 repairs per contractor\n- **94.3%** coverage of the difference of means on tickets closed on time, over 1,000 studies\n\n- A ratio of medians has no textbook formula. The bootstrap needs none.\n- The second figure is the course's evidence standard: an interval with its coverage over 1,000 simulated samples.","notes":"These two counts, with the ones of lab 2.2 for a mean and lab 2.1 for a median, are the evidence for the second course outcome: intervals for a mean, a median and a group difference, each with its coverage.","minutes":null,"lo":["LO2"]},{"id":"day2-method","n":37,"title":"An interval for almost anything, in four questions","kind":"content","session":4,"hash":"655f0695","md":"#### [day2#day2-method] An interval for almost anything, in four questions\n\n*Day 2 as one recipe*\n\n1. **What is the statistic?** A median, a difference, a ratio: whatever answers the manager.\n2. **What unit was drawn at random?** Resample that unit, within each group.\n3. **Where do the middle 95% of the resampled statistics lie?** That is the interval.\n4. **Does the method keep its promise on data like mine?** Count the coverage.","notes":"Leave this slide up during the checkpoint if the room needs it. The fourth question is the one that separates this course from a recipe book.","minutes":null,"lo":["LO2"]},{"id":"check-ratio","n":38,"title":"How do you read this ratio interval?","kind":"quiz","session":4,"hash":"60ed2d73","md":"#### [day2#check-ratio] How do you read this ratio interval?\n\n*Checkpoint*\n\n**Question:** A study compares the median time to answer a call at two desks. Ratio North / South: 1.30, 95% interval 1.08 to 1.57. What may the analyst report?\n\n- A. No gap is shown, because the interval does not include 0\n- B. North is slower: between 8% and 57% longer than South\n- C. North is slower by exactly 30%\n- D. North takes between 1.08 and 1.57 hours longer than South","notes":"Answer: B. Option D is frequent in reports: a ratio read as an amount. Ask what unit a ratio has.","minutes":null,"lo":["LO2"]},{"id":"lab-2-4","n":39,"title":"Difference and ratio of medians","kind":"lab","session":4,"hash":"bac63bd2","md":"#### [day2#lab-2-4] Difference and ratio of medians\n\nLab 2.4 · 25 min\n\nBuild bootstrap intervals for the difference and the ratio of the two contractors' median repair times, compare them with the truth and count the coverage of the ratio interval.\n\n[D2_4_difference_ratio.ipynb](https://sdaiaacademy.github.io/ds-201/labs/D2_4_difference_ratio.ipynb)\n\n- [ ] Sample 200 repairs for each contractor (4 min)\n- [ ] Bootstrap the difference of medians (7 min)\n- [ ] Bootstrap the ratio of medians (5 min)\n- [ ] Compare with the truth; read 0 and 1 (4 min)\n- [ ] Coverage of the ratio interval over 300 studies (5 min)\n- [ ] ✱ Stretch: Do the difference of means on closed tickets with coverage over 1,000 studies","notes":"The study is drawn in the notebook: 200 tickets per contractor, closed on time. A typical slip in step 2 is to resample the pooled 400 tickets, which lets the group sizes vary. The stretch runs 1,000 studies and takes about a minute; it produces the coverage figure the course outcome names.","minutes":null,"lo":[]},{"id":"wrap-up","n":40,"title":"What to keep","kind":"content","session":4,"hash":"882e9784","md":"#### [day2#wrap-up] What to keep\n\n*Day 2 in three lines*\n\n- **Resample the sample.** With replacement, same size, many times. The middle 95% of the recomputed statistic is the interval.\n- **Count the coverage.** 95% is a promise about the method. On a known population you can count whether it is kept: 93%, or 62%.\n- **Resample the right unit.** The unit that was drawn at random. Rows that share a district are not independent: 72% against 94%.","notes":"Ask one participant what they would check first when handed a file and asked for an interval: how the rows were collected.","minutes":null,"lo":[]},{"id":"next","n":41,"title":"Day 3: Tests","kind":"content","session":4,"hash":"d097bfdd","md":"#### [day2#next] Day 3: Tests\n\n*Next*\n\n\"Could this gap be luck?\" A test answers by building the world in which it is luck.\n\n- Tomorrow starts with a shuffle, not a formula.\n- Bring one sentence about a p-value from a report you have read. Lab 3.2 marks eight of them.","notes":"The contractors' satisfaction scores are tomorrow's data. Today's interval for the repair-time ratio included 1; tomorrow's question is what a study can and cannot detect.","minutes":null,"lo":[]}],"activities":[{"id":"review-day1-q1","slide":"review-day1","type":"single","prompt":"From 100 households: mean 490 litres, standard deviation 200, standard error 20. Zulal reads 400 households next time. What do you expect?","options":[{"key":"A","text":"Standard deviation about 100, standard error about 20"},{"key":"B","text":"Standard deviation about 200, standard error about 10"},{"key":"C","text":"Standard deviation about 200, standard error about 5"},{"key":"D","text":"Standard deviation about 100, standard error about 10"}],"correct":[1],"explanation":"Households differ as much as ever. Four times the sample halves the standard error: 200 / √400 = 10.","misconceptions":["Lets the spread of households shrink with the sample: households differ as much as before","","Divides the standard error by 4 and not by the square root of 4","Shrinks both: only the precision of the estimate improves with more data"],"lo":["LO1"]},{"id":"check-resample-q1","slide":"check-resample","type":"single","prompt":"You have 80 survey scores and want an interval for their median. Which step, repeated 2,000 times, gives the bootstrap distribution?","options":[{"key":"A","text":"Shuffle the 80 scores and take their median"},{"key":"B","text":"Draw 40 of the 80 scores at random and take their median"},{"key":"C","text":"Draw 80 new scores from all customers and take their median"},{"key":"D","text":"Draw 80 scores from the 80 with replacement and take their median"}],"correct":[3],"explanation":"Same size as the sample, from the sample, with replacement: that imitates drawing a new sample of 80 from the population.","misconceptions":["Draws without replacement: 80 from 80 returns the same sample each time and the median never moves","Changes the sample size: the spread of a median of 40 is wider than that of a median of 80","Goes back to the population, which a real analyst does not have",""],"lo":["LO2"]},{"id":"check-reading-95-q1","slide":"check-reading-95","type":"single","prompt":"From 150 repairs Ilyas computes a 95% interval for the median repair time: 5.0 to 7.5 hours. Which sentence is correct?","options":[{"key":"A","text":"The method that gave this interval catches the true median in about 95 of 100 studies"},{"key":"B","text":"About 95% of repairs take between 5.0 and 7.5 hours"},{"key":"C","text":"The true median has a 95% chance of lying between 5.0 and 7.5 hours"},{"key":"D","text":"In 95% of future samples the median will be between 5.0 and 7.5 hours"}],"correct":[0],"explanation":"Coverage belongs to the method over repeated studies. And as lab 2.2 shows, even that figure has to be earned by the data.","misconceptions":["","Reads the interval for a median as a range for single repairs, which spread far wider","Puts the probability on the fixed true value: this one interval contains it or does not","Treats sample medians as if they would fall inside this one interval: other samples have other intervals"],"lo":["LO1"]},{"id":"check-unit-q1","slide":"check-unit","type":"single","prompt":"To estimate mean water pressure, Zulal picks 25 streets at random and measures the pressure at 8 houses on each: 200 readings. Which bootstrap gives an honest interval for the mean?","options":[{"key":"A","text":"Resample the 200 readings"},{"key":"B","text":"Resample 8 readings within each street"},{"key":"C","text":"Resample the 25 streets, each with its 8 readings"},{"key":"D","text":"Resample 100 of the 200 readings"}],"correct":[2],"explanation":"The street was drawn at random and houses on a street move together, so the street is the unit.","misconceptions":["Treats 200 readings as independent although houses on one street share a main: the interval comes out too narrow","Keeps every street in every resample, so the variation between streets, the largest part, is never imitated","","Changes the amount of data in each resample, which changes the spread being estimated"],"lo":["LO2"]},{"id":"check-ratio-q1","slide":"check-ratio","type":"single","prompt":"A study compares the median time to answer a call at two desks. Ratio North / South: 1.30, 95% interval 1.08 to 1.57. What may the analyst report?","options":[{"key":"A","text":"No gap is shown, because the interval does not include 0"},{"key":"B","text":"North is slower: between 8% and 57% longer than South"},{"key":"C","text":"North is slower by exactly 30%"},{"key":"D","text":"North takes between 1.08 and 1.57 hours longer than South"}],"correct":[1],"explanation":"The interval lies wholly above 1, the value of no gap for a ratio, and its ends give the range in percent.","misconceptions":["Reads a ratio interval against 0: for a ratio, no gap is 1, and the interval can never include 0","","Reads the estimate as exact and drops the interval that says how uncertain it is","Turns a ratio into a difference in hours without knowing either median"],"lo":["LO2"]}],"ai":{"context":{"course":"../context/course.md","courseJs":"../context/course.js","day":"day2.md","llms":"../llms.txt"},"tasks":[],"tools":[]},"bridge":{"allowedOrigins":[]},"features":{},"strings":{}}</script>
+<script src="../_engine/academy.js"></script>
+</body>
+</html>

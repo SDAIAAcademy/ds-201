@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-ax="deck" data-track="data-science">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 4 · Regression and reporting · Statistical Inference by Simulation</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<link rel="icon" href="../_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="day4.md">
+<link rel="describedby" href="../llms.txt">
+<link rel="stylesheet" href="../_engine/academy.css">
+</head>
+<body>
+<div class="deck" data-course="Statistical Inference by Simulation" data-track="data-science" data-day="Day 4">
+<section class="slide title" id="title" data-auto="title" data-label="Welcome" data-n="1">
+  <div class="kicker">SDAIA Academy · Statistical Inference by Simulation</div>
+  <h1>Regression and reporting</h1>
+  <p class="lead mt">Day 4: A line summarises how one quantity moves with another; its slope needs an interval, its residuals a look, and its reader a brief</p>
+  <div class="meta"><span class="track">Data Science Track</span><span>4 teaching days + capstone day</span><span>4 sessions · 4 labs</span><span>DS-201</span></div>
+  <aside class="notes"><p>Last teaching day. Three sessions on one line through 2,000 households, then the paragraph that carries a result to a manager. The last lab ends with each participant's capstone question, so leave it its full 25 minutes.</p></aside>
+</section>
+
+<section class="slide" id="agenda" data-auto="agenda" data-label="Agenda" data-n="2">
+  <div class="kicker">Today</div>
+  <h2>Regression and reporting</h2>
+  <div class="agenda"><div class="item"><div><b>Session 1 · Least squares as a summary</b><small>A fitted line is a summary of group averages, and its slope is a number in the manager's units</small></div></div><div class="item"><div><b>Session 2 · Slopes with intervals</b><small>A slope is a statistic: it has a sampling distribution, a bootstrap interval and a reported standard error that rests on an assumption</small></div></div><div class="item"><div><b>Session 3 · Residuals and confounding</b><small>Residuals show what the line missed; a second variable can move the first slope, and that is confounding</small></div></div><div class="item"><div><b>Session 4 · Writing an inference brief</b><small>The brief a manager can act on: the question, the estimate, the interval, the test, the effect size and the limits</small></div></div></div>
+  <aside class="notes"><p>Session 1 fits a line and reads it. Session 2 puts an interval on its slope and finds the library's standard error too small. Session 3 adds a second variable and the slope moves. Session 4 writes the brief.</p></aside>
+</section>
+
+<section class="slide" id="review-day3" data-lo="LO4" data-label="Review" data-n="3">
+  <div class="kicker">Review of Day 3</div>
+  <h2>How many of these flags can you trust?</h2>
+  <div class="quiz" data-type="single" data-lo="LO4" data-id="review-day3-q1">
+    <p class="lead">A monthly report tests 20 service counters against the average at the 0.05 level and flags one. No correction is applied. What is the fair reading of the single flag?</p>
+    <div class="opts">
+      <div class="opt" data-ok data-k="A">It may well be a false alarm: 20 tests of counters that do not differ give one flag on average</div>
+      <div class="opt" data-why="Applies the error rate of one planned test to the best of twenty" data-k="B">It has a 5% chance of being a false alarm</div>
+      <div class="opt" data-why="Reads a p-value below 0.05 as proof, whatever the number of tests" data-k="C">The counter certainly differs from the others</div>
+      <div class="opt" data-why="Dismisses the result outright: a flag after correction, or a second look, could still be real" data-k="D">It must be ignored, since uncorrected tests mean nothing</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> 20 × 0.05 = 1 false flag expected when nothing differs. One flag in twenty is what chance alone delivers.</div>
+  </div>
+  <aside class="notes"><p>Answer: A. Two minutes. The follow-up question: what would you do next? Apply Holm, or give the flagged counter a second, independent look.</p></aside>
+</section>
+
+<!-- ======================= SESSION 1 ======================= -->
+<section class="slide section" id="s1" data-auto="section" data-session="1" data-n="4">
+  <div class="kicker">Session 1</div>
+  <h1>Least squares as a summary</h1>
+  <ul class="bullets outcomes"><li>Fit a line by least squares and read its slope and intercept</li><li>Translate a slope into the units a manager uses</li><li>Separate a description of a pattern from a claim about cause</li></ul>
+  <div class="sess-no">01</div>
+</section>
+
+<section class="slide" id="planning-question" data-lo="LO5" data-label="The question" data-n="5" data-session="1">
+  <div class="kicker">Jamila's question</div>
+  <h2>"How much more water for each additional person?"</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>A new housing scheme for large families needs a supply estimate.</li>
+      <li>Until now every question was about one variable, or one variable in two groups.</li>
+      <li>This one is about how one quantity <b>moves with</b> another: consumption with household size.</li>
+    </ul>
+    <div class="card c-teal"><h4>The data</h4><p class="small mb0">2,000 metered households drawn at random from the 80,000: household size, summer temperature of the area, litres a day.</p></div>
+  </div>
+  <aside class="notes"><p>The file metered_2000.csv is the supplied study for the whole day; each lab loads it afresh. Temperature is in the file from the start and is ignored until session 3, on purpose.</p></aside>
+</section>
+
+<section class="slide" id="line-through-means" data-lo="LO5" data-label="A line as a summary" data-n="6" data-session="1">
+  <div class="kicker">Lab 4.1, steps 1 and 2</div>
+  <h2>A fitted line is a summary of the group averages</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:means_and_line-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Mean daily consumption by household size for 2,000 households, rising in nearly equal steps from 165 litres for one person to about 1,230 for twelve, with the fitted line 64 plus 98.5 per person through the points">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="356.0" y2="356.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="361.0" text-anchor="end" font-size="14" fill="var(--muted)">0</text>
+<line x1="64" x2="700" y1="252.0" y2="252.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="257.0" text-anchor="end" font-size="14" fill="var(--muted)">400</text>
+<line x1="64" x2="700" y1="148.0" y2="148.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="153.0" text-anchor="end" font-size="14" fill="var(--muted)">800</text>
+<line x1="64" x2="700" y1="44.0" y2="44.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="49.0" text-anchor="end" font-size="14" fill="var(--muted)">1,200</text>
+<line x1="114.5" x2="114.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="114.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">1</text>
+<line x1="165.0" x2="165.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="165.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">2</text>
+<line x1="265.9" x2="265.9" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="265.9" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">4</text>
+<line x1="366.9" x2="366.9" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="366.9" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6</text>
+<line x1="467.8" x2="467.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="467.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">8</text>
+<line x1="568.8" x2="568.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="568.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">10</text>
+<line x1="669.7" x2="669.7" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="669.7" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">12</text>
+<polyline points="89.2,326.6 695.0,19.4" fill="none" stroke="var(--coral)" stroke-width="3"/>
+<circle cx="114.5" cy="313.2" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="165.0" cy="290.4" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="215.4" cy="262.6" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="265.9" cy="236.0" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="316.4" cy="211.4" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="366.9" cy="184.6" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="417.3" cy="160.4" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="467.8" cy="128.4" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="518.3" cy="111.3" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="568.8" cy="110.1" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="619.2" cy="86.6" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="669.7" cy="36.1" r="7" fill="var(--teal)" fill-opacity="1"/>
+<text x="387.0" y="278.0" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">line: 64 + 98.5 × people</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">people in the household (dots: mean consumption, litres a day)</text>
+</svg>
+<!--/FIG:means_and_line-->
+      <div class="caption">2,000 households: mean consumption at each household size, and the least-squares line.</div>
+    </div>
+    <ul class="bullets">
+      <li>From one size to the next, the mean rises by 88 to 107 litres.</li>
+      <li>One line replaces twelve means with two numbers: where it starts and how steeply it climbs.</li>
+      <li>consumption = 63.7 + 98.48 × people.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Solution run of lab 4.1. The dots for 10, 11 and 12 people rest on 9, 6 and 2 households: they wander, and the line rightly gives them little weight. Ask why a line and not the twelve means: it is simpler to say, steadier where data are thin, and it can be given an interval.</p></aside>
+</section>
+
+<section class="slide" id="least-squares" data-lo="LO5" data-label="Least squares" data-n="7" data-session="1">
+  <div class="kicker">How the line is chosen</div>
+  <h2>Least squares picks the line with the smallest squared misses</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">fit_line</span>(<span class="hljs-params">x, y</span>):
+    dx, dy = x - x.mean(), y - y.mean()
+    slope = (dx * dy).mean() / (dx ** <span class="hljs-number">2</span>).mean()
+    intercept = y.mean() - slope * x.mean()
+    <span class="hljs-keyword">return</span> intercept, slope</code></pre>
+    <ul class="bullets">
+      <li>slope = covariance(x, y) / variance(x).</li>
+      <li>The line always passes through the point of the two means.</li>
+      <li>The same line as <code>np.polyfit(x, y, 1)</code>, and as the projection of FN-103.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>One slide of recap: FN-103 Day 2 derived least squares as a projection and solved the normal equations. Nothing of that is repeated. What is new from here on is inference about the slope.</p></aside>
+</section>
+
+<section class="slide" id="slope-in-units" data-lo="LO5" data-label="The slope in units" data-n="8" data-session="1">
+  <div class="kicker">Lab 4.1, step 3</div>
+  <h2>A slope is only useful in the manager's units</h2>
+  <div class="cols cols-3">
+    <div class="stat"><div class="big">98.48</div><div class="lbl">the coefficient in the output</div></div>
+    <div class="stat"><div class="big">98 litres</div><div class="lbl">more a day for each additional person</div></div>
+    <div class="stat"><div class="big">3.0 m³</div><div class="lbl">more a month: what a bill is counted in</div></div>
+  </div>
+  <div class="callout tip mt"><b>The sentence.</b> "Among these households, one more person goes with about 98 litres more a day, about 3.0 cubic metres more a month."</div>
+  <aside class="notes"><p>98.48 litres a day times 30 days over 1,000 litres per cubic metre. Always state the units of both variables: "per person", "a day". A coefficient without units is the most common defect in a regression table.</p></aside>
+</section>
+
+<section class="slide" id="intercept-and-range" data-lo="LO5" data-label="Intercept and range" data-n="9" data-session="1">
+  <div class="kicker">Lab 4.1, step 4</div>
+  <h2>Predict inside the range you observed; read the intercept with care</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th>household of</th><th class="num">line</th><th class="num">observed mean</th></tr>
+      <tr><td>2 people</td><td class="num">261</td><td class="num">252</td></tr>
+      <tr><td>6 people</td><td class="num">655</td><td class="num">659</td></tr>
+      <tr><td>0 people</td><td class="num">64</td><td class="num">none exists</td></tr>
+      <tr><td>40 people</td><td class="num">4,003</td><td class="num">none observed</td></tr>
+    </table>
+    <ul class="bullets">
+      <li>The <b>intercept</b>, 64 litres, is where the line meets the axis, not a measurement.</li>
+      <li>The data stop at 12 people. Beyond that the line is a guess with a formula.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The 40-person row is 63.7 plus 40 times 98.48, computed here to show how confidently a line extrapolates. A compound of 40 on one meter is a different kind of customer.</p></aside>
+</section>
+
+<section class="slide" id="goes-with-not-causes" data-lo="LO5" data-label="Describes, does not explain" data-n="10" data-session="1">
+  <div class="kicker">What the line does not say</div>
+  <h2>"Goes with" is not "causes"</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>What was compared</h4><p class="small mb0">Different households of different sizes, at one moment.</p></div>
+    <div class="card c-coral"><h4>What was not observed</h4><p class="small mb0">One household before and after a person moved in.</p></div>
+  </div>
+  <ul class="bullets mt">
+    <li>Households of different sizes may differ in other ways too: where they live, the kind of home, a garden.</li>
+    <li>Whatever travels with household size is folded into the 98 litres. Session 3 finds one such thing.</li>
+  </ul>
+  <aside class="notes"><p>Keep the wording discipline from now on: "one more person goes with", "households with one more person use on average". The planted confounder is temperature; do not name it yet.</p></aside>
+</section>
+
+<section class="slide" id="sample-and-population-line" data-lo="LO5" data-label="Against the truth" data-n="11" data-session="1">
+  <div class="kicker">Lab 4.1, step 5</div>
+  <h2>The slope is a statistic: another sample gives another slope</h2>
+  <table class="t">
+    <tr><th></th><th class="num">intercept</th><th class="num">slope, litres per person</th></tr>
+    <tr><td>your sample of 2,000</td><td class="num">63.7</td><td class="num">98.48</td></tr>
+    <tr><td>all 80,000 households</td><td class="num">71.4</td><td class="num">96.21</td></tr>
+    <tr class="hl"><td>the miss</td><td class="num"></td><td class="num">+2.27</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>Household size accounts for 79% of the variation in consumption (R² = 0.792).</li>
+    <li>The slope needs an interval, like every estimate this week.</li>
+  </ul>
+  <aside class="notes"><p>R squared is mentioned once and not developed: it measures how tightly the points hug the line, not whether the slope is right, and a high value protects against none of the problems of the next two sessions.</p></aside>
+</section>
+
+<section class="slide" id="check-reading-slope" data-lo="LO5" data-n="12" data-session="1">
+  <div class="kicker">Checkpoint</div>
+  <h2>What does this slope tell the planner?</h2>
+  <div class="quiz" data-type="single" data-lo="LO5" data-id="check-reading-slope-q1">
+    <p class="lead">For 1,500 shops, monthly water use in cubic metres is regressed on floor area in square metres: use = 4.0 + 0.12 × area. The shops range from 20 to 400 square metres. Which statement is supported?</p>
+    <div class="opts">
+      <div class="opt" data-why="Reads a comparison between shops as the effect of changing one shop" data-k="A">Extending a shop by 100 square metres will raise its use by 12 cubic metres</div>
+      <div class="opt" data-why="Extrapolates far beyond the largest shop observed" data-k="B">A warehouse of 5,000 square metres uses about 604 cubic metres</div>
+      <div class="opt" data-why="Reads the intercept as a measurement: no shop has zero floor area" data-k="C">A shop with no floor area uses 4 cubic metres</div>
+      <div class="opt" data-ok data-k="D">Among these shops, one that is 100 square metres larger uses about 12 cubic metres more on average</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The slope compares shops of different sizes within the range observed: 0.12 × 100 = 12 cubic metres.</div>
+  </div>
+  <aside class="notes"><p>Answer: D. Option A is the one managers hear by default; the analyst's wording has to prevent it.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-4-1" data-auto="lab" data-lab="4.1" data-label="Lab 4.1" data-n="13" data-session="1">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 4.1 · 25 min</div><h2>Consumption on household size</h2><p class="lead small">Fit daily consumption on household size for 2,000 metered households, state the slope in litres a day and cubic metres a month, and compare the line with the one the whole population gives.</p><a class="nb" href="../labs/D4_1_fit_line.ipynb">D4_1_fit_line.ipynb</a></div><ul class="checklist"><li>Scatter and mean consumption by household size <span class="min">5 min</span></li><li>Fit the line by least squares <span class="min">6 min</span></li><li>The slope in litres a day and cubic metres a month <span class="min">5 min</span></li><li>Predict for 2 and 6 people; read the intercept <span class="min">4 min</span></li><li>Compare with the population line <span class="min">5 min</span></li><li class="stretch">✱ Stretch: Fit the same line with a statistics library and find the slope in its summary</li></ul></div>
+  <aside class="notes"><p>Steps 1 to 3 without an assistant: the day's first core computation. The formula of step 2 is checked against np.polyfit. A common slip in step 3 is dividing by 1,000 without multiplying by 30 days. The lab loads the supplied sample of 2,000 and needs nothing from earlier days.</p></aside>
+</section>
+
+<!-- ======================= SESSION 2 ======================= -->
+<section class="slide section" id="s2" data-auto="section" data-session="2" data-n="14">
+  <div class="kicker">Session 2</div>
+  <h1>Slopes with intervals</h1>
+  <ul class="bullets outcomes"><li>Bootstrap a regression slope by resampling households</li><li>Compare a bootstrap standard error with the one a library reports</li><li>Explain which assumption makes the two differ</li></ul>
+  <div class="sess-no">02</div>
+</section>
+
+<section class="slide" id="slope-varies" data-lo="LO5" data-label="The slope varies" data-n="15" data-session="2">
+  <div class="kicker">Day 1, for a slope</div>
+  <h2>A slope has a sampling distribution and a standard error</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>Your sample says 98.48 litres per person. The population says 96.21.</li>
+      <li>Everything from Days 1 and 2 applies: the slope's spread over samples is its standard error, and an interval is built from it.</li>
+      <li>Two routes again: a formula in the library, and a bootstrap.</li>
+    </ul>
+    <pre class="code s"><code class="language-text">             coef  std err      t  [0.025  0.975]
+Intercept  63.739    5.160  12.35  53.620  73.858
+size       98.479    1.128  87.27  96.266 100.692</code></pre>
+  </div>
+  <aside class="notes"><p>The table is the statsmodels summary from the stretch of lab 4.1, with the p-value column (0.000 in both rows) left out to fit and household_size shortened to size. Walk the columns: coefficient, standard error, t as their ratio, the 95% interval. The reported interval, 96.27 to 100.69, does not contain the population slope 96.21. One miss proves nothing; this session counts.</p></aside>
+</section>
+
+<section class="slide" id="pairs-bootstrap" data-lo="LO2 LO5" data-label="Bootstrap the pairs" data-n="16" data-session="2">
+  <div class="kicker">Lab 4.2, step 2</div>
+  <h2>Bootstrap the households: each one keeps its pair of values</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">idx = gen.integers(<span class="hljs-number">0</span>, n, size=(B, n))
+xs, ys = x[idx], y[idx]   <span class="hljs-comment"># pairs stay together</span>
+xc = xs - xs.mean(axis=<span class="hljs-number">1</span>, keepdims=<span class="hljs-literal">True</span>)
+yc = ys - ys.mean(axis=<span class="hljs-number">1</span>, keepdims=<span class="hljs-literal">True</span>)
+num = (xc * yc).mean(axis=<span class="hljs-number">1</span>)
+slopes = num / (xc ** <span class="hljs-number">2</span>).mean(axis=<span class="hljs-number">1</span>)</code></pre>
+    <ul class="bullets">
+      <li>The unit drawn at random is the household, so the household is resampled: its size and its consumption together.</li>
+      <li>Resample x and y separately and the relation is destroyed: every slope comes out near zero.</li>
+      <li>2,000 slopes: standard deviation 1.409.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The same index array picks both columns, which is the whole point. This "pairs bootstrap" makes no assumption about how the points scatter around the line.</p></aside>
+</section>
+
+<section class="slide" id="two-standard-errors" data-lo="LO5" data-label="Two standard errors" data-n="17" data-session="2">
+  <div class="kicker">Lab 4.2, step 3</div>
+  <h2>The library's standard error is a fifth too small</h2>
+  <table class="t">
+    <tr><th>method</th><th class="num">standard error</th><th class="num">95% interval</th><th class="num">width</th></tr>
+    <tr><td>reported by the library</td><td class="num">1.13</td><td class="num">96.27 to 100.69</td><td class="num">4.42</td></tr>
+    <tr><td>bootstrap of households</td><td class="num">1.41</td><td class="num">95.66 to 101.23</td><td class="num">5.57</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>The bootstrap standard error is 25% larger; put the other way, the library's is 20% smaller.</li>
+    <li>The population slope, 96.21, is inside the bootstrap interval and just outside the reported one.</li>
+    <li>They disagree for a reason you can see in the data.</li>
+  </ul>
+  <aside class="notes"><p>Ask the room to guess the reason before the next slide. Hint: lab 4.1's scatter plot widened to the right.</p></aside>
+</section>
+
+<section class="slide" id="equal-spread-assumption" data-lo="LO5" data-label="The assumption" data-n="18" data-session="2">
+  <div class="kicker">Lab 4.2, step 4</div>
+  <h2>The formula assumes equal spread around the line; the data do not have it</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:residual_spread-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Standard deviation of the residuals by household size: it grows from 67 litres for one person to 133 litres for eight">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="356.0" y2="356.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="361.0" text-anchor="end" font-size="14" fill="var(--muted)">0</text>
+<line x1="64" x2="700" y1="243.3" y2="243.3" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="248.3" text-anchor="end" font-size="14" fill="var(--muted)">50</text>
+<line x1="64" x2="700" y1="130.7" y2="130.7" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="135.7" text-anchor="end" font-size="14" fill="var(--muted)">100</text>
+<line x1="64" x2="700" y1="18.0" y2="18.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="23.0" text-anchor="end" font-size="14" fill="var(--muted)">150</text>
+<line x1="110.5" x2="110.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="110.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">1</text>
+<line x1="188.1" x2="188.1" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="188.1" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">2</text>
+<line x1="265.7" x2="265.7" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="265.7" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">3</text>
+<line x1="343.2" x2="343.2" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="343.2" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">4</text>
+<line x1="420.8" x2="420.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="420.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">5</text>
+<line x1="498.3" x2="498.3" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="498.3" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6</text>
+<line x1="575.9" x2="575.9" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="575.9" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">7</text>
+<line x1="653.5" x2="653.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="653.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">8</text>
+<rect x="84.4" y="205.3" width="75.6" height="150.7" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="162.0" y="197.6" width="75.6" height="158.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="239.5" y="173.0" width="75.6" height="183.0" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="317.1" y="147.1" width="75.6" height="208.9" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="394.6" y="111.6" width="75.6" height="244.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="472.2" y="117.6" width="75.6" height="238.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="549.8" y="95.5" width="75.6" height="260.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="627.3" y="55.5" width="52.3" height="300.5" fill="var(--teal)" fill-opacity="0.85"/>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">people in the household (bars: spread of the residuals, litres a day)</text>
+</svg>
+<!--/FIG:residual_spread-->
+      <div class="caption">Standard deviation of the residuals at each household size.</div>
+    </div>
+    <ul class="bullets">
+      <li>Households of 8 scatter twice as widely around the line as households of 1: 133 against 67 litres.</li>
+      <li>Large households sit at the end of the line, where a point has most pull on the slope, and they are the noisiest.</li>
+      <li>The formula averages the noise over everyone and understates the swing.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The textbook word is heteroscedasticity; "unequal spread" does the job. It is the rule for quantities that grow: bigger households, bigger customers, bigger bills all vary more.</p></aside>
+</section>
+
+<section class="slide" id="slope-coverage" data-lo="LO2 LO5" data-label="Counted" data-n="19" data-session="2">
+  <div class="kicker">Lab 4.2, step 5</div>
+  <h2>Counted over 300 samples, the bootstrap interval keeps the promise</h2>
+  <div class="bars">
+    <div class="row"><span>reported interval</span><div class="bar c-coral" style="--w:92%"></div><span class="val">92.0%</span></div>
+    <div class="row"><span>bootstrap interval</span><div class="bar c-teal" style="--w:95%"></div><span class="val">95.0%</span></div>
+    <div class="row"><span>promised</span><div class="bar c-navy" style="--w:95%"></div><span class="val">95%</span></div>
+  </div>
+  <ul class="bullets mt">
+    <li>Libraries can drop the assumption too: the robust standard error (HC3) is 1.402, the bootstrap's 1.409.</li>
+    <li>When the reported and the robust standard errors differ, report the robust one and say why.</li>
+  </ul>
+  <aside class="notes"><p>300 samples of 2,000 drawn from the population, 500 resamples each. With 300 samples the counting error is about 2.5 points, so 92% is a shortfall at the edge of what the count can show; the direction agrees with the standard errors. The robust standard error is one argument to the library and costs nothing.</p></aside>
+</section>
+
+<section class="slide" id="reading-regression-output" data-lo="LO5" data-label="Reading the output" data-n="20" data-session="2">
+  <div class="kicker">In practice</div>
+  <h2>Read a regression table in this order</h2>
+  <ol class="bullets">
+    <li><b>The coefficient, with units:</b> 98 litres a day per person.</li>
+    <li><b>Its interval:</b> 95.7 to 101.2 by bootstrap. Is the whole interval large enough, or small enough, to matter?</li>
+    <li><b>Where the standard error comes from:</b> the default formula, a robust one, or a bootstrap.</li>
+    <li><b>The p-value last:</b> it tests "slope is exactly zero", which is rarely the question.</li>
+  </ol>
+  <aside class="notes"><p>The same order as yesterday's report: estimate, interval, then test. Nobody doubted that bigger households use more water; the t of 87 answers a question nobody asked.</p></aside>
+</section>
+
+<section class="slide" id="check-which-se" data-lo="LO5" data-n="21" data-session="2">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which standard error goes in the brief?</h2>
+  <div class="quiz" data-type="single" data-lo="LO5" data-id="check-which-se-q1">
+    <p class="lead">A regression of monthly bill on meter size gives a slope of 41 riyals per size step. The library reports a standard error of 2.0; a bootstrap of customers gives 3.1. A plot shows bills scattering far more widely for large meters. What should the analyst report?</p>
+    <div class="opts">
+      <div class="opt" data-why="Chooses the smaller error because it looks better, although its assumption of equal spread visibly fails" data-k="A">2.0, because the library's formula is the standard method</div>
+      <div class="opt" data-ok data-k="B">3.1, because the spread is unequal and the bootstrap does not assume otherwise</div>
+      <div class="opt" data-why="Averages a valid and an invalid figure" data-k="C">About 2.5, the middle of the two</div>
+      <div class="opt" data-why="Gives up the estimate although a valid standard error is at hand" data-k="D">Neither: the slope cannot be trusted when spreads differ</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Unequal spread does not bias the slope; it makes the default standard error too small. The bootstrap, or a robust standard error, is the honest one.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Option D confuses two things worth separating: the slope itself is still a fair estimate; only its stated uncertainty was wrong.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-4-2" data-auto="lab" data-lab="4.2" data-label="Lab 4.2" data-n="22" data-session="2">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 4.2 · 25 min</div><h2>An interval for the slope</h2><p class="lead small">Bootstrap the slope of consumption on household size 2,000 times, compare its standard error and interval with the ones the regression summary reports, and find out from the residual spread why they differ.</p><a class="nb" href="../labs/D4_2_slope_interval.ipynb">D4_2_slope_interval.ipynb</a></div><ul class="checklist"><li>Read the reported standard error of the slope <span class="min">4 min</span></li><li>Bootstrap the pairs: 2,000 slopes <span class="min">8 min</span></li><li>Compare the two standard errors and intervals <span class="min">5 min</span></li><li>Why they differ: the spread by household size <span class="min">4 min</span></li><li>Coverage of both intervals over 300 samples <span class="min">4 min</span></li><li class="stretch">✱ Stretch: Ask the library for a robust standard error and compare</li></ul></div>
+  <aside class="notes"><p>The lab loads the sample of 2,000 afresh. The coverage loop of step 5 is supplied, not an exercise: it runs 300 samples with 500 resamples each and takes about half a minute; in quick mode 60 samples, where the two coverages can tie or cross. Read the direction of the standard errors, not small coverage differences, in quick mode.</p></aside>
+</section>
+
+<!-- ======================= SESSION 3 ======================= -->
+<section class="slide section" id="s3" data-auto="section" data-session="3" data-n="23">
+  <div class="kicker">Session 3</div>
+  <h1>Residuals and confounding</h1>
+  <ul class="bullets outcomes"><li>Read a residual plot for curvature and unequal spread</li><li>Add a second variable and explain why the first slope moved</li><li>State what a regression on observed data cannot settle</li></ul>
+  <div class="sess-no">03</div>
+</section>
+
+<section class="slide" id="residuals-are-evidence" data-lo="LO5" data-label="Residuals" data-n="24" data-session="3">
+  <div class="kicker">What the line left behind</div>
+  <h2>A residual is what the model missed, and patterns in residuals are evidence</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>No pattern</h4><p class="small mb0">A level band around zero: the model has captured what is systematic.</p></div>
+    <div class="card c-coral"><h4>A trend or a curve</h4><p class="small mb0">Against some variable the residuals rise, fall or bend: something systematic is missing.</p></div>
+    <div class="card c-purple"><h4>A funnel</h4><p class="small mb0">The band widens: unequal spread. The slopes stand, the default standard errors do not.</p></div>
+  </div>
+  <p class="small mt">residual = observed - fitted. Plot the residuals against the fitted values, against each variable in the model, and against variables you left out.</p>
+  <aside class="notes"><p>The third instruction is the one people skip and the one that pays today. Session 2 found the funnel; this session finds a trend against a variable that is not in the model.</p></aside>
+</section>
+
+<section class="slide" id="residuals-vs-temperature" data-lo="LO5" data-label="A trend" data-n="25" data-session="3">
+  <div class="kicker">Lab 4.3, step 1</div>
+  <h2>The residuals of the one-variable line rise with temperature</h2>
+  <div class="cols cols-2">
+    <div class="stat"><div class="big">17.0</div><div class="lbl">litres of residual for each degree of summer temperature</div></div>
+    <ul class="bullets">
+      <li>In hot areas the line is too low; in mild areas too high.</li>
+      <li>Hot districts use more water per household: cooling, gardens, evaporation.</li>
+      <li>Temperature was in the file all along. The model never asked.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Zulal's 30 districts have mean summer temperatures between 33 and 45 degrees. Show the scatter in the notebook: a clear upward band. If the model were complete, this plot would be flat.</p></aside>
+</section>
+
+<section class="slide" id="slope-moved" data-lo="LO5" data-label="Add temperature" data-n="26" data-session="3">
+  <div class="kicker">Lab 4.3, step 2</div>
+  <h2>Add temperature, and the slope on household size drops by 12 litres</h2>
+  <table class="t">
+    <tr><th>model</th><th class="num">litres per person</th><th class="num">litres per degree</th><th class="num">R²</th></tr>
+    <tr><td>household size alone</td><td class="num">98.48</td><td class="num"></td><td class="num">0.792</td></tr>
+    <tr class="hl"><td>household size and temperature</td><td class="num">86.19</td><td class="num">19.84</td><td class="num">0.865</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>The move, 12.3 litres, is about nine times the slope's standard error (1.32, robust).</li>
+    <li>No interval around 98 warned of it: an interval measures sampling error, and this is not sampling error.</li>
+    <li>It is a different question getting a different answer.</li>
+  </ul>
+  <aside class="notes"><p>The generator of the data used 85 litres per person and 20 per degree; in all 80,000 households the two-variable fit gives 84.8 and 19.9. The two-variable model recovers what was planted; the one-variable model could not, at any sample size.</p></aside>
+</section>
+
+<section class="slide" id="confounding" data-lo="LO5" data-label="Confounding" data-n="27" data-session="3">
+  <div class="kicker">Lab 4.3, step 4</div>
+  <h2>Household size and temperature travel together: that is confounding</h2>
+  <div class="cols cols-2">
+    <div class="flow v">
+      <div class="step c-coral"><b>Summer temperature</b>hot areas have larger households (5.19 people against 3.37 in mild areas)</div>
+      <div class="arrow">↓</div>
+      <div class="step c-teal"><b>Household size</b>the variable you looked at</div>
+      <div class="arrow">↓</div>
+      <div class="step c-cyan"><b>Consumption</b>pushed up by both</div>
+    </div>
+    <ul class="bullets">
+      <li>Correlation of household size with temperature: 0.38.</li>
+      <li>Comparing households by size alone compares, in part, hot areas with mild ones.</li>
+      <li>The one-variable slope credited people with litres that belong to the heat.</li>
+      <li>The move is predictable: 19.84 litres per degree × 0.619 degrees per additional person = 12.3.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>A confounder is tied to both the variable of interest and the outcome. The arithmetic in the last bullet is the stretch of lab 4.3 and is exact for least squares. Temperature also pushes consumption directly, which the flow shows as one chain for simplicity; say so.</p></aside>
+</section>
+
+<section class="slide" id="held-fixed" data-lo="LO5" data-label="Two right answers" data-n="28" data-session="3">
+  <div class="kicker">Which slope is right?</div>
+  <h2>Both slopes are right, for different questions</h2>
+  <table class="t">
+    <tr><th>The question</th><th>The slope</th><th>Why</th></tr>
+    <tr><td>How much more water for a family of 6 than of 4 <b>in the coastal scheme</b>?</td><td>86 per person: about 172 litres a day</td><td>One area, so temperature is held fixed</td></tr>
+    <tr><td>How much more do Zulal's large households use than its small ones, <b>wherever they live</b>?</td><td>98 per person</td><td>That comparison includes where large households live</td></tr>
+  </table>
+  <div class="callout tip mt"><b>"Holding temperature fixed"</b> is what the second variable does: 86 litres compares households of different sizes in areas equally hot.</div>
+  <aside class="notes"><p>Jamila's scheme is in a mild coastal district, so her answer is 86 with its interval, 84 to 89. The 98 would have over-supplied the scheme by about 12 litres per person per day.</p></aside>
+</section>
+
+<section class="slide" id="what-regression-cannot" data-lo="LO5 LO6" data-label="Limits" data-n="29" data-session="3">
+  <div class="kicker">Lab 4.3, steps 3 and 5</div>
+  <h2>The new residuals are flat; the list of confounders is never known to be complete</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>Trend of the new residuals in temperature: 0.0 litres per degree.</li>
+      <li>The funnel remains: hence the robust standard error.</li>
+      <li>A variable nobody measured may still be mixed in.</li>
+    </ul>
+    <div class="card tint c-navy"><p class="small mb0">"Among households in areas of the same summer temperature, one more person goes with about <b>86</b> litres more a day (95% interval <b>84 to 89</b>), and each degree with about 20 litres more. These are comparisons between different households, not the effect of adding a person to a home, and differences between areas that we did not measure may still be mixed into both numbers."</p></div>
+  </div>
+  <aside class="notes"><p>The card is the two-sentence interpretation the fifth course outcome asks for, from the solution run. The funnel in numbers: residual spread 40 litres for households of 1 or 2, 111 for 6 or more. In real data nobody hands you the generator. The second sentence is the limits statement. Only a designed comparison, where chance decides who gets what, removes confounders you did not think of; that is the subject of DS-302.</p></aside>
+</section>
+
+<section class="slide" id="check-why-slope-moves" data-lo="LO5" data-n="30" data-session="3">
+  <div class="kicker">Checkpoint</div>
+  <h2>Why did the slope move?</h2>
+  <div class="quiz" data-type="single" data-lo="LO5" data-id="check-why-slope-moves-q1">
+    <p class="lead">Across 900 branches, sales are regressed on the number of staff: 12,000 riyals per staff member. When the size of the branch's town is added, the slope on staff falls to 7,000. Which explanation fits?</p>
+    <div class="opts">
+      <div class="opt" data-why="Blames sampling error for a move that comes from changing the question; an interval around 12,000 would not have covered it" data-k="A">The first slope was imprecise because the sample was too small</div>
+      <div class="opt" data-why="Assumes that adding any variable weakens the others: a variable unrelated to staff would leave the slope where it was" data-k="B">Adding a variable always shrinks the other slopes</div>
+      <div class="opt" data-ok data-k="C">Branches in larger towns have more staff and sell more for other reasons too</div>
+      <div class="opt" data-why="Reads the smaller slope as an error in the second model, which is the one that separates the two influences" data-k="D">The second model is wrong, since staff clearly drive sales</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Town size is tied to both staff and sales. Left out, its share of the sales was credited to staff.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. Follow-up: which slope answers "what would one more member of staff add in this branch"? Neither with certainty; 7,000 is the better starting point, and only a designed trial would say.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-4-3" data-auto="lab" data-lab="4.3" data-label="Lab 4.3" data-n="31" data-session="3">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 4.3 · 25 min</div><h2>Add temperature</h2><p class="lead small">Plot the residuals of the one-variable fit against temperature, add temperature to the model, plot the residuals again and explain why the slope on household size moved.</p><a class="nb" href="../labs/D4_3_residuals_confounding.ipynb">D4_3_residuals_confounding.ipynb</a></div><ul class="checklist"><li>Residuals of the one-variable fit against temperature <span class="min">5 min</span></li><li>Add temperature and refit <span class="min">6 min</span></li><li>The residual plot of the new model <span class="min">5 min</span></li><li>Why the slope moved: size and temperature travel together <span class="min">5 min</span></li><li>The two-sentence interpretation <span class="min">4 min</span></li><li class="stretch">✱ Stretch: Predict the size of the move from the two fits and check it</li></ul></div>
+  <aside class="notes"><p>The lab fits its own one-variable model first, so nothing from labs 4.1 and 4.2 is needed. Formulas in statsmodels are written as strings: consumption_l_day ~ household_size + temperature_c. The check of step 5 looks for the slope and the two interval ends as whole numbers and for the word "temperature".</p></aside>
+</section>
+
+<!-- ======================= SESSION 4 ======================= -->
+<section class="slide section" id="s4" data-auto="section" data-session="4" data-n="32">
+  <div class="kicker">Session 4</div>
+  <h1>Writing an inference brief</h1>
+  <ul class="bullets outcomes"><li>Turn a manager's question into an estimand</li><li>Write an estimate, an interval and the limits in one paragraph</li><li>State the population a conclusion applies to</li></ul>
+  <div class="sess-no">04</div>
+</section>
+
+<section class="slide" id="what-a-brief-is" data-lo="LO6" data-label="The brief" data-n="33" data-session="4">
+  <div class="kicker">The product of this course</div>
+  <h2>An inference brief answers one question on two pages</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>Question</b>in the manager's words, then as an estimand</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>Estimate</b>with its interval</div>
+    <div class="arrow">→</div>
+    <div class="step c-purple"><b>Test</b>and the effect size against a threshold</div>
+    <div class="arrow">→</div>
+    <div class="step c-coral"><b>Limits</b>the population, the unit, what the data cannot tell</div>
+  </div>
+  <p class="small mt">Behind it: a notebook that reruns from the raw file with a seed, and a README with a coverage check of the interval method.</p>
+  <aside class="notes"><p>The five parts are the wording of the sixth course outcome: an estimate, an interval, a test, an effect size and stated limits. Days 1 to 4 each supplied one or two of them. This session assembles them on a question the room has not seen.</p></aside>
+</section>
+
+<section class="slide" id="question-to-estimand" data-lo="LO6" data-label="The estimand" data-n="34" data-session="4">
+  <div class="kicker">Before any computing</div>
+  <h2>Turn the question into an estimand: one number in a named population</h2>
+  <table class="t">
+    <tr><th>The manager says</th><th>The estimand</th></tr>
+    <tr><td>"What share of repairs meet the 24-hour standard?"</td><td>The share of this year's 12,000 repairs that took 24 hours or less</td></tr>
+    <tr><td>"Is one contractor better at it?"</td><td>The difference between the contractors in that share</td></tr>
+    <tr><td>"Did the message reduce consumption?"</td><td>The difference between message and control neighbourhoods in the mean change of litres a day per household</td></tr>
+  </table>
+  <div class="callout tip mt"><b>Write it before you open the data.</b> With the unit you will resample and the comparisons you will make: that is the analysis plan of Day 3.</div>
+  <aside class="notes"><p>An estimand has a quantity, a population and, for a comparison, the two things compared. If the estimand cannot be written in one sentence, the question is not yet clear enough to analyse. The third row is one of the capstone questions.</p></aside>
+</section>
+
+<section class="slide" id="share-is-a-mean" data-lo="LO6" data-label="A new statistic" data-n="35" data-session="4">
+  <div class="kicker">Lab 4.4, steps 1 and 2</div>
+  <h2>A new question needs no new method: a share is a mean of zeros and ones</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th>400 sampled repairs</th><th class="num">estimate</th><th class="num">95% interval</th></tr>
+      <tr><td>share within 24 hours</td><td class="num">94.5%</td><td class="num">92.0% to 96.5%</td></tr>
+      <tr><td>gap, contractor A minus B</td><td class="num">+1.6 points</td><td class="num">-2.9 to +6.1</td></tr>
+    </table>
+    <ul class="bullets">
+      <li>Bootstrap for both intervals; a permutation test for the gap: p = 0.51.</li>
+      <li>Truth, all 12,000 repairs: 95.2%. Inside the interval.</li>
+      <li>Coverage of this interval method over 500 studies: 93.6%.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Solution run of lab 4.4. Nothing here was taught as "inference for proportions": the same bootstrap, the same shuffle. That is the pay-off of learning inference by simulation; the recipe does not change when the statistic does.</p></aside>
+</section>
+
+<section class="slide" id="brief-paragraph" data-lo="LO6" data-label="The paragraph" data-n="36" data-session="4">
+  <div class="kicker">Lab 4.4, step 3</div>
+  <h2>One paragraph: estimate, interval, comparison, population, limits</h2>
+  <div class="card tint c-navy"><p class="small mb0">"In a random sample of <b>400</b> of this year's 12,000 leak repairs, <b>94.5%</b> were completed within the 24-hour standard (95% interval <b>92.0% to 96.5%</b>). Contractor A met the standard more often than contractor B by <b>1.6</b> percentage points, a gap that could easily arise by chance (permutation p = <b>0.51</b>; 95% interval -2.9 to +6.1 points). The <b>population</b> is the repairs logged this year at Zulal, including tickets closed late in the system. The sample <b>cannot</b> tell a late repair from a late entry, and it cannot show that the contractors are equal: a gap of a few points either way remains possible."</p></div>
+  <aside class="notes"><p>The solution's paragraph, lightly shortened for the screen. Point at each of the five parts. Two limits are stated: a data limit, late repair or late entry, from Day 1; and an inference limit, no difference shown is not equality, from Day 3.</p></aside>
+</section>
+
+<section class="slide" id="limits-worth-stating" data-lo="LO6" data-label="Limits" data-n="37" data-session="4">
+  <div class="kicker">The part most briefs leave out</div>
+  <h2>Limits worth stating fall into four kinds</h2>
+  <div class="cols cols-4">
+    <div class="card c-teal"><h4>Population</h4><p class="small mb0">Who the conclusion applies to: this year, these districts, surveyed households.</p></div>
+    <div class="card c-cyan"><h4>Sampling</h4><p class="small mb0">How units were drawn, the unit resampled, what a sample this size cannot detect.</p></div>
+    <div class="card c-coral"><h4>Measurement</h4><p class="small mb0">What the recorded number is: a ticket closed late is not always a repair done late.</p></div>
+    <div class="card c-purple"><h4>Comparison</h4><p class="small mb0">Was assignment by lot or by rota, or are the groups different in other ways?</p></div>
+  </div>
+  <div class="callout warn mt"><b>What goes wrong.</b> A ritual sentence, "results should be interpreted with caution". A limit names what could be wrong and in which direction.</div>
+  <aside class="notes"><p>The responsible-use rule of the course belongs to the first card: every brief states the population its conclusions apply to, and results are given by district or contractor, never by household.</p></aside>
+</section>
+
+<section class="slide" id="capstone-questions" data-lo="LO6" data-label="The capstone" data-n="38" data-session="4">
+  <div class="kicker">Lab 4.4, step 5</div>
+  <h2>Three questions you have not seen, each with a trap you have</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>q1 · Meter replacement</h4><p class="small mb0">Did smart meters reduce estimated bills? Rolled out in 8 of the 20 districts of the first phase.</p></div>
+    <div class="card c-cyan"><h4>q2 · Conservation message</h4><p class="small mb0">Did a monthly message cut consumption by at least 10 litres a day? 40 neighbourhoods, 20 by lot.</p></div>
+    <div class="card c-coral"><h4>q3 · Call-back change</h4><p class="small mb0">Did complaints get resolved faster after the new rule, and for which of six types?</p></div>
+  </div>
+  <p class="small mt">Or an approved public dataset. In the defence the assessor names a different resampling unit: you predict the effect on your interval, then show it.</p>
+  <aside class="notes"><p>Do not name the traps; they are in the answer key: q1 sampling unit (district), q2 unit (neighbourhood) and a threshold, q3 six comparisons and a before-and-after design. The datasets are in labs/capstone/data and are not used in class. The capstone is open to an assistant; the defence is the participant's alone.</p></aside>
+</section>
+
+<section class="slide" id="check-brief" data-lo="LO6" data-n="39" data-session="4">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which draft is an inference brief?</h2>
+  <div class="quiz" data-type="single" data-lo="LO6" data-id="check-brief-q1">
+    <p class="lead">A trial sent a reminder letter to 3,000 customers chosen by lot; 3,000 others got none. Which draft could a manager act on?</p>
+    <div class="opts">
+      <div class="opt" data-why="Gives a test result with no size: the manager cannot tell a large effect from a negligible one" data-k="A">The letter worked: late payment differed significantly between the two groups of 3,000 (p = 0.004)</div>
+      <div class="opt" data-why="Gives an estimate with no uncertainty and no statement of who it applies to" data-k="B">Late payment was 2.1 points lower among the customers who got the letter than among the others</div>
+      <div class="opt" data-why="Lists methods and leaves out every result" data-k="C">We compared the groups with a permutation test and a bootstrap interval, both run with a fixed seed</div>
+      <div class="opt" data-ok data-k="D">Late payment fell 2.1 points (95% interval 0.7 to 3.5; p = 0.004) among customers billed in March</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Estimate, interval, test and population are all there, to set against the cost of the letter.</div>
+  </div>
+  <aside class="notes"><p>Answer: D. Ask what is still missing from D for a full brief: the threshold that would make the letter worth sending, and a limit, for example that March may not be a typical month.</p></aside>
+</section>
+
+<section class="slide lab top" id="lab-4-4" data-auto="lab" data-lab="4.4" data-label="Lab 4.4" data-n="40" data-session="4">
+  <div class="cols cols-2 mid"><div><div class="lab-tag">Lab 4.4 · 25 min</div><h2>One paragraph of a brief</h2><p class="lead small">Answer a new question, the share of repairs finished inside the 24-hour standard, with an estimate, an interval and a contractor comparison, draft the paragraph with its limits, then choose a capstone question and write its estimand.</p><a class="nb" href="../labs/D4_4_brief_paragraph.ipynb">D4_4_brief_paragraph.ipynb</a></div><ul class="checklist"><li>A new question: the share inside the 24-hour standard <span class="min">5 min</span></li><li>An interval and a contractor comparison <span class="min">7 min</span></li><li>Draft the estimate, interval and limits paragraph <span class="min">6 min</span></li><li>Check the paragraph against the numbers <span class="min">3 min</span></li><li>Choose the capstone question and write its estimand <span class="min">4 min</span></li><li class="stretch">✱ Stretch: Count the coverage of your interval method over 500 studies</li></ul></div>
+  <aside class="notes"><p>The paragraph is written by the participant, not by an assistant: it is the rehearsal for the defence. The check is mechanical: it finds the six numbers as printed and the words "population", "cannot" and "95%". After step 4, have neighbours swap paragraphs and name the sentence they would challenge. Step 5 records the capstone choice: question, estimand of at least ten words, resampling unit. Collect the choices before the room leaves.</p></aside>
+</section>
+
+<section class="slide" id="wrap-up" data-label="Wrap-up" data-n="41" data-session="4">
+  <div class="kicker">Day 4 in three lines</div>
+  <h2>What to keep</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>A slope in units</h4><p class="small mb0">"One more person goes with 98 litres more a day." A comparison between households, inside the range observed.</p></div>
+    <div class="card c-cyan"><h4>An honest interval</h4><p class="small mb0">Bootstrap the households or use a robust standard error. Then look at the residuals.</p></div>
+    <div class="card c-coral"><h4>Name what is held fixed</h4><p class="small mb0">A second variable moved the slope to 86. State the question each slope answers, and the limits.</p></div>
+  </div>
+  <aside class="notes"><p>Ask each participant to say their capstone estimand in one sentence. A sentence that needs two breaths is not yet an estimand.</p></aside>
+</section>
+
+<section class="slide dark" id="next" data-label="Next" data-n="42" data-session="4">
+  <div class="kicker">Next</div>
+  <h1>Capstone day</h1>
+  <p class="lead">A two-page brief on your question, a notebook that reruns from the raw file, and an eight-minute defence of one result.</p>
+  <ul class="bullets">
+    <li>Start from <code>labs/capstone/README.md</code>: what the repository must hold, the coverage check, the rubric.</li>
+    <li>Commit as you work: the history and the seeded run log are part of the evidence.</li>
+    <li>After the course: an inference brief on a table of the national Open Data Platform within two weeks (<code>labs/followup</code>).</li>
+  </ul>
+  <aside class="notes"><p>The supervised exit check is scheduled by the Academy and its items are not in the repository. Remind participants that an assistant is allowed for the capstone work and not in the defence, where the assessor names a different resampling unit.</p></aside>
+</section>
+</div>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-15T11:16:10Z","version":"2027.1.0","commit":"705e303"},"course":{"id":"ds-201","code":"DS-201","title":"Statistical Inference by Simulation","track":"data-science","lang":"en","dir":"ltr","url":"https://sdaiaacademy.github.io/ds-201/","repo":"SDAIAAcademy/ds-201","home":"../index.html"},"deck":{"id":"day4","kind":"day","day":4,"label":"Day 4","title":"Regression and reporting","prev":"day3.html","next":"capstone.html","md":"day4.md","alt":{}},"sessions":[{"n":1,"label":"Session 1","title":"Least squares as a summary","slide":"s1","outcomes":["Fit a line by least squares and read its slope and intercept","Translate a slope into the units a manager uses","Separate a description of a pattern from a claim about cause"],"minutes":50,"lab":{"id":"4.1","title":"Consumption on household size","minutes":25,"href":"../labs/D4_1_fit_line.ipynb"}},{"n":2,"label":"Session 2","title":"Slopes with intervals","slide":"s2","outcomes":["Bootstrap a regression slope by resampling households","Compare a bootstrap standard error with the one a library reports","Explain which assumption makes the two differ"],"minutes":50,"lab":{"id":"4.2","title":"An interval for the slope","minutes":25,"href":"../labs/D4_2_slope_interval.ipynb"}},{"n":3,"label":"Session 3","title":"Residuals and confounding","slide":"s3","outcomes":["Read a residual plot for curvature and unequal spread","Add a second variable and explain why the first slope moved","State what a regression on observed data cannot settle"],"minutes":50,"lab":{"id":"4.3","title":"Add temperature","minutes":25,"href":"../labs/D4_3_residuals_confounding.ipynb"}},{"n":4,"label":"Session 4","title":"Writing an inference brief","slide":"s4","outcomes":["Turn a manager's question into an estimand","Write an estimate, an interval and the limits in one paragraph","State the population a conclusion applies to"],"minutes":50,"lab":{"id":"4.4","title":"One paragraph of a brief","minutes":25,"href":"../labs/D4_4_brief_paragraph.ipynb"}}],"slides":[{"id":"title","n":1,"title":"Regression and reporting","kind":"title","session":0,"hash":"1c11e0b6","md":"#### [day4#title] Regression and reporting\n\n*SDAIA Academy · Statistical Inference by Simulation*\n\nDay 4: A line summarises how one quantity moves with another; its slope needs an interval, its residuals a look, and its reader a brief\n\nData Science Track · 4 teaching days + capstone day · 4 sessions · 4 labs · DS-201","notes":"Last teaching day. Three sessions on one line through 2,000 households, then the paragraph that carries a result to a manager. The last lab ends with each participant's capstone question, so leave it its full 25 minutes.","minutes":null,"lo":[]},{"id":"agenda","n":2,"title":"Regression and reporting","kind":"content","session":0,"hash":"cbf0e9f2","md":"#### [day4#agenda] Regression and reporting\n\n*Today*\n\n- **Session 1 · Least squares as a summary**: A fitted line is a summary of group averages, and its slope is a number in the manager's units\n- **Session 2 · Slopes with intervals**: A slope is a statistic: it has a sampling distribution, a bootstrap interval and a reported standard error that rests on an assumption\n- **Session 3 · Residuals and confounding**: Residuals show what the line missed; a second variable can move the first slope, and that is confounding\n- **Session 4 · Writing an inference brief**: The brief a manager can act on: the question, the estimate, the interval, the test, the effect size and the limits","notes":"Session 1 fits a line and reads it. Session 2 puts an interval on its slope and finds the library's standard error too small. Session 3 adds a second variable and the slope moves. Session 4 writes the brief.","minutes":null,"lo":[]},{"id":"review-day3","n":3,"title":"How many of these flags can you trust?","kind":"quiz","session":0,"hash":"5649d9fb","md":"#### [day4#review-day3] How many of these flags can you trust?\n\n*Review of Day 3*\n\n**Question:** A monthly report tests 20 service counters against the average at the 0.05 level and flags one. No correction is applied. What is the fair reading of the single flag?\n\n- A. It may well be a false alarm: 20 tests of counters that do not differ give one flag on average\n- B. It has a 5% chance of being a false alarm\n- C. The counter certainly differs from the others\n- D. It must be ignored, since uncorrected tests mean nothing","notes":"Answer: A. Two minutes. The follow-up question: what would you do next? Apply Holm, or give the flagged counter a second, independent look.","minutes":null,"lo":["LO4"]},{"id":"s1","n":4,"title":"Least squares as a summary","kind":"section","session":1,"hash":"265c2577","md":"#### [day4#s1] Least squares as a summary\n\n*Session 1*\n\n- Fit a line by least squares and read its slope and intercept\n- Translate a slope into the units a manager uses\n- Separate a description of a pattern from a claim about cause","notes":"","minutes":null,"lo":["LO5"]},{"id":"planning-question","n":5,"title":"\"How much more water for each additional person?\"","kind":"content","session":1,"hash":"19096274","md":"#### [day4#planning-question] \"How much more water for each additional person?\"\n\n*Jamila's question*\n\n- A new housing scheme for large families needs a supply estimate.\n- Until now every question was about one variable, or one variable in two groups.\n- This one is about how one quantity **moves with** another: consumption with household size.\n\n- **The data.** 2,000 metered households drawn at random from the 80,000: household size, summer temperature of the area, litres a day.","notes":"The file metered_2000.csv is the supplied study for the whole day; each lab loads it afresh. Temperature is in the file from the start and is ignored until session 3, on purpose.","minutes":null,"lo":["LO5"]},{"id":"line-through-means","n":6,"title":"A fitted line is a summary of the group averages","kind":"content","session":1,"hash":"e281f3d5","md":"#### [day4#line-through-means] A fitted line is a summary of the group averages\n\n*Lab 4.1, steps 1 and 2*\n\nFigure: 2,000 households: mean consumption at each household size, and the least-squares line.\n\n- From one size to the next, the mean rises by 88 to 107 litres.\n- One line replaces twelve means with two numbers: where it starts and how steeply it climbs.\n- consumption = 63.7 + 98.48 × people.","notes":"Solution run of lab 4.1. The dots for 10, 11 and 12 people rest on 9, 6 and 2 households: they wander, and the line rightly gives them little weight. Ask why a line and not the twelve means: it is simpler to say, steadier where data are thin, and it can be given an interval.","minutes":null,"lo":["LO5"]},{"id":"least-squares","n":7,"title":"Least squares picks the line with the smallest squared misses","kind":"content","session":1,"hash":"4f5c29da","md":"#### [day4#least-squares] Least squares picks the line with the smallest squared misses\n\n*How the line is chosen*\n\n```python\ndef fit_line(x, y):\n    dx, dy = x - x.mean(), y - y.mean()\n    slope = (dx * dy).mean() / (dx ** 2).mean()\n    intercept = y.mean() - slope * x.mean()\n    return intercept, slope\n```\n\n- slope = covariance(x, y) / variance(x).\n- The line always passes through the point of the two means.\n- The same line as `np.polyfit(x, y, 1)`, and as the projection of FN-103.","notes":"One slide of recap: FN-103 Day 2 derived least squares as a projection and solved the normal equations. Nothing of that is repeated. What is new from here on is inference about the slope.","minutes":null,"lo":["LO5"]},{"id":"slope-in-units","n":8,"title":"A slope is only useful in the manager's units","kind":"content","session":1,"hash":"890d5e10","md":"#### [day4#slope-in-units] A slope is only useful in the manager's units\n\n*Lab 4.1, step 3*\n\n- **98.48** the coefficient in the output\n- **98 litres** more a day for each additional person\n- **3.0 m³** more a month: what a bill is counted in\n\n> **The sentence.** \"Among these households, one more person goes with about 98 litres more a day, about 3.0 cubic metres more a month.\"","notes":"98.48 litres a day times 30 days over 1,000 litres per cubic metre. Always state the units of both variables: \"per person\", \"a day\". A coefficient without units is the most common defect in a regression table.","minutes":null,"lo":["LO5"]},{"id":"intercept-and-range","n":9,"title":"Predict inside the range you observed; read the intercept with care","kind":"content","session":1,"hash":"4bbbe34e","md":"#### [day4#intercept-and-range] Predict inside the range you observed; read the intercept with care\n\n*Lab 4.1, step 4*\n\n| household of | line | observed mean |\n| --- | --- | --- |\n| 2 people | 261 | 252 |\n| 6 people | 655 | 659 |\n| 0 people | 64 | none exists |\n| 40 people | 4,003 | none observed |\n\n- The **intercept**, 64 litres, is where the line meets the axis, not a measurement.\n- The data stop at 12 people. Beyond that the line is a guess with a formula.","notes":"The 40-person row is 63.7 plus 40 times 98.48, computed here to show how confidently a line extrapolates. A compound of 40 on one meter is a different kind of customer.","minutes":null,"lo":["LO5"]},{"id":"goes-with-not-causes","n":10,"title":"\"Goes with\" is not \"causes\"","kind":"content","session":1,"hash":"f0d25f69","md":"#### [day4#goes-with-not-causes] \"Goes with\" is not \"causes\"\n\n*What the line does not say*\n\n- **What was compared.** Different households of different sizes, at one moment.\n- **What was not observed.** One household before and after a person moved in.\n\n- Households of different sizes may differ in other ways too: where they live, the kind of home, a garden.\n- Whatever travels with household size is folded into the 98 litres. Session 3 finds one such thing.","notes":"Keep the wording discipline from now on: \"one more person goes with\", \"households with one more person use on average\". The planted confounder is temperature; do not name it yet.","minutes":null,"lo":["LO5"]},{"id":"sample-and-population-line","n":11,"title":"The slope is a statistic: another sample gives another slope","kind":"content","session":1,"hash":"cf357b41","md":"#### [day4#sample-and-population-line] The slope is a statistic: another sample gives another slope\n\n*Lab 4.1, step 5*\n\n|  | intercept | slope, litres per person |\n| --- | --- | --- |\n| your sample of 2,000 | 63.7 | 98.48 |\n| all 80,000 households | 71.4 | 96.21 |\n| the miss |  | +2.27 |\n\n- Household size accounts for 79% of the variation in consumption (R² = 0.792).\n- The slope needs an interval, like every estimate this week.","notes":"R squared is mentioned once and not developed: it measures how tightly the points hug the line, not whether the slope is right, and a high value protects against none of the problems of the next two sessions.","minutes":null,"lo":["LO5"]},{"id":"check-reading-slope","n":12,"title":"What does this slope tell the planner?","kind":"quiz","session":1,"hash":"58d2e030","md":"#### [day4#check-reading-slope] What does this slope tell the planner?\n\n*Checkpoint*\n\n**Question:** For 1,500 shops, monthly water use in cubic metres is regressed on floor area in square metres: use = 4.0 + 0.12 × area. The shops range from 20 to 400 square metres. Which statement is supported?\n\n- A. Extending a shop by 100 square metres will raise its use by 12 cubic metres\n- B. A warehouse of 5,000 square metres uses about 604 cubic metres\n- C. A shop with no floor area uses 4 cubic metres\n- D. Among these shops, one that is 100 square metres larger uses about 12 cubic metres more on average","notes":"Answer: D. Option A is the one managers hear by default; the analyst's wording has to prevent it.","minutes":null,"lo":["LO5"]},{"id":"lab-4-1","n":13,"title":"Consumption on household size","kind":"lab","session":1,"hash":"a84b4d57","md":"#### [day4#lab-4-1] Consumption on household size\n\nLab 4.1 · 25 min\n\nFit daily consumption on household size for 2,000 metered households, state the slope in litres a day and cubic metres a month, and compare the line with the one the whole population gives.\n\n[D4_1_fit_line.ipynb](https://sdaiaacademy.github.io/ds-201/labs/D4_1_fit_line.ipynb)\n\n- [ ] Scatter and mean consumption by household size (5 min)\n- [ ] Fit the line by least squares (6 min)\n- [ ] The slope in litres a day and cubic metres a month (5 min)\n- [ ] Predict for 2 and 6 people; read the intercept (4 min)\n- [ ] Compare with the population line (5 min)\n- [ ] ✱ Stretch: Fit the same line with a statistics library and find the slope in its summary","notes":"Steps 1 to 3 without an assistant: the day's first core computation. The formula of step 2 is checked against np.polyfit. A common slip in step 3 is dividing by 1,000 without multiplying by 30 days. The lab loads the supplied sample of 2,000 and needs nothing from earlier days.","minutes":null,"lo":[]},{"id":"s2","n":14,"title":"Slopes with intervals","kind":"section","session":2,"hash":"c2a6e961","md":"#### [day4#s2] Slopes with intervals\n\n*Session 2*\n\n- Bootstrap a regression slope by resampling households\n- Compare a bootstrap standard error with the one a library reports\n- Explain which assumption makes the two differ","notes":"","minutes":null,"lo":["LO2","LO5"]},{"id":"slope-varies","n":15,"title":"A slope has a sampling distribution and a standard error","kind":"content","session":2,"hash":"eadaf198","md":"#### [day4#slope-varies] A slope has a sampling distribution and a standard error\n\n*Day 1, for a slope*\n\n- Your sample says 98.48 litres per person. The population says 96.21.\n- Everything from Days 1 and 2 applies: the slope's spread over samples is its standard error, and an interval is built from it.\n- Two routes again: a formula in the library, and a bootstrap.\n\n```text\n             coef  std err      t  [0.025  0.975]\nIntercept  63.739    5.160  12.35  53.620  73.858\nsize       98.479    1.128  87.27  96.266 100.692\n```","notes":"The table is the statsmodels summary from the stretch of lab 4.1, with the p-value column (0.000 in both rows) left out to fit and household_size shortened to size. Walk the columns: coefficient, standard error, t as their ratio, the 95% interval. The reported interval, 96.27 to 100.69, does not contain the population slope 96.21. One miss proves nothing; this session counts.","minutes":null,"lo":["LO5"]},{"id":"pairs-bootstrap","n":16,"title":"Bootstrap the households: each one keeps its pair of values","kind":"content","session":2,"hash":"aec36880","md":"#### [day4#pairs-bootstrap] Bootstrap the households: each one keeps its pair of values\n\n*Lab 4.2, step 2*\n\n```python\nidx = gen.integers(0, n, size=(B, n))\nxs, ys = x[idx], y[idx]   # pairs stay together\nxc = xs - xs.mean(axis=1, keepdims=True)\nyc = ys - ys.mean(axis=1, keepdims=True)\nnum = (xc * yc).mean(axis=1)\nslopes = num / (xc ** 2).mean(axis=1)\n```\n\n- The unit drawn at random is the household, so the household is resampled: its size and its consumption together.\n- Resample x and y separately and the relation is destroyed: every slope comes out near zero.\n- 2,000 slopes: standard deviation 1.409.","notes":"The same index array picks both columns, which is the whole point. This \"pairs bootstrap\" makes no assumption about how the points scatter around the line.","minutes":null,"lo":["LO2","LO5"]},{"id":"two-standard-errors","n":17,"title":"The library's standard error is a fifth too small","kind":"content","session":2,"hash":"c5df0b44","md":"#### [day4#two-standard-errors] The library's standard error is a fifth too small\n\n*Lab 4.2, step 3*\n\n| method | standard error | 95% interval | width |\n| --- | --- | --- | --- |\n| reported by the library | 1.13 | 96.27 to 100.69 | 4.42 |\n| bootstrap of households | 1.41 | 95.66 to 101.23 | 5.57 |\n\n- The bootstrap standard error is 25% larger; put the other way, the library's is 20% smaller.\n- The population slope, 96.21, is inside the bootstrap interval and just outside the reported one.\n- They disagree for a reason you can see in the data.","notes":"Ask the room to guess the reason before the next slide. Hint: lab 4.1's scatter plot widened to the right.","minutes":null,"lo":["LO5"]},{"id":"equal-spread-assumption","n":18,"title":"The formula assumes equal spread around the line; the data do not have it","kind":"content","session":2,"hash":"c0a9f647","md":"#### [day4#equal-spread-assumption] The formula assumes equal spread around the line; the data do not have it\n\n*Lab 4.2, step 4*\n\nFigure: Standard deviation of the residuals at each household size.\n\n- Households of 8 scatter twice as widely around the line as households of 1: 133 against 67 litres.\n- Large households sit at the end of the line, where a point has most pull on the slope, and they are the noisiest.\n- The formula averages the noise over everyone and understates the swing.","notes":"The textbook word is heteroscedasticity; \"unequal spread\" does the job. It is the rule for quantities that grow: bigger households, bigger customers, bigger bills all vary more.","minutes":null,"lo":["LO5"]},{"id":"slope-coverage","n":19,"title":"Counted over 300 samples, the bootstrap interval keeps the promise","kind":"content","session":2,"hash":"6dda5c6a","md":"#### [day4#slope-coverage] Counted over 300 samples, the bootstrap interval keeps the promise\n\n*Lab 4.2, step 5*\n\n| Item | Value |\n| --- | --- |\n| reported interval | 92.0% |\n| bootstrap interval | 95.0% |\n| promised | 95% |\n\n- Libraries can drop the assumption too: the robust standard error (HC3) is 1.402, the bootstrap's 1.409.\n- When the reported and the robust standard errors differ, report the robust one and say why.","notes":"300 samples of 2,000 drawn from the population, 500 resamples each. With 300 samples the counting error is about 2.5 points, so 92% is a shortfall at the edge of what the count can show; the direction agrees with the standard errors. The robust standard error is one argument to the library and costs nothing.","minutes":null,"lo":["LO2","LO5"]},{"id":"reading-regression-output","n":20,"title":"Read a regression table in this order","kind":"content","session":2,"hash":"b3c58dd6","md":"#### [day4#reading-regression-output] Read a regression table in this order\n\n*In practice*\n\n1. **The coefficient, with units:** 98 litres a day per person.\n2. **Its interval:** 95.7 to 101.2 by bootstrap. Is the whole interval large enough, or small enough, to matter?\n3. **Where the standard error comes from:** the default formula, a robust one, or a bootstrap.\n4. **The p-value last:** it tests \"slope is exactly zero\", which is rarely the question.","notes":"The same order as yesterday's report: estimate, interval, then test. Nobody doubted that bigger households use more water; the t of 87 answers a question nobody asked.","minutes":null,"lo":["LO5"]},{"id":"check-which-se","n":21,"title":"Which standard error goes in the brief?","kind":"quiz","session":2,"hash":"62d993a0","md":"#### [day4#check-which-se] Which standard error goes in the brief?\n\n*Checkpoint*\n\n**Question:** A regression of monthly bill on meter size gives a slope of 41 riyals per size step. The library reports a standard error of 2.0; a bootstrap of customers gives 3.1. A plot shows bills scattering far more widely for large meters. What should the analyst report?\n\n- A. 2.0, because the library's formula is the standard method\n- B. 3.1, because the spread is unequal and the bootstrap does not assume otherwise\n- C. About 2.5, the middle of the two\n- D. Neither: the slope cannot be trusted when spreads differ","notes":"Answer: B. Option D confuses two things worth separating: the slope itself is still a fair estimate; only its stated uncertainty was wrong.","minutes":null,"lo":["LO5"]},{"id":"lab-4-2","n":22,"title":"An interval for the slope","kind":"lab","session":2,"hash":"cc22c285","md":"#### [day4#lab-4-2] An interval for the slope\n\nLab 4.2 · 25 min\n\nBootstrap the slope of consumption on household size 2,000 times, compare its standard error and interval with the ones the regression summary reports, and find out from the residual spread why they differ.\n\n[D4_2_slope_interval.ipynb](https://sdaiaacademy.github.io/ds-201/labs/D4_2_slope_interval.ipynb)\n\n- [ ] Read the reported standard error of the slope (4 min)\n- [ ] Bootstrap the pairs: 2,000 slopes (8 min)\n- [ ] Compare the two standard errors and intervals (5 min)\n- [ ] Why they differ: the spread by household size (4 min)\n- [ ] Coverage of both intervals over 300 samples (4 min)\n- [ ] ✱ Stretch: Ask the library for a robust standard error and compare","notes":"The lab loads the sample of 2,000 afresh. The coverage loop of step 5 is supplied, not an exercise: it runs 300 samples with 500 resamples each and takes about half a minute; in quick mode 60 samples, where the two coverages can tie or cross. Read the direction of the standard errors, not small coverage differences, in quick mode.","minutes":null,"lo":[]},{"id":"s3","n":23,"title":"Residuals and confounding","kind":"section","session":3,"hash":"692f5243","md":"#### [day4#s3] Residuals and confounding\n\n*Session 3*\n\n- Read a residual plot for curvature and unequal spread\n- Add a second variable and explain why the first slope moved\n- State what a regression on observed data cannot settle","notes":"","minutes":null,"lo":["LO5"]},{"id":"residuals-are-evidence","n":24,"title":"A residual is what the model missed, and patterns in residuals are evidence","kind":"content","session":3,"hash":"8ec0e01c","md":"#### [day4#residuals-are-evidence] A residual is what the model missed, and patterns in residuals are evidence\n\n*What the line left behind*\n\n- **No pattern.** A level band around zero: the model has captured what is systematic.\n- **A trend or a curve.** Against some variable the residuals rise, fall or bend: something systematic is missing.\n- **A funnel.** The band widens: unequal spread. The slopes stand, the default standard errors do not.\n\nresidual = observed - fitted. Plot the residuals against the fitted values, against each variable in the model, and against variables you left out.","notes":"The third instruction is the one people skip and the one that pays today. Session 2 found the funnel; this session finds a trend against a variable that is not in the model.","minutes":null,"lo":["LO5"]},{"id":"residuals-vs-temperature","n":25,"title":"The residuals of the one-variable line rise with temperature","kind":"content","session":3,"hash":"f73a6e92","md":"#### [day4#residuals-vs-temperature] The residuals of the one-variable line rise with temperature\n\n*Lab 4.3, step 1*\n\n**17.0** litres of residual for each degree of summer temperature\n\n- In hot areas the line is too low; in mild areas too high.\n- Hot districts use more water per household: cooling, gardens, evaporation.\n- Temperature was in the file all along. The model never asked.","notes":"Zulal's 30 districts have mean summer temperatures between 33 and 45 degrees. Show the scatter in the notebook: a clear upward band. If the model were complete, this plot would be flat.","minutes":null,"lo":["LO5"]},{"id":"slope-moved","n":26,"title":"Add temperature, and the slope on household size drops by 12 litres","kind":"content","session":3,"hash":"1c4908f1","md":"#### [day4#slope-moved] Add temperature, and the slope on household size drops by 12 litres\n\n*Lab 4.3, step 2*\n\n| model | litres per person | litres per degree | R² |\n| --- | --- | --- | --- |\n| household size alone | 98.48 |  | 0.792 |\n| household size and temperature | 86.19 | 19.84 | 0.865 |\n\n- The move, 12.3 litres, is about nine times the slope's standard error (1.32, robust).\n- No interval around 98 warned of it: an interval measures sampling error, and this is not sampling error.\n- It is a different question getting a different answer.","notes":"The generator of the data used 85 litres per person and 20 per degree; in all 80,000 households the two-variable fit gives 84.8 and 19.9. The two-variable model recovers what was planted; the one-variable model could not, at any sample size.","minutes":null,"lo":["LO5"]},{"id":"confounding","n":27,"title":"Household size and temperature travel together: that is confounding","kind":"content","session":3,"hash":"841ce993","md":"#### [day4#confounding] Household size and temperature travel together: that is confounding\n\n*Lab 4.3, step 4*\n\n1. **Summer temperature** hot areas have larger households (5.19 people against 3.37 in mild areas)\n2. **Household size** the variable you looked at\n3. **Consumption** pushed up by both\n\n- Correlation of household size with temperature: 0.38.\n- Comparing households by size alone compares, in part, hot areas with mild ones.\n- The one-variable slope credited people with litres that belong to the heat.\n- The move is predictable: 19.84 litres per degree × 0.619 degrees per additional person = 12.3.","notes":"A confounder is tied to both the variable of interest and the outcome. The arithmetic in the last bullet is the stretch of lab 4.3 and is exact for least squares. Temperature also pushes consumption directly, which the flow shows as one chain for simplicity; say so.","minutes":null,"lo":["LO5"]},{"id":"held-fixed","n":28,"title":"Both slopes are right, for different questions","kind":"content","session":3,"hash":"0dea0bf1","md":"#### [day4#held-fixed] Both slopes are right, for different questions\n\n*Which slope is right?*\n\n| The question | The slope | Why |\n| --- | --- | --- |\n| How much more water for a family of 6 than of 4 **in the coastal scheme**? | 86 per person: about 172 litres a day | One area, so temperature is held fixed |\n| How much more do Zulal's large households use than its small ones, **wherever they live**? | 98 per person | That comparison includes where large households live |\n\n> **\"Holding temperature fixed\"** is what the second variable does: 86 litres compares households of different sizes in areas equally hot.","notes":"Jamila's scheme is in a mild coastal district, so her answer is 86 with its interval, 84 to 89. The 98 would have over-supplied the scheme by about 12 litres per person per day.","minutes":null,"lo":["LO5"]},{"id":"what-regression-cannot","n":29,"title":"The new residuals are flat; the list of confounders is never known to be complete","kind":"content","session":3,"hash":"bed29440","md":"#### [day4#what-regression-cannot] The new residuals are flat; the list of confounders is never known to be complete\n\n*Lab 4.3, steps 3 and 5*\n\n- Trend of the new residuals in temperature: 0.0 litres per degree.\n- The funnel remains: hence the robust standard error.\n- A variable nobody measured may still be mixed in.\n\n- \"Among households in areas of the same summer temperature, one more person goes with about **86** litres more a day (95% interval **84 to 89**), and each degree with about 20 litres more. These are comparisons between different households, not the effect of adding a person to a home, and differences between areas that we did not measure may still be mixed into both numbers.\"","notes":"The card is the two-sentence interpretation the fifth course outcome asks for, from the solution run. The funnel in numbers: residual spread 40 litres for households of 1 or 2, 111 for 6 or more. In real data nobody hands you the generator. The second sentence is the limits statement. Only a designed comparison, where chance decides who gets what, removes confounders you did not think of; that is the subject of DS-302.","minutes":null,"lo":["LO5","LO6"]},{"id":"check-why-slope-moves","n":30,"title":"Why did the slope move?","kind":"quiz","session":3,"hash":"8f61e1de","md":"#### [day4#check-why-slope-moves] Why did the slope move?\n\n*Checkpoint*\n\n**Question:** Across 900 branches, sales are regressed on the number of staff: 12,000 riyals per staff member. When the size of the branch's town is added, the slope on staff falls to 7,000. Which explanation fits?\n\n- A. The first slope was imprecise because the sample was too small\n- B. Adding a variable always shrinks the other slopes\n- C. Branches in larger towns have more staff and sell more for other reasons too\n- D. The second model is wrong, since staff clearly drive sales","notes":"Answer: C. Follow-up: which slope answers \"what would one more member of staff add in this branch\"? Neither with certainty; 7,000 is the better starting point, and only a designed trial would say.","minutes":null,"lo":["LO5"]},{"id":"lab-4-3","n":31,"title":"Add temperature","kind":"lab","session":3,"hash":"543a46b8","md":"#### [day4#lab-4-3] Add temperature\n\nLab 4.3 · 25 min\n\nPlot the residuals of the one-variable fit against temperature, add temperature to the model, plot the residuals again and explain why the slope on household size moved.\n\n[D4_3_residuals_confounding.ipynb](https://sdaiaacademy.github.io/ds-201/labs/D4_3_residuals_confounding.ipynb)\n\n- [ ] Residuals of the one-variable fit against temperature (5 min)\n- [ ] Add temperature and refit (6 min)\n- [ ] The residual plot of the new model (5 min)\n- [ ] Why the slope moved: size and temperature travel together (5 min)\n- [ ] The two-sentence interpretation (4 min)\n- [ ] ✱ Stretch: Predict the size of the move from the two fits and check it","notes":"The lab fits its own one-variable model first, so nothing from labs 4.1 and 4.2 is needed. Formulas in statsmodels are written as strings: consumption_l_day ~ household_size + temperature_c. The check of step 5 looks for the slope and the two interval ends as whole numbers and for the word \"temperature\".","minutes":null,"lo":[]},{"id":"s4","n":32,"title":"Writing an inference brief","kind":"section","session":4,"hash":"3955211b","md":"#### [day4#s4] Writing an inference brief\n\n*Session 4*\n\n- Turn a manager's question into an estimand\n- Write an estimate, an interval and the limits in one paragraph\n- State the population a conclusion applies to","notes":"","minutes":null,"lo":["LO6"]},{"id":"what-a-brief-is","n":33,"title":"An inference brief answers one question on two pages","kind":"content","session":4,"hash":"64304b41","md":"#### [day4#what-a-brief-is] An inference brief answers one question on two pages\n\n*The product of this course*\n\n1. **Question** in the manager's words, then as an estimand\n2. **Estimate** with its interval\n3. **Test** and the effect size against a threshold\n4. **Limits** the population, the unit, what the data cannot tell\n\nBehind it: a notebook that reruns from the raw file with a seed, and a README with a coverage check of the interval method.","notes":"The five parts are the wording of the sixth course outcome: an estimate, an interval, a test, an effect size and stated limits. Days 1 to 4 each supplied one or two of them. This session assembles them on a question the room has not seen.","minutes":null,"lo":["LO6"]},{"id":"question-to-estimand","n":34,"title":"Turn the question into an estimand: one number in a named population","kind":"content","session":4,"hash":"28af5254","md":"#### [day4#question-to-estimand] Turn the question into an estimand: one number in a named population\n\n*Before any computing*\n\n| The manager says | The estimand |\n| --- | --- |\n| \"What share of repairs meet the 24-hour standard?\" | The share of this year's 12,000 repairs that took 24 hours or less |\n| \"Is one contractor better at it?\" | The difference between the contractors in that share |\n| \"Did the message reduce consumption?\" | The difference between message and control neighbourhoods in the mean change of litres a day per household |\n\n> **Write it before you open the data.** With the unit you will resample and the comparisons you will make: that is the analysis plan of Day 3.","notes":"An estimand has a quantity, a population and, for a comparison, the two things compared. If the estimand cannot be written in one sentence, the question is not yet clear enough to analyse. The third row is one of the capstone questions.","minutes":null,"lo":["LO6"]},{"id":"share-is-a-mean","n":35,"title":"A new question needs no new method: a share is a mean of zeros and ones","kind":"content","session":4,"hash":"815a9786","md":"#### [day4#share-is-a-mean] A new question needs no new method: a share is a mean of zeros and ones\n\n*Lab 4.4, steps 1 and 2*\n\n| 400 sampled repairs | estimate | 95% interval |\n| --- | --- | --- |\n| share within 24 hours | 94.5% | 92.0% to 96.5% |\n| gap, contractor A minus B | +1.6 points | -2.9 to +6.1 |\n\n- Bootstrap for both intervals; a permutation test for the gap: p = 0.51.\n- Truth, all 12,000 repairs: 95.2%. Inside the interval.\n- Coverage of this interval method over 500 studies: 93.6%.","notes":"Solution run of lab 4.4. Nothing here was taught as \"inference for proportions\": the same bootstrap, the same shuffle. That is the pay-off of learning inference by simulation; the recipe does not change when the statistic does.","minutes":null,"lo":["LO6"]},{"id":"brief-paragraph","n":36,"title":"One paragraph: estimate, interval, comparison, population, limits","kind":"content","session":4,"hash":"cafb7bc4","md":"#### [day4#brief-paragraph] One paragraph: estimate, interval, comparison, population, limits\n\n*Lab 4.4, step 3*\n\n- \"In a random sample of **400** of this year's 12,000 leak repairs, **94.5%** were completed within the 24-hour standard (95% interval **92.0% to 96.5%**). Contractor A met the standard more often than contractor B by **1.6** percentage points, a gap that could easily arise by chance (permutation p = **0.51**; 95% interval -2.9 to +6.1 points). The **population** is the repairs logged this year at Zulal, including tickets closed late in the system. The sample **cannot** tell a late repair from a late entry, and it cannot show that the contractors are equal: a gap of a few points either way remains possible.\"","notes":"The solution's paragraph, lightly shortened for the screen. Point at each of the five parts. Two limits are stated: a data limit, late repair or late entry, from Day 1; and an inference limit, no difference shown is not equality, from Day 3.","minutes":null,"lo":["LO6"]},{"id":"limits-worth-stating","n":37,"title":"Limits worth stating fall into four kinds","kind":"content","session":4,"hash":"7d0563dc","md":"#### [day4#limits-worth-stating] Limits worth stating fall into four kinds\n\n*The part most briefs leave out*\n\n- **Population.** Who the conclusion applies to: this year, these districts, surveyed households.\n- **Sampling.** How units were drawn, the unit resampled, what a sample this size cannot detect.\n- **Measurement.** What the recorded number is: a ticket closed late is not always a repair done late.\n- **Comparison.** Was assignment by lot or by rota, or are the groups different in other ways?\n\n> **What goes wrong.** A ritual sentence, \"results should be interpreted with caution\". A limit names what could be wrong and in which direction.","notes":"The responsible-use rule of the course belongs to the first card: every brief states the population its conclusions apply to, and results are given by district or contractor, never by household.","minutes":null,"lo":["LO6"]},{"id":"capstone-questions","n":38,"title":"Three questions you have not seen, each with a trap you have","kind":"content","session":4,"hash":"a98fa683","md":"#### [day4#capstone-questions] Three questions you have not seen, each with a trap you have\n\n*Lab 4.4, step 5*\n\n- **q1 · Meter replacement.** Did smart meters reduce estimated bills? Rolled out in 8 of the 20 districts of the first phase.\n- **q2 · Conservation message.** Did a monthly message cut consumption by at least 10 litres a day? 40 neighbourhoods, 20 by lot.\n- **q3 · Call-back change.** Did complaints get resolved faster after the new rule, and for which of six types?\n\nOr an approved public dataset. In the defence the assessor names a different resampling unit: you predict the effect on your interval, then show it.","notes":"Do not name the traps; they are in the answer key: q1 sampling unit (district), q2 unit (neighbourhood) and a threshold, q3 six comparisons and a before-and-after design. The datasets are in labs/capstone/data and are not used in class. The capstone is open to an assistant; the defence is the participant's alone.","minutes":null,"lo":["LO6"]},{"id":"check-brief","n":39,"title":"Which draft is an inference brief?","kind":"quiz","session":4,"hash":"5d4f23f1","md":"#### [day4#check-brief] Which draft is an inference brief?\n\n*Checkpoint*\n\n**Question:** A trial sent a reminder letter to 3,000 customers chosen by lot; 3,000 others got none. Which draft could a manager act on?\n\n- A. The letter worked: late payment differed significantly between the two groups of 3,000 (p = 0.004)\n- B. Late payment was 2.1 points lower among the customers who got the letter than among the others\n- C. We compared the groups with a permutation test and a bootstrap interval, both run with a fixed seed\n- D. Late payment fell 2.1 points (95% interval 0.7 to 3.5; p = 0.004) among customers billed in March","notes":"Answer: D. Ask what is still missing from D for a full brief: the threshold that would make the letter worth sending, and a limit, for example that March may not be a typical month.","minutes":null,"lo":["LO6"]},{"id":"lab-4-4","n":40,"title":"One paragraph of a brief","kind":"lab","session":4,"hash":"6d0fa91c","md":"#### [day4#lab-4-4] One paragraph of a brief\n\nLab 4.4 · 25 min\n\nAnswer a new question, the share of repairs finished inside the 24-hour standard, with an estimate, an interval and a contractor comparison, draft the paragraph with its limits, then choose a capstone question and write its estimand.\n\n[D4_4_brief_paragraph.ipynb](https://sdaiaacademy.github.io/ds-201/labs/D4_4_brief_paragraph.ipynb)\n\n- [ ] A new question: the share inside the 24-hour standard (5 min)\n- [ ] An interval and a contractor comparison (7 min)\n- [ ] Draft the estimate, interval and limits paragraph (6 min)\n- [ ] Check the paragraph against the numbers (3 min)\n- [ ] Choose the capstone question and write its estimand (4 min)\n- [ ] ✱ Stretch: Count the coverage of your interval method over 500 studies","notes":"The paragraph is written by the participant, not by an assistant: it is the rehearsal for the defence. The check is mechanical: it finds the six numbers as printed and the words \"population\", \"cannot\" and \"95%\". After step 4, have neighbours swap paragraphs and name the sentence they would challenge. Step 5 records the capstone choice: question, estimand of at least ten words, resampling unit. Collect the choices before the room leaves.","minutes":null,"lo":[]},{"id":"wrap-up","n":41,"title":"What to keep","kind":"content","session":4,"hash":"c195a7d6","md":"#### [day4#wrap-up] What to keep\n\n*Day 4 in three lines*\n\n- **A slope in units.** \"One more person goes with 98 litres more a day.\" A comparison between households, inside the range observed.\n- **An honest interval.** Bootstrap the households or use a robust standard error. Then look at the residuals.\n- **Name what is held fixed.** A second variable moved the slope to 86. State the question each slope answers, and the limits.","notes":"Ask each participant to say their capstone estimand in one sentence. A sentence that needs two breaths is not yet an estimand.","minutes":null,"lo":[]},{"id":"next","n":42,"title":"Capstone day","kind":"content","session":4,"hash":"9748cb87","md":"#### [day4#next] Capstone day\n\n*Next*\n\nA two-page brief on your question, a notebook that reruns from the raw file, and an eight-minute defence of one result.\n\n- Start from `labs/capstone/README.md`: what the repository must hold, the coverage check, the rubric.\n- Commit as you work: the history and the seeded run log are part of the evidence.\n- After the course: an inference brief on a table of the national Open Data Platform within two weeks (`labs/followup`).","notes":"The supervised exit check is scheduled by the Academy and its items are not in the repository. Remind participants that an assistant is allowed for the capstone work and not in the defence, where the assessor names a different resampling unit.","minutes":null,"lo":[]}],"activities":[{"id":"review-day3-q1","slide":"review-day3","type":"single","prompt":"A monthly report tests 20 service counters against the average at the 0.05 level and flags one. No correction is applied. What is the fair reading of the single flag?","options":[{"key":"A","text":"It may well be a false alarm: 20 tests of counters that do not differ give one flag on average"},{"key":"B","text":"It has a 5% chance of being a false alarm"},{"key":"C","text":"The counter certainly differs from the others"},{"key":"D","text":"It must be ignored, since uncorrected tests mean nothing"}],"correct":[0],"explanation":"20 × 0.05 = 1 false flag expected when nothing differs. One flag in twenty is what chance alone delivers.","misconceptions":["","Applies the error rate of one planned test to the best of twenty","Reads a p-value below 0.05 as proof, whatever the number of tests","Dismisses the result outright: a flag after correction, or a second look, could still be real"],"lo":["LO4"]},{"id":"check-reading-slope-q1","slide":"check-reading-slope","type":"single","prompt":"For 1,500 shops, monthly water use in cubic metres is regressed on floor area in square metres: use = 4.0 + 0.12 × area. The shops range from 20 to 400 square metres. Which statement is supported?","options":[{"key":"A","text":"Extending a shop by 100 square metres will raise its use by 12 cubic metres"},{"key":"B","text":"A warehouse of 5,000 square metres uses about 604 cubic metres"},{"key":"C","text":"A shop with no floor area uses 4 cubic metres"},{"key":"D","text":"Among these shops, one that is 100 square metres larger uses about 12 cubic metres more on average"}],"correct":[3],"explanation":"The slope compares shops of different sizes within the range observed: 0.12 × 100 = 12 cubic metres.","misconceptions":["Reads a comparison between shops as the effect of changing one shop","Extrapolates far beyond the largest shop observed","Reads the intercept as a measurement: no shop has zero floor area",""],"lo":["LO5"]},{"id":"check-which-se-q1","slide":"check-which-se","type":"single","prompt":"A regression of monthly bill on meter size gives a slope of 41 riyals per size step. The library reports a standard error of 2.0; a bootstrap of customers gives 3.1. A plot shows bills scattering far more widely for large meters. What should the analyst report?","options":[{"key":"A","text":"2.0, because the library's formula is the standard method"},{"key":"B","text":"3.1, because the spread is unequal and the bootstrap does not assume otherwise"},{"key":"C","text":"About 2.5, the middle of the two"},{"key":"D","text":"Neither: the slope cannot be trusted when spreads differ"}],"correct":[1],"explanation":"Unequal spread does not bias the slope; it makes the default standard error too small. The bootstrap, or a robust standard error, is the honest one.","misconceptions":["Chooses the smaller error because it looks better, although its assumption of equal spread visibly fails","","Averages a valid and an invalid figure","Gives up the estimate although a valid standard error is at hand"],"lo":["LO5"]},{"id":"check-why-slope-moves-q1","slide":"check-why-slope-moves","type":"single","prompt":"Across 900 branches, sales are regressed on the number of staff: 12,000 riyals per staff member. When the size of the branch's town is added, the slope on staff falls to 7,000. Which explanation fits?","options":[{"key":"A","text":"The first slope was imprecise because the sample was too small"},{"key":"B","text":"Adding a variable always shrinks the other slopes"},{"key":"C","text":"Branches in larger towns have more staff and sell more for other reasons too"},{"key":"D","text":"The second model is wrong, since staff clearly drive sales"}],"correct":[2],"explanation":"Town size is tied to both staff and sales. Left out, its share of the sales was credited to staff.","misconceptions":["Blames sampling error for a move that comes from changing the question; an interval around 12,000 would not have covered it","Assumes that adding any variable weakens the others: a variable unrelated to staff would leave the slope where it was","","Reads the smaller slope as an error in the second model, which is the one that separates the two influences"],"lo":["LO5"]},{"id":"check-brief-q1","slide":"check-brief","type":"single","prompt":"A trial sent a reminder letter to 3,000 customers chosen by lot; 3,000 others got none. Which draft could a manager act on?","options":[{"key":"A","text":"The letter worked: late payment differed significantly between the two groups of 3,000 (p = 0.004)"},{"key":"B","text":"Late payment was 2.1 points lower among the customers who got the letter than among the others"},{"key":"C","text":"We compared the groups with a permutation test and a bootstrap interval, both run with a fixed seed"},{"key":"D","text":"Late payment fell 2.1 points (95% interval 0.7 to 3.5; p = 0.004) among customers billed in March"}],"correct":[3],"explanation":"Estimate, interval, test and population are all there, to set against the cost of the letter.","misconceptions":["Gives a test result with no size: the manager cannot tell a large effect from a negligible one","Gives an estimate with no uncertainty and no statement of who it applies to","Lists methods and leaves out every result",""],"lo":["LO6"]}],"ai":{"context":{"course":"../context/course.md","courseJs":"../context/course.js","day":"day4.md","llms":"../llms.txt"},"tasks":[],"tools":[]},"bridge":{"allowedOrigins":[]},"features":{},"strings":{}}</script>
+<script src="../_engine/academy.js"></script>
+</body>
+</html>

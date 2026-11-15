@@ -1,0 +1,22 @@
+{
+ "choice": {
+  "estimand": "The difference between message and control neighbourhoods in the mean change of daily consumption per household, in litres a day.",
+  "question": "q2",
+  "unit": "neighbourhood"
+ },
+ "coverage": 0.936,
+ "paragraph": "In a random sample of 400 of this year's 12,000 leak repairs, 94.5% were completed within the 24-hour standard (95% interval 92.0% to 96.5%). Contractor A met the standard more often than contractor B by 1.6 percentage points, a gap that could easily arise by chance (permutation p = 0.51; 95% interval -2.9 to +6.1 points). The population these numbers describe is the repairs logged this year at Zulal, including tickets that were closed late in the system. The sample cannot tell whether a late ticket was a late repair or a late entry, and it cannot show that the two contractors are equal: a gap of a few points either way remains possible.",
+ "res": {
+  "gap": 0.016169808014818043,
+  "gap_interval": [
+   -0.02871016995819886,
+   0.06104978598783517
+  ],
+  "interval": [
+   0.92,
+   0.965
+  ],
+  "p": 0.5071232191952012
+ },
+ "share": 0.945
+}

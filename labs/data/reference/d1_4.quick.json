@@ -1,0 +1,59 @@
+{
+ "edges": {
+  "__array__": [
+   0,
+   2,
+   4,
+   6,
+   8,
+   10,
+   12,
+   14,
+   16,
+   18,
+   20,
+   22,
+   24,
+   26,
+   28,
+   30,
+   32,
+   34,
+   36,
+   38,
+   40
+  ]
+ },
+ "five": {
+  "iqr": 6.7,
+  "max": 663.5,
+  "median": 6.2,
+  "min": 1.0,
+  "q1": 3.7,
+  "q3": 10.4
+ },
+ "skew": [
+  16.540364655336937,
+  0.8022000251266461
+ ],
+ "tab": {
+  "median": {
+   "A": 5.2,
+   "B": 7.5
+  },
+  "n": {
+   "A": 150,
+   "B": 150
+  },
+  "q1": {
+   "A": 3.4,
+   "B": 4.7
+  },
+  "q3": {
+   "A": 8.9,
+   "B": 11.6
+  }
+ },
+ "text": "We looked at 300 leak repairs drawn at random from Zulal's 12,000 repairs of the year. The median repair took 6.2 hours; the middle half took between 3.7 and 10.4 hours. 1 ticket in the sample was closed in the system weeks late and is reported separately; the longest regular repair took 42.8 hours. These numbers describe the 300 sampled repairs, by contractor and never by household.",
+ "withheld": 24
+}

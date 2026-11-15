@@ -1,0 +1,50 @@
+{
+ "consumption_mean": 470.3508375,
+ "consumption_sd": 206.43542434753923,
+ "repair_mean": 9.859658333333334,
+ "repair_median": 6.5,
+ "repair_median_A": 5.9,
+ "repair_median_B": 7.3,
+ "satisfaction_mean": 6.670222222222222,
+ "satisfaction_A_minus_B": 0.46165552320490644,
+ "slope_size_alone": 96.20634094386232,
+ "slope_size_with_temperature": 84.76403970733035,
+ "slope_temperature": 19.911718035624276,
+ "planted_districts": {
+  "D05": 0.87,
+  "D21": 1.2,
+  "D16": 1.22,
+  "D29": 0.85,
+  "D19": 1.22
+ },
+ "capstone": {
+  "q1": {
+   "planted_rate_ratio_smart_to_old": 0.638,
+   "unit": "district (8 smart, 12 old): the rollout was by district, so households are not independent",
+   "observed_means": {
+    "old": 1.806,
+    "smart": 1.199
+   }
+  },
+  "q2": {
+   "planted_effect_litres_day": -18.0,
+   "unit": "neighbourhood (40, randomised 20 and 20); every neighbourhood drifts by its own amount",
+   "observed_change_by_arm": {
+    "control": -4.95,
+    "message": -24.74
+   }
+  },
+  "q3": {
+   "planted_median_ratio_after_to_before": {
+    "billing": 0.72,
+    "meter": 0.72,
+    "the four other types": 1.0
+   },
+   "note": "six types tested at once: two true differences, four none; the overall ratio mixes them",
+   "observed_medians": {
+    "after": 21.4,
+    "before": 24.15
+   }
+  }
+ }
+}
