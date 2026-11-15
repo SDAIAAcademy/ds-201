@@ -1,158 +1,654 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes">REPLACE: welcome; introduce yourself; one question to the room that calibrates the pace; the rhythm of the day</aside>
+  <aside class="notes"><p>Ask for the sentences about p-values that participants brought from reports. Collect three on the whiteboard without comment; they are marked informally after session 2. Today has the most misused ideas of the course, so the pace is deliberate: one question per session.</p></aside>
 </section>
 
-<section class="slide" id="agenda" data-auto="agenda"></section>
+<section class="slide" id="agenda" data-auto="agenda">
+  <aside class="notes"><p>Session 1: could this be luck? Session 2: what the answer does and does not mean. Session 3: how big is it and does it matter? Session 4: what happens when you ask 30 times.</p></aside>
+</section>
 
-<!-- Session 1 -->
+<section class="slide" id="review-day2" data-lo="LO2" data-label="Review">
+  <div class="kicker">Review of Day 2</div>
+  <h2>Which interval would you report?</h2>
+  <div class="quiz" data-type="single" data-lo="LO2">
+    <p class="lead">A survey phoned 50 households in each of 8 districts chosen at random. Bootstrapping the 400 rows gives a 95% interval of 6.5 to 6.8; bootstrapping the 8 districts gives 6.3 to 7.0. Which do you report, and why?</p>
+    <div class="opts">
+      <div class="opt" data-why="Prefers the narrow interval for its look: it ignores that another survey would visit other districts">6.5 to 6.8, because it is more precise</div>
+      <div class="opt" data-why="Counts rows as the amount of information although households of one district resemble each other">6.5 to 6.8, because it uses 400 observations and not 8</div>
+      <div class="opt" data-ok>6.3 to 7.0, because districts were the unit drawn at random</div>
+      <div class="opt" data-why="Averages two methods of which one does not match how the data were collected">Something in between, to be safe</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Resample the unit that was sampled. In lab 2.3 the row bootstrap covered the truth in 72% of surveys, the district bootstrap in 94%.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. The same rule governs today's shuffles: what you shuffle must be what could have been assigned differently.</p></aside>
+</section>
 
+<!-- ======================= SESSION 1 ======================= -->
 <section class="slide section" id="s1" data-auto="section" data-session="1"></section>
 
-<section class="slide" id="s1-idea" data-lo="LO3">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="could-it-be-luck" data-lo="LO3" data-label="The question">
+  <div class="kicker">Nizar's question</div>
+  <h2>Contractor A scores higher. Could that be luck?</h2>
   <div class="cols cols-2">
+    <table class="t">
+      <tr><th>contractor</th><th class="num">responses</th><th class="num">mean score, 1 to 10</th></tr>
+      <tr><td>A</td><td class="num">400</td><td class="num">6.748</td></tr>
+      <tr><td>B</td><td class="num">400</td><td class="num">6.452</td></tr>
+      <tr class="hl"><td>difference A - B</td><td></td><td class="num">+0.295</td></tr>
+    </table>
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>Two samples of 400 never give exactly equal means, even from identical contractors.</li>
+      <li>So 0.295 could be a real gap, or the noise of sampling.</li>
+      <li>A test asks one narrow question: <b>how surprising is 0.295 if there is no gap at all?</b></li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>The study file of lab 3.1: 400 responses per contractor drawn at random from the survey. Scores have a standard deviation of about 1.9, so single households differ far more than the two means do.</p></aside>
 </section>
 
-<section class="slide" id="s1-steps" data-lo="LO3">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
+<section class="slide" id="null-as-shuffle" data-lo="LO3" data-label="The null hypothesis">
+  <div class="kicker">The null hypothesis</div>
+  <h2>If the contractor makes no difference, the labels are arbitrary</h2>
   <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+    <div class="step c-teal"><b>1 · Assume</b>the contractor has nothing to do with the score</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>2 · Shuffle</b>the 800 labels: any 400 could have been "A"</div>
+    <div class="arrow">→</div>
+    <div class="step c-purple"><b>3 · Recompute</b>the difference in means under the shuffled labels</div>
+    <div class="arrow">→</div>
+    <div class="step c-coral"><b>4 · Repeat</b>5,000 times and see where 0.295 falls</div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <div class="callout tip mt"><b>The null hypothesis is a rule for generating data.</b> Here the rule is: shuffle the labels. No formula is needed to state it.</div>
+  <aside class="notes"><p>This is the central slide of the day. A null hypothesis is usually written as an equation between two population means, which hides what it does. As a shuffling rule it is a machine you can run. Every test in the course is this machine with a different rule.</p></aside>
+</section>
+
+<section class="slide" id="null-distribution" data-lo="LO3" data-label="The null distribution">
+  <div class="kicker">Lab 3.1, steps 3 and 4</div>
+  <h2>Under shuffled labels a gap of 0.295 is rare</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:null_dist-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Histogram of 5,000 differences in mean satisfaction under shuffled contractor labels, bell-shaped around zero with a spread of 0.135; the observed difference 0.295 sits in the right tail">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="356.0" y2="356.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="361.0" text-anchor="end" font-size="14" fill="var(--muted)">0</text>
+<line x1="64" x2="700" y1="250.4" y2="250.4" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="255.4" text-anchor="end" font-size="14" fill="var(--muted)">250</text>
+<line x1="64" x2="700" y1="144.8" y2="144.8" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="149.8" text-anchor="end" font-size="14" fill="var(--muted)">500</text>
+<line x1="64" x2="700" y1="39.1" y2="39.1" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="44.1" text-anchor="end" font-size="14" fill="var(--muted)">750</text>
+<line x1="150.7" x2="150.7" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="150.7" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">-0.4</text>
+<line x1="266.4" x2="266.4" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="266.4" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">-0.2</text>
+<line x1="382.0" x2="382.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="382.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0</text>
+<line x1="497.6" x2="497.6" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="497.6" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0.2</text>
+<line x1="613.3" x2="613.3" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="613.3" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0.4</text>
+<rect x="65.0" y="355.2" width="26.9" height="0.8" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="122.8" y="353.5" width="26.9" height="2.5" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="151.7" y="349.7" width="26.9" height="6.3" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="180.6" y="339.9" width="26.9" height="16.1" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="209.5" y="313.3" width="26.9" height="42.7" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="238.5" y="279.1" width="26.9" height="76.9" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="267.4" y="228.8" width="26.9" height="127.2" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="296.3" y="127.0" width="26.9" height="229.0" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="325.2" y="81.4" width="26.9" height="274.6" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="354.1" y="47.2" width="26.9" height="308.8" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="383.0" y="76.3" width="26.9" height="279.7" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="411.9" y="102.1" width="26.9" height="253.9" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="440.8" y="135.0" width="26.9" height="221.0" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="469.7" y="218.3" width="26.9" height="137.7" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="498.6" y="279.5" width="26.9" height="76.5" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="527.5" y="326.8" width="26.9" height="29.2" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="556.5" y="337.4" width="26.9" height="18.6" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="585.4" y="347.6" width="26.9" height="8.4" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="614.3" y="354.3" width="26.9" height="1.7" fill="var(--cyan)" fill-opacity="0.85"/>
+<rect x="643.2" y="355.2" width="26.9" height="0.8" fill="var(--cyan)" fill-opacity="0.85"/>
+<line x1="552.6" x2="552.6" y1="18" y2="356" stroke="var(--coral)" stroke-width="2.5" stroke-dasharray="0"/>
+<text x="558.6" y="34" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">observed +0.295</text>
+<line x1="211.4" x2="211.4" y1="18" y2="356" stroke="var(--coral)" stroke-width="2.5" stroke-dasharray="0"/>
+<text x="205.4" y="34" text-anchor="end" font-size="15" fill="var(--ink, currentColor)">-0.295</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">difference in means under shuffled labels, A minus B</text>
+</svg>
+<!--/FIG:null_dist-->
+      <div class="caption">5,000 shuffles of the contractor labels.</div>
+    </div>
+    <ul class="bullets">
+      <li>Centred on zero, spread 0.135.</li>
+      <li>The largest shuffled gap in 5,000: 0.525.</li>
+      <li>Gaps of 0.295 or more, in either direction: 31 shuffles in 1,000.</li>
+      <li>That share is the <b>p-value</b>: 0.031.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Two-sided because a gap in B's favour would have interested Nizar as much. The p-value counts the observed arrangement as one of the shuffles: count plus one over 5,001. Either the contractors differ, or something that happens 3 times in 100 has happened.</p></aside>
+</section>
+
+<section class="slide" id="classical-approximation" data-lo="LO3" data-label="The classical test">
+  <div class="kicker">Lab 3.1, step 5</div>
+  <h2>The t-test is a formula for the histogram you just drew</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th></th><th class="num">by shuffling</th><th class="num">by formula (Welch)</th></tr>
+      <tr><td>spread of the difference under the null</td><td class="num">0.1346</td><td class="num">0.1353</td></tr>
+      <tr><td>p-value</td><td class="num">0.0314</td><td class="num">0.0295</td></tr>
+    </table>
+    <ul class="bullets">
+      <li>t = difference / standard error = 0.295 / 0.1353 = 2.18.</li>
+      <li>The t distribution is the bell curve that the shuffles trace out.</li>
+      <li>With 400 per group the approximation is excellent.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The classical tests were invented when 5,000 shuffles were impossible, as approximations of exactly this count. They are still worth knowing because every library and every report uses them. Welch's version does not assume equal spread in the two groups and is the safe default.</p></aside>
+</section>
+
+<section class="slide" id="when-they-differ" data-lo="LO3" data-label="When to shuffle">
+  <div class="kicker">Which one to use</div>
+  <h2>Shuffle when the formula is doubtful or does not exist</h2>
+  <table class="t">
+    <tr><th>Situation</th><th>Classical test</th><th>Permutation test</th></tr>
+    <tr><td>Two means, hundreds per group</td><td>Fine: agrees to two decimals</td><td>Fine</td></tr>
+    <tr><td>Two means, 15 per group, skewed scores</td><td>Approximation is rough</td><td>Still exact for the shuffling rule</td></tr>
+    <tr><td>Two medians, a ratio, a custom metric</td><td>Often none at hand</td><td>Same four steps</td></tr>
+  </table>
+  <div class="callout warn mt"><b>What goes wrong.</b> Shuffling the wrong thing. If districts were assigned to a programme, shuffle district labels, not household labels.</div>
+  <aside class="notes"><p>The stretch of lab 3.1 tests the difference in medians: plus 1.0 point, p = 0.038. Scores are whole numbers, so a median moves in steps. The warning is yesterday's unit rule again, for tests.</p></aside>
+</section>
+
+<section class="slide" id="test-says-little" data-lo="LO3" data-label="What the test settled">
+  <div class="kicker">Checked against the truth</div>
+  <h2>The test was right, and it said very little</h2>
+  <div class="cols cols-3">
+    <div class="stat"><div class="big">0.295</div><div class="lbl">the gap in the study of 800 responses</div></div>
+    <div class="stat"><div class="big">0.462</div><div class="lbl">the gap in all 9,000 responses</div></div>
+    <div class="stat"><div class="big">0.031</div><div class="lbl">the p-value: "a gap exists", nothing about its size</div></div>
+  </div>
+  <ul class="bullets mt">
+    <li>Rejecting "no difference" was the right call: the true gap is not zero.</li>
+    <li>The study's estimate is well below the truth. The p-value gave no hint of that.</li>
+  </ul>
+  <aside class="notes"><p>A test answers yes or no to a question nobody much cares about: is the gap exactly zero? Session 3 asks the question the contract cares about. Keep the 0.462 in mind: it sits just under the contract's threshold of 0.5.</p></aside>
+</section>
+
+<section class="slide" id="check-shuffle" data-lo="LO3">
+  <div class="kicker">Checkpoint</div>
+  <h2>What does one shuffle assume?</h2>
+  <div class="quiz" data-type="single" data-lo="LO3">
+    <p class="lead">A pilot gave 60 customers a new bill layout and 60 the old one, by lot. To test the difference in mean hold time, the analyst shuffles the 120 layout labels. What does each shuffle take for granted?</p>
+    <div class="opts">
+      <div class="opt" data-ok>That the layout has no effect, so any 60 customers could carry the new label</div>
+      <div class="opt" data-why="States the hypothesis the analyst hopes to support, which the shuffle is built to contradict">That the new layout shortens hold time for every customer</div>
+      <div class="opt" data-why="Adds a bell-curve assumption that the permutation test does not need">That hold times follow a normal distribution</div>
+      <div class="opt" data-why="Confuses shuffling labels with resampling customers: the same 120 hold times are used in every shuffle">That the 120 customers are replaced by new ones each time</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> If the label does not matter, every assignment of it is as likely as the real one.</div>
+  </div>
+  <aside class="notes"><p>Answer: A. Option D separates the bootstrap from the permutation test: the bootstrap resamples units with replacement to imitate new samples; the permutation test keeps the data and reassigns labels without replacement to imitate "no effect".</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-1" data-auto="lab" data-lab="3.1">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>Steps 1 to 4 without an assistant. The loop of 5,000 shuffles takes a few seconds. Watch for a one-sided count where the lab asks for two-sided, and for shuffling the scores and the labels both, which is harmless and confusing. The lab loads the supplied study file and needs nothing from Day 2.</p></aside>
 </section>
 
-<!-- Session 2 -->
-
+<!-- ======================= SESSION 2 ======================= -->
 <section class="slide section" id="s2" data-auto="section" data-session="2"></section>
 
-<section class="slide" id="s2-idea" data-lo="LO1">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="p-value-definition" data-lo="LO1" data-label="The definition">
+  <div class="kicker">One sentence to keep</div>
+  <h2>A p-value is the share of null worlds at least as extreme as yours</h2>
+  <div class="card tint c-navy"><p class="mb0">"<b>If</b> the two contractors were really the same, a difference at least as large as the one we observed would turn up in about 3 studies in 100."</p></div>
+  <div class="cols cols-3 mt">
+    <div class="card flat c-teal"><h4>It starts with "if"</h4><p class="small mb0">The null is assumed, not assessed.</p></div>
+    <div class="card flat c-cyan"><h4>It is about data</h4><p class="small mb0">How unusual this result is, not how likely a hypothesis is.</p></div>
+    <div class="card flat c-coral"><h4>It knows nothing of size</h4><p class="small mb0">Small gap, huge sample: tiny p-value.</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>This sentence is sentence 3 of the marked sheet, one of the three that are right. Have the room say it aloud with the "if". Every misreading on the next slide drops the "if" or changes what the 3% is a share of.</p></aside>
 </section>
 
-<section class="slide" id="s2-steps" data-lo="LO1">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="five-misreadings" data-lo="LO1" data-label="Five misreadings">
+  <div class="kicker">What reports get wrong</div>
+  <h2>Five misreadings turn up again and again</h2>
+  <table class="t small">
+    <tr><th>The misreading</th><th>Why it is wrong</th></tr>
+    <tr><td>"p = 0.03: a 3% chance of no effect"</td><td>The 3% is computed assuming no effect</td></tr>
+    <tr><td>"p = 0.40: proves no effect"</td><td>A small study gives a large p-value too</td></tr>
+    <tr><td>"p = 0.001: a large effect"</td><td>A p-value mixes effect size with sample size</td></tr>
+    <tr><td>"The 95% interval for the mean holds 95% of the repairs"</td><td>The interval is about the mean, not about single repairs</td></tr>
+    <tr><td>"30 tests, 2 significant: each has a 5% chance of being false"</td><td>With 30 tests, one or two false alarms are expected</td></tr>
+  </table>
+  <aside class="notes"><p>These are five of the eight sentences of lab 3.2, so do not project this slide while participants mark the sheet: show it before the lab, then hide it. The catalogue of such misreadings by Greenland and colleagues lists twenty-five; these five are the ones a utility report contains. Sources: Greenland and others (2016).</p></aside>
+</section>
+
+<section class="slide" id="simulate-the-truth" data-lo="LO1" data-label="A world with the truth known">
+  <div class="kicker">Lab 3.2, step 2</div>
+  <h2>Settle the argument by simulating studies whose truth you know</h2>
+  <div class="cols cols-2">
+    <div class="flow v">
+      <div class="step c-teal"><b>2,000 studies, null true</b>both groups of 100 drawn from contractor A</div>
+      <div class="arrow">↓</div>
+      <div class="step c-coral"><b>2,000 studies, null false</b>one group from A, one from B: true gap 0.46</div>
+      <div class="arrow">↓</div>
+      <div class="step c-cyan"><b>4,000 p-values</b>each with a label: was the null true?</div>
+    </div>
+    <table class="t">
+      <tr><th>p &lt; 0.05 in</th><th class="num">share of studies</th></tr>
+      <tr><td>studies whose null is true</td><td class="num">4.7%</td></tr>
+      <tr><td>studies whose null is false</td><td class="num">42.2%</td></tr>
+    </table>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>Solution run of lab 3.2. Two error rates in one table. 4.7%: false alarms when nothing is going on, the Type I error rate, close to the 5% the threshold sets. 42.2%: real gaps detected; the other 57.8% of studies miss a real gap, a Type II error. Session 3 names 42.2% the power.</p></aside>
+</section>
+
+<section class="slide" id="p-is-not-prob-null" data-lo="LO1" data-label="Sentence 1, counted">
+  <div class="kicker">Lab 3.2, step 3</div>
+  <h2>Near p = 0.03, the null was true in 13% of studies, not 3%</h2>
+  <div class="cols cols-2">
+    <div class="stat"><div class="big">13%</div><div class="lbl">of the 248 studies with p between 0.02 and 0.04 had two identical groups</div></div>
+    <ul class="bullets">
+      <li>The share depends on what the p-value cannot know: how many tested hypotheses are true to begin with (here half), and how well the study detects a real gap.</li>
+      <li>If only one hypothesis in ten were false, the share would be far higher.</li>
+      <li>A p-value alone can never be "the chance that the null is true".</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>This is the cleanest refutation of the most common misreading: count it. Ask the room to predict the number before revealing it. Change the mix to nine true nulls for each false one and most small p-values come from true nulls.</p></aside>
+</section>
+
+<section class="slide" id="uniform-under-null" data-lo="LO1" data-label="When nothing is going on">
+  <div class="kicker">Lab 3.2, step 4 and stretch</div>
+  <h2>When nothing is going on, every p-value is equally likely</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>The 2,000 p-values under a true null fall evenly between 0 and 1: about 200 in each tenth.</li>
+      <li>So 5% fall below 0.05, by construction. That is all "significant at 0.05" guarantees.</li>
+      <li>In batches of 30 such tests: 1.38 flagged on average; at least one flag in 80% of batches.</li>
+    </ul>
+    <div class="card c-coral"><h4>Sentence 7, counted</h4><p class="small mb0">"30 districts tested, two significant, each with a 5% chance of being a false alarm." In batches where nothing differs, two or more flags appeared 41% of the time, and every one of them was false.</p></div>
+  </div>
+  <aside class="notes"><p>The counts in ten equal bins in the solution run were between 182 and 227. This slide is the bridge to session 4. The threshold 0.05 is a convention about how many false alarms to tolerate per test; it says nothing about a set of tests.</p></aside>
+</section>
+
+<section class="slide" id="what-to-write" data-lo="LO1 LO6" data-label="What to write">
+  <div class="kicker">In a report</div>
+  <h2>Write what the p-value says, then give the reader what it cannot</h2>
+  <div class="cols cols-2">
+    <div class="card c-coral"><h4>Before</h4><p class="small mb0">"The difference between the contractors gave p = 0.03, so there is a 3% chance that the two contractors are really the same."</p></div>
+    <div class="card c-teal"><h4>After</h4><p class="small mb0">"Contractor A was rated 0.29 points higher (95% interval 0.03 to 0.55). If the contractors were the same, a gap this large would turn up in about 3 studies in 100."</p></div>
+  </div>
+  <div class="callout tip mt"><b>Order of information:</b> the estimate, its interval, then the test. The p-value is the last thing a manager needs, not the first.</div>
+  <aside class="notes"><p>The "after" sentence is the rewrite of lab 3.2, step 5, with the interval of lab 3.3 added. If participants brought sentences from their own reports, rewrite one of them on the whiteboard in this form.</p></aside>
+</section>
+
+<section class="slide" id="check-misreading" data-lo="LO1">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which reading of the result is sound?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1">
+    <p class="lead">A trial of a new valve schedule in one district compares 40 days with it and 40 days without. Mean daily bursts fell from 3.1 to 2.8; p = 0.38. Which sentence may go in the report?</p>
+    <div class="opts">
+      <div class="opt" data-why="Reads a large p-value as proof of no effect: 40 days per group may be too few to see a real fall">The schedule has no effect on bursts</div>
+      <div class="opt" data-why="Reads the p-value as the probability of the null hypothesis">There is a 38% chance that the schedule does nothing</div>
+      <div class="opt" data-why="Treats the observed fall as established although such a fall is common when nothing changed">The schedule cut bursts by 10%</div>
+      <div class="opt" data-ok>The trial does not show an effect; a fall of this size is common by chance at this sample size</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> A large p-value says the data are compatible with no effect. It does not say the effect is zero; the interval shows what remains possible.</div>
+  </div>
+  <aside class="notes"><p>Answer: D. Ask what one more number would make the report useful: the interval for the fall, which shows whether a worthwhile effect has been ruled out or simply not detected.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-2" data-auto="lab" data-lab="3.2">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>Hide the "five misreadings" slide. Step 1 is ten minutes of quiet individual work without an assistant: this sheet is the evidence for the first course outcome, and the supervised exit check asks the same kind of item. The key is in the data folder, as solutions are; say that looking is their loss. Three of the eight sentences are right. The scoring cell asks for a reason of at least six words and cannot judge it: read a few reasons aloud.</p></aside>
 </section>
 
-<!-- Session 3 -->
-
+<!-- ======================= SESSION 3 ======================= -->
 <section class="slide section" id="s3" data-auto="section" data-session="3"></section>
 
-<section class="slide" id="s3-idea" data-lo="LO3">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="how-big" data-lo="LO3" data-label="The second question">
+  <div class="kicker">After "is there a gap?"</div>
+  <h2>The useful question is how big, and whether that matters</h2>
   <div class="cols cols-2">
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>The test said the contractors differ. Nizar's contract says a gap of <b>0.5 points or more</b> is material and triggers a review.</li>
+      <li>So the decision hangs on the size of the gap, with its uncertainty.</li>
+      <li>An <b>effect size</b> is the gap in units someone can judge.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <div class="card c-teal"><h4>Statistical significance</h4><p class="small">The gap is unlikely to be exactly zero.</p><h4>Practical significance</h4><p class="small mb0">The gap is large enough to act on. The threshold comes from the business, never from the data.</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>The threshold of 0.5 points is part of the case: a clause in Zulal's contracts. In the capstone every participant has to find or argue such a threshold for their own question; the conservation-message question gives one, the others leave it to argue.</p></aside>
 </section>
 
-<section class="slide" id="s3-steps" data-lo="LO3">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="raw-and-standardised" data-lo="LO3" data-label="Two effect sizes">
+  <div class="kicker">Lab 3.3, step 1</div>
+  <h2>Report the raw effect for the decision, the standardised one for comparison</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>Raw effect: 0.295 points</h4><p class="small mb0">In the units of the scale. This is what the contract's 0.5 is written in.</p></div>
+    <div class="card c-cyan"><h4>Standardised effect: d = 0.154</h4><p class="small mb0">The gap divided by the standard deviation of the scores, 1.91. "A sixth of the distance between two typical households."</p></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <ul class="bullets mt">
+    <li>d = 0.15 means the two score distributions overlap almost completely.</li>
+    <li>d helps compare across scales and studies. It does not say whether the gap matters.</li>
+  </ul>
+  <aside class="notes"><p>The standardised effect is known as Cohen's d. Its conventional labels, small, medium and large, are a last resort for when no practical threshold exists. Here one exists, so the raw effect decides.</p></aside>
+</section>
+
+<section class="slide" id="interval-vs-threshold" data-lo="LO3" data-label="Against the threshold">
+  <div class="kicker">Lab 3.3, steps 2 and 3</div>
+  <h2>Place the interval against zero and against the threshold</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:interval_threshold-->
+<svg viewBox="0 0 720 400" role="img" aria-label="The 95 percent interval for the satisfaction gap, 0.03 to 0.55 points around the estimate 0.29, excludes zero and includes the contract threshold of 0.5">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="143.5" x2="143.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="143.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0</text>
+<line x1="223.0" x2="223.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="223.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0.1</text>
+<line x1="302.5" x2="302.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="302.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0.2</text>
+<line x1="382.0" x2="382.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="382.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0.3</text>
+<line x1="461.5" x2="461.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="461.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0.4</text>
+<line x1="541.0" x2="541.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="541.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0.5</text>
+<line x1="620.5" x2="620.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="620.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">0.6</text>
+<line x1="165.4" x2="582.8" y1="187.0" y2="187.0" stroke="var(--teal)" stroke-width="6" stroke-linecap="round"/>
+<circle cx="378.0" cy="187.0" r="9" fill="var(--coral)" fill-opacity="1"/>
+<text x="378.0" y="144.8" text-anchor="middle" font-size="15" fill="var(--ink, currentColor)">0.29 (0.03 to 0.55)</text>
+<line x1="143.5" x2="143.5" y1="18" y2="356" stroke="var(--muted)" stroke-width="2.5" stroke-dasharray="6 5"/>
+<text x="149.5" y="34" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">no gap</text>
+<line x1="541.0" x2="541.0" y1="18" y2="356" stroke="var(--coral)" stroke-width="2.5" stroke-dasharray="6 5"/>
+<text x="535.0" y="34" text-anchor="end" font-size="15" fill="var(--ink, currentColor)">threshold 0.5</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">satisfaction gap, A minus B, points</text>
+</svg>
+<!--/FIG:interval_threshold-->
+      <div class="caption">Bootstrap interval for the satisfaction gap, 400 responses per contractor.</div>
+    </div>
+    <ul class="bullets">
+      <li>Excludes 0: the gap is real.</li>
+      <li>Includes 0.5: material or not is <b>not settled</b>.</li>
+      <li>The estimate, 0.29, is below the threshold.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The honest answer to Nizar: "A is rated higher. Whether the gap reaches your threshold, this study cannot say; the best estimate is below it." The truth, 0.462, is inside the interval and below the threshold.</p></aside>
+</section>
+
+<section class="slide" id="four-positions" data-lo="LO3" data-label="Four positions">
+  <div class="kicker">A reading rule</div>
+  <h2>An interval can sit in four positions, and each has its own sentence</h2>
+  <table class="t">
+    <tr><th>The interval</th><th>The sentence</th></tr>
+    <tr><td>includes 0, lies below the threshold</td><td>No gap shown; a material gap is ruled out</td></tr>
+    <tr><td>excludes 0, lies wholly below the threshold</td><td>A real gap, and not a material one</td></tr>
+    <tr class="hl"><td>excludes 0, includes the threshold</td><td>A real gap; material or not is not settled</td></tr>
+    <tr><td>lies wholly above the threshold</td><td>A real and material gap</td></tr>
+  </table>
+  <p class="small mt">A fifth case, an interval that includes both 0 and the threshold, settles nothing: the study was too small for the question.</p>
+  <aside class="notes"><p>The highlighted row is today's case. A p-value distinguishes only "includes 0" from "excludes 0": two of these four positions get the same p-value verdict and opposite decisions.</p></aside>
+</section>
+
+<section class="slide" id="two-errors" data-lo="LO3" data-label="Two errors">
+  <div class="kicker">What can go wrong</div>
+  <h2>A test can err in two directions</h2>
+  <table class="t">
+    <tr><th></th><th>The test says "gap"</th><th>The test says "no gap shown"</th></tr>
+    <tr><td><b>In truth, no gap</b></td><td><em>Type I error</em>: a false alarm. Rate set by the threshold, 5%</td><td>Correct</td></tr>
+    <tr><td><b>In truth, a gap</b></td><td>Correct. Its rate is the <b>power</b></td><td><em>Type II error</em>: a miss. Rate = 1 - power</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>The 5% is chosen. The power is not: it depends on the size of the true gap and on the sample size.</li>
+    <li>In lab 3.2, groups of 100 detected the true gap of 0.46 in 42% of studies: they missed it more often than not.</li>
+  </ul>
+  <aside class="notes"><p>A study with low power is the origin of "p = 0.40 proves no effect": it would have said "no gap shown" most of the time whether or not there was one. Power is asked for before a study and estimated here by simulation, without a formula.</p></aside>
+</section>
+
+<section class="slide" id="power-for-a-question" data-lo="LO3" data-label="Power">
+  <div class="kicker">Lab 3.3, step 4</div>
+  <h2>A study is powered for a question, not in general</h2>
+  <table class="t">
+    <tr><th class="num">responses per contractor</th><th class="num">detects that a gap exists</th><th class="num">can show the gap is below 0.5</th></tr>
+    <tr><td class="num">100</td><td class="num">41.3%</td><td class="num">4.0%</td></tr>
+    <tr class="hl"><td class="num">400</td><td class="num">93.7%</td><td class="num">5.2%</td></tr>
+    <tr><td class="num">1,600</td><td class="num">100.0%</td><td class="num">7.6%</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>The true gap, 0.46, sits just under the threshold. Detecting it is easy; placing it on one side of 0.5 is very hard.</li>
+    <li>For an interval narrower than 0.3 points: about 1,170 responses per contractor (stretch).</li>
+  </ul>
+  <aside class="notes"><p>2,000 simulated studies at each size, drawn from the survey. The right-hand column is the question the contract asks, and no affordable survey answers it. That is a finding to report to Nizar, not a failure of the analyst: when the truth lies near a threshold, data rarely settle which side.</p></aside>
+</section>
+
+<section class="slide" id="three-sentence-report" data-lo="LO3 LO6" data-label="The report">
+  <div class="kicker">Lab 3.3, step 5</div>
+  <h2>Three sentences: the estimate, the test, what is settled</h2>
+  <div class="card tint c-navy"><p class="mb0">"In a study of 400 responses per contractor, households rated contractor A <b>0.29</b> points higher than contractor B on the 10-point scale (95% interval <b>0.03 to 0.55</b>). A gap of this size would be unusual if the contractors were the same, so we conclude that A is rated higher. Whether the gap reaches the contract's threshold of <b>0.5</b> points is <b>not settled</b>: the interval includes 0.5, the estimate is below it, and the study covers surveyed households of this year only."</p></div>
+  <aside class="notes"><p>The solution's wording. The last clause is a limits statement: the population the conclusion applies to. Tomorrow's brief adds a description and, where needed, a regression around this core.</p></aside>
+</section>
+
+<section class="slide" id="check-significant-important" data-lo="LO3">
+  <div class="kicker">Checkpoint</div>
+  <h2>What do you tell the manager?</h2>
+  <div class="quiz" data-type="single" data-lo="LO3">
+    <p class="lead">A bill redesign was compared on 60,000 customers before and 60,000 after. Mean time to pay fell by 0.2 days (95% interval 0.1 to 0.3; p &lt; 0.001). Finance says only a fall of 2 days or more matters. What is the right summary?</p>
+    <div class="opts">
+      <div class="opt" data-why="Takes a tiny p-value for a large effect: with 120,000 customers even 0.2 days is detected">Highly significant: roll it out for the cash-flow benefit</div>
+      <div class="opt" data-ok>A real fall, far too small to matter: the whole interval is below 2 days</div>
+      <div class="opt" data-why="Reads 'too small to matter' as 'not real': the interval excludes zero">No effect was found, since 0.2 days is negligible</div>
+      <div class="opt" data-why="Asks for more data although the interval already lies wholly below the threshold">The study is inconclusive and needs a larger sample</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The interval excludes 0 and lies wholly below the threshold.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. This is the mirror image of the contractor case: there the study was too small to place the gap; here it is large enough to show that the gap, though real, is negligible.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-3" data-auto="lab" data-lab="3.3">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The lab loads the same study file as lab 3.1 afresh and needs none of its results. The power simulation draws all studies at once as arrays and takes seconds. The check of step 5 looks for the estimate and the two interval ends with two decimals, the threshold, and the words "not settled".</p></aside>
 </section>
 
-<!-- Session 4 -->
-
+<!-- ======================= SESSION 4 ======================= -->
 <section class="slide section" id="s4" data-auto="section" data-session="4"></section>
 
-<section class="slide" id="s4-idea" data-lo="LO4">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="thirty-tests" data-lo="LO4" data-label="Thirty tests">
+  <div class="kicker">The quarterly audit</div>
+  <h2>Ilyas tests all 30 districts every quarter</h2>
   <div class="cols cols-2">
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>An audit sample of 4,000 repairs. For each district: is its repair time different from the others?</li>
+      <li>Repair times are skewed, so the test compares log hours: the estimate is a <b>ratio</b> of typical repair times.</li>
+      <li>Districts flagged at p &lt; 0.05 get an inspection visit.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <div class="card c-coral"><h4>The truth, on file</h4><p class="small mb0">Five districts truly differ: three slower by about 20%, two faster by about 14%. Twenty-five do not. You open the list after testing, not before.</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>The planted districts are D05 (ratio 0.87), D16 (1.22), D19 (1.22), D21 (1.20) and D29 (0.85), of very different sizes. Do not show the list before step 2 of the lab.</p></aside>
 </section>
 
-<section class="slide" id="s4-steps" data-lo="LO4">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="false-alarms-expected" data-lo="LO4" data-label="One audit">
+  <div class="kicker">Lab 3.4, steps 1 and 2</div>
+  <h2>One audit flags seven districts, and three of them are false alarms</h2>
+  <div class="cols cols-2">
+    <table class="t small">
+      <tr><th>district</th><th class="num">repairs</th><th class="num">ratio</th><th class="num">p</th><th>truth</th></tr>
+      <tr><td>D21</td><td class="num">245</td><td class="num">1.25</td><td class="num">&lt; 0.0001</td><td>differs</td></tr>
+      <tr><td>D05</td><td class="num">426</td><td class="num">0.85</td><td class="num">0.0001</td><td>differs</td></tr>
+      <tr><td>D29</td><td class="num">91</td><td class="num">0.74</td><td class="num">0.0009</td><td>differs</td></tr>
+      <tr><td>D19</td><td class="num">37</td><td class="num">1.43</td><td class="num">0.0030</td><td>differs</td></tr>
+      <tr class="hl"><td>D23</td><td class="num">44</td><td class="num">0.76</td><td class="num">0.0091</td><td>no difference</td></tr>
+      <tr class="hl"><td>D04</td><td class="num">52</td><td class="num">1.32</td><td class="num">0.0169</td><td>no difference</td></tr>
+      <tr class="hl"><td>D28</td><td class="num">153</td><td class="num">0.87</td><td class="num">0.0355</td><td>no difference</td></tr>
+    </table>
+    <ul class="bullets">
+      <li>4 true discoveries, 3 false, and one planted district (D16) missed.</li>
+      <li>With 25 districts that do not differ and a 5% threshold, 1.25 false flags per audit are expected.</li>
+      <li>Each test is working exactly as designed. Thirty of them are the problem.</li>
+    </ul>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>Solution run of lab 3.4, one seeded audit. The inspectors would visit D23, D04 and D28 for nothing. Note the sizes: two of the three false alarms are among the smallest districts in the audit, with estimated ratios as extreme as the real ones.</p></aside>
+</section>
+
+<section class="slide" id="forking-paths" data-lo="LO4" data-label="Forking paths">
+  <div class="kicker">The same problem without a list of tests</div>
+  <h2>Every choice made after seeing the data is another test</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>Mean or median? All tickets or closed ones? This quarter or the last two? Districts or zones?</li>
+      <li>An analyst who tries a few and reports the one that "works" has run many tests and shown one.</li>
+      <li>Nobody need cheat: each choice seems reasonable in the light of the data.</li>
+    </ul>
+    <div class="card c-teal"><h4>The remedy: a plan before the data</h4><p class="small mb0">Write down the question, the estimand, the unit, the test and the list of comparisons first. Report every comparison on the list, and mark anything added later as exploration.</p></div>
+  </div>
+  <aside class="notes"><p>Gelman and Loken call this the garden of forking paths. The capstone rubric asks for the count of comparisons run, including those not reported; lab 4.4 has participants write their estimand and unit before they open the capstone data. Sources: Gelman and Loken (2013).</p></aside>
+</section>
+
+<section class="slide" id="two-promises" data-lo="LO4" data-label="Two corrections">
+  <div class="kicker">Lab 3.4, step 3</div>
+  <h2>Two corrections make two different promises</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>Holm: family-wise error</h4><p class="small">"The chance of <b>even one</b> false flag among the 30 stays below 5%."</p><p class="small mb0">Sort the p-values. Compare the smallest with 0.05/30, the next with 0.05/29, and so on. Stop at the first that fails.</p></div>
+    <div class="card c-cyan"><h4>Benjamini-Hochberg: false discovery rate</h4><p class="small">"Among the districts flagged, the expected <b>share</b> of false ones stays below 5%."</p><p class="small mb0">Compare the k-th smallest p-value with 0.05 × k/30. Flag everything up to the last one that passes.</p></div>
+  </div>
+  <pre class="code s mt"><code class="language-python">from statsmodels.stats.multitest import multipletests
+reject = multipletests(p, alpha=0.05, method="holm")[0]      # or method="fdr_bh"</code></pre>
+  <aside class="notes"><p>Holm by hand on this audit: 0.00000 against 0.00167, 0.00008 against 0.00172, 0.00088 against 0.00179 all pass; 0.00301 against 0.00185 fails, so Holm flags three districts. Holm is never worse than the simpler rule of dividing 0.05 by 30 for every test. Holm's promise holds whatever the relation between the tests. Benjamini-Hochberg's is proven for independent or positively related tests; "each district against the others" are related, and the count on the next slide is the check that it held here.</p></aside>
+</section>
+
+<section class="slide" id="count-discoveries" data-lo="LO4" data-label="Counted">
+  <div class="kicker">Lab 3.4, step 4</div>
+  <h2>Counted over 200 audits against the planted truth</h2>
+  <table class="t">
+    <tr><th>method</th><th class="num">true discoveries per audit, of 5</th><th class="num">false discoveries per audit</th><th class="num">audits with a false flag</th><th class="num">false share of all flags</th></tr>
+    <tr><td>no correction</td><td class="num">3.81</td><td class="num">1.08</td><td class="num">67%</td><td class="num">20%</td></tr>
+    <tr><td>Holm</td><td class="num">2.31</td><td class="num">0.04</td><td class="num">4%</td><td class="num">2%</td></tr>
+    <tr><td>Benjamini-Hochberg</td><td class="num">2.80</td><td class="num">0.13</td><td class="num">12%</td><td class="num">3%</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>Holm kept its promise: a false flag in 4% of audits. It pays with missed districts.</li>
+    <li>Benjamini-Hochberg kept its own: 3% of its flags were false. It finds more.</li>
+  </ul>
+  <aside class="notes"><p>This table is the evidence for the fourth course outcome. Without correction, one flag in five sends inspectors to a district where nothing is wrong, and two audits in three contain such a flag. Which correction fits is not a statistical question: it depends on the cost of a wasted visit against the cost of a missed slow district. That choice is Nizar's and is written into the plan before the audit.</p></aside>
+</section>
+
+<section class="slide" id="small-districts-funnel" data-lo="LO4" data-label="Small districts">
+  <div class="kicker">Lab 3.4, step 5</div>
+  <h2>The smallest districts give the most extreme estimates by chance</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:funnel-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Scatter of 30 districts in one audit: estimated ratio of repair time against number of audited repairs on a log axis; estimates fan out from about 0.95 to 1.05 for large districts to between 0.75 and 1.45 for the smallest; the five planted districts are marked">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="296.4" y2="296.4" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="301.4" text-anchor="end" font-size="14" fill="var(--muted)">0.8</text>
+<line x1="64" x2="700" y1="216.8" y2="216.8" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="221.8" text-anchor="end" font-size="14" fill="var(--muted)">1.0</text>
+<line x1="64" x2="700" y1="137.3" y2="137.3" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="142.3" text-anchor="end" font-size="14" fill="var(--muted)">1.2</text>
+<line x1="64" x2="700" y1="57.8" y2="57.8" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="62.8" text-anchor="end" font-size="14" fill="var(--muted)">1.4</text>
+<line x1="111.6" x2="111.6" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="111.6" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">20</text>
+<line x1="263.3" x2="263.3" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="263.3" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">50</text>
+<line x1="378.0" x2="378.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="378.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">100</text>
+<line x1="492.7" x2="492.7" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="492.7" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">200</text>
+<line x1="644.3" x2="644.3" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="644.3" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">500</text>
+<line x1="64" x2="700" y1="216.8" y2="216.8" stroke="var(--ink, currentColor)" stroke-width="2" stroke-dasharray="0"/>
+<circle cx="626.1" cy="216.7" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="287.8" cy="228.4" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="194.5" cy="171.9" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="269.7" cy="91.0" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="425.2" cy="227.7" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="316.6" cy="159.4" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="378.0" cy="220.6" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="409.5" cy="234.4" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="506.9" cy="173.2" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="395.2" cy="257.1" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="558.7" cy="224.3" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="287.8" cy="201.4" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="345.1" cy="234.4" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="306.7" cy="207.2" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="649.5" cy="209.2" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="213.4" cy="229.6" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="272.9" cy="224.7" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="418.8" cy="200.8" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="242.1" cy="314.1" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="364.2" cy="225.2" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="234.4" cy="197.9" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="155.0" cy="241.5" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="276.0" cy="161.4" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="448.3" cy="266.8" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="398.2" cy="201.5" r="6" fill="var(--cyan)" fill-opacity="0.8"/>
+<circle cx="617.8" cy="274.6" r="8" fill="var(--coral)" fill-opacity="1"/>
+<circle cx="372.9" cy="162.7" r="8" fill="var(--coral)" fill-opacity="1"/>
+<circle cx="213.4" cy="44.2" r="8" fill="var(--coral)" fill-opacity="1"/>
+<circle cx="526.3" cy="115.7" r="8" fill="var(--coral)" fill-opacity="1"/>
+<circle cx="362.4" cy="319.4" r="8" fill="var(--coral)" fill-opacity="1"/>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">audited repairs in the district (log axis); coral: the five planted districts</text>
+</svg>
+<!--/FIG:funnel-->
+      <div class="caption">One audit: estimated ratio of repair time, district against the others.</div>
+    </div>
+    <ul class="bullets">
+      <li>Districts with no true difference and under 60 audited repairs are off by 11% on average; those with 150 or more by 6%.</li>
+      <li>A league table sorted by estimate puts small districts at both ends, different ones each quarter.</li>
+      <li>Before ranking units of unequal size, plot the estimate against the size.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The funnel is the responsible-use point of the course: a "worst district" list built on raw estimates mostly names small districts, and in a small district a number is close to pointing at households. The smallest planted district sits among the noise and cannot be told apart at this sample size.</p></aside>
+</section>
+
+<section class="slide" id="which-correction" data-lo="LO4" data-label="Which one">
+  <div class="kicker">Choosing</div>
+  <h2>The cost of a false flag decides the correction</h2>
+  <table class="t">
+    <tr><th>The situation</th><th>Use</th><th>Because</th></tr>
+    <tr><td>Each flag triggers a costly or embarrassing action: an inspection, a penalty</td><td><b>Holm</b></td><td>Even one false flag is expensive</td></tr>
+    <tr><td>Flags are a first screen; each gets a cheap second look</td><td><b>Benjamini-Hochberg</b></td><td>A few false leads are acceptable; misses are not</td></tr>
+    <tr><td>One question, one test, planned before the data</td><td>No correction</td><td>There is one test</td></tr>
+  </table>
+  <div class="callout tip mt"><b>Where this continues.</b> Many segments and many metrics in live experiments are the subject of DS-302.</div>
+  <aside class="notes"><p>The stretch of lab 3.4 shuffles the district labels so that nothing differs: at least one district is flagged in 75% of audits without correction and in 3% with Holm.</p></aside>
+</section>
+
+<section class="slide" id="check-correction" data-lo="LO4">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which correction fits the audit?</h2>
+  <div class="quiz" data-type="single" data-lo="LO4">
+    <p class="lead">Zulal tests 40 pumping stations for abnormal energy use each month. A flagged station is shut for a two-day inspection that leaves its district on reduced pressure. Which rule should the plan name?</p>
+    <div class="opts">
+      <div class="opt" data-why="Accepts about two false shutdowns a month: 40 tests at 5% with nothing wrong">Flag every station with p below 0.05</div>
+      <div class="opt" data-why="Controls the share of false flags, which still lets a false shutdown through in many months">Benjamini-Hochberg at 5%</div>
+      <div class="opt" data-ok>Holm at 5%</div>
+      <div class="opt" data-why="Chooses the tests after seeing the data, which is the forking-paths problem in its plainest form">Test only the stations that look abnormal on the chart</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> A false flag here is costly for a whole district, so the chance of even one per month should stay small: family-wise control.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. If someone argues for B on the grounds that missing a failing pump is also costly, that is the right argument to have: the choice is a judgement about two costs and belongs in the plan, with its reason.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-3-4" data-auto="lab" data-lab="3.4">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The planted list is opened in step 2, after the first count. The 200-audit loop runs 30 Welch tests per audit and takes about half a minute. Say clearly what "no true difference" means here: the 25 other districts differ a little in the finite population, as real districts would, and count as null because nothing was planted in them.</p></aside>
 </section>
 
-<section class="slide" id="wrap-up">
-  <div class="kicker">Day 3 · wrap-up</div>
-  <h2>Three things to keep</h2>
+<section class="slide" id="wrap-up" data-label="Wrap-up">
+  <div class="kicker">Day 3 in three lines</div>
+  <h2>What to keep</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-coral"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-purple"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
+    <div class="card c-teal"><h4>A test is a shuffling rule</h4><p class="small mb0">The p-value is the share of null worlds at least as extreme as yours. It starts with "if".</p></div>
+    <div class="card c-cyan"><h4>Size against a threshold</h4><p class="small mb0">Report the effect with its interval and place it against zero and against what matters.</p></div>
+    <div class="card c-coral"><h4>Count your tests</h4><p class="small mb0">Thirty tests give one false flag per audit. Plan the comparisons, then correct for their number.</p></div>
   </div>
+  <aside class="notes"><p>Return to the sentences from participants' own reports on the whiteboard and mark them together.</p></aside>
 </section>
 
 <section class="slide dark" id="next" data-label="Next">
   <div class="kicker">Next</div>
-  <h2>Day 4: Regression and reporting</h2>
-  <p class="lead">REPLACE: what participants prepare before then; unfinished labs can be finished at home</p>
-  <aside class="notes">REPLACE: accounts, installs or reading participants need before the next unit</aside>
+  <h1>Day 4: Regression and reporting</h1>
+  <p class="lead">How consumption moves with household size, what a slope means, and the paragraph a manager can act on.</p>
+  <ul class="bullets">
+    <li>Tomorrow's last lab ends with your choice of capstone question. Read the three questions in <code>labs/capstone/README.md</code> tonight.</li>
+    <li>The supervised exit check follows the teaching days: items like today's marked sheet, without an assistant.</li>
+  </ul>
+  <aside class="notes"><p>The exit check is scheduled by the Academy; its items are not in the course repository. The practice page has questions of the same style for every outcome.</p></aside>
 </section>

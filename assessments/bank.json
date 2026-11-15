@@ -745,6 +745,378 @@
       "pool": "practice",
       "weight": 1,
       "timer": 60
+    },
+    {
+      "id": "q-permutation-01",
+      "type": "single",
+      "prompt": "Two call scripts were given to callers at random. To test the difference in mean call length, an analyst shuffles the script labels 5,000 times. What question do the 5,000 shuffled differences answer?",
+      "options": [
+        "How large a difference arises when the script has no effect",
+        "How large the true effect of the new script is",
+        "How long calls would be with a third script",
+        "How many callers received the wrong script"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Shuffled labels carry no information about call length, so the shuffled differences show what chance alone produces.",
+      "misconceptions": [
+        "",
+        "Expects an effect size from a procedure that assumes there is no effect",
+        "Asks about a condition that was never observed",
+        "Mistakes the shuffle for an audit of the assignment"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day3",
+      "session": 1,
+      "slide": "null-as-shuffle",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-permutation-02",
+      "type": "single",
+      "prompt": "The observed difference in means is 1.8 minutes. Among 4,999 shuffles, 149 give a difference of 1.8 minutes or more in either direction. Counting the observed arrangement as one more shuffle, what is the two-sided p-value?",
+      "options": [
+        "0.003",
+        "0.015",
+        "0.030",
+        "0.300"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "(149 + 1) / (4,999 + 1) = 150 / 5,000 = 0.030.",
+      "misconceptions": [
+        "Divides by ten times too many shuffles",
+        "Halves the count as if the test were one-sided",
+        "",
+        "Misplaces the decimal point"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day3",
+      "session": 1,
+      "slide": "null-distribution",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-permutation-03",
+      "type": "single",
+      "prompt": "A pilot compares the 90th percentile of waiting time between two service desks, 25 customers each. No standard formula for this comparison is at hand. Which approach gives a valid p-value?",
+      "options": [
+        "A t-test on the two means, reported as a test of the 90th percentiles",
+        "A comparison of the two bootstrap intervals by eye",
+        "The larger of the two percentiles divided by the smaller",
+        "A permutation test with the difference in 90th percentiles as its statistic"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A permutation test works for any statistic: shuffle the desk labels, recompute the difference in 90th percentiles, and count.",
+      "misconceptions": [
+        "Tests a different quantity from the one asked about",
+        "Overlap of two intervals is not a test",
+        "Gives an effect size and no measure of chance",
+        ""
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day3",
+      "session": 1,
+      "slide": "when-they-differ",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-pvalue-01",
+      "type": "single",
+      "prompt": "A report states: \"The new reminder letter reduced late payment (p = 0.02).\" Which sentence says correctly what the 0.02 is?",
+      "options": [
+        "The chance that the letter has no effect is 2%",
+        "The letter reduced late payment by 2%",
+        "If the letter had no effect, a reduction at least this large would appear in about 2 studies of 100",
+        "In 2% of customers the letter did not work"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "A p-value is computed under the assumption of no effect: it is the share of such worlds with a result at least this extreme.",
+      "misconceptions": [
+        "Reads the p-value as the probability of the null hypothesis",
+        "Reads the p-value as an effect size",
+        "",
+        "Reads the p-value as a share of customers"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day3",
+      "session": 2,
+      "slide": "p-value-definition",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-pvalue-02",
+      "type": "single",
+      "prompt": "A trial with 18 pumps per group finds no significant difference in failures between two lubricants (p = 0.45). The maintenance lead writes: \"The lubricants are equivalent.\" What is the weakness of that sentence?",
+      "options": [
+        "A study this small would often give a large p-value even if one lubricant were clearly better",
+        "A p-value of 0.45 means the lubricants differ in 45% of pumps",
+        "The p-value should have been compared with 0.5, not 0.05",
+        "Significance cannot be tested with fewer than 30 units per group"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A large p-value from a small study is absence of evidence. The interval for the difference would show how large a gap is still possible.",
+      "misconceptions": [
+        "",
+        "Reads the p-value as a share of units",
+        "Invents a threshold",
+        "States a rule of thumb as a law; small groups can be tested, with low power"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day3",
+      "session": 2,
+      "slide": "five-misreadings",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-pvalue-03",
+      "type": "single",
+      "prompt": "A team screens 200 ideas for reducing leaks. Experience says about 10 of 200 really work. Each is tested at the 0.05 level with a study that detects a working idea 60% of the time. About how many of the \"significant\" ideas are false alarms?",
+      "options": [
+        "About 5% of them",
+        "About 20% of them",
+        "About 40% of them",
+        "About 60% of them"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "False alarms: 190 × 0.05 ≈ 9.5. True detections: 10 × 0.6 = 6. So about 9.5 of 15.5 significant results, roughly 60%, are false.",
+      "misconceptions": [
+        "Takes the 0.05 level for the share of false alarms among significant results",
+        "Guesses between the level and the truth without counting",
+        "Uses the share of misses among working ideas",
+        ""
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day3",
+      "session": 2,
+      "slide": "p-is-not-prob-null",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-effect-01",
+      "type": "single",
+      "prompt": "A new routing rule changes mean travel time per repair by -6 minutes (95% interval -9 to -3). Operations say that a saving of at least 5 minutes pays for the rule. How should the result be reported?",
+      "options": [
+        "A real saving; whether it reaches 5 minutes is not settled",
+        "A real saving of more than 5 minutes",
+        "No saving was shown",
+        "A real saving that is too small to matter"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "The interval excludes 0 and includes the threshold of 5 minutes: the saving is real, and it may be 3 or 9 minutes.",
+      "misconceptions": [
+        "",
+        "Reads the estimate and ignores that the interval reaches down to 3 minutes",
+        "Ignores that the interval excludes zero",
+        "Ignores that the interval reaches beyond the threshold"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day3",
+      "session": 3,
+      "slide": "four-positions",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-effect-02",
+      "type": "single",
+      "prompt": "Satisfaction scores have a standard deviation of 2.0 points in both of two regions. The regions differ by 0.5 points in mean score. What is the standardised effect size d?",
+      "options": [
+        "0.10",
+        "0.20",
+        "0.25",
+        "4.00"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "d is the difference divided by the standard deviation: 0.5 / 2.0 = 0.25.",
+      "misconceptions": [
+        "Divides by the square of the standard deviation and rounds",
+        "Divides by 2.5 instead of 2.0",
+        "",
+        "Divides the standard deviation by the difference"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day3",
+      "session": 3,
+      "slide": "raw-and-standardised",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-effect-03",
+      "type": "single",
+      "prompt": "A simulation shows that a planned survey of 150 customers per group would detect a true gap of 0.3 points in 35% of studies. The survey is run and finds p = 0.21. What can be concluded about a gap of 0.3 points?",
+      "options": [
+        "It is ruled out, because the result is not significant",
+        "It is confirmed, because the power was low",
+        "It is half as likely as before the survey",
+        "It remains plausible, because the survey would have missed it about two times in three"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "With 35% power the survey says \"not significant\" in 65% of the worlds where the gap is real, so a non-significant result barely speaks against it.",
+      "misconceptions": [
+        "Reads a non-significant result from a weak study as proof of no gap",
+        "Turns low power into evidence for the effect",
+        "Invents a probability the analysis does not provide",
+        ""
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day3",
+      "session": 3,
+      "slide": "power-for-a-question",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-multiple-01",
+      "type": "single",
+      "prompt": "A dashboard tests 60 branches against the company average each month at the 0.05 level. In a month in which no branch truly differs, about how many branches will be flagged?",
+      "options": [
+        "3",
+        "0",
+        "6",
+        "12"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "60 × 0.05 = 3 false flags are expected when nothing differs.",
+      "misconceptions": [
+        "",
+        "Assumes that a 5% test gives no flags when nothing differs",
+        "Uses 10% in place of 5%",
+        "Uses 20% in place of 5%"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 4,
+      "slide": "false-alarms-expected",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-multiple-02",
+      "type": "single",
+      "prompt": "Five tests give the p-values 0.004, 0.011, 0.020, 0.030 and 0.400. Holm's method at 0.05 compares the smallest with 0.05/5, the next with 0.05/4, and so on, and stops at the first failure. How many hypotheses does it reject?",
+      "options": [
+        "1",
+        "2",
+        "4",
+        "5"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "0.004 < 0.010 passes; 0.011 < 0.0125 passes; 0.020 < 0.0167 fails, so Holm stops with 2 rejections.",
+      "misconceptions": [
+        "Compares every p-value with 0.05/5",
+        "",
+        "Rejects every p-value below 0.05, with no correction",
+        "Rejects all five because the smallest passed"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 4,
+      "slide": "two-promises",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-multiple-03",
+      "type": "single",
+      "prompt": "A league table ranks 40 clinics by the share of patients seen within the target time. The five best and the five worst are all among the smallest clinics. Before any clinic is praised or inspected, what is the most likely explanation to check?",
+      "options": [
+        "Small clinics are managed either very well or very badly",
+        "Small clinics report their data less carefully",
+        "The target is unfair to clinics of middle size",
+        "Shares based on few patients vary most, so small clinics land at both ends by chance"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "An estimate from few cases has a large standard error, so the extremes of a ranking are filled by the smallest units whatever their true performance.",
+      "misconceptions": [
+        "Explains by management a pattern that sampling variation produces unaided",
+        "Proposes a data-quality cause without evidence when a simpler one exists",
+        "Blames the target for a pattern that is about sample size",
+        ""
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 4,
+      "slide": "small-districts-funnel",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
     }
   ]
 }
