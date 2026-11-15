@@ -1,158 +1,589 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes">REPLACE: welcome; introduce yourself; one question to the room that calibrates the pace; the rhythm of the day</aside>
+  <aside class="notes"><p>Last teaching day. Three sessions on one line through 2,000 households, then the paragraph that carries a result to a manager. The last lab ends with each participant's capstone question, so leave it its full 25 minutes.</p></aside>
 </section>
 
-<section class="slide" id="agenda" data-auto="agenda"></section>
+<section class="slide" id="agenda" data-auto="agenda">
+  <aside class="notes"><p>Session 1 fits a line and reads it. Session 2 puts an interval on its slope and finds the library's standard error too small. Session 3 adds a second variable and the slope moves. Session 4 writes the brief.</p></aside>
+</section>
 
-<!-- Session 1 -->
+<section class="slide" id="review-day3" data-lo="LO4" data-label="Review">
+  <div class="kicker">Review of Day 3</div>
+  <h2>How many of these flags can you trust?</h2>
+  <div class="quiz" data-type="single" data-lo="LO4">
+    <p class="lead">A monthly report tests 20 service counters against the average at the 0.05 level and flags one. No correction is applied. What is the fair reading of the single flag?</p>
+    <div class="opts">
+      <div class="opt" data-ok>It may well be a false alarm: 20 tests of counters that do not differ give one flag on average</div>
+      <div class="opt" data-why="Applies the error rate of one planned test to the best of twenty">It has a 5% chance of being a false alarm</div>
+      <div class="opt" data-why="Reads a p-value below 0.05 as proof, whatever the number of tests">The counter certainly differs from the others</div>
+      <div class="opt" data-why="Dismisses the result outright: a flag after correction, or a second look, could still be real">It must be ignored, since uncorrected tests mean nothing</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> 20 × 0.05 = 1 false flag expected when nothing differs. One flag in twenty is what chance alone delivers.</div>
+  </div>
+  <aside class="notes"><p>Answer: A. Two minutes. The follow-up question: what would you do next? Apply Holm, or give the flagged counter a second, independent look.</p></aside>
+</section>
 
+<!-- ======================= SESSION 1 ======================= -->
 <section class="slide section" id="s1" data-auto="section" data-session="1"></section>
 
-<section class="slide" id="s1-idea" data-lo="LO5">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="planning-question" data-lo="LO5" data-label="The question">
+  <div class="kicker">Jamila's question</div>
+  <h2>"How much more water for each additional person?"</h2>
   <div class="cols cols-2">
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>A new housing scheme for large families needs a supply estimate.</li>
+      <li>Until now every question was about one variable, or one variable in two groups.</li>
+      <li>This one is about how one quantity <b>moves with</b> another: consumption with household size.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <div class="card c-teal"><h4>The data</h4><p class="small mb0">2,000 metered households drawn at random from the 80,000: household size, summer temperature of the area, litres a day.</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>The file metered_2000.csv is the supplied study for the whole day; each lab loads it afresh. Temperature is in the file from the start and is ignored until session 3, on purpose.</p></aside>
 </section>
 
-<section class="slide" id="s1-steps" data-lo="LO5">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="line-through-means" data-lo="LO5" data-label="A line as a summary">
+  <div class="kicker">Lab 4.1, steps 1 and 2</div>
+  <h2>A fitted line is a summary of the group averages</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:means_and_line-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Mean daily consumption by household size for 2,000 households, rising in nearly equal steps from 165 litres for one person to about 1,230 for twelve, with the fitted line 64 plus 98.5 per person through the points">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="356.0" y2="356.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="361.0" text-anchor="end" font-size="14" fill="var(--muted)">0</text>
+<line x1="64" x2="700" y1="252.0" y2="252.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="257.0" text-anchor="end" font-size="14" fill="var(--muted)">400</text>
+<line x1="64" x2="700" y1="148.0" y2="148.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="153.0" text-anchor="end" font-size="14" fill="var(--muted)">800</text>
+<line x1="64" x2="700" y1="44.0" y2="44.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="49.0" text-anchor="end" font-size="14" fill="var(--muted)">1,200</text>
+<line x1="114.5" x2="114.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="114.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">1</text>
+<line x1="165.0" x2="165.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="165.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">2</text>
+<line x1="265.9" x2="265.9" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="265.9" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">4</text>
+<line x1="366.9" x2="366.9" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="366.9" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6</text>
+<line x1="467.8" x2="467.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="467.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">8</text>
+<line x1="568.8" x2="568.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="568.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">10</text>
+<line x1="669.7" x2="669.7" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="669.7" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">12</text>
+<polyline points="89.2,326.6 695.0,19.4" fill="none" stroke="var(--coral)" stroke-width="3"/>
+<circle cx="114.5" cy="313.2" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="165.0" cy="290.4" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="215.4" cy="262.6" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="265.9" cy="236.0" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="316.4" cy="211.4" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="366.9" cy="184.6" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="417.3" cy="160.4" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="467.8" cy="128.4" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="518.3" cy="111.3" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="568.8" cy="110.1" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="619.2" cy="86.6" r="7" fill="var(--teal)" fill-opacity="1"/>
+<circle cx="669.7" cy="36.1" r="7" fill="var(--teal)" fill-opacity="1"/>
+<text x="387.0" y="278.0" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">line: 64 + 98.5 × people</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">people in the household (dots: mean consumption, litres a day)</text>
+</svg>
+<!--/FIG:means_and_line-->
+      <div class="caption">2,000 households: mean consumption at each household size, and the least-squares line.</div>
+    </div>
+    <ul class="bullets">
+      <li>From one size to the next, the mean rises by 88 to 107 litres.</li>
+      <li>One line replaces twelve means with two numbers: where it starts and how steeply it climbs.</li>
+      <li>consumption = 63.7 + 98.48 × people.</li>
+    </ul>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>Solution run of lab 4.1. The dots for 10, 11 and 12 people rest on 9, 6 and 2 households: they wander, and the line rightly gives them little weight. Ask why a line and not the twelve means: it is simpler to say, steadier where data are thin, and it can be given an interval.</p></aside>
+</section>
+
+<section class="slide" id="least-squares" data-lo="LO5" data-label="Least squares">
+  <div class="kicker">How the line is chosen</div>
+  <h2>Least squares picks the line with the smallest squared misses</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">def fit_line(x, y):
+    dx, dy = x - x.mean(), y - y.mean()
+    slope = (dx * dy).mean() / (dx ** 2).mean()
+    intercept = y.mean() - slope * x.mean()
+    return intercept, slope</code></pre>
+    <ul class="bullets">
+      <li>slope = covariance(x, y) / variance(x).</li>
+      <li>The line always passes through the point of the two means.</li>
+      <li>The same line as <code>np.polyfit(x, y, 1)</code>, and as the projection of FN-103.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>One slide of recap: FN-103 Day 2 derived least squares as a projection and solved the normal equations. Nothing of that is repeated. What is new from here on is inference about the slope.</p></aside>
+</section>
+
+<section class="slide" id="slope-in-units" data-lo="LO5" data-label="The slope in units">
+  <div class="kicker">Lab 4.1, step 3</div>
+  <h2>A slope is only useful in the manager's units</h2>
+  <div class="cols cols-3">
+    <div class="stat"><div class="big">98.48</div><div class="lbl">the coefficient in the output</div></div>
+    <div class="stat"><div class="big">98 litres</div><div class="lbl">more a day for each additional person</div></div>
+    <div class="stat"><div class="big">3.0 m³</div><div class="lbl">more a month: what a bill is counted in</div></div>
+  </div>
+  <div class="callout tip mt"><b>The sentence.</b> "Among these households, one more person goes with about 98 litres more a day, about 3.0 cubic metres more a month."</div>
+  <aside class="notes"><p>98.48 litres a day times 30 days over 1,000 litres per cubic metre. Always state the units of both variables: "per person", "a day". A coefficient without units is the most common defect in a regression table.</p></aside>
+</section>
+
+<section class="slide" id="intercept-and-range" data-lo="LO5" data-label="Intercept and range">
+  <div class="kicker">Lab 4.1, step 4</div>
+  <h2>Predict inside the range you observed; read the intercept with care</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th>household of</th><th class="num">line</th><th class="num">observed mean</th></tr>
+      <tr><td>2 people</td><td class="num">261</td><td class="num">252</td></tr>
+      <tr><td>6 people</td><td class="num">655</td><td class="num">659</td></tr>
+      <tr><td>0 people</td><td class="num">64</td><td class="num">none exists</td></tr>
+      <tr><td>40 people</td><td class="num">4,003</td><td class="num">none observed</td></tr>
+    </table>
+    <ul class="bullets">
+      <li>The <b>intercept</b>, 64 litres, is where the line meets the axis, not a measurement.</li>
+      <li>The data stop at 12 people. Beyond that the line is a guess with a formula.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The 40-person row is 63.7 plus 40 times 98.48, computed here to show how confidently a line extrapolates. A compound of 40 on one meter is a different kind of customer.</p></aside>
+</section>
+
+<section class="slide" id="goes-with-not-causes" data-lo="LO5" data-label="Describes, does not explain">
+  <div class="kicker">What the line does not say</div>
+  <h2>"Goes with" is not "causes"</h2>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>What was compared</h4><p class="small mb0">Different households of different sizes, at one moment.</p></div>
+    <div class="card c-coral"><h4>What was not observed</h4><p class="small mb0">One household before and after a person moved in.</p></div>
+  </div>
+  <ul class="bullets mt">
+    <li>Households of different sizes may differ in other ways too: where they live, the kind of home, a garden.</li>
+    <li>Whatever travels with household size is folded into the 98 litres. Session 3 finds one such thing.</li>
+  </ul>
+  <aside class="notes"><p>Keep the wording discipline from now on: "one more person goes with", "households with one more person use on average". The planted confounder is temperature; do not name it yet.</p></aside>
+</section>
+
+<section class="slide" id="sample-and-population-line" data-lo="LO5" data-label="Against the truth">
+  <div class="kicker">Lab 4.1, step 5</div>
+  <h2>The slope is a statistic: another sample gives another slope</h2>
+  <table class="t">
+    <tr><th></th><th class="num">intercept</th><th class="num">slope, litres per person</th></tr>
+    <tr><td>your sample of 2,000</td><td class="num">63.7</td><td class="num">98.48</td></tr>
+    <tr><td>all 80,000 households</td><td class="num">71.4</td><td class="num">96.21</td></tr>
+    <tr class="hl"><td>the miss</td><td class="num"></td><td class="num">+2.27</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>Household size accounts for 79% of the variation in consumption (R² = 0.792).</li>
+    <li>The slope needs an interval, like every estimate this week.</li>
+  </ul>
+  <aside class="notes"><p>R squared is mentioned once and not developed: it measures how tightly the points hug the line, not whether the slope is right, and a high value protects against none of the problems of the next two sessions.</p></aside>
+</section>
+
+<section class="slide" id="check-reading-slope" data-lo="LO5">
+  <div class="kicker">Checkpoint</div>
+  <h2>What does this slope tell the planner?</h2>
+  <div class="quiz" data-type="single" data-lo="LO5">
+    <p class="lead">For 1,500 shops, monthly water use in cubic metres is regressed on floor area in square metres: use = 4.0 + 0.12 × area. The shops range from 20 to 400 square metres. Which statement is supported?</p>
+    <div class="opts">
+      <div class="opt" data-why="Reads a comparison between shops as the effect of changing one shop">Extending a shop by 100 square metres will raise its use by 12 cubic metres</div>
+      <div class="opt" data-why="Extrapolates far beyond the largest shop observed">A warehouse of 5,000 square metres uses about 604 cubic metres</div>
+      <div class="opt" data-why="Reads the intercept as a measurement: no shop has zero floor area">A shop with no floor area uses 4 cubic metres</div>
+      <div class="opt" data-ok>Among these shops, one that is 100 square metres larger uses about 12 cubic metres more on average</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The slope compares shops of different sizes within the range observed: 0.12 × 100 = 12 cubic metres.</div>
+  </div>
+  <aside class="notes"><p>Answer: D. Option A is the one managers hear by default; the analyst's wording has to prevent it.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-4-1" data-auto="lab" data-lab="4.1">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>Steps 1 to 3 without an assistant: the day's first core computation. The formula of step 2 is checked against np.polyfit. A common slip in step 3 is dividing by 1,000 without multiplying by 30 days. The lab loads the supplied sample of 2,000 and needs nothing from earlier days.</p></aside>
 </section>
 
-<!-- Session 2 -->
-
+<!-- ======================= SESSION 2 ======================= -->
 <section class="slide section" id="s2" data-auto="section" data-session="2"></section>
 
-<section class="slide" id="s2-idea" data-lo="LO5">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="slope-varies" data-lo="LO5" data-label="The slope varies">
+  <div class="kicker">Day 1, for a slope</div>
+  <h2>A slope has a sampling distribution and a standard error</h2>
   <div class="cols cols-2">
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>Your sample says 98.48 litres per person. The population says 96.21.</li>
+      <li>Everything from Days 1 and 2 applies: the slope's spread over samples is its standard error, and an interval is built from it.</li>
+      <li>Two routes again: a formula in the library, and a bootstrap.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <pre class="code s"><code class="language-text">             coef  std err      t  [0.025  0.975]
+Intercept  63.739    5.160  12.35  53.620  73.858
+size       98.479    1.128  87.27  96.266 100.692</code></pre>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>The table is the statsmodels summary from the stretch of lab 4.1, with the p-value column (0.000 in both rows) left out to fit and household_size shortened to size. Walk the columns: coefficient, standard error, t as their ratio, the 95% interval. The reported interval, 96.27 to 100.69, does not contain the population slope 96.21. One miss proves nothing; this session counts.</p></aside>
 </section>
 
-<section class="slide" id="s2-steps" data-lo="LO5">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="pairs-bootstrap" data-lo="LO2 LO5" data-label="Bootstrap the pairs">
+  <div class="kicker">Lab 4.2, step 2</div>
+  <h2>Bootstrap the households: each one keeps its pair of values</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">idx = gen.integers(0, n, size=(B, n))
+xs, ys = x[idx], y[idx]   # pairs stay together
+xc = xs - xs.mean(axis=1, keepdims=True)
+yc = ys - ys.mean(axis=1, keepdims=True)
+num = (xc * yc).mean(axis=1)
+slopes = num / (xc ** 2).mean(axis=1)</code></pre>
+    <ul class="bullets">
+      <li>The unit drawn at random is the household, so the household is resampled: its size and its consumption together.</li>
+      <li>Resample x and y separately and the relation is destroyed: every slope comes out near zero.</li>
+      <li>2,000 slopes: standard deviation 1.409.</li>
+    </ul>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>The same index array picks both columns, which is the whole point. This "pairs bootstrap" makes no assumption about how the points scatter around the line.</p></aside>
+</section>
+
+<section class="slide" id="two-standard-errors" data-lo="LO5" data-label="Two standard errors">
+  <div class="kicker">Lab 4.2, step 3</div>
+  <h2>The library's standard error is a quarter too small</h2>
+  <table class="t">
+    <tr><th>method</th><th class="num">standard error</th><th class="num">95% interval</th><th class="num">width</th></tr>
+    <tr><td>reported by the library</td><td class="num">1.13</td><td class="num">96.27 to 100.69</td><td class="num">4.42</td></tr>
+    <tr><td>bootstrap of households</td><td class="num">1.41</td><td class="num">95.66 to 101.23</td><td class="num">5.57</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>The bootstrap standard error is 25% larger.</li>
+    <li>The population slope, 96.21, is inside the bootstrap interval and just outside the reported one.</li>
+    <li>They disagree for a reason you can see in the data.</li>
+  </ul>
+  <aside class="notes"><p>Ask the room to guess the reason before the next slide. Hint: lab 4.1's scatter plot widened to the right.</p></aside>
+</section>
+
+<section class="slide" id="equal-spread-assumption" data-lo="LO5" data-label="The assumption">
+  <div class="kicker">Lab 4.2, step 4</div>
+  <h2>The formula assumes equal spread around the line; the data do not have it</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:residual_spread-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Standard deviation of the residuals by household size: it grows from 67 litres for one person to 133 litres for eight">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="356.0" y2="356.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="361.0" text-anchor="end" font-size="14" fill="var(--muted)">0</text>
+<line x1="64" x2="700" y1="243.3" y2="243.3" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="248.3" text-anchor="end" font-size="14" fill="var(--muted)">50</text>
+<line x1="64" x2="700" y1="130.7" y2="130.7" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="135.7" text-anchor="end" font-size="14" fill="var(--muted)">100</text>
+<line x1="64" x2="700" y1="18.0" y2="18.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="23.0" text-anchor="end" font-size="14" fill="var(--muted)">150</text>
+<line x1="110.5" x2="110.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="110.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">1</text>
+<line x1="188.1" x2="188.1" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="188.1" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">2</text>
+<line x1="265.7" x2="265.7" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="265.7" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">3</text>
+<line x1="343.2" x2="343.2" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="343.2" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">4</text>
+<line x1="420.8" x2="420.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="420.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">5</text>
+<line x1="498.3" x2="498.3" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="498.3" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6</text>
+<line x1="575.9" x2="575.9" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="575.9" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">7</text>
+<line x1="653.5" x2="653.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="653.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">8</text>
+<rect x="84.4" y="205.3" width="75.6" height="150.7" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="162.0" y="197.6" width="75.6" height="158.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="239.5" y="173.0" width="75.6" height="183.0" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="317.1" y="147.1" width="75.6" height="208.9" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="394.6" y="111.6" width="75.6" height="244.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="472.2" y="117.6" width="75.6" height="238.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="549.8" y="95.5" width="75.6" height="260.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="627.3" y="55.5" width="52.3" height="300.5" fill="var(--teal)" fill-opacity="0.85"/>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">people in the household (bars: spread of the residuals, litres a day)</text>
+</svg>
+<!--/FIG:residual_spread-->
+      <div class="caption">Standard deviation of the residuals at each household size.</div>
+    </div>
+    <ul class="bullets">
+      <li>Households of 8 scatter twice as widely around the line as households of 1: 133 against 67 litres.</li>
+      <li>Large households sit at the end of the line, where a point has most pull on the slope, and they are the noisiest.</li>
+      <li>The formula averages the noise over everyone and understates the swing.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The textbook word is heteroscedasticity; "unequal spread" does the job. It is the rule for quantities that grow: bigger households, bigger customers, bigger bills all vary more.</p></aside>
+</section>
+
+<section class="slide" id="slope-coverage" data-lo="LO2 LO5" data-label="Counted">
+  <div class="kicker">Lab 4.2, step 5</div>
+  <h2>Counted over 300 samples, the bootstrap interval keeps the promise</h2>
+  <div class="bars">
+    <div class="row"><span>reported interval</span><div class="bar c-coral" style="--w:92%"></div><span class="val">92.0%</span></div>
+    <div class="row"><span>bootstrap interval</span><div class="bar c-teal" style="--w:95%"></div><span class="val">95.0%</span></div>
+    <div class="row"><span>promised</span><div class="bar c-navy" style="--w:95%"></div><span class="val">95%</span></div>
+  </div>
+  <ul class="bullets mt">
+    <li>Libraries can drop the assumption too: the robust standard error (HC3) is 1.402, the bootstrap's 1.409.</li>
+    <li>When the reported and the robust standard errors differ, report the robust one and say why.</li>
+  </ul>
+  <aside class="notes"><p>300 samples of 2,000 drawn from the population, 500 resamples each. With 300 samples the counting error is about 2.5 points, so 92% is a shortfall at the edge of what the count can show; the direction agrees with the standard errors. The robust standard error is one argument to the library and costs nothing.</p></aside>
+</section>
+
+<section class="slide" id="reading-regression-output" data-lo="LO5" data-label="Reading the output">
+  <div class="kicker">In practice</div>
+  <h2>Read a regression table in this order</h2>
+  <ol class="bullets">
+    <li><b>The coefficient, with units:</b> 98 litres a day per person.</li>
+    <li><b>Its interval:</b> 95.7 to 101.2 by bootstrap. Is the whole interval large enough, or small enough, to matter?</li>
+    <li><b>Where the standard error comes from:</b> the default formula, a robust one, or a bootstrap.</li>
+    <li><b>The p-value last:</b> it tests "slope is exactly zero", which is rarely the question.</li>
+  </ol>
+  <aside class="notes"><p>The same order as yesterday's report: estimate, interval, then test. Nobody doubted that bigger households use more water; the t of 87 answers a question nobody asked.</p></aside>
+</section>
+
+<section class="slide" id="check-which-se" data-lo="LO5">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which standard error goes in the brief?</h2>
+  <div class="quiz" data-type="single" data-lo="LO5">
+    <p class="lead">A regression of monthly bill on meter size gives a slope of 41 riyals per size step. The library reports a standard error of 2.0; a bootstrap of customers gives 3.1. A plot shows bills scattering far more widely for large meters. What should the analyst report?</p>
+    <div class="opts">
+      <div class="opt" data-why="Chooses the smaller error because it looks better, although its assumption of equal spread visibly fails">2.0, because the library's formula is the standard method</div>
+      <div class="opt" data-ok>3.1, because the spread is unequal and the bootstrap does not assume otherwise</div>
+      <div class="opt" data-why="Averages a valid and an invalid figure">About 2.5, the middle of the two</div>
+      <div class="opt" data-why="Gives up the estimate although a valid standard error is at hand">Neither: the slope cannot be trusted when spreads differ</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Unequal spread does not bias the slope; it makes the default standard error too small. The bootstrap, or a robust standard error, is the honest one.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Option D confuses two things worth separating: the slope itself is still a fair estimate; only its stated uncertainty was wrong.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-4-2" data-auto="lab" data-lab="4.2">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The lab loads the sample of 2,000 afresh. The coverage loop of step 5 is supplied, not an exercise: it runs 300 samples with 500 resamples each and takes about half a minute; in quick mode 60 samples, where the two coverages can tie or cross. Read the direction of the standard errors, not small coverage differences, in quick mode.</p></aside>
 </section>
 
-<!-- Session 3 -->
-
+<!-- ======================= SESSION 3 ======================= -->
 <section class="slide section" id="s3" data-auto="section" data-session="3"></section>
 
-<section class="slide" id="s3-idea" data-lo="LO5">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="residuals-are-evidence" data-lo="LO5" data-label="Residuals">
+  <div class="kicker">What the line left behind</div>
+  <h2>A residual is what the model missed, and patterns in residuals are evidence</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>No pattern</h4><p class="small mb0">A level band around zero: the model has captured what is systematic.</p></div>
+    <div class="card c-coral"><h4>A trend or a curve</h4><p class="small mb0">Against some variable the residuals rise, fall or bend: something systematic is missing.</p></div>
+    <div class="card c-purple"><h4>A funnel</h4><p class="small mb0">The band widens: unequal spread. The slopes stand, the default standard errors do not.</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <p class="small mt">residual = observed - fitted. Plot the residuals against the fitted values, against each variable in the model, and against variables you left out.</p>
+  <aside class="notes"><p>The third instruction is the one people skip and the one that pays today. Session 2 found the funnel; this session finds a trend against a variable that is not in the model.</p></aside>
 </section>
 
-<section class="slide" id="s3-steps" data-lo="LO5">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="residuals-vs-temperature" data-lo="LO5" data-label="A trend">
+  <div class="kicker">Lab 4.3, step 1</div>
+  <h2>The residuals of the one-variable line rise with temperature</h2>
+  <div class="cols cols-2">
+    <div class="stat"><div class="big">17.0</div><div class="lbl">litres of residual for each degree of summer temperature</div></div>
+    <ul class="bullets">
+      <li>In hot areas the line is too low; in mild areas too high.</li>
+      <li>Hot districts use more water per household: cooling, gardens, evaporation.</li>
+      <li>Temperature was in the file all along. The model never asked.</li>
+    </ul>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>Zulal's 30 districts have mean summer temperatures between 33 and 45 degrees. Show the scatter in the notebook: a clear upward band. If the model were complete, this plot would be flat.</p></aside>
+</section>
+
+<section class="slide" id="slope-moved" data-lo="LO5" data-label="Add temperature">
+  <div class="kicker">Lab 4.3, step 2</div>
+  <h2>Add temperature, and the slope on household size drops by 12 litres</h2>
+  <table class="t">
+    <tr><th>model</th><th class="num">litres per person</th><th class="num">litres per degree</th><th class="num">R²</th></tr>
+    <tr><td>household size alone</td><td class="num">98.48</td><td class="num"></td><td class="num">0.792</td></tr>
+    <tr class="hl"><td>household size and temperature</td><td class="num">86.19</td><td class="num">19.84</td><td class="num">0.865</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>The move, 12.3 litres, is about nine times the slope's standard error (1.32, robust).</li>
+    <li>No interval around 98 warned of it: an interval measures sampling error, and this is not sampling error.</li>
+    <li>It is a different question getting a different answer.</li>
+  </ul>
+  <aside class="notes"><p>The generator of the data used 85 litres per person and 20 per degree; in all 80,000 households the two-variable fit gives 84.8 and 19.9. The two-variable model recovers what was planted; the one-variable model could not, at any sample size.</p></aside>
+</section>
+
+<section class="slide" id="confounding" data-lo="LO5" data-label="Confounding">
+  <div class="kicker">Lab 4.3, step 4</div>
+  <h2>Household size and temperature travel together: that is confounding</h2>
+  <div class="cols cols-2">
+    <div class="flow v">
+      <div class="step c-coral"><b>Summer temperature</b>hot areas have larger households (5.19 people against 3.37 in mild areas)</div>
+      <div class="arrow">↓</div>
+      <div class="step c-teal"><b>Household size</b>the variable you looked at</div>
+      <div class="arrow">↓</div>
+      <div class="step c-cyan"><b>Consumption</b>pushed up by both</div>
+    </div>
+    <ul class="bullets">
+      <li>Correlation of household size with temperature: 0.38.</li>
+      <li>Comparing households by size alone compares, in part, hot areas with mild ones.</li>
+      <li>The one-variable slope credited people with litres that belong to the heat.</li>
+      <li>The move is predictable: 19.84 litres per degree × 0.619 degrees per additional person = 12.3.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>A confounder is tied to both the variable of interest and the outcome. The arithmetic in the last bullet is the stretch of lab 4.3 and is exact for least squares. Temperature also pushes consumption directly, which the flow shows as one chain for simplicity; say so.</p></aside>
+</section>
+
+<section class="slide" id="held-fixed" data-lo="LO5" data-label="Two right answers">
+  <div class="kicker">Which slope is right?</div>
+  <h2>Both slopes are right, for different questions</h2>
+  <table class="t">
+    <tr><th>The question</th><th>The slope</th><th>Why</th></tr>
+    <tr><td>How much more water for a family of 6 than of 4 <b>in the coastal scheme</b>?</td><td>86 per person: about 172 litres a day</td><td>One area, so temperature is held fixed</td></tr>
+    <tr><td>How much more do Zulal's large households use than its small ones, <b>wherever they live</b>?</td><td>98 per person</td><td>That comparison includes where large households live</td></tr>
+  </table>
+  <div class="callout tip mt"><b>"Holding temperature fixed"</b> is what the second variable does: 86 litres compares households of different sizes in areas equally hot.</div>
+  <aside class="notes"><p>Jamila's scheme is in a mild coastal district, so her answer is 86 with its interval, 84 to 89. The 98 would have over-supplied the scheme by about 12 litres per person per day.</p></aside>
+</section>
+
+<section class="slide" id="what-regression-cannot" data-lo="LO5 LO6" data-label="Limits">
+  <div class="kicker">Lab 4.3, steps 3 and 5</div>
+  <h2>The new residuals are flat; the list of confounders is never known to be complete</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>Trend of the new residuals in temperature: 0.0 litres per degree.</li>
+      <li>The funnel remains: hence the robust standard error.</li>
+      <li>A variable nobody measured may still be mixed in.</li>
+    </ul>
+    <div class="card tint c-navy"><p class="small mb0">"Among households in areas of the same summer temperature, one more person goes with about <b>86</b> litres more a day (95% interval <b>84 to 89</b>), and each degree with about 20 litres more. These are comparisons between different households, not the effect of adding a person to a home, and differences between areas that we did not measure may still be mixed into both numbers."</p></div>
+  </div>
+  <aside class="notes"><p>The card is the two-sentence interpretation the fifth course outcome asks for, from the solution run. The funnel in numbers: residual spread 40 litres for households of 1 or 2, 111 for 6 or more. In real data nobody hands you the generator. The second sentence is the limits statement. Only a designed comparison, where chance decides who gets what, removes confounders you did not think of; that is the subject of DS-302.</p></aside>
+</section>
+
+<section class="slide" id="check-why-slope-moves" data-lo="LO5">
+  <div class="kicker">Checkpoint</div>
+  <h2>Why did the slope move?</h2>
+  <div class="quiz" data-type="single" data-lo="LO5">
+    <p class="lead">Across 900 branches, sales are regressed on the number of staff: 12,000 riyals per staff member. When the size of the branch's town is added, the slope on staff falls to 7,000. Which explanation fits?</p>
+    <div class="opts">
+      <div class="opt" data-why="Blames sampling error for a move that comes from changing the question; an interval around 12,000 would not have covered it">The first slope was imprecise because the sample was too small</div>
+      <div class="opt" data-why="Assumes that adding any variable weakens the others: a variable unrelated to staff would leave the slope where it was">Adding a variable always shrinks the other slopes</div>
+      <div class="opt" data-ok>Branches in larger towns have more staff and sell more for other reasons too</div>
+      <div class="opt" data-why="Reads the smaller slope as an error in the second model, which is the one that separates the two influences">The second model is wrong, since staff clearly drive sales</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Town size is tied to both staff and sales. Left out, its share of the sales was credited to staff.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. Follow-up: which slope answers "what would one more member of staff add in this branch"? Neither with certainty; 7,000 is the better starting point, and only a designed trial would say.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-4-3" data-auto="lab" data-lab="4.3">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The lab fits its own one-variable model first, so nothing from labs 4.1 and 4.2 is needed. Formulas in statsmodels are written as strings: consumption_l_day ~ household_size + temperature_c. The check of step 5 looks for the slope and the two interval ends as whole numbers and for the word "temperature".</p></aside>
 </section>
 
-<!-- Session 4 -->
-
+<!-- ======================= SESSION 4 ======================= -->
 <section class="slide section" id="s4" data-auto="section" data-session="4"></section>
 
-<section class="slide" id="s4-idea" data-lo="LO6">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
-  <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+<section class="slide" id="what-a-brief-is" data-lo="LO6" data-label="The brief">
+  <div class="kicker">The product of this course</div>
+  <h2>An inference brief answers one question on two pages</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>Question</b>in the manager's words, then as an estimand</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>Estimate</b>with its interval</div>
+    <div class="arrow">→</div>
+    <div class="step c-purple"><b>Test</b>and the effect size against a threshold</div>
+    <div class="arrow">→</div>
+    <div class="step c-coral"><b>Limits</b>the population, the unit, what the data cannot tell</div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <p class="small mt">Behind it: a notebook that reruns from the raw file with a seed, and a README with a coverage check of the interval method.</p>
+  <aside class="notes"><p>The five parts are the wording of the sixth course outcome: an estimate, an interval, a test, an effect size and stated limits. Days 1 to 4 each supplied one or two of them. This session assembles them on a question the room has not seen.</p></aside>
 </section>
 
-<section class="slide" id="s4-steps" data-lo="LO6">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="question-to-estimand" data-lo="LO6" data-label="The estimand">
+  <div class="kicker">Before any computing</div>
+  <h2>Turn the question into an estimand: one number in a named population</h2>
+  <table class="t">
+    <tr><th>The manager says</th><th>The estimand</th></tr>
+    <tr><td>"What share of repairs meet the 24-hour standard?"</td><td>The share of this year's 12,000 repairs that took 24 hours or less</td></tr>
+    <tr><td>"Is one contractor better at it?"</td><td>The difference between the contractors in that share</td></tr>
+    <tr><td>"Did the message reduce consumption?"</td><td>The difference between message and control neighbourhoods in the mean change of litres a day per household</td></tr>
+  </table>
+  <div class="callout tip mt"><b>Write it before you open the data.</b> With the unit you will resample and the comparisons you will make: that is the analysis plan of Day 3.</div>
+  <aside class="notes"><p>An estimand has a quantity, a population and, for a comparison, the two things compared. If the estimand cannot be written in one sentence, the question is not yet clear enough to analyse. The third row is one of the capstone questions.</p></aside>
+</section>
+
+<section class="slide" id="share-is-a-mean" data-lo="LO6" data-label="A new statistic">
+  <div class="kicker">Lab 4.4, steps 1 and 2</div>
+  <h2>A new question needs no new method: a share is a mean of zeros and ones</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th>400 sampled repairs</th><th class="num">estimate</th><th class="num">95% interval</th></tr>
+      <tr><td>share within 24 hours</td><td class="num">94.5%</td><td class="num">92.0% to 96.5%</td></tr>
+      <tr><td>gap, contractor A minus B</td><td class="num">+1.6 points</td><td class="num">-2.9 to +6.1</td></tr>
+    </table>
+    <ul class="bullets">
+      <li>Bootstrap for both intervals; a permutation test for the gap: p = 0.51.</li>
+      <li>Truth, all 12,000 repairs: 95.2%. Inside the interval.</li>
+      <li>Coverage of this interval method over 500 studies: 93.6%.</li>
+    </ul>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>Solution run of lab 4.4. Nothing here was taught as "inference for proportions": the same bootstrap, the same shuffle. That is the pay-off of learning inference by simulation; the recipe does not change when the statistic does.</p></aside>
+</section>
+
+<section class="slide" id="brief-paragraph" data-lo="LO6" data-label="The paragraph">
+  <div class="kicker">Lab 4.4, step 3</div>
+  <h2>One paragraph: estimate, interval, comparison, population, limits</h2>
+  <div class="card tint c-navy"><p class="small mb0">"In a random sample of <b>400</b> of this year's 12,000 leak repairs, <b>94.5%</b> were completed within the 24-hour standard (95% interval <b>92.0% to 96.5%</b>). Contractor A met the standard more often than contractor B by <b>1.6</b> percentage points, a gap that could easily arise by chance (permutation p = <b>0.51</b>; 95% interval -2.9 to +6.1 points). The <b>population</b> is the repairs logged this year at Zulal, including tickets closed late in the system. The sample <b>cannot</b> tell a late repair from a late entry, and it cannot show that the contractors are equal: a gap of a few points either way remains possible."</p></div>
+  <aside class="notes"><p>The solution's paragraph, lightly shortened for the screen. Point at each of the five parts. Two limits are stated: a data limit, late repair or late entry, from Day 1; and an inference limit, no difference shown is not equality, from Day 3.</p></aside>
+</section>
+
+<section class="slide" id="limits-worth-stating" data-lo="LO6" data-label="Limits">
+  <div class="kicker">The part most briefs leave out</div>
+  <h2>Limits worth stating fall into four kinds</h2>
+  <div class="cols cols-4">
+    <div class="card c-teal"><h4>Population</h4><p class="small mb0">Who the conclusion applies to: this year, these districts, surveyed households.</p></div>
+    <div class="card c-cyan"><h4>Sampling</h4><p class="small mb0">How units were drawn, the unit resampled, what a sample this size cannot detect.</p></div>
+    <div class="card c-coral"><h4>Measurement</h4><p class="small mb0">What the recorded number is: a ticket closed late is not always a repair done late.</p></div>
+    <div class="card c-purple"><h4>Comparison</h4><p class="small mb0">Was assignment by lot or by rota, or are the groups different in other ways?</p></div>
+  </div>
+  <div class="callout warn mt"><b>What goes wrong.</b> A ritual sentence, "results should be interpreted with caution". A limit names what could be wrong and in which direction.</div>
+  <aside class="notes"><p>The responsible-use rule of the course belongs to the first card: every brief states the population its conclusions apply to, and results are given by district or contractor, never by household.</p></aside>
+</section>
+
+<section class="slide" id="capstone-questions" data-lo="LO6" data-label="The capstone">
+  <div class="kicker">Lab 4.4, step 5</div>
+  <h2>Three questions you have not seen, each with a trap you have</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>q1 · Meter replacement</h4><p class="small mb0">Did smart meters reduce estimated bills? Rolled out in 8 of 20 districts.</p></div>
+    <div class="card c-cyan"><h4>q2 · Conservation message</h4><p class="small mb0">Did a monthly message cut consumption by at least 10 litres a day? 40 neighbourhoods, 20 by lot.</p></div>
+    <div class="card c-coral"><h4>q3 · Call-back change</h4><p class="small mb0">Did complaints get resolved faster after the new rule, and for which of six types?</p></div>
+  </div>
+  <p class="small mt">Or an approved public dataset. In the defence the assessor names a different resampling unit: you predict the effect on your interval, then show it.</p>
+  <aside class="notes"><p>Do not name the traps; they are in the answer key: q1 sampling unit (district), q2 unit (neighbourhood) and a threshold, q3 six comparisons and a before-and-after design. The datasets are in labs/capstone/data and are not used in class. The capstone is open to an assistant; the defence is the participant's alone.</p></aside>
+</section>
+
+<section class="slide" id="check-brief" data-lo="LO6">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which draft is an inference brief?</h2>
+  <div class="quiz" data-type="single" data-lo="LO6">
+    <p class="lead">A trial sent a reminder letter to 3,000 customers chosen by lot; 3,000 others got none. Which draft could a manager act on?</p>
+    <div class="opts">
+      <div class="opt" data-why="Gives a test result with no size: the manager cannot tell a large effect from a negligible one">The letter worked: the difference was significant (p = 0.004)</div>
+      <div class="opt" data-why="Gives an estimate with no uncertainty and no statement of who it applies to">Late payment was 2.1 points lower with the letter</div>
+      <div class="opt" data-why="Lists methods and leaves out every result">We used a permutation test and a bootstrap with a fixed seed</div>
+      <div class="opt" data-ok>Late payment was 2.1 points lower with the letter (95% interval 0.7 to 3.5; p = 0.004), among customers billed in March</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Estimate, interval, test and population are all there, to set against the cost of the letter.</div>
+  </div>
+  <aside class="notes"><p>Answer: D. Ask what is still missing from D for a full brief: the threshold that would make the letter worth sending, and a limit, for example that March may not be a typical month.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-4-4" data-auto="lab" data-lab="4.4">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The paragraph is written by the participant, not by an assistant: it is the rehearsal for the defence. The check is mechanical: it finds the six numbers as printed and the words "population", "cannot" and "95%". After step 4, have neighbours swap paragraphs and name the sentence they would challenge. Step 5 records the capstone choice: question, estimand of at least ten words, resampling unit. Collect the choices before the room leaves.</p></aside>
 </section>
 
-<section class="slide" id="wrap-up">
-  <div class="kicker">Day 4 · wrap-up</div>
-  <h2>Three things to keep</h2>
+<section class="slide" id="wrap-up" data-label="Wrap-up">
+  <div class="kicker">Day 4 in three lines</div>
+  <h2>What to keep</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-coral"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-purple"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
+    <div class="card c-teal"><h4>A slope in units</h4><p class="small mb0">"One more person goes with 98 litres more a day." A comparison between households, inside the range observed.</p></div>
+    <div class="card c-cyan"><h4>An honest interval</h4><p class="small mb0">Bootstrap the households or use a robust standard error. Then look at the residuals.</p></div>
+    <div class="card c-coral"><h4>Name what is held fixed</h4><p class="small mb0">A second variable moved the slope to 86. State the question each slope answers, and the limits.</p></div>
   </div>
+  <aside class="notes"><p>Ask each participant to say their capstone estimand in one sentence. A sentence that needs two breaths is not yet an estimand.</p></aside>
 </section>
 
 <section class="slide dark" id="next" data-label="Next">
   <div class="kicker">Next</div>
-  <h2>Capstone: Capstone project presentations</h2>
-  <p class="lead">REPLACE: what participants prepare before then; unfinished labs can be finished at home</p>
-  <aside class="notes">REPLACE: accounts, installs or reading participants need before the next unit</aside>
+  <h1>Capstone day</h1>
+  <p class="lead">A two-page brief on your question, a notebook that reruns from the raw file, and an eight-minute defence of one result.</p>
+  <ul class="bullets">
+    <li>Start from <code>labs/capstone/README.md</code>: what the repository must hold, the coverage check, the rubric.</li>
+    <li>Commit as you work: the history and the seeded run log are part of the evidence.</li>
+    <li>After the course: an inference brief on a table of the national Open Data Platform within two weeks (<code>labs/followup</code>).</li>
+  </ul>
+  <aside class="notes"><p>The supervised exit check is scheduled by the Academy and its items are not in the repository. Remind participants that an assistant is allowed for the capstone work and not in the defence, where the assessor names a different resampling unit.</p></aside>
 </section>

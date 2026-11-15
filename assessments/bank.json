@@ -71,7 +71,7 @@
       "options": [
         "Each sample is one draw of many, and means of 60 vary from draw to draw",
         "One of the two samples must contain a recording error",
-        "The population mean changed between the two samples",
+        "The population mean must have changed in the time between the first sample and the second",
         "Samples of 60 are too small to give any usable mean"
       ],
       "correct": [
@@ -382,7 +382,7 @@
         "So that resamples differ from one another the way real samples would",
         "So that each resample is larger than the original sample",
         "So that extreme durations are removed from the resamples",
-        "So that every duration appears exactly once in each resample"
+        "So that every one of the 120 durations appears exactly once in each resample"
       ],
       "correct": [
         0
@@ -472,7 +472,7 @@
       "type": "single",
       "prompt": "A consultant reports \"a 95% interval for the mean bill: 212 to 236 riyals\". Which statement describes what the 95% refers to?",
       "options": [
-        "95% of customers have bills between 212 and 236 riyals",
+        "95% of all customers of the company have a monthly bill somewhere between 212 and 236 riyals",
         "The interval was computed from 95% of the customers",
         "The method produces intervals that contain the true mean in about 95 of 100 studies",
         "The sample mean is 95% of the true mean"
@@ -534,7 +534,7 @@
       "type": "single",
       "prompt": "Claim payments at an insurer are mostly small, but about one claim in 2,000 is larger than all the others in a typical month together. An analyst bootstraps the mean payment from 150 claims. What should a coverage check be expected to show?",
       "options": [
-        "Coverage near 95%, because the bootstrap needs no assumption",
+        "Coverage near 95%, because the bootstrap needs no assumption about the shape of the data",
         "Coverage far below 95%, because most samples contain no very large claim",
         "Coverage above 95%, because the intervals are very wide",
         "Coverage of exactly 95%, because 150 is a large sample"
@@ -597,7 +597,7 @@
       "prompt": "An analyst bootstraps rows of a two-stage survey (8 districts, 50 households each) and gets a 95% interval 0.3 points wide. A colleague resamples districts and gets 0.8 points. A simulation on a known population shows coverages of 61% and 93%. Which interval should be reported, and why?",
       "options": [
         "The narrow one, because it is more precise",
-        "The narrow one, because it uses all 400 rows",
+        "The narrow one, because it uses all 400 rows and so wastes none of the information",
         "The wide one, because its method keeps the promise of 95% most nearly",
         "Neither, because the two methods disagree"
       ],
@@ -689,7 +689,7 @@
       "type": "single",
       "prompt": "A study has 150 repairs by crew A and 90 by crew B. An analyst pools the 240 repairs, resamples 240 with replacement, splits them by crew label and takes the difference of medians. What is wrong with this bootstrap for the study as designed?",
       "options": [
-        "It uses replacement, which a difference does not allow",
+        "It draws with replacement, which a difference between two groups does not allow in any bootstrap",
         "It lets the number of repairs per crew change from resample to resample",
         "It uses medians, which cannot be bootstrapped",
         "It resamples too few repairs"
@@ -752,7 +752,7 @@
       "prompt": "Two call scripts were given to callers at random. To test the difference in mean call length, an analyst shuffles the script labels 5,000 times. What question do the 5,000 shuffled differences answer?",
       "options": [
         "How large a difference arises when the script has no effect",
-        "How large the true effect of the new script is",
+        "How large the true effect of the new script on call length is in the population",
         "How long calls would be with a third script",
         "How many callers received the wrong script"
       ],
@@ -813,7 +813,7 @@
       "type": "single",
       "prompt": "A pilot compares the 90th percentile of waiting time between two service desks, 25 customers each. No standard formula for this comparison is at hand. Which approach gives a valid p-value?",
       "options": [
-        "A t-test on the two means, reported as a test of the 90th percentiles",
+        "A t-test on the two means, with the result reported as a test of the 90th percentiles",
         "A comparison of the two bootstrap intervals by eye",
         "The larger of the two percentiles divided by the smaller",
         "A permutation test with the difference in 90th percentiles as its statistic"
@@ -844,7 +844,7 @@
       "type": "single",
       "prompt": "A report states: \"The new reminder letter reduced late payment (p = 0.02).\" Which sentence says correctly what the 0.02 is?",
       "options": [
-        "The chance that the letter has no effect is 2%",
+        "There is a 2% chance that the letter has no effect and a 98% chance that it reduced late payment by some amount",
         "The letter reduced late payment by 2%",
         "If the letter had no effect, a reduction at least this large would appear in about 2 studies of 100",
         "In 2% of customers the letter did not work"
@@ -878,7 +878,7 @@
         "A study this small would often give a large p-value even if one lubricant were clearly better",
         "A p-value of 0.45 means the lubricants differ in 45% of pumps",
         "The p-value should have been compared with 0.5, not 0.05",
-        "Significance cannot be tested with fewer than 30 units per group"
+        "Significance cannot be tested at all with fewer than 30 units per group, so the p-value is not valid"
       ],
       "correct": [
         0
@@ -999,7 +999,7 @@
       "type": "single",
       "prompt": "A simulation shows that a planned survey of 150 customers per group would detect a true gap of 0.3 points in 35% of studies. The survey is run and finds p = 0.21. What can be concluded about a gap of 0.3 points?",
       "options": [
-        "It is ruled out, because the result is not significant",
+        "It is ruled out, because the result is not significant and the survey was planned with a simulation",
         "It is confirmed, because the power was low",
         "It is half as likely as before the survey",
         "It remains plausible, because the survey would have missed it about two times in three"
@@ -1092,7 +1092,7 @@
       "type": "single",
       "prompt": "A league table ranks 40 clinics by the share of patients seen within the target time. The five best and the five worst are all among the smallest clinics. Before any clinic is praised or inspected, what is the most likely explanation to check?",
       "options": [
-        "Small clinics are managed either very well or very badly",
+        "Small clinics are managed either very well or very badly, with little in between, unlike large ones",
         "Small clinics report their data less carefully",
         "The target is unfair to clinics of middle size",
         "Shares based on few patients vary most, so small clinics land at both ends by chance"
@@ -1113,6 +1113,564 @@
       "day": "day3",
       "session": 4,
       "slide": "small-districts-funnel",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-multiple-04",
+      "type": "single",
+      "prompt": "An analyst compares two billing layouts on complaint rates and finds nothing. She then splits customers by region, by age band and by tariff, and reports the one split in which the layouts differ at p = 0.04. No correction is applied. What is the problem with the reported result?",
+      "options": [
+        "It is the best of many looks, so its p-value overstates the evidence",
+        "A p-value of 0.04 is too close to 0.05 to count",
+        "Complaint rates cannot be compared between subgroups of customers of different size",
+        "The subgroups were too large for a test"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Each split is another test. The smallest of many p-values is often below 0.05 when nothing differs, so the plan and the number of looks must be reported.",
+      "misconceptions": [
+        "",
+        "Treats closeness to the level as the defect, when the defect is the number of looks",
+        "Subgroups can be compared; the looks have to be counted",
+        "Size is not the issue here; selection after seeing the data is"
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 4,
+      "slide": "forking-paths",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-multiple-05",
+      "type": "single",
+      "prompt": "A screening of 500 pipe segments flags candidates for a cheap follow-up inspection. The team can accept that about one flag in ten is a false alarm, and wants to miss as few faulty segments as possible. Which procedure fits that aim?",
+      "options": [
+        "No correction at all, because the follow-up inspections are cheap and false alarms therefore cost little",
+        "Holm at 0.05, because it is the strictest",
+        "One test of all 500 segments together",
+        "Benjamini-Hochberg at 10%, which limits the share of false alarms among the flags"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "The stated tolerance is a share of false flags, which is what the false discovery rate controls. Holm guards against even one false flag and would miss more faulty segments.",
+      "misconceptions": [
+        "With 500 tests and no correction the false flags are not held to one in ten",
+        "Controls a stricter promise than the team asked for, at the cost of missed faults",
+        "Says whether something differs somewhere and names no segment",
+        ""
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 4,
+      "slide": "two-promises",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-line-01",
+      "type": "single",
+      "prompt": "Electricity use of 800 flats is regressed on the number of rooms: use = 150 + 210 × rooms, in kilowatt-hours a month. A planner asks how much more a five-room flat uses than a three-room flat, on average. What does the line say?",
+      "options": [
+        "420 kilowatt-hours a month more",
+        "210 kilowatt-hours a month more",
+        "570 kilowatt-hours a month more",
+        "1,200 kilowatt-hours a month more"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Two more rooms at 210 kilowatt-hours each: 2 × 210 = 420. The intercept cancels in a difference.",
+      "misconceptions": [
+        "",
+        "Gives the slope for one room when the flats differ by two",
+        "Adds the intercept to a difference, where it cancels",
+        "Gives the predicted use of a five-room flat, not the difference"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 1,
+      "slide": "slope-in-units",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-line-02",
+      "type": "single",
+      "prompt": "Fuel use of delivery vans is regressed on the load carried, for loads between 200 and 900 kilograms: litres per 100 km = 7.5 + 0.004 × load. A colleague uses the line to budget fuel for a lorry carrying 12,000 kilograms. What is the main objection?",
+      "options": [
+        "The slope has no units and cannot be multiplied by a load",
+        "The intercept of 7.5 shows that the line is biased",
+        "The load is far outside the range the line was fitted on, where nothing shows the relation still holds",
+        "A fitted line can be used only to describe the vans it was fitted on and never to predict the fuel use of any vehicle"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The data stop at 900 kilograms. A lorry is another kind of vehicle, and the line has no evidence about it.",
+      "misconceptions": [
+        "The slope has units: litres per 100 km for each kilogram",
+        "An intercept above zero is what an empty van would be expected to use",
+        "",
+        "Prediction inside the observed range is a sound use of a fitted line"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 1,
+      "slide": "intercept-and-range",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-line-03",
+      "type": "single",
+      "prompt": "A survey of 3,000 employees finds that each additional training day taken last year goes with 1.8 more points on the performance review. A report concludes: \"Sending an employee on one more training day will raise the review by 1.8 points.\" Which objection is the strongest?",
+      "options": [
+        "The sample of 3,000 is too small for a slope",
+        "A slope cannot be estimated for a count such as days",
+        "The slope should have been reported per hour of training and not per day, since days differ in length",
+        "Employees who take more training may differ in other ways that also raise reviews"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "The survey compares different employees. Motivation, role or manager may go with both training and reviews, so the slope is not the effect of sending one person.",
+      "misconceptions": [
+        "3,000 employees give a precise slope; precision is not the problem",
+        "Counts are ordinary predictors in a regression",
+        "A change of units rescales the slope and changes nothing about its meaning",
+        ""
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 1,
+      "slide": "goes-with-not-causes",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-line-04",
+      "type": "single",
+      "prompt": "Two analysts each draw 500 customers at random from the same billing system and regress bill on consumption. One finds a slope of 2.31 riyals per cubic metre, the other 2.42. Neither made an error. What explains the two values?",
+      "options": [
+        "A slope computed from a sample varies from sample to sample, like a mean",
+        "The tariff changed between the two draws",
+        "One of the two used the wrong formula",
+        "Least squares gives a different answer each time it runs on the same data"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A fitted slope is a statistic. It has a sampling distribution and a standard error, like every estimate in this course.",
+      "misconceptions": [
+        "",
+        "Invents a cause when sampling variation is enough",
+        "Assumes that different results mean a mistake",
+        "Least squares is deterministic: the same data always give the same line"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 1,
+      "slide": "sample-and-population-line",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-slope-se-01",
+      "type": "single",
+      "prompt": "To bootstrap the slope of salary on years of experience for 600 employees, an analyst resamples the experience column and the salary column separately, each with replacement. The bootstrap slopes come out close to zero. Why?",
+      "options": [
+        "Too few resamples were drawn",
+        "Salaries are skewed, which a bootstrap cannot handle",
+        "Separate resampling breaks the link between each employee's two values",
+        "The slope of the original sample was itself close to zero"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The unit is the employee. Drawing the two columns separately pairs one person's experience with another person's salary, which removes the relation.",
+      "misconceptions": [
+        "The number of resamples changes the steadiness of the result, not its centre",
+        "A pairs bootstrap makes no assumption about the shape of the data",
+        "",
+        "The original slope was not near zero; the resampling destroyed it"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 2,
+      "slide": "pairs-bootstrap",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-slope-se-02",
+      "type": "single",
+      "prompt": "In a regression of monthly sales on shop floor area, the residuals scatter within about 5,000 riyals for small shops and within about 40,000 riyals for large ones. What does this do to the output of the default formula?",
+      "options": [
+        "It biases the slope upward",
+        "It makes the reported R² meaningless as a description of the fit",
+        "It makes the reported p-value too large",
+        "It makes the reported standard error of the slope too small"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Unequal spread leaves the slope a fair estimate. The default standard error assumes one spread everywhere, and it understates the uncertainty when the noisiest points sit at the end of the line.",
+      "misconceptions": [
+        "Unequal spread does not bias the least-squares slope",
+        "R² still describes how closely the points follow the line",
+        "A standard error that is too small makes p-values too small, not too large",
+        ""
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 2,
+      "slide": "equal-spread-assumption",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-slope-se-03",
+      "type": "single",
+      "prompt": "On a known population, an analyst draws 400 samples and builds two 95% intervals for a slope in each. The formula interval contains the true slope in 352 samples, the bootstrap interval in 381. What do the counts show?",
+      "options": [
+        "Coverage of 88% and 95%: the bootstrap interval keeps the promise and the formula interval does not",
+        "Coverage of 95% for both, since both are 95% intervals",
+        "Coverage of 12% and 5%: both intervals fail",
+        "Coverage cannot be judged from 400 samples, since a count from so few samples is itself too uncertain to compare"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "352 / 400 = 88% and 381 / 400 = 95.25%. Coverage is counted, and the nominal level is only a promise.",
+      "misconceptions": [
+        "",
+        "Takes the label of the interval for its measured coverage",
+        "Reports the miss rates as if they were coverage",
+        "400 samples give coverage to within about two points, enough to separate 88% from 95%"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day4",
+      "session": 2,
+      "slide": "slope-coverage",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-slope-se-04",
+      "type": "single",
+      "prompt": "A regression table shows for the variable \"distance_km\": coefficient 0.85, standard error 0.10, p < 0.001. The outcome is delivery time in minutes. Which sentence reports the result best?",
+      "options": [
+        "Distance is a highly significant predictor of delivery time (p < 0.001), so the routing model is confirmed",
+        "The coefficient of distance is 0.85 with a standard error of 0.10",
+        "Each additional kilometre goes with about 0.85 minutes more (95% interval about 0.65 to 1.05)",
+        "Distance explains 85% of delivery time"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The coefficient in units, with its interval: 0.85 ± 2 × 0.10. The p-value answers \"is the slope zero\", which nobody asked.",
+      "misconceptions": [
+        "Reports the test and leaves out the size",
+        "Repeats the table without units or an interval",
+        "",
+        "Reads a coefficient as a share of variation explained"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 2,
+      "slide": "reading-regression-output",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-confound-01",
+      "type": "single",
+      "prompt": "Hospital stay in days is regressed on the number of medicines prescribed: 0.9 days per medicine. When the severity of the illness is added to the model, the slope on medicines falls to 0.2. What is the most likely reason?",
+      "options": [
+        "Severely ill patients get more medicines and also stay longer for other reasons",
+        "The first model had too few patients",
+        "Adding any second variable to a regression model always lowers the slopes of the variables already in it",
+        "Severity was measured with error"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Severity is tied to both the number of medicines and the stay. Left out, its share of the stay was credited to medicines.",
+      "misconceptions": [
+        "",
+        "Blames sampling error for a change that comes from asking a different question",
+        "A variable unrelated to medicines would have left the slope where it was",
+        "Measurement error in severity would have left more of the confounding in place, not produced the drop"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 3,
+      "slide": "slope-moved",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-confound-02",
+      "type": "single",
+      "prompt": "After regressing energy use of buildings on floor area, an analyst plots the residuals against the age of the building, a variable that is not in the model. The residuals rise steadily with age. What does the plot indicate?",
+      "options": [
+        "The slope on floor area is too large to be real",
+        "Age should be removed from the dataset",
+        "Age carries systematic information about energy use that the model is missing",
+        "The residuals were computed wrongly, since they should always average zero"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "A trend of residuals against a variable left out means that the variable explains part of what the model missed.",
+      "misconceptions": [
+        "The plot is about what is missing, not about the size of the fitted slope",
+        "A variable that explains the outcome is a reason to use it, not to drop it",
+        "",
+        "Residuals average zero overall and can still trend against another variable"
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 3,
+      "slide": "residuals-vs-temperature",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-confound-03",
+      "type": "single",
+      "prompt": "A model of water use gives 98 litres per person with household size alone, and 86 litres per person once area temperature is included. A planner sizes the supply for one new scheme, in one area, for families of different sizes. Which figure fits her question?",
+      "options": [
+        "98, because it comes from the simpler model",
+        "92, the average of the two",
+        "Neither, because the two models contradict each other",
+        "86, because within one area the temperature does not change"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Her comparison is between families in the same area, which is what \"holding temperature fixed\" describes.",
+      "misconceptions": [
+        "Simplicity does not make a slope answer a question it was not built for",
+        "Averages two answers to two different questions",
+        "The models answer different questions; they do not contradict",
+        ""
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 3,
+      "slide": "held-fixed",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-confound-04",
+      "type": "single",
+      "prompt": "After adding three more variables, an analyst writes: \"All confounders are now controlled, so the slope is the causal effect.\" What is the weakness of the sentence?",
+      "options": [
+        "Three variables are too many for one model",
+        "A slope is never related to a cause",
+        "Controlling for more variables always makes a slope less precise, so the estimate has lost its value as evidence",
+        "Only the measured variables were adjusted for; one that nobody measured may still be mixed in"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A regression adjusts for what is in the model. Only assignment by chance protects against the variables nobody thought of.",
+      "misconceptions": [
+        "A model with a few thousand rows carries three more variables easily",
+        "Overstates the limit: with assignment by chance a slope can estimate an effect",
+        "Often true, and beside the point of the claim",
+        ""
+      ],
+      "lo": [
+        "LO5"
+      ],
+      "day": "day4",
+      "session": 3,
+      "slide": "what-regression-cannot",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-brief-01",
+      "type": "single",
+      "prompt": "A manager asks: \"Are customers happier with the new app?\" Which line turns the question into an estimand?",
+      "options": [
+        "The difference in mean satisfaction score between app users and other customers surveyed this quarter",
+        "A permutation test with 5,000 shuffles",
+        "Whether the app is good",
+        "The satisfaction scores of all customers in the survey file for this quarter, with a column that marks the app users"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "An estimand names one quantity, the population and the two groups compared.",
+      "misconceptions": [
+        "",
+        "Names a method, not the quantity to be estimated",
+        "Restates the question without a quantity or a population",
+        "Names the data, not a number to estimate"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": "day4",
+      "session": 4,
+      "slide": "question-to-estimand",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-brief-02",
+      "type": "single",
+      "prompt": "An analyst must put an interval on the share of 350 sampled invoices that were paid late, and has only the bootstrap code written for a mean. What is the sound way forward?",
+      "options": [
+        "Wait for a method specific to shares",
+        "Bootstrap the median payment delay instead",
+        "Code each invoice 1 if late and 0 if not, and bootstrap the mean of that column",
+        "Report the share with no interval, since shares are exact"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "A share is the mean of a column of zeros and ones, so the bootstrap for a mean applies unchanged.",
+      "misconceptions": [
+        "Assumes each statistic needs its own recipe",
+        "Answers a different question from the one asked",
+        "",
+        "A share from a sample has sampling error like any estimate"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": "day4",
+      "session": 4,
+      "slide": "share-is-a-mean",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-brief-03",
+      "type": "single",
+      "prompt": "Four closing sentences are proposed for a brief on repair times drawn from one year of logged tickets. Which one states a limit a manager can use?",
+      "options": [
+        "These results rest on a sample and on logged data, and they should therefore be interpreted with a suitable degree of caution",
+        "More research is needed",
+        "Statistics can never prove anything",
+        "Tickets closed late in the system count as slow repairs, so the true share within the standard may be higher"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "A useful limit names what could be wrong and in which direction.",
+      "misconceptions": [
+        "A ritual sentence that names no specific risk",
+        "Says nothing about what is uncertain here",
+        "A general remark that would fit any study",
+        ""
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": "day4",
+      "session": 4,
+      "slide": "limits-worth-stating",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-brief-04",
+      "type": "single",
+      "prompt": "A draft reads: \"Mean resolution time fell from 31 to 27 hours after the new rule (p = 0.03), so the rule works.\" The data are complaints from the month before and the month after the change. What must be added before a manager acts on it?",
+      "options": [
+        "An interval for the 4-hour change, and the limit that the two months may differ for other reasons",
+        "A second p-value from another test, such as a classical test, to confirm that the first one was computed correctly",
+        "More decimal places for the two means",
+        "The number of resamples used"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "The size needs an interval, and a before-and-after comparison cannot separate the rule from anything else that changed between the months.",
+      "misconceptions": [
+        "",
+        "A second test adds no information about size or design",
+        "Precision of printing is not precision of the estimate",
+        "A method detail that belongs in the notebook"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": "day4",
+      "session": 4,
+      "slide": "brief-paragraph",
       "level": "analyze",
       "pool": "practice",
       "weight": 1,
