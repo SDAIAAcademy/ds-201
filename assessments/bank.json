@@ -373,6 +373,378 @@
       "pool": "practice",
       "weight": 1,
       "timer": 60
+    },
+    {
+      "id": "q-bootstrap-01",
+      "type": "single",
+      "prompt": "An analyst has 120 call durations and bootstraps their median. Why is each resample drawn with replacement?",
+      "options": [
+        "So that resamples differ from one another the way real samples would",
+        "So that each resample is larger than the original sample",
+        "So that extreme durations are removed from the resamples",
+        "So that every duration appears exactly once in each resample"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Drawing 120 from 120 without replacement returns the same sample every time. Replacement makes the resamples vary, which imitates sampling from the population.",
+      "misconceptions": [
+        "",
+        "Confuses replacement with a change of size: a resample has the size of the sample",
+        "Believes the bootstrap cleans the data; it reuses every value as it is",
+        "Describes sampling without replacement, which gives identical resamples"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 1,
+      "slide": "bootstrap-idea",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-bootstrap-02",
+      "type": "single",
+      "prompt": "From 1,000 bootstrap medians, sorted from smallest to largest, an analyst wants the 90% percentile interval. Which two sorted values are its ends?",
+      "options": [
+        "The 25th and the 975th",
+        "The 50th and the 950th",
+        "The 100th and the 900th",
+        "The 1st and the 1,000th"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A 90% interval leaves 5% in each tail: 5% of 1,000 is 50, so the 50th and the 950th values.",
+      "misconceptions": [
+        "Gives the ends of the 95% interval",
+        "",
+        "Leaves 10% in each tail, which is an 80% interval",
+        "Takes the full range of the resamples, which grows with their number"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 1,
+      "slide": "bootstrap-distribution",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-bootstrap-03",
+      "type": "single",
+      "prompt": "A bootstrap interval for a median from 90 tickets is 4.8 to 7.9 hours with 2,000 resamples. The manager finds it too wide. Which action would narrow it?",
+      "options": [
+        "Raising the resamples to 200,000",
+        "Reporting the 99% interval instead",
+        "Collecting more tickets",
+        "Resampling 45 tickets at a time"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The width is set by the information in the sample. Only more data narrow it; more resamples only steady the same interval.",
+      "misconceptions": [
+        "Confuses the number of resamples with the sample size",
+        "A higher level makes the interval wider, not narrower",
+        "",
+        "Smaller resamples vary more, which widens the interval and no longer matches the study"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 1,
+      "slide": "b-is-not-n",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-coverage-01",
+      "type": "single",
+      "prompt": "A consultant reports \"a 95% interval for the mean bill: 212 to 236 riyals\". Which statement describes what the 95% refers to?",
+      "options": [
+        "95% of customers have bills between 212 and 236 riyals",
+        "The interval was computed from 95% of the customers",
+        "The method produces intervals that contain the true mean in about 95 of 100 studies",
+        "The sample mean is 95% of the true mean"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The level is the coverage of the method over repeated studies.",
+      "misconceptions": [
+        "Reads an interval for a mean as a range for single customers",
+        "Confuses the level with the share of data used",
+        "",
+        "Invents a relation between the level and the size of the estimate"
+      ],
+      "lo": [
+        "LO1"
+      ],
+      "day": "day2",
+      "session": 2,
+      "slide": "what-95-promises",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-coverage-02",
+      "type": "single",
+      "prompt": "To check an interval method, an analyst simulates 400 studies from a known population. In 368 of them the 95% interval contains the true value. What coverage did the method deliver?",
+      "options": [
+        "87%",
+        "92%",
+        "95%",
+        "97%"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "368 / 400 = 0.92. The method promised 95% and delivered 92% on this population.",
+      "misconceptions": [
+        "Divides by a wrong total",
+        "",
+        "Reports the promise in place of the count",
+        "Adds the shortfall instead of subtracting it"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 2,
+      "slide": "coverage-loop",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-coverage-03",
+      "type": "single",
+      "prompt": "Claim payments at an insurer are mostly small, but about one claim in 2,000 is larger than all the others in a typical month together. An analyst bootstraps the mean payment from 150 claims. What should a coverage check be expected to show?",
+      "options": [
+        "Coverage near 95%, because the bootstrap needs no assumption",
+        "Coverage far below 95%, because most samples contain no very large claim",
+        "Coverage above 95%, because the intervals are very wide",
+        "Coverage of exactly 95%, because 150 is a large sample"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A sample without a rare huge claim has no information about it, so its interval for the mean sits too low. The bootstrap can only reuse what the sample holds.",
+      "misconceptions": [
+        "Believes \"no assumption\" means \"always valid\": the sample must still represent the population",
+        "",
+        "Expects wide intervals, but samples without a huge claim give narrow ones",
+        "Treats a fixed sample size as a guarantee whatever the shape of the data"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 2,
+      "slide": "when-bootstrap-fails",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-unit-01",
+      "type": "single",
+      "prompt": "A study weighs 10 loaves from each of 30 bakeries chosen at random, 300 loaves in all, to estimate the mean weight of a loaf in the city. Which unit should a bootstrap resample?",
+      "options": [
+        "The loaf",
+        "The bakery, with its 10 loaves",
+        "The weighing scale",
+        "Half of the loaves of each bakery"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Bakeries were drawn at random and loaves of one bakery resemble each other, so the bakery is the unit.",
+      "misconceptions": [
+        "Treats 300 loaves as independent although they come in groups of 10",
+        "",
+        "Names a tool, not a sampled unit",
+        "Keeps all 30 bakeries in every resample, so the variation between bakeries is never imitated"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 3,
+      "slide": "find-the-unit",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-unit-02",
+      "type": "single",
+      "prompt": "An analyst bootstraps rows of a two-stage survey (8 districts, 50 households each) and gets a 95% interval 0.3 points wide. A colleague resamples districts and gets 0.8 points. A simulation on a known population shows coverages of 61% and 93%. Which interval should be reported, and why?",
+      "options": [
+        "The narrow one, because it is more precise",
+        "The narrow one, because it uses all 400 rows",
+        "The wide one, because its method keeps the promise of 95% most nearly",
+        "Neither, because the two methods disagree"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "An interval is judged by its coverage. The row bootstrap ignores that districts were sampled and misses the truth in 39% of studies.",
+      "misconceptions": [
+        "Mistakes a narrow interval for a good one: narrow and wrong is worse than wide and right",
+        "Both bootstraps use all rows; the difference is the unit, not the amount of data",
+        "",
+        "Disagreement is the finding: one method matches the design and one does not"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 3,
+      "slide": "unit-coverage",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-unit-03",
+      "type": "single",
+      "prompt": "A file holds 600 satisfaction scores. Before bootstrapping, what does the analyst most need to find out?",
+      "options": [
+        "Whether the scores are whole numbers",
+        "How the 600 respondents were selected",
+        "Which software collected the scores",
+        "Whether the file is sorted by score"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The resampling unit follows from the sampling design: respondents picked one by one, or in groups such as districts or branches.",
+      "misconceptions": [
+        "Looks at the format of the values, which does not decide the unit",
+        "",
+        "Looks at the tool, which says nothing about independence",
+        "Sorting does not change a bootstrap, which draws rows at random"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 3,
+      "slide": "two-stage-sample",
+      "level": "understand",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-compare-01",
+      "type": "single",
+      "prompt": "Median delivery time is 40 minutes for courier X and 46 minutes for courier Y. A bootstrap gives a 95% interval for the ratio Y / X of 0.97 to 1.36. What can be said?",
+      "options": [
+        "Y is slower by between 3% and 36%",
+        "Y may be anywhere from 3% faster to 36% slower",
+        "Y is slower by 15%, with certainty",
+        "The two couriers are equally fast"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The interval for the ratio includes 1, the value of no gap, and runs from 0.97 (3% faster) to 1.36 (36% slower).",
+      "misconceptions": [
+        "Reads 0.97 as \"3% slower\": a ratio below 1 means faster",
+        "",
+        "Drops the interval and treats the estimate as exact",
+        "Reads \"includes 1\" as proof of equality"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 4,
+      "slide": "difference-and-ratio",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-compare-02",
+      "type": "single",
+      "prompt": "A study has 150 repairs by crew A and 90 by crew B. An analyst pools the 240 repairs, resamples 240 with replacement, splits them by crew label and takes the difference of medians. What is wrong with this bootstrap for the study as designed?",
+      "options": [
+        "It uses replacement, which a difference does not allow",
+        "It lets the number of repairs per crew change from resample to resample",
+        "It uses medians, which cannot be bootstrapped",
+        "It resamples too few repairs"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The study fixed 150 and 90. Resampling the pool makes the group sizes random; each crew should be resampled on its own.",
+      "misconceptions": [
+        "Replacement is what every bootstrap uses",
+        "",
+        "Medians bootstrap well at these sizes",
+        "The resample has the size of the study, as it should"
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 4,
+      "slide": "resample-each-group",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-compare-03",
+      "type": "single",
+      "prompt": "A dashboard shows a 95% interval for branch A, 6.1 to 7.4, and for branch B, 7.0 to 8.6. They overlap. A manager concludes that the branches do not differ. What is the sound next step?",
+      "options": [
+        "Accept the conclusion, because overlapping intervals mean no difference",
+        "Build the interval for the difference between the branches",
+        "Widen both intervals to 99% and look again",
+        "Compare the two lower ends only"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Overlap of two separate intervals is not a test. The interval for the difference itself can exclude zero even when the two intervals overlap.",
+      "misconceptions": [
+        "Uses the overlap rule of thumb, which is too conservative",
+        "",
+        "Wider intervals overlap more and answer nothing",
+        "Looks at one end of each interval, which is not a comparison"
+      ],
+      "lo": [
+        "LO3"
+      ],
+      "day": "day2",
+      "session": 4,
+      "slide": "reading-zero-and-one",
+      "level": "evaluate",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
     }
   ]
 }

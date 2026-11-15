@@ -1,158 +1,572 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes">REPLACE: welcome; introduce yourself; one question to the room that calibrates the pace; the rhythm of the day</aside>
+  <aside class="notes"><p>Yesterday ended with a question: with one sample and no population, how could you see a sampling distribution? Take two or three answers before the agenda. Someone usually proposes "pretend the sample is the population". That is today's first session.</p></aside>
 </section>
 
-<section class="slide" id="agenda" data-auto="agenda"></section>
+<section class="slide" id="agenda" data-auto="agenda">
+  <aside class="notes"><p>Session 1 builds an interval, session 2 tests whether the interval keeps its promise, session 3 breaks it by resampling the wrong unit, session 4 applies it to the question managers ask most: a gap between two groups.</p></aside>
+</section>
 
-<!-- Session 1 -->
+<section class="slide" id="review-day1" data-lo="LO1" data-label="Review">
+  <div class="kicker">Review of Day 1</div>
+  <h2>Which number shrinks when you read more meters?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1">
+    <p class="lead">From 100 households: mean 490 litres, standard deviation 200, standard error 20. Zulal reads 400 households next time. What do you expect?</p>
+    <div class="opts">
+      <div class="opt" data-why="Lets the spread of households shrink with the sample: households differ as much as before">Standard deviation about 100, standard error about 20</div>
+      <div class="opt" data-ok>Standard deviation about 200, standard error about 10</div>
+      <div class="opt" data-why="Divides the standard error by 4 and not by the square root of 4">Standard deviation about 200, standard error about 5</div>
+      <div class="opt" data-why="Shrinks both: only the precision of the estimate improves with more data">Standard deviation about 100, standard error about 10</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Households differ as much as ever. Four times the sample halves the standard error: 200 / √400 = 10.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Two minutes. If the room is unsure, redo the two sentences of lab 1.2, step 5, before going on: today's intervals are built on the standard error.</p></aside>
+</section>
 
+<!-- ======================= SESSION 1 ======================= -->
 <section class="slide section" id="s1" data-auto="section" data-session="1"></section>
 
-<section class="slide" id="s1-idea" data-lo="LO2">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="one-sample-only" data-lo="LO2" data-label="The problem">
+  <div class="kicker">The problem</div>
+  <h2>A real analyst has one sample and no population to resample</h2>
   <div class="cols cols-2">
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>Yesterday's sampling distributions came from drawing 1,000 samples from the population.</li>
+      <li>In real work you can afford one sample. The other 999 do not exist.</li>
+      <li>For a mean, a formula fills the gap: s / √n. For a median, a ratio or a slope there is often none.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <div class="card c-teal"><h4>Nizar's question</h4><p class="small mb0">"What is the typical repair time, with an honest range around it?" You hold 150 tickets. Median 6.15 hours. How far could that be from the truth?</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Sample and numbers from lab 2.1. Ask the room for ideas before the next slide. The idea needed is brazen: use the sample as a stand-in for the population.</p></aside>
 </section>
 
-<section class="slide" id="s1-steps" data-lo="LO2">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
+<section class="slide" id="bootstrap-idea" data-lo="LO2" data-label="The idea">
+  <div class="kicker">The bootstrap idea</div>
+  <h2>Treat the sample as the population and sample from it</h2>
   <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+    <div class="step c-teal"><b>1 · One sample</b>150 repair times, the best picture of the population you have</div>
+    <div class="arrow">→</div>
+    <div class="step c-cyan"><b>2 · Resample</b>draw 150 from the 150, with replacement</div>
+    <div class="arrow">→</div>
+    <div class="step c-purple"><b>3 · Recompute</b>the median of the resample</div>
+    <div class="arrow">→</div>
+    <div class="step c-coral"><b>4 · Repeat</b>2,000 times: an imitation of the sampling distribution</div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <div class="callout tip mt"><b>With replacement</b> is the whole trick. Without it, every resample is the sample itself.</div>
+  <aside class="notes"><p>The name comes from "pulling yourself up by your own bootstraps": getting the uncertainty out of the sample that has it. The method needed cheap computing to become ordinary. Stress step 2: same size as the sample, with replacement.</p></aside>
+</section>
+
+<section class="slide" id="one-resample" data-lo="LO2" data-label="One resample">
+  <div class="kicker">Lab 2.1, step 2</div>
+  <h2>One resample repeats some tickets and leaves others out</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">def resample(v, gen):
+    return gen.choice(v, size=len(v),
+                      replace=True)
+
+one = resample(sample, gen)
+len(np.unique(one))   # 77 distinct tickets
+np.median(one)        # 6.40 hours</code></pre>
+    <ul class="bullets">
+      <li>150 values drawn, 77 distinct. Many tickets appear twice or more; many do not appear.</li>
+      <li>Its median is 6.40 hours; the sample's was 6.15.</li>
+      <li>That difference imitates the difference between two real samples.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Solution run of lab 2.1. On average about 63% of the original values appear in a resample; with repeated values among the tickets the count of distinct values is lower. Step 2 of the lab is done by hand on purpose, before the vectorised version of step 3.</p></aside>
+</section>
+
+<section class="slide" id="bootstrap-distribution" data-lo="LO2" data-label="The bootstrap distribution">
+  <div class="kicker">Lab 2.1, steps 3 and 4</div>
+  <h2>The middle 95% of the resampled medians is the interval</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:boot_median-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Histogram of 2,000 bootstrap medians of repair time from one sample of 150, lumpy, between 4.5 and 8 hours; the 95 percent interval runs from 5.0 to 7.5 hours and contains the true median 6.5">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64" x2="700" y1="356.0" y2="356.0" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="361.0" text-anchor="end" font-size="14" fill="var(--muted)">0</text>
+<line x1="64" x2="700" y1="230.8" y2="230.8" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="235.8" text-anchor="end" font-size="14" fill="var(--muted)">200</text>
+<line x1="64" x2="700" y1="105.6" y2="105.6" stroke="var(--line)" stroke-dasharray="3 4"/>
+<text x="56" y="110.6" text-anchor="end" font-size="14" fill="var(--muted)">400</text>
+<line x1="164.4" x2="164.4" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="164.4" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">5</text>
+<line x1="331.8" x2="331.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="331.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6</text>
+<line x1="499.2" x2="499.2" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="499.2" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">7</text>
+<line x1="666.5" x2="666.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="666.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">8</text>
+<rect x="65.0" y="354.7" width="31.5" height="1.3" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="98.5" y="351.0" width="31.5" height="5.0" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="131.9" y="323.5" width="31.5" height="32.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="165.4" y="312.2" width="31.5" height="43.8" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="198.9" y="291.5" width="31.5" height="64.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="232.4" y="323.5" width="31.5" height="32.5" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="265.8" y="329.7" width="31.5" height="26.3" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="299.3" y="51.8" width="31.5" height="304.2" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="332.8" y="118.8" width="31.5" height="237.2" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="366.3" y="93.1" width="31.5" height="262.9" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="399.7" y="275.9" width="31.5" height="80.1" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="433.2" y="331.6" width="31.5" height="24.4" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="466.7" y="319.7" width="31.5" height="36.3" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="500.2" y="330.3" width="31.5" height="25.7" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="533.6" y="315.9" width="31.5" height="40.1" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="567.1" y="336.0" width="31.5" height="20.0" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="600.6" y="342.9" width="31.5" height="13.1" fill="var(--teal)" fill-opacity="0.85"/>
+<rect x="634.1" y="354.1" width="31.5" height="1.9" fill="var(--teal)" fill-opacity="0.85"/>
+<line x1="164.4" x2="164.4" y1="18" y2="356" stroke="var(--coral)" stroke-width="2.5" stroke-dasharray="0"/>
+<text x="158.4" y="34" text-anchor="end" font-size="15" fill="var(--ink, currentColor)">2.5%: 5.0</text>
+<line x1="582.8" x2="582.8" y1="18" y2="356" stroke="var(--coral)" stroke-width="2.5" stroke-dasharray="0"/>
+<text x="588.8" y="34" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">97.5%: 7.5</text>
+<line x1="415.5" x2="415.5" y1="18" y2="356" stroke="var(--ink, currentColor)" stroke-width="2.5" stroke-dasharray="6 5"/>
+<text x="421.5" y="58" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">truth 6.5</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">median of a resample of 150 repairs, hours</text>
+</svg>
+<!--/FIG:boot_median-->
+      <div class="caption">2,000 bootstrap medians from one sample of 150 repairs.</div>
+    </div>
+    <ul class="bullets">
+      <li><b>Percentile interval</b>: from the 2.5th to the 97.5th percentile, 5.00 to 7.50 hours.</li>
+      <li>The true median, 6.50 hours, is inside.</li>
+      <li>The histogram is lumpy: a median of 150 tickets can only take values present in the sample.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The sentence for Nizar: "The typical repair takes about 6.2 hours; the data are consistent with anything from 5.0 to 7.5." Do not say yet what 95% means: session 2 defines it and tests it.</p></aside>
+</section>
+
+<section class="slide" id="width-not-centre" data-lo="LO2" data-label="What the bootstrap gets right">
+  <div class="kicker">Lab 2.1, step 5</div>
+  <h2>The bootstrap gets the width right, not the centre</h2>
+  <div class="cols cols-3">
+    <div class="stat"><div class="big">0.553</div><div class="lbl">standard error of the median by bootstrap, from one sample</div></div>
+    <div class="stat"><div class="big">0.513</div><div class="lbl">the real one, from 2,000 samples of the population</div></div>
+    <div class="stat"><div class="big">6.15</div><div class="lbl">where the bootstrap is centred: the sample median, not the truth, 6.50</div></div>
+  </div>
+  <ul class="bullets mt">
+    <li>The bootstrap cannot repair a sample that landed low. It can tell you how far samples land.</li>
+    <li>That is exactly what an interval needs.</li>
+  </ul>
+  <aside class="notes"><p>The comparison on the left is the Zulal privilege again: no real analyst can compute 0.513. The agreement, within 8%, is the evidence that the trick works for this statistic at this sample size.</p></aside>
+</section>
+
+<section class="slide" id="b-is-not-n" data-lo="LO2" data-label="B is not n">
+  <div class="kicker">Two numbers people confuse</div>
+  <h2>More resamples smooth the picture; only more data narrow the interval</h2>
+  <table class="t">
+    <tr><th></th><th>n, the sample size</th><th>B, the number of resamples</th></tr>
+    <tr><td>What it is</td><td>150 tickets you collected</td><td>2,000 loops your laptop ran</td></tr>
+    <tr><td>What it costs</td><td>Field work</td><td>Seconds</td></tr>
+    <tr><td>What more of it buys</td><td>A narrower interval</td><td>A steadier estimate of the same interval</td></tr>
+  </table>
+  <div class="callout warn mt"><b>What goes wrong.</b> "We ran a million resamples, so the result is very precise." The interval for 150 tickets is 2.5 hours wide at any B.</div>
+  <aside class="notes"><p>A practical rule for the labs: 1,000 to 2,000 resamples for an interval, 5,000 or more for a small p-value. The stretch of lab 2.1 bootstraps the 90th percentile: its interval is 7.2 hours wide against 2.5 for the median, because few tickets inform a tail.</p></aside>
+</section>
+
+<section class="slide" id="check-resample" data-lo="LO2">
+  <div class="kicker">Checkpoint</div>
+  <h2>Which procedure is a bootstrap resample?</h2>
+  <div class="quiz" data-type="single" data-lo="LO2">
+    <p class="lead">You have 80 survey scores and want an interval for their median. Which step, repeated 2,000 times, gives the bootstrap distribution?</p>
+    <div class="opts">
+      <div class="opt" data-why="Draws without replacement: 80 from 80 returns the same sample each time and the median never moves">Shuffle the 80 scores and take their median</div>
+      <div class="opt" data-why="Changes the sample size: the spread of a median of 40 is wider than that of a median of 80">Draw 40 of the 80 scores at random and take their median</div>
+      <div class="opt" data-why="Goes back to the population, which a real analyst does not have">Draw 80 new scores from all customers and take their median</div>
+      <div class="opt" data-ok>Draw 80 scores from the 80 with replacement and take their median</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Same size as the sample, from the sample, with replacement: that imitates drawing a new sample of 80 from the population.</div>
+  </div>
+  <aside class="notes"><p>Answer: D. Option A is the instructive one: ask what the 2,000 medians would look like. All equal. Shuffling without replacement returns on Day 3, where it is the right tool for a different job.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-2-1" data-auto="lab" data-lab="2.1">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>Steps 1 to 3 without an assistant. The vectorised bootstrap in step 3 uses an index array of shape (B, n); participants who prefer a loop may write one, it is only slower. Watch for resampling without replacement, which gives a spread of zero and a failed check. The lab draws its own sample: nothing from Day 1 is needed.</p></aside>
 </section>
 
-<!-- Session 2 -->
-
+<!-- ======================= SESSION 2 ======================= -->
 <section class="slide section" id="s2" data-auto="section" data-session="2"></section>
 
-<section class="slide" id="s2-idea" data-lo="LO2">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="what-95-promises" data-lo="LO1 LO2" data-label="The promise">
+  <div class="kicker">What the number means</div>
+  <h2>95% is a promise about the method, not about one interval</h2>
   <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <div class="card c-teal"><h4>The promise</h4><p class="small mb0">"Use this method on many studies and about 95 in 100 of the intervals it produces will contain the true value." That share is the <b>coverage</b>.</p></div>
+    <div class="card c-coral"><h4>Not the promise</h4><p class="small mb0">"There is a 95% chance that the truth is between 5.0 and 7.5." The truth is a fixed number. This one interval contains it or it does not.</p></div>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <div class="callout tip mt"><b>At Zulal the promise can be checked.</b> Draw 500 studies, build 500 intervals, count how many contain the truth.</div>
+  <aside class="notes"><p>The distinction sounds pedantic until the next slides, where the same method delivers 93%, 81% or 62% depending on the data. A promise about a method can be broken; this session counts when.</p></aside>
 </section>
 
-<section class="slide" id="s2-steps" data-lo="LO2">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="two-methods" data-lo="LO2" data-label="Two methods">
+  <div class="kicker">Lab 2.2, step 1</div>
+  <h2>Two ways to an interval for a mean</h2>
+  <div class="cols cols-2">
+    <div class="card c-cyan"><h4>The t interval</h4><p class="small">mean ± t × s / √n, with t about 2.02 for 40 tickets. Symmetric by construction.</p><p class="small mb0">One study of 40: <b>5.83 to 10.76</b> hours.</p></div>
+    <div class="card c-teal"><h4>The bootstrap interval</h4><p class="small">Percentiles of 1,000 resampled means. Follows the skew of the sample.</p><p class="small mb0">The same study: <b>6.16 to 10.91</b> hours.</p></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <p class="small mt">Mean of the 40 tickets: 8.29 hours. True mean of tickets closed on time: 8.86 hours. Both intervals contain it, in this study.</p>
+  <aside class="notes"><p>Solution run of lab 2.2. "In this study" is the phrase to lean on. One hit proves nothing about a method. The t interval is the classical one from any textbook; t rather than 2 allows for the fact that s is itself estimated.</p></aside>
+</section>
+
+<section class="slide" id="coverage-loop" data-lo="LO2" data-label="The coverage loop">
+  <div class="kicker">Lab 2.2, step 2</div>
+  <h2>Coverage is measured by a loop and a count</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">hits = 0
+for _ in range(500):
+    study = gen.choice(pool, size=40,
+                       replace=False)
+    low, high = t_interval(study)
+    hits += low &lt;= truth &lt;= high
+coverage = hits / 500</code></pre>
+    <ul class="bullets">
+      <li>Each pass is one imaginary study, analysed the way you would analyse a real one.</li>
+      <li>The count has its own error: with 500 studies, a true 95% shows as 95% give or take 1.9 points.</li>
+      <li>The capstone asks for this loop on your own method.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The give or take is two standard errors of a share: the square root of 0.95 times 0.05 over 500, doubled. So 93.4% is not evidence of a broken method; 81% is. Make the room say which results on the next slide are outside the counting error.</p></aside>
+</section>
+
+<section class="slide" id="coverage-results" data-lo="LO2" data-label="What the count shows">
+  <div class="kicker">Lab 2.2, steps 2 to 4</div>
+  <h2>The promise holds for ordinary skew and collapses with rare extremes</h2>
+  <table class="t">
+    <tr><th>The population sampled</th><th class="num">tickets per study</th><th class="num">t interval</th><th class="num">bootstrap</th></tr>
+    <tr><td>tickets closed on time</td><td class="num">40</td><td class="num">93.4%</td><td class="num">93.2%</td></tr>
+    <tr><td>tickets closed on time</td><td class="num">200</td><td class="num">94.2%</td><td class="num">93.6%</td></tr>
+    <tr class="hl"><td>all tickets, with the 12 late entries</td><td class="num">40</td><td class="num">81.4%</td><td class="num">81.8%</td></tr>
+    <tr class="hl"><td>all tickets, with the 12 late entries</td><td class="num">200</td><td class="num">62.4%</td><td class="num">63.0%</td></tr>
+  </table>
+  <p class="small mt">Share of 500 studies whose 95% interval for the mean contained the true mean.</p>
+  <aside class="notes"><p>Rows 1 and 2: a point or two short, inside the counting error. Rows 3 and 4: one ticket in a thousand carries a tenth of all hours; most samples hold none, so most samples cannot know the true mean. More data make it worse, not better: the interval narrows around the wrong value until a late ticket finally appears. Neither method is at fault. The mean of this population is not learnable from small samples.</p></aside>
+</section>
+
+<section class="slide" id="when-bootstrap-fails" data-lo="LO2" data-label="When the bootstrap fails">
+  <div class="kicker">Know the limits</div>
+  <h2>The bootstrap fails where the sample cannot stand in for the population</h2>
+  <div class="cols cols-3">
+    <div class="card c-coral"><h4>Rare extreme values</h4><p class="small mb0">The sample usually misses them. Coverage for the mean fell to 62% (lab 2.2).</p></div>
+    <div class="card c-coral"><h4>Statistics at the edge</h4><p class="small mb0">A resample never exceeds the sample's maximum. Coverage for the maximum repair time: 1.3% (stretch).</p></div>
+    <div class="card c-coral"><h4>Very small samples</h4><p class="small mb0">Ten tickets hold too few distinct values to imitate a population. Intervals come out too short.</p></div>
+  </div>
+  <div class="callout tip mt"><b>And one more, next session:</b> resampling rows that were not sampled independently.</div>
+  <aside class="notes"><p>The honest summary of the method: it works for statistics from the middle of the data (means without wild tails, medians, differences, slopes) at moderate sample sizes, and you can check any particular use by simulation. Improved variants exist, for example BCa intervals; they are named here and not taught.</p></aside>
+</section>
+
+<section class="slide" id="what-to-do-about-it" data-lo="LO2 LO6" data-label="What to do">
+  <div class="kicker">In a brief</div>
+  <h2>When coverage fails, change the question or say so</h2>
+  <ul class="bullets">
+    <li><b>Change the target:</b> the median repair time, or the mean of tickets closed on time, with the late entries reported apart.</li>
+    <li><b>Say what the sample cannot know:</b> "this sample contains no late-entry ticket; the mean over all tickets may be an hour higher."</li>
+    <li><b>Check your own method:</b> a coverage count on data like yours, reported next to the interval.</li>
+  </ul>
+  <aside class="notes"><p>The second bullet is a "limits" sentence of the kind the capstone brief requires. The population mean with late entries is 9.86 hours against 8.86 without: one hour. Day 1 already told them which summary answers "typical".</p></aside>
+</section>
+
+<section class="slide" id="check-reading-95" data-lo="LO1">
+  <div class="kicker">Checkpoint</div>
+  <h2>What may Ilyas write about his interval?</h2>
+  <div class="quiz" data-type="single" data-lo="LO1">
+    <p class="lead">From 150 repairs Ilyas computes a 95% interval for the median repair time: 5.0 to 7.5 hours. Which sentence is correct?</p>
+    <div class="opts">
+      <div class="opt" data-ok>The method that gave this interval catches the true median in about 95 of 100 studies</div>
+      <div class="opt" data-why="Reads the interval for a median as a range for single repairs, which spread far wider">About 95% of repairs take between 5.0 and 7.5 hours</div>
+      <div class="opt" data-why="Puts the probability on the fixed true value: this one interval contains it or does not">The true median has a 95% chance of lying between 5.0 and 7.5 hours</div>
+      <div class="opt" data-why="Treats sample medians as if they would fall inside this one interval: other samples have other intervals">In 95% of future samples the median will be between 5.0 and 7.5 hours</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> Coverage belongs to the method over repeated studies. And as lab 2.2 shows, even that figure has to be earned by the data.</div>
+  </div>
+  <aside class="notes"><p>Answer: A. C is what almost everyone says in conversation, and in a brief for a manager the looser wording does little harm. B is the harmful one: it is sentence 5 of tomorrow's marked sheet.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-2-2" data-auto="lab" data-lab="2.2">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The two bootstrap functions are supplied in the notebook, so nothing from lab 2.1 is needed. The 500-study loop with 1,000 resamples each takes well under a minute. Step 4 is the surprise; let participants predict the coverage before they run it. Quick mode runs 120 studies, where the counting error is about 4 points: do not read small differences there.</p></aside>
 </section>
 
-<!-- Session 3 -->
-
+<!-- ======================= SESSION 3 ======================= -->
 <section class="slide section" id="s3" data-auto="section" data-session="3"></section>
 
-<section class="slide" id="s3-idea" data-lo="LO2">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="two-stage-sample" data-lo="LO2" data-label="How the survey was drawn">
+  <div class="kicker">How the data were collected</div>
+  <h2>The survey team drew districts first, then households</h2>
   <div class="cols cols-2">
-    <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
-    </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <div class="flow v">
+      <div class="step c-teal"><b>Stage 1</b>6 of the 30 districts, chosen at random</div>
+      <div class="arrow">↓</div>
+      <div class="step c-cyan"><b>Stage 2</b>60 households phoned in each chosen district</div>
+      <div class="arrow">↓</div>
+      <div class="step c-coral"><b>The file</b>360 rows of satisfaction scores</div>
+    </div>
+    <table class="t small">
+      <tr><th>district</th><th class="num">responses</th><th class="num">mean score</th></tr>
+      <tr><td>D05</td><td class="num">60</td><td class="num">7.58</td></tr>
+      <tr><td>D09</td><td class="num">60</td><td class="num">6.53</td></tr>
+      <tr><td>D10</td><td class="num">60</td><td class="num">6.67</td></tr>
+      <tr><td>D11</td><td class="num">60</td><td class="num">5.92</td></tr>
+      <tr><td>D17</td><td class="num">60</td><td class="num">6.70</td></tr>
+      <tr><td>D28</td><td class="num">60</td><td class="num">6.22</td></tr>
+    </table>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Sample of lab 2.3. This is how field surveys are usually done, to save travel. The district means run from 5.92 to 7.58: households of one district resemble each other. The file does not show how it was drawn; the analyst has to ask.</p></aside>
 </section>
 
-<section class="slide" id="s3-steps" data-lo="LO2">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="rows-not-independent" data-lo="LO2" data-label="Rows are not independent">
+  <div class="kicker">The hidden assumption</div>
+  <h2>360 rows are not 360 independent pieces of information</h2>
+  <div class="cols cols-2">
+    <ul class="bullets">
+      <li>Households of one district share the same pipes, crews and service office.</li>
+      <li>The 60th household of D05 tells you little that the first 59 did not.</li>
+      <li>Another survey would have visited six <b>other districts</b>. That is the largest source of variation, and the rows alone do not show it.</li>
+    </ul>
+    <div class="card c-coral"><h4>The estimate</h4><p class="mb0">6.60 from this sample.</p><p class="small mb0">Truth, all 9,000 responses: 6.67. The question is the width of the interval.</p></div>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>The technical name is clustering, and the households of one district are a cluster. The word is not needed; the question "what was drawn at random?" is.</p></aside>
+</section>
+
+<section class="slide" id="two-bootstraps" data-lo="LO2" data-label="Two bootstraps">
+  <div class="kicker">Lab 2.3, steps 2 and 3</div>
+  <h2>Same data, two resampling units, two different intervals</h2>
+  <div class="cols cols-32">
+    <div class="figure">
+<!--FIG:unit_intervals-->
+<svg viewBox="0 0 720 400" role="img" aria-label="Two intervals for mean satisfaction from the same 360 responses: resampling households gives 6.41 to 6.79, resampling districts gives 6.24 to 7.03, about twice as wide; the truth is 6.67">
+<rect x="64" y="18" width="636" height="338" fill="none" stroke="var(--line)"/>
+<line x1="64.0" x2="64.0" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="64.0" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.0</text>
+<line x1="161.8" x2="161.8" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="161.8" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.2</text>
+<line x1="259.7" x2="259.7" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="259.7" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.4</text>
+<line x1="357.5" x2="357.5" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="357.5" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.6</text>
+<line x1="455.4" x2="455.4" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="455.4" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">6.8</text>
+<line x1="553.2" x2="553.2" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="553.2" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">7.0</text>
+<line x1="651.1" x2="651.1" y1="356" y2="361" stroke="var(--muted)"/>
+<text x="651.1" y="378" text-anchor="middle" font-size="14" fill="var(--muted)">7.2</text>
+<line x1="263.7" x2="451.3" y1="130.7" y2="130.7" stroke="var(--coral)" stroke-width="6" stroke-linecap="round"/>
+<text x="263.7" y="96.9" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">by household: 6.41 to 6.79</text>
+<line x1="182.1" x2="566.8" y1="243.3" y2="243.3" stroke="var(--teal)" stroke-width="6" stroke-linecap="round"/>
+<text x="182.1" y="209.5" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">by district: 6.24 to 7.03</text>
+<line x1="391.8" x2="391.8" y1="18" y2="356" stroke="var(--ink, currentColor)" stroke-width="2.5" stroke-dasharray="6 5"/>
+<text x="397.8" y="34" text-anchor="start" font-size="15" fill="var(--ink, currentColor)">truth 6.67</text>
+<text x="382" y="396" text-anchor="middle" font-size="14" fill="var(--muted)">mean satisfaction, 1 to 10</text>
+</svg>
+<!--/FIG:unit_intervals-->
+      <div class="caption">95% bootstrap intervals for mean satisfaction from the same 360 responses.</div>
+    </div>
+    <ul class="bullets">
+      <li><b>By household:</b> resample the 360 rows. Width 0.38 points.</li>
+      <li><b>By district:</b> resample the 6 districts, each with all its rows. Width 0.79 points.</li>
+      <li>Both contain the truth this time. Which width is honest?</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>The household bootstrap keeps the same six districts in every resample: it answers "what if we had phoned other households in these six districts?" The district bootstrap answers "what if we had run the survey again?", which is the question an interval is for.</p></aside>
+</section>
+
+<section class="slide" id="unit-coverage" data-lo="LO2" data-label="Count it">
+  <div class="kicker">Lab 2.3, step 4</div>
+  <h2>Counted over 300 surveys, only the district bootstrap keeps the promise</h2>
+  <div class="bars">
+    <div class="row"><span>resampling households</span><div class="bar c-coral" style="--w:72.3%"></div><span class="val">72.3%</span></div>
+    <div class="row"><span>resampling districts</span><div class="bar c-teal" style="--w:93.7%"></div><span class="val">93.7%</span></div>
+    <div class="row"><span>promised</span><div class="bar c-navy" style="--w:95%"></div><span class="val">95%</span></div>
+  </div>
+  <ul class="bullets mt">
+    <li>The household interval misses the truth in more than one survey in four.</li>
+    <li>Six districts are few, so even the right unit falls a little short. It is honest about the size of the uncertainty.</li>
+  </ul>
+  <aside class="notes"><p>Coverage of the mean of all 9,000 responses over 300 two-stage samples. A manager given the household interval would believe the estimate is twice as precise as it is. This is the most common serious error in applied inference, and no library warns about it.</p></aside>
+</section>
+
+<section class="slide" id="find-the-unit" data-lo="LO2" data-label="Find the unit">
+  <div class="kicker">The question to ask of every dataset</div>
+  <h2>Resample the unit that was drawn at random</h2>
+  <table class="t">
+    <tr><th>The data</th><th>Rows</th><th>Unit to resample</th></tr>
+    <tr><td>360 households phoned at random across the region</td><td>households</td><td>household</td></tr>
+    <tr><td>60 households in each of 6 districts chosen at random</td><td>households</td><td><b>district</b></td></tr>
+    <tr><td>Five pressure readings on each of 40 pumps</td><td>readings</td><td><b>pump</b></td></tr>
+    <tr><td>Twelve monthly bills for each of 500 customers</td><td>bills</td><td><b>customer</b></td></tr>
+  </table>
+  <div class="callout tip mt"><b>Design beats arithmetic.</b> The same 360 calls spread over 12 districts of 30 give a narrower honest interval: 0.64 against 0.79 points (stretch).</div>
+  <aside class="notes"><p>In the capstone defence the assessor names a different resampling unit and the participant predicts what will happen. The prediction rule: a larger unit that groups similar rows widens the interval; if rows within the unit are no more alike than rows anywhere, nothing changes.</p></aside>
+</section>
+
+<section class="slide" id="unit-in-the-file" data-lo="LO2" data-label="In code">
+  <div class="kicker">Lab 2.3, step 3</div>
+  <h2>In code the change is one line: what you index</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python"># by household: index the rows
+idx = gen.integers(0, 360, size=(B, 360))
+boot = scores[idx].mean(axis=1)</code></pre>
+    <pre class="code"><code class="language-python"># by district: index the districts
+dm = df.groupby("district")["satisfaction"].mean()
+idx = gen.integers(0, 6, size=(B, 6))
+boot = dm.to_numpy()[idx].mean(axis=1)</code></pre>
+  </div>
+  <p class="small mt">With 60 responses in every district, the mean of a resample of districts is the mean of their district means. With unequal counts, carry each drawn district's rows along.</p>
+  <aside class="notes"><p>The simplicity is the danger: both versions run, both print an interval, and nothing in the output says which is right. Only the knowledge of how the data were collected does.</p></aside>
+</section>
+
+<section class="slide" id="check-unit" data-lo="LO2">
+  <div class="kicker">Checkpoint</div>
+  <h2>What is the unit to resample?</h2>
+  <div class="quiz" data-type="single" data-lo="LO2">
+    <p class="lead">To estimate mean water pressure, Zulal picks 25 streets at random and measures the pressure at 8 houses on each: 200 readings. Which bootstrap gives an honest interval for the mean?</p>
+    <div class="opts">
+      <div class="opt" data-why="Treats 200 readings as independent although houses on one street share a main: the interval comes out too narrow">Resample the 200 readings</div>
+      <div class="opt" data-why="Keeps every street in every resample, so the variation between streets, the largest part, is never imitated">Resample 8 readings within each street</div>
+      <div class="opt" data-ok>Resample the 25 streets, each with its 8 readings</div>
+      <div class="opt" data-why="Changes the amount of data in each resample, which changes the spread being estimated">Resample 100 of the 200 readings</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The street was drawn at random and houses on a street move together, so the street is the unit.</div>
+  </div>
+  <aside class="notes"><p>Answer: C. Option B is the subtle one: it sounds careful and it is the household bootstrap in disguise, with the same six, here 25, units in every resample.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-2-3" data-auto="lab" data-lab="2.3">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The helper draws the two-stage sample, choosing districts with probability proportional to size so that the plain mean is a fair estimate; say so if asked and do not dwell on it. The 300-study coverage loop takes about half a minute. Step 5 is two written sentences: have two participants read theirs.</p></aside>
 </section>
 
-<!-- Session 4 -->
-
+<!-- ======================= SESSION 4 ======================= -->
 <section class="slide section" id="s4" data-auto="section" data-session="4"></section>
 
-<section class="slide" id="s4-idea" data-lo="LO2">
-  <div class="kicker">REPLACE: the question this slide answers</div>
-  <h2>REPLACE: one idea, stated as a sentence</h2>
+<section class="slide" id="managers-ask-gaps" data-lo="LO2 LO3" data-label="Comparisons">
+  <div class="kicker">The question behind most questions</div>
+  <h2>Managers rarely ask for a level; they ask for a gap</h2>
   <div class="cols cols-2">
     <ul class="bullets">
-      <li>REPLACE: at most six bullets, each a complete thought</li>
-      <li>REPLACE: bold the key phrase; numbers come from the lab run, not from memory</li>
+      <li>"Is contractor B slower than A, and by how much?"</li>
+      <li>A gap can be said two ways: a <b>difference</b> (hours) or a <b>ratio</b> (percent).</li>
+      <li>Either way it is a statistic, computed from two samples, with its own sampling distribution.</li>
     </ul>
-    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">REPLACE: tie the idea to the case study and its data</p></div>
+    <table class="t">
+      <tr><th>200 repairs each</th><th class="num">median, hours</th></tr>
+      <tr><td>contractor A</td><td class="num">6.00</td></tr>
+      <tr><td>contractor B</td><td class="num">6.90</td></tr>
+      <tr class="hl"><td>difference B - A</td><td class="num">0.90</td></tr>
+      <tr class="hl"><td>ratio B / A</td><td class="num">1.15</td></tr>
+    </table>
   </div>
-  <div class="callout warn mt"><b>What goes wrong.</b> REPLACE: the failure participants will hit, and how to recognise it</div>
-  <aside class="notes">REPLACE: what to say, the demo to run, the question to ask the room, the common failure and its fix</aside>
+  <aside class="notes"><p>Study of lab 2.4, tickets closed on time. Jobs go to the two contractors by rota at Zulal, so neither gets the harder jobs; that is what makes the comparison fair. In real data that has to be argued.</p></aside>
 </section>
 
-<section class="slide" id="s4-steps" data-lo="LO2">
-  <div class="kicker">Step by step</div>
-  <h2>REPLACE: a process, shown one step per key press</h2>
-  <div class="flow">
-    <div class="step c-teal"><b>1 · REPLACE: name</b>REPLACE: what happens first</div>
-    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · REPLACE: name</b>REPLACE: the next piece</div>
-    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · REPLACE: name</b>REPLACE: the result</div>
+<section class="slide" id="resample-each-group" data-lo="LO2" data-label="Two groups">
+  <div class="kicker">Lab 2.4, step 2</div>
+  <h2>Resample each group on its own, then recompute the comparison</h2>
+  <div class="cols cols-2">
+    <pre class="code"><code class="language-python">ia = gen.integers(0, len(a), size=(B, len(a)))
+ib = gen.integers(0, len(b), size=(B, len(b)))
+ma = np.median(a[ia], axis=1)
+mb = np.median(b[ib], axis=1)
+
+diff_boot  = mb - ma      # difference
+ratio_boot = mb / ma      # ratio</code></pre>
+    <ul class="bullets">
+      <li>The study fixed 200 repairs per contractor. Each resample keeps that.</li>
+      <li>One set of resamples serves both comparisons.</li>
+      <li>The interval is the percentile interval of the 2,000 differences, or ratios.</li>
+    </ul>
   </div>
-  <div class="callout tip mt frag"><b>Takeaway.</b> REPLACE: the one sentence to remember</div>
-  <aside class="notes">Press once per step and say what each step adds before the next one appears. REPLACE: the example to walk through</aside>
+  <aside class="notes"><p>The recipe generalises to any comparison of two independent groups: resample each, recompute, repeat. The unit rule of session 3 still applies inside each group.</p></aside>
+</section>
+
+<section class="slide" id="difference-and-ratio" data-lo="LO2 LO3" data-label="Two intervals">
+  <div class="kicker">Lab 2.4, steps 2 to 4</div>
+  <h2>Two intervals, one story, in two units</h2>
+  <table class="t">
+    <tr><th></th><th class="num">estimate</th><th class="num">95% interval</th><th class="num">"no gap" is</th><th class="num">truth</th></tr>
+    <tr><td>difference of medians, B - A</td><td class="num">0.90 h</td><td class="num">-0.25 to 2.50 h</td><td class="num">0</td><td class="num">1.40 h</td></tr>
+    <tr><td>ratio of medians, B / A</td><td class="num">1.15</td><td class="num">0.96 to 1.44</td><td class="num">1</td><td class="num">1.24</td></tr>
+  </table>
+  <ul class="bullets mt">
+    <li>Both intervals contain the truth, and both include "no gap".</li>
+    <li>In words: B's typical repair takes between 0.96 and 1.44 times as long as A's.</li>
+    <li>Hours suit the crew planner; a percentage suits the contract.</li>
+  </ul>
+  <aside class="notes"><p>The honest report from this study of 400 tickets: "B looks slower, about 15%; the data do not rule out no difference, nor 44% slower." The truth is 24% slower. A study this size was simply not large enough to settle it. That sets up tomorrow: tests, and the power of a study.</p></aside>
+</section>
+
+<section class="slide" id="reading-zero-and-one" data-lo="LO3" data-label="Reading the interval">
+  <div class="kicker">Reading a comparison</div>
+  <h2>An interval that includes "no gap" shows what is still possible, not that nothing is there</h2>
+  <div class="cols cols-2">
+    <div class="card c-coral"><h4>Wrong</h4><p class="small mb0">"The interval includes 1, so the contractors are equally fast."</p></div>
+    <div class="card c-teal"><h4>Right</h4><p class="small mb0">"The study cannot tell B from A. It is consistent with B being 4% faster and with B being 44% slower."</p></div>
+  </div>
+  <div class="callout warn mt"><b>And do not compare two separate intervals by eye.</b> Whether the interval for A and the interval for B overlap is not a test. Build the interval for the difference itself.</div>
+  <aside class="notes"><p>Two separate 95% intervals can overlap although the interval for the difference excludes zero. The overlap rule of thumb is too conservative and is a common slip in dashboards with error bars.</p></aside>
+</section>
+
+<section class="slide" id="ratio-coverage" data-lo="LO2" data-label="Checked">
+  <div class="kicker">Lab 2.4, step 5 and stretch</div>
+  <h2>Counted against the truth, both intervals keep their promise</h2>
+  <div class="cols cols-2">
+    <div class="stat"><div class="big">95.0%</div><div class="lbl">coverage of the ratio of medians, over 300 studies of 200 repairs per contractor</div></div>
+    <div class="stat"><div class="big">94.3%</div><div class="lbl">coverage of the difference of means on tickets closed on time, over 1,000 studies</div></div>
+  </div>
+  <ul class="bullets mt">
+    <li>A ratio of medians has no textbook formula. The bootstrap needs none.</li>
+    <li>The second figure is the course's evidence standard: an interval with its coverage over 1,000 simulated samples.</li>
+  </ul>
+  <aside class="notes"><p>These two counts, with the ones of lab 2.2 for a mean and lab 2.1 for a median, are the evidence for the second course outcome: intervals for a mean, a median and a group difference, each with its coverage.</p></aside>
+</section>
+
+<section class="slide" id="day2-method" data-lo="LO2" data-label="The recipe">
+  <div class="kicker">Day 2 as one recipe</div>
+  <h2>An interval for almost anything, in four questions</h2>
+  <ol class="bullets">
+    <li><b>What is the statistic?</b> A median, a difference, a ratio: whatever answers the manager.</li>
+    <li><b>What unit was drawn at random?</b> Resample that unit, within each group.</li>
+    <li><b>Where do the middle 95% of the resampled statistics lie?</b> That is the interval.</li>
+    <li><b>Does the method keep its promise on data like mine?</b> Count the coverage.</li>
+  </ol>
+  <aside class="notes"><p>Leave this slide up during the checkpoint if the room needs it. The fourth question is the one that separates this course from a recipe book.</p></aside>
+</section>
+
+<section class="slide" id="check-ratio" data-lo="LO2">
+  <div class="kicker">Checkpoint</div>
+  <h2>How do you read this ratio interval?</h2>
+  <div class="quiz" data-type="single" data-lo="LO2">
+    <p class="lead">A study compares the median time to answer a call at two desks. Ratio North / South: 1.30, 95% interval 1.08 to 1.57. What may the analyst report?</p>
+    <div class="opts">
+      <div class="opt" data-why="Reads a ratio interval against 0: for a ratio, no gap is 1, and the interval can never include 0">No gap is shown, because the interval does not include 0</div>
+      <div class="opt" data-ok>North is slower: between 8% and 57% longer than South</div>
+      <div class="opt" data-why="Reads the estimate as exact and drops the interval that says how uncertain it is">North is slower by exactly 30%</div>
+      <div class="opt" data-why="Turns a ratio into a difference in hours without knowing either median">North takes between 1.08 and 1.57 hours longer than South</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> The interval lies wholly above 1, the value of no gap for a ratio, and its ends give the range in percent.</div>
+  </div>
+  <aside class="notes"><p>Answer: B. Option D is frequent in reports: a ratio read as an amount. Ask what unit a ratio has.</p></aside>
 </section>
 
 <section class="slide lab" id="lab-2-4" data-auto="lab" data-lab="2.4">
-  <aside class="notes">REPLACE: what to watch for while participants work, the typical problems, and the fallback for anyone who did not finish an earlier lab</aside>
+  <aside class="notes"><p>The study is drawn in the notebook: 200 tickets per contractor, closed on time. A typical slip in step 2 is to resample the pooled 400 tickets, which lets the group sizes vary. The stretch runs 1,000 studies and takes about a minute; it produces the coverage figure the course outcome names.</p></aside>
 </section>
 
-<section class="slide" id="wrap-up">
-  <div class="kicker">Day 2 · wrap-up</div>
-  <h2>Three things to keep</h2>
+<section class="slide" id="wrap-up" data-label="Wrap-up">
+  <div class="kicker">Day 2 in three lines</div>
+  <h2>What to keep</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-coral"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
-    <div class="card c-purple"><h4>Remember</h4><p class="small mb0">REPLACE: one idea participants keep</p></div>
+    <div class="card c-teal"><h4>Resample the sample</h4><p class="small mb0">With replacement, same size, many times. The middle 95% of the recomputed statistic is the interval.</p></div>
+    <div class="card c-cyan"><h4>Count the coverage</h4><p class="small mb0">95% is a promise about the method. On a known population you can count whether it is kept: 93%, or 62%.</p></div>
+    <div class="card c-coral"><h4>Resample the right unit</h4><p class="small mb0">The unit that was drawn at random. Rows that share a district are not independent: 72% against 94%.</p></div>
   </div>
+  <aside class="notes"><p>Ask one participant what they would check first when handed a file and asked for an interval: how the rows were collected.</p></aside>
 </section>
 
 <section class="slide dark" id="next" data-label="Next">
   <div class="kicker">Next</div>
-  <h2>Day 3: Tests</h2>
-  <p class="lead">REPLACE: what participants prepare before then; unfinished labs can be finished at home</p>
-  <aside class="notes">REPLACE: accounts, installs or reading participants need before the next unit</aside>
+  <h1>Day 3: Tests</h1>
+  <p class="lead">"Could this gap be luck?" A test answers by building the world in which it is luck.</p>
+  <ul class="bullets">
+    <li>Tomorrow starts with a shuffle, not a formula.</li>
+    <li>Bring one sentence about a p-value from a report you have read. Lab 3.2 marks eight of them.</li>
+  </ul>
+  <aside class="notes"><p>The contractors' satisfaction scores are tomorrow's data. Today's interval for the repair-time ratio included 1; tomorrow's question is what a study can and cannot detect.</p></aside>
 </section>
