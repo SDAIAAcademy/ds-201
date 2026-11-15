@@ -1,19 +1,20 @@
 <section class="slide title" id="title" data-auto="title">
-  <aside class="notes">Today is theirs: keep your own talking to the opening and the closing. Confirm the running order and the demo setup (screen sharing, accounts, a recorded backup) first.</aside>
+  <aside class="notes"><p>Today is theirs: keep your own talking to the opening and the closing. Confirm the running order and the setup first: screen sharing, each repository open, each notebook already run once on the presenting machine.</p></aside>
 </section>
 
 <section class="slide" id="agenda" data-label="Agenda">
   <div class="kicker">Capstone</div>
-  <h2>How the presentations run</h2>
+  <h2>How the defences run</h2>
   <div class="agenda">
-    <div class="item now"><div><b>Expectations and final prep</b><small>the rubric, a last rehearsal, then the first presentations</small></div></div>
-    <div class="item"><div><b>Presentations</b><small>each one timed, with questions after it</small></div></div>
+    <div class="item now"><div><b>Expectations and final prep</b><small>the rubric, a last rerun from the raw file, then the first defences</small></div></div>
+    <div class="item"><div><b>Defences</b><small>eight minutes on one result, then four minutes of questions</small></div></div>
     <div class="item"><div><b>Review and closing</b><small>peer feedback, the trainer's review, what next</small></div></div>
   </div>
+  <aside class="notes"><p>The brief and the repository were submitted before today. The defence is on one result of the participant's choice, not a tour of the whole brief.</p></aside>
 </section>
 
 <section class="slide" id="rubric" data-label="The rubric">
-  <div class="kicker">How presentations are scored</div>
+  <div class="kicker">How the capstone is scored</div>
   <h2>The rubric</h2>
   <div class="bars">
     <div class="row"><span>Question and estimand</span><div class="bar c-teal" style="--w:60%"></div><span class="val">15%</span></div>
@@ -22,77 +23,82 @@
     <div class="row"><span>Regression and limits</span><div class="bar c-purple" style="--w:80%"></div><span class="val">20%</span></div>
     <div class="row"><span>Reproducibility</span><div class="bar c-amber" style="--w:60%"></div><span class="val">15%</span></div>
   </div>
-  <div class="callout tip mt"><b>Show results from at least two measured runs.</b> A claim without a number is a plan, not a result.</div>
-  <aside class="notes">Walk through each criterion with one example of what full marks look like.</aside>
+  <div class="callout tip mt"><b>Every number comes with its interval and its unit.</b> An estimate without an interval is a guess, and an interval without a stated resampling unit cannot be checked.</div>
+  <aside class="notes"><p>Full marks, one example each. Estimand: one sentence with the quantity, the population and the groups. Intervals: the method's coverage counted in a simulation and reported in the README. Tests: the p-value with the effect size set against a stated threshold, and the number of comparisons made. Regression and limits: a slope in units with what is held fixed, or, where the question has no regression, the limits of the design stated with their direction. Reproducibility: the notebook reruns from the raw file with the seed and gives the numbers of the brief.</p></aside>
 </section>
 
 <section class="slide" id="format" data-label="Format">
   <div class="kicker">Format</div>
-  <h2>8 minutes for each presentation</h2>
+  <h2>8 minutes for the defence, then 4 minutes of questions</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>1 · The problem</h4><p class="small mb0">Who, what, why now. One slide.</p></div>
-    <div class="card c-cyan"><h4>2 · What you built</h4><p class="small mb0">Design, decisions, trade-offs. Then the live demo.</p></div>
-    <div class="card c-coral"><h4>3 · What you measured</h4><p class="small mb0">Baseline, improvement, failures found, what comes next.</p></div>
+    <div class="card c-teal"><h4>1 · The question</h4><p class="small mb0">The manager's words, then the estimand in one sentence. One slide or one cell.</p></div>
+    <div class="card c-cyan"><h4>2 · One result</h4><p class="small mb0">The estimate, its interval, the test and the effect size against the threshold. Rerun it live with the seed.</p></div>
+    <div class="card c-coral"><h4>3 · Limits</h4><p class="small mb0">The population, the resampling unit and why, the coverage check, what the data cannot tell.</p></div>
   </div>
-  <div class="callout note mt"><b>Peer feedback.</b> After each talk, everyone writes one strength, one question and one suggestion.</div>
+  <div class="callout note mt"><b>In the questions,</b> the assessor names a different resampling unit. You predict what happens to your interval, then run it and show it.</div>
+  <aside class="notes"><p>The prediction comes before the run and is scored on its reasoning, not on luck: wider or narrower, and why. No assistant during the defence or the questions. Peer feedback after each defence: one strength, one question, one suggestion.</p></aside>
 </section>
 
 <section class="slide order" id="running-order" data-label="Running order">
   <div class="kicker">Running order</div>
   <h2>Who presents when</h2>
   <table class="t small">
-    <tr><th>#</th><th>Presenter</th><th>Project</th></tr>
-    <tr><td>1</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>2</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>3</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>4</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>5</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>6</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>7</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
-    <tr><td>8</td><td><input placeholder="name"></td><td><input placeholder="Project"></td></tr>
+    <tr><th>#</th><th>Presenter</th><th>Question</th></tr>
+    <tr><td>1</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>2</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>3</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>4</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>5</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>6</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>7</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
+    <tr><td>8</td><td><input placeholder="name"></td><td><input placeholder="Question"></td></tr>
   </table>
-  <aside class="notes">Type the names in at the start; the fields can be edited live and are not saved, so keep the list in your notes too.</aside>
+  <aside class="notes"><p>Type the names in at the start; the fields can be edited live and are not saved, so keep the list in your notes too. With more than eight participants, run a second panel in parallel or reuse this slide for the second half.</p></aside>
 </section>
 
-<section class="slide dark" id="final-prep" data-label="Before the first presentation">
-  <div class="kicker">Before the first presentation</div>
+<section class="slide dark" id="final-prep" data-label="Before the first defence">
+  <div class="kicker">Before the first defence</div>
   <h1>Final prep · 20 minutes</h1>
   <div class="timer" data-minutes="20"></div>
-  <p class="lead">Rehearse once, record a backup, try the demo on this screen.</p>
-  <aside class="notes">Press T to start the timer. Breaks are not slides: press B when the room needs one.</aside>
+  <p class="lead">Rerun the notebook from the raw file, check that the numbers match the brief, and choose the one result you will defend.</p>
+  <aside class="notes"><p>Press T to start the timer. Breaks are not slides: press B when the room needs one. A notebook that gives different numbers on the rerun is the most common loss of marks; a fixed seed prevents it.</p></aside>
 </section>
 
 <section class="slide dark presenting" id="now-presenting" data-label="Now presenting">
   <div class="kicker center">Now presenting</div>
-  <div class="center"><input placeholder="Presenter · project"></div>
+  <div class="center"><input placeholder="Presenter · question"></div>
   <div class="timers mt">
-    <div><h3>Talk and demo</h3><div class="timer" data-minutes="8"></div></div>
+    <div><h3>Defence</h3><div class="timer" data-minutes="8"></div></div>
+    <div><h3>Questions</h3><div class="timer" data-minutes="4"></div></div>
   </div>
-  <aside class="notes">Type the presenter's name and press T to start the timer. Reuse this slide for every presenter.</aside>
+  <aside class="notes"><p>Type the presenter's name and start the first timer. Reuse this slide for every presenter. In the questions, name a resampling unit different from the one used: rows in place of districts or neighbourhoods, or the reverse; ask for the prediction first and the run second. The answer key in the solutions folder gives the planted truth of each of the three questions.</p></aside>
 </section>
 
 <section class="slide" id="review" data-label="Trainer review">
   <div class="kicker">Trainer review</div>
-  <h2>What the presentations showed</h2>
+  <h2>What the defences showed</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>Strongest patterns</h4><p class="small mb0">What several projects got right.</p></div>
-    <div class="card c-coral"><h4>Common gaps</h4><p class="small mb0">What most projects would fix next.</p></div>
+    <div class="card c-teal"><h4>Strongest patterns</h4><p class="small mb0">What several briefs got right.</p></div>
+    <div class="card c-coral"><h4>Common gaps</h4><p class="small mb0">What most briefs would fix next.</p></div>
     <div class="card c-purple"><h4>One surprise</h4><p class="small mb0">Something nobody expected.</p></div>
   </div>
-  <aside class="notes">Fill these in from your scoring notes during the last break. Name projects for strengths; keep gaps anonymous.</aside>
+  <aside class="notes"><p>Fill these in from your scoring notes during the last break. Name briefs for strengths; keep gaps anonymous. Typical gaps to look for: rows resampled where groups were sampled, a p-value with no effect size, a limit that names no direction.</p></aside>
 </section>
 
 <section class="slide" id="what-next" data-label="After the course">
   <div class="kicker">After the course</div>
   <h2>Keep going</h2>
   <ul class="bullets">
-    <li><b>Your project stays yours:</b> keep it reproducible and add the next improvement you named today</li>
-    <li><b>Next Academy course:</b> REPLACE: the course that follows this one</li>
+    <li><b>Your brief stays yours:</b> keep the repository reproducible, and add the limit a colleague named today.</li>
+    <li><b>Follow-up task, within two weeks:</b> an inference brief on a table of the national Open Data Platform (<code>labs/followup</code>).</li>
+    <li><b>Next Academy course:</b> DS-302, Online Experiments and A/B Testing, for comparisons that are designed, not found.</li>
   </ul>
+  <aside class="notes"><p>The supervised exit check is scheduled by the Academy. Remind the room of the one rule the follow-up task adds: results for groups, never for individuals, and the population stated in the first paragraph.</p></aside>
 </section>
 
 <section class="slide dark" id="thanks" data-label="Thank you">
   <div class="kicker">SDAIA Academy</div>
   <h1>Thank you</h1>
   <p class="lead">Statistical Inference by Simulation</p>
+  <aside class="notes"><p>Close by collecting the peer feedback sheets and confirming where the scores will be sent.</p></aside>
 </section>
