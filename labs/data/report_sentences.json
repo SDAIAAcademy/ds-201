@@ -1,0 +1,34 @@
+[
+ {
+  "id": 1,
+  "text": "The difference between the contractors gave p = 0.03, so there is a 3% chance that the two contractors are really the same."
+ },
+ {
+  "id": 2,
+  "text": "District D07 showed no significant change (p = 0.40), which proves that the new valve schedule has no effect there."
+ },
+ {
+  "id": 3,
+  "text": "If the two contractors truly had the same satisfaction, a difference at least as large as the one we observed would turn up in about 3 studies in 100."
+ },
+ {
+  "id": 4,
+  "text": "With p = 0.001 the effect of the reminder message is large and worth rolling out."
+ },
+ {
+  "id": 5,
+  "text": "The 95% interval for the mean repair time is 8.1 to 9.6 hours, so 95% of repairs take between 8.1 and 9.6 hours."
+ },
+ {
+  "id": 6,
+  "text": "We used a 95% method: across many studies run this way, about 95 in 100 of the intervals it produces would contain the true mean."
+ },
+ {
+  "id": 7,
+  "text": "We tested all 30 districts at the 0.05 level and found two significant ones, so each of the two findings has only a 5% chance of being a false alarm."
+ },
+ {
+  "id": 8,
+  "text": "The standard error of the mean consumption, 4.1 litres, describes how far a sample mean of this size typically lands from the population mean."
+ }
+]
