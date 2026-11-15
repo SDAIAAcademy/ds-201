@@ -307,7 +307,7 @@
                 "minutes": 5
               }
             ],
-            "stretch": "Bootstrap the 90th percentile and see how much wider its interval is"
+            "stretch": "Count the coverage of the median's interval over 1,000 studies"
           }
         },
         {

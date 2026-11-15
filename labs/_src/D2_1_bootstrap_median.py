@@ -15,7 +15,7 @@
 # - [ ] 3 · 2,000 resamples: the bootstrap distribution (7')
 # - [ ] 4 · The percentile interval beside the truth (5')
 # - [ ] 5 · Bootstrap spread against the real sampling spread (5')
-# - [ ] ✱ Stretch · Bootstrap the 90th percentile and see how much wider its interval is
+# - [ ] ✱ Stretch · Count the coverage of the median's interval over 1,000 studies
 
 # %%
 import os, sys, subprocess
@@ -164,30 +164,34 @@ U.check(0.5 < boot.std(ddof=1) / real < 2.0, "the bootstrap standard error is of
 # **Look at.** The bootstrap is centred on the **sample** median, not on the truth: it cannot repair a sample that landed low or high. What it gets right is the **width**.
 
 # %% [markdown]
-# ## ✱ Stretch · A statistic in the tail
+# ## ✱ Stretch · Does the method keep its promise?
 #
-# Bootstrap the 90th percentile of the repair time. How wide is its interval compared with the median's?
+# One interval caught the truth, or did not. Count how often the method does: draw 1,000 fresh samples of 150 repairs from the population, build the 95% percentile interval for the median in each (1,000 resamples are enough), and count how often it contains the true median.
 
 # %%
 def stretch():
     # BEGIN SOLUTION
-    b = bootstrap(sample, lambda a, axis: np.percentile(a, 90, axis=axis), U.pick(2000, 500), U.rng(55))
-    lo, hi = percentile_interval(b)
-    print(f"90th percentile: {np.percentile(sample, 90):.1f} h, interval {lo:.1f} to {hi:.1f} (width {hi - lo:.1f}); the median's width was {high - low:.1f}")
-    print(f"truth: {np.percentile(population, 90):.1f} h")
-    return [lo, hi]
+    gen = U.rng(55)
+    studies = U.pick(1000, 150)
+    hits = 0
+    for _ in range(studies):
+        s = gen.choice(population, size=150, replace=False)
+        lo, hi = percentile_interval(bootstrap(s, np.median, 1000, gen))
+        hits += lo <= TRUE <= hi
+    print(f"coverage of the 95% percentile interval for the median: {hits} of {studies} studies, {hits / studies:.1%}")
+    return hits / studies
     # END SOLUTION
 
 
 try:
-    U.keep("d2_1", "p90", stretch())
+    U.keep("d2_1", "median_coverage", stretch())
 except NotImplementedError:
     print("✱ stretch not done")
 
 # %%
 U.note(f"Checked against the truth: interval {low:.2f} to {high:.2f} h; true median {TRUE:.2f} h ({'inside' if low <= TRUE <= high else 'outside'}).",
        f"Checked: bootstrap standard error {boot.std(ddof=1):.3f} against the real one {real:.3f}.",
-       "Not checked: one interval says nothing about how often the method is right. Lab 2.2 counts that.")
+       "Not checked in steps 1 to 5: one interval says nothing about how often the method is right. The stretch counts it for the median, lab 2.2 for the mean.")
 
 # %% [markdown]
 # ## Checkpoint

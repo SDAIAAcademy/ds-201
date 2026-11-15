@@ -4,7 +4,7 @@
   "title": "The meter-replacement programme",
   "file": "capstone/data/q1_meter_replacement.csv",
   "from": "Jamila Al-Shuraim, head of customer operations",
-  "question": "We replaced the old meters with smart meters in 8 of 20 districts. An estimated bill is one we could not read and had to guess. Did the smart meters reduce estimated bills, and by how much? I have to decide whether to fund the other 12 districts.",
+  "question": "In the first phase of the programme, 20 of our 30 districts took part, and 8 of them had their old meters replaced with smart meters. An estimated bill is one we could not read and had to guess. Did the smart meters reduce estimated bills, and by how much? I have to decide whether to fund the other 12 districts.",
   "columns": "household_key (pseudonym), district, meter (old or smart), household_size, estimated_bills_12m (estimated bills in the last 12 months, 0 to 12)",
   "think_about": "The rollout was by district, not by household. Counts of bills are skewed."
  },

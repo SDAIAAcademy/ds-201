@@ -64,10 +64,10 @@
                       replace=True)
 
 one = resample(sample, gen)
-len(np.unique(one))   # 77 distinct tickets
+len(np.unique(one))   # 77 distinct values
 np.median(one)        # 6.40 hours</code></pre>
     <ul class="bullets">
-      <li>150 values drawn, 77 distinct. Many tickets appear twice or more; many do not appear.</li>
+      <li>150 values drawn, 77 distinct values. Many tickets appear twice or more; many do not appear.</li>
       <li>Its median is 6.40 hours; the sample's was 6.15.</li>
       <li>That difference imitates the difference between two real samples.</li>
     </ul>
@@ -129,7 +129,7 @@ np.median(one)        # 6.40 hours</code></pre>
     <ul class="bullets">
       <li><b>Percentile interval</b>: from the 2.5th to the 97.5th percentile, 5.00 to 7.50 hours.</li>
       <li>The true median, 6.50 hours, is inside.</li>
-      <li>The histogram is lumpy: a median of 150 tickets can only take values present in the sample.</li>
+      <li>The histogram is lumpy: a median of 150 tickets can only take values in the sample, or halfway between two of them.</li>
     </ul>
   </div>
   <aside class="notes"><p>The sentence for Nizar: "The typical repair takes about 6.2 hours; the data are consistent with anything from 5.0 to 7.5." Do not say yet what 95% means: session 2 defines it and tests it.</p></aside>
@@ -160,7 +160,7 @@ np.median(one)        # 6.40 hours</code></pre>
     <tr><td>What more of it buys</td><td>A narrower interval</td><td>A steadier estimate of the same interval</td></tr>
   </table>
   <div class="callout warn mt"><b>What goes wrong.</b> "We ran a million resamples, so the result is very precise." The interval for 150 tickets is 2.5 hours wide at any B.</div>
-  <aside class="notes"><p>A practical rule for the labs: 1,000 to 2,000 resamples for an interval, 5,000 or more for a small p-value. The stretch of lab 2.1 bootstraps the 90th percentile: its interval is 7.2 hours wide against 2.5 for the median, because few tickets inform a tail.</p></aside>
+  <aside class="notes"><p>A practical rule for the labs: 1,000 to 2,000 resamples for an interval, 5,000 or more for a small p-value. The stretch of lab 2.1 counts the coverage of this interval method for the median: 958 of 1,000 fresh samples of 150, or 95.8%. Session 2 explains why that count is the real test of a method.</p></aside>
 </section>
 
 <section class="slide" id="check-resample" data-lo="LO2">

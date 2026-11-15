@@ -236,14 +236,14 @@ slopes = num / (xc ** 2).mean(axis=1)</code></pre>
 
 <section class="slide" id="two-standard-errors" data-lo="LO5" data-label="Two standard errors">
   <div class="kicker">Lab 4.2, step 3</div>
-  <h2>The library's standard error is a quarter too small</h2>
+  <h2>The library's standard error is a fifth too small</h2>
   <table class="t">
     <tr><th>method</th><th class="num">standard error</th><th class="num">95% interval</th><th class="num">width</th></tr>
     <tr><td>reported by the library</td><td class="num">1.13</td><td class="num">96.27 to 100.69</td><td class="num">4.42</td></tr>
     <tr><td>bootstrap of households</td><td class="num">1.41</td><td class="num">95.66 to 101.23</td><td class="num">5.57</td></tr>
   </table>
   <ul class="bullets mt">
-    <li>The bootstrap standard error is 25% larger.</li>
+    <li>The bootstrap standard error is 25% larger; put the other way, the library's is 20% smaller.</li>
     <li>The population slope, 96.21, is inside the bootstrap interval and just outside the reported one.</li>
     <li>They disagree for a reason you can see in the data.</li>
   </ul>
@@ -537,7 +537,7 @@ slopes = num / (xc ** 2).mean(axis=1)</code></pre>
   <div class="kicker">Lab 4.4, step 5</div>
   <h2>Three questions you have not seen, each with a trap you have</h2>
   <div class="cols cols-3">
-    <div class="card c-teal"><h4>q1 · Meter replacement</h4><p class="small mb0">Did smart meters reduce estimated bills? Rolled out in 8 of 20 districts.</p></div>
+    <div class="card c-teal"><h4>q1 · Meter replacement</h4><p class="small mb0">Did smart meters reduce estimated bills? Rolled out in 8 of the 20 districts of the first phase.</p></div>
     <div class="card c-cyan"><h4>q2 · Conservation message</h4><p class="small mb0">Did a monthly message cut consumption by at least 10 litres a day? 40 neighbourhoods, 20 by lot.</p></div>
     <div class="card c-coral"><h4>q3 · Call-back change</h4><p class="small mb0">Did complaints get resolved faster after the new rule, and for which of six types?</p></div>
   </div>
@@ -551,10 +551,10 @@ slopes = num / (xc ** 2).mean(axis=1)</code></pre>
   <div class="quiz" data-type="single" data-lo="LO6">
     <p class="lead">A trial sent a reminder letter to 3,000 customers chosen by lot; 3,000 others got none. Which draft could a manager act on?</p>
     <div class="opts">
-      <div class="opt" data-why="Gives a test result with no size: the manager cannot tell a large effect from a negligible one">The letter worked: the difference was significant (p = 0.004)</div>
-      <div class="opt" data-why="Gives an estimate with no uncertainty and no statement of who it applies to">Late payment was 2.1 points lower with the letter</div>
-      <div class="opt" data-why="Lists methods and leaves out every result">We used a permutation test and a bootstrap with a fixed seed</div>
-      <div class="opt" data-ok>Late payment was 2.1 points lower with the letter (95% interval 0.7 to 3.5; p = 0.004), among customers billed in March</div>
+      <div class="opt" data-why="Gives a test result with no size: the manager cannot tell a large effect from a negligible one">The letter worked: late payment differed significantly between the two groups of 3,000 (p = 0.004)</div>
+      <div class="opt" data-why="Gives an estimate with no uncertainty and no statement of who it applies to">Late payment was 2.1 points lower among the customers who got the letter than among the others</div>
+      <div class="opt" data-why="Lists methods and leaves out every result">We compared the groups with a permutation test and a bootstrap interval, both run with a fixed seed</div>
+      <div class="opt" data-ok>Late payment fell 2.1 points (95% interval 0.7 to 3.5; p = 0.004) among customers billed in March</div>
     </div>
     <div class="callout tip why"><b>Why.</b> Estimate, interval, test and population are all there, to set against the cost of the letter.</div>
   </div>
