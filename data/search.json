@@ -2,9 +2,9 @@
   "v": 1,
   "engine": "1.0.0",
   "build": {
-    "at": "2026-11-15T11:16:10Z",
-    "version": "2027.1.0",
-    "commit": "705e303"
+    "at": "2026-11-24T15:05:10Z",
+    "version": "2027.2.0",
+    "commit": "cd267f6"
   },
   "lang": "en",
   "dir": "ltr",
@@ -609,7 +609,7 @@
       "n": 24,
       "session": 3,
       "title": "360 rows are not 360 independent pieces of information",
-      "text": "The hidden assumption 360 rows are not 360 independent pieces of information Households of one district share the same pipes, crews and service office. The 60th household of D05 tells you little that the first 59 did not. Another survey would have visited six other districts. That is the largest source of variation, and the rows alone do not show it. The estimate 6.60 from this sample. Truth, all 9,000 responses: 6.67. The question is the width of the interval.",
+      "text": "The hidden assumption 360 rows are not 360 independent pieces of information Households of one district share the same pipes, crews and service office. Another survey would have visited six other districts. That is the largest source of variation, and the rows alone do not show it. The estimate 6.60 from this sample. Truth, all 9,000 responses: 6.67. The question is the width of the interval.",
       "href": "../slides/day2.html#rows-not-independent"
     },
     {
@@ -650,8 +650,26 @@
     },
     {
       "deck": "day2",
-      "id": "check-unit",
+      "id": "oversample-rare-group",
       "n": 29,
+      "session": 3,
+      "title": "Oversample a rare group, and every row stands for a different number of households",
+      "text": "Another design: a rare group drawn more often Oversample a rare group, and every row stands for a different number of households group, n drawn N N / n mean 9+ people, 150 1,809 12.1 970.5 1 to 8, 250 78,191 312.8 460.7 N: households on file. n: households drawn. N / n: the design weight. Mean: sample mean consumption, litres a day. Planners need a figure for the largest households, which are 2.3% of the region: a plain random 400 would hold about 9 of them. So the design draws 150 of them on purpose. Good design for the group; a trap for the regional mean.",
+      "href": "../slides/day2.html#oversample-rare-group"
+    },
+    {
+      "deck": "day2",
+      "id": "design-weights",
+      "n": 30,
+      "session": 3,
+      "title": "Weight each row by N / n and the regional mean comes back",
+      "text": "Restoring the population Weight each row by N / n and the regional mean comes back plain mean of the 400 651.9 weighted mean 472.2 truth, all 80,000 470.4 The weighted mean (12.1 × 150 × 970.5 + 312.8 × 250 × 460.7) ÷ (12.1 × 150 + 312.8 × 250): each group counts as many households as it has on file. Over 1,000 such samples the plain mean averages 653.6 and the weighted 470.1. Not more data, a different question. The plain mean answers \"the average of the rows I happened to draw\"; the weighted mean answers the regional question. Weights go with every row into every resample.",
+      "href": "../slides/day2.html#design-weights"
+    },
+    {
+      "deck": "day2",
+      "id": "check-unit",
+      "n": 31,
       "session": 3,
       "title": "What is the unit to resample?",
       "text": "Checkpoint What is the unit to resample? To estimate mean water pressure, Zulal picks 25 streets at random and measures the pressure at 8 houses on each: 200 readings. Which bootstrap gives an honest interval for the mean? Resample the 200 readings Resample 8 readings within each street Resample the 25 streets, each with its 8 readings Resample 100 of the 200 readings",
@@ -660,7 +678,7 @@
     {
       "deck": "day2",
       "id": "lab-2-3",
-      "n": 30,
+      "n": 32,
       "session": 3,
       "title": "Household or district",
       "text": "Lab 2.3 · 25 min Household or district Bootstrap mean satisfaction from a two-stage survey sample by household and by district, then count the coverage of both over 300 studies and explain the difference. D2_3_resampling_unit.ipynb Draw the two-stage sample and estimate 4 min Bootstrap by household 5 min Bootstrap by district 6 min Coverage of both over 300 studies 6 min Explain the difference in two sentences 4 min ✱ Stretch: Redraw with 12 districts of 30 responses and compare the widths",
@@ -669,7 +687,7 @@
     {
       "deck": "day2",
       "id": "s4",
-      "n": 31,
+      "n": 33,
       "session": 4,
       "title": "Intervals for differences and ratios",
       "text": "Session 4 Intervals for differences and ratios Compute a bootstrap interval for a difference between two groups Compute a bootstrap interval for a ratio Read an interval for a comparison against no difference 04",
@@ -678,7 +696,7 @@
     {
       "deck": "day2",
       "id": "managers-ask-gaps",
-      "n": 32,
+      "n": 34,
       "session": 4,
       "title": "Managers rarely ask for a level; they ask for a gap",
       "text": "The question behind most questions Managers rarely ask for a level; they ask for a gap \"Is contractor B slower than A, and by how much?\" A gap can be said two ways: a difference (hours) or a ratio (percent). Either way it is a statistic, computed from two samples, with its own sampling distribution. 200 repairs each median, hours contractor A 6.00 contractor B 6.90 difference B - A 0.90 ratio B / A 1.15",
@@ -687,7 +705,7 @@
     {
       "deck": "day2",
       "id": "resample-each-group",
-      "n": 33,
+      "n": 35,
       "session": 4,
       "title": "Resample each group on its own, then recompute the comparison",
       "text": "Lab 2.4, step 2 Resample each group on its own, then recompute the comparison ia = gen.integers(0, len(a), size=(B, len(a))) ib = gen.integers(0, len(b), size=(B, len(b))) ma = np.median(a[ia], axis=1) mb = np.median(b[ib], axis=1) diff_boot = mb - ma # difference ratio_boot = mb / ma # ratio The study fixed 200 repairs per contractor. Each resample keeps that. One set of resamples serves both comparisons. The interval is the percentile interval of the 2,000 differences, or ratios.",
@@ -696,7 +714,7 @@
     {
       "deck": "day2",
       "id": "difference-and-ratio",
-      "n": 34,
+      "n": 36,
       "session": 4,
       "title": "Two intervals, one story, in two units",
       "text": "Lab 2.4, steps 2 to 4 Two intervals, one story, in two units estimate 95% interval \"no gap\" is truth difference of medians, B - A 0.90 h -0.25 to 2.50 h 0 1.40 h ratio of medians, B / A 1.15 0.96 to 1.44 1 1.24 Both intervals contain the truth, and both include \"no gap\". In words: B's typical repair takes between 0.96 and 1.44 times as long as A's. Hours suit the crew planner; a percentage suits the contract.",
@@ -705,7 +723,7 @@
     {
       "deck": "day2",
       "id": "reading-zero-and-one",
-      "n": 35,
+      "n": 37,
       "session": 4,
       "title": "An interval that includes \"no gap\" shows what is still possible, not that nothing is there",
       "text": "Reading a comparison An interval that includes \"no gap\" shows what is still possible, not that nothing is there Wrong \"The interval includes 1, so the contractors are equally fast.\" Right \"The study cannot tell B from A. It is consistent with B being 4% faster and with B being 44% slower.\" And do not compare two separate intervals by eye. Whether the interval for A and the interval for B overlap is not a test. Build the interval for the difference itself.",
@@ -714,7 +732,7 @@
     {
       "deck": "day2",
       "id": "ratio-coverage",
-      "n": 36,
+      "n": 38,
       "session": 4,
       "title": "Counted against the truth, both intervals keep their promise",
       "text": "Lab 2.4, step 5 and stretch Counted against the truth, both intervals keep their promise 95.0% coverage of the ratio of medians, over 300 studies of 200 repairs per contractor 94.3% coverage of the difference of means on tickets closed on time, over 1,000 studies A ratio of medians has no textbook formula. The bootstrap needs none. The second figure is the course's evidence standard: an interval with its coverage over 1,000 simulated samples.",
@@ -723,7 +741,7 @@
     {
       "deck": "day2",
       "id": "day2-method",
-      "n": 37,
+      "n": 39,
       "session": 4,
       "title": "An interval for almost anything, in four questions",
       "text": "Day 2 as one recipe An interval for almost anything, in four questions What is the statistic? A median, a difference, a ratio: whatever answers the manager. What unit was drawn at random? Resample that unit, within each group. Where do the middle 95% of the resampled statistics lie? That is the interval. Does the method keep its promise on data like mine? Count the coverage.",
@@ -732,7 +750,7 @@
     {
       "deck": "day2",
       "id": "check-ratio",
-      "n": 38,
+      "n": 40,
       "session": 4,
       "title": "How do you read this ratio interval?",
       "text": "Checkpoint How do you read this ratio interval? A study compares the median time to answer a call at two desks. Ratio North / South: 1.30, 95% interval 1.08 to 1.57. What may the analyst report? No gap is shown, because the interval does not include 0 North is slower: between 8% and 57% longer than South North is slower by exactly 30% North takes between 1.08 and 1.57 hours longer than South",
@@ -741,7 +759,7 @@
     {
       "deck": "day2",
       "id": "lab-2-4",
-      "n": 39,
+      "n": 41,
       "session": 4,
       "title": "Difference and ratio of medians",
       "text": "Lab 2.4 · 25 min Difference and ratio of medians Build bootstrap intervals for the difference and the ratio of the two contractors' median repair times, compare them with the truth and count the coverage of the ratio interval. D2_4_difference_ratio.ipynb Sample 200 repairs for each contractor 4 min Bootstrap the difference of medians 7 min Bootstrap the ratio of medians 5 min Compare with the truth; read 0 and 1 4 min Coverage of the ratio interval over 300 studies 5 min ✱ Stretch: Do the difference of means on closed tickets with coverage over 1,000 studies",
@@ -750,7 +768,7 @@
     {
       "deck": "day2",
       "id": "wrap-up",
-      "n": 40,
+      "n": 42,
       "session": 4,
       "title": "What to keep",
       "text": "Day 2 in three lines What to keep Resample the sample With replacement, same size, many times. The middle 95% of the recomputed statistic is the interval. Count the coverage 95% is a promise about the method. On a known population you can count whether it is kept: 93%, or 62%. Resample the right unit The unit that was drawn at random. Rows that share a district are not independent: 72% against 94%.",
@@ -759,7 +777,7 @@
     {
       "deck": "day2",
       "id": "next",
-      "n": 41,
+      "n": 43,
       "session": 4,
       "title": "Day 3: Tests",
       "text": "Next Day 3: Tests \"Could this gap be luck?\" A test answers by building the world in which it is luck. Tomorrow starts with a shuffle, not a formula. Bring one sentence about a p-value from a report you have read. Lab 3.2 marks eight of them.",
@@ -1077,7 +1095,7 @@
       "n": 35,
       "session": 4,
       "title": "Every choice made after seeing the data is another test",
-      "text": "The same problem without a list of tests Every choice made after seeing the data is another test Mean or median? All tickets or closed ones? This quarter or the last two? Districts or zones? An analyst who tries a few and reports the one that \"works\" has run many tests and shown one. Nobody need cheat: each choice seems reasonable in the light of the data. The remedy: a plan before the data Write down the question, the estimand, the unit, the test and the list of comparisons first. Report every comparison on the list, and mark anything added later as exploration.",
+      "text": "The same problem without a list of tests Every choice made after seeing the data is another test Mean or median? All tickets or closed ones? This quarter or the last two? Districts or zones? An analyst who tries a few and reports the one that \"works\" has run many tests and shown one. The remedy: a plan before the data Write down the question, the estimand, the unit, the test and the list of comparisons first. Report every comparison on the list, and mark anything added later as exploration.",
       "href": "../slides/day3.html#forking-paths"
     },
     {
@@ -1109,8 +1127,26 @@
     },
     {
       "deck": "day3",
-      "id": "which-correction",
+      "id": "worst-five-recover",
       "n": 39,
+      "session": 4,
+      "title": "Pick the worst districts and they improve next time, with nothing done",
+      "text": "The lowest five, measured again Pick the worst districts and they improve next time, with nothing done district wave 1 wave 2 all responses D25 (13 replies) 5.08 6.57 5.73 D03 (12) 5.33 5.67 6.43 D01 (160) 5.73 5.71 5.79 D09 (47) 5.74 6.49 6.29 D19 (14) 5.79 6.75 6.35 average 5.53 6.24 Two survey waves of 1,500 replies each, drawn from the same 9,000. Nothing changed between them. The five lowest in wave 1 rose by 0.70 points. Over 1,000 pairs of waves they rise by 0.37 on average, in 92% of pairs. D01 is large and truly low, and stays put. The small ones were low partly by luck, and luck does not repeat.",
+      "href": "../slides/day3.html#worst-five-recover"
+    },
+    {
+      "deck": "day3",
+      "id": "extremes-need-a-control",
+      "n": 40,
+      "session": 4,
+      "title": "Among equally extreme districts, treat half by lot and compare the changes",
+      "text": "Designing the comparison Among equally extreme districts, treat half by lot and compare the changes Before and after on the treated five A call-back programme with a true effect of +0.30 points reads as +0.53: the rise of the mean is credited to the programme. The ten lowest, five treated by lot Change in the treated five minus change in the other five: +0.29 on average. Both halves regress alike, so the rise cancels. If a lot is impossible, measure the baseline again before starting, on a fresh sample, and judge the change from that second baseline.",
+      "href": "../slides/day3.html#extremes-need-a-control"
+    },
+    {
+      "deck": "day3",
+      "id": "which-correction",
+      "n": 41,
       "session": 4,
       "title": "The cost of a false flag decides the correction",
       "text": "Choosing The cost of a false flag decides the correction The situation Use Because Each flag triggers a costly or embarrassing action: an inspection, a penalty Holm Even one false flag is expensive Flags are a first screen; each gets a cheap second look Benjamini-Hochberg A few false leads are acceptable; misses are not One question, one test, planned before the data No correction There is one test Where this continues. Many segments and many metrics in live experiments are the subject of DS-302.",
@@ -1119,7 +1155,7 @@
     {
       "deck": "day3",
       "id": "check-correction",
-      "n": 40,
+      "n": 42,
       "session": 4,
       "title": "Which correction fits the audit?",
       "text": "Checkpoint Which correction fits the audit? Zulal tests 40 pumping stations for abnormal energy use each month. A flagged station is shut for a two-day inspection that leaves its district on reduced pressure. Which rule should the plan name? Flag every station with p below 0.05 Benjamini-Hochberg at 5% Holm at 5% Test only the stations that look abnormal on the chart",
@@ -1128,7 +1164,7 @@
     {
       "deck": "day3",
       "id": "lab-3-4",
-      "n": 41,
+      "n": 43,
       "session": 4,
       "title": "Thirty districts at once",
       "text": "Lab 3.4 · 25 min Thirty districts at once Test each of 30 districts against the others on an audit sample of repairs, count true and false discoveries with no correction, Holm and Benjamini-Hochberg over 200 audits, and plot the estimates against district size. D3_4_thirty_districts.ipynb One audit sample: test each district against the others 6 min Count discoveries at 0.05, then open the planted five 4 min Holm and Benjamini-Hochberg on the same p-values 5 min 200 audits: true and false discoveries by method 6 min Plot each estimate against its district's size 4 min ✱ Stretch: Shuffle the district labels and count how often at least one district is flagged",
@@ -1137,7 +1173,7 @@
     {
       "deck": "day3",
       "id": "wrap-up",
-      "n": 42,
+      "n": 44,
       "session": 4,
       "title": "What to keep",
       "text": "Day 3 in three lines What to keep A test is a shuffling rule The p-value is the share of null worlds at least as extreme as yours. It starts with \"if\". Size against a threshold Report the effect with its interval and place it against zero and against what matters. Count your tests Thirty tests give one false flag per audit. Plan the comparisons, then correct for their number.",
@@ -1146,7 +1182,7 @@
     {
       "deck": "day3",
       "id": "next",
-      "n": 43,
+      "n": 45,
       "session": 4,
       "title": "Day 4: Regression and reporting",
       "text": "Next Day 4: Regression and reporting How consumption moves with household size, what a slope means, and the paragraph a manager can act on. Tomorrow's last lab ends with your choice of capstone question. Read the three questions in labs/capstone/README.md tonight. The supervised exit check follows the teaching days: items like today's marked sheet, without an assistant.",
@@ -1455,7 +1491,7 @@
       "n": 34,
       "session": 4,
       "title": "Turn the question into an estimand: one number in a named population",
-      "text": "Before any computing Turn the question into an estimand: one number in a named population The manager says The estimand \"What share of repairs meet the 24-hour standard?\" The share of this year's 12,000 repairs that took 24 hours or less \"Is one contractor better at it?\" The difference between the contractors in that share \"Did the message reduce consumption?\" The difference between message and control neighbourhoods in the mean change of litres a day per household Write it before you open the data. With the unit you will resample and the comparisons you will make: that is the analysis plan of Day 3.",
+      "text": "Before any computing Turn the question into an estimand: one number in a named population The manager says The estimand \"What share of repairs meet the 24-hour standard?\" The share of this year's 12,000 repairs that took 24 hours or less \"Is one contractor better at it?\" The difference between the contractors in that share Write it before you open the data. With the unit you will resample and the comparisons you will make: that is the analysis plan of Day 3.",
       "href": "../slides/day4.html#question-to-estimand"
     },
     {
@@ -1469,8 +1505,26 @@
     },
     {
       "deck": "day4",
-      "id": "brief-paragraph",
+      "id": "balanced-test-precision",
       "n": 36,
+      "session": 4,
+      "title": "A leak flag checked on 300 leaks and 300 sound households reports a precision the field will not see",
+      "text": "A share from a sample drawn by class A leak flag checked on 300 leaks and 300 sound households reports a precision the field will not see test set households flagged confirmed leak 300 243 no leak 300 28 precision on the set 243 / 271 = 89.7% The night-flow flag catches 81.0% of leaks and wrongly flags 9.3% of sound households. Those two rates belong to each class and carry over. The set is half leaks; the region is 3.0% leaks, 2,400 of 80,000 households. Precision and prevalence depend on the mix, so they do not carry over.",
+      "href": "../slides/day4.html#balanced-test-precision"
+    },
+    {
+      "deck": "day4",
+      "id": "precision-reweighted",
+      "n": 37,
+      "session": 4,
+      "title": "Weight each class back to its count on file, then recompute the share",
+      "text": "Put the population mix back Weight each class back to its count on file, then recompute the share class, n = 300 each N N / n flagged × N / n leak 2,400 8.0 1,944 no leak 77,600 258.7 7,243 N: households on file. n: households in the test set. N / n: the weight of each household in the set. Precision in the region 1,944 / (1,944 + 7,243) = 21.2%. True value, all 80,000: 19.8%. About one visit in five finds a leak, not nine in ten. The same as a formula sensitivity × prevalence ÷ (sensitivity × prevalence + false-alarm rate × (1 − prevalence))",
+      "href": "../slides/day4.html#precision-reweighted"
+    },
+    {
+      "deck": "day4",
+      "id": "brief-paragraph",
+      "n": 38,
       "session": 4,
       "title": "One paragraph: estimate, interval, comparison, population, limits",
       "text": "Lab 4.4, step 3 One paragraph: estimate, interval, comparison, population, limits \"In a random sample of 400 of this year's 12,000 leak repairs, 94.5% were completed within the 24-hour standard (95% interval 92.0% to 96.5%). Contractor A met the standard more often than contractor B by 1.6 percentage points, a gap that could easily arise by chance (permutation p = 0.51; 95% interval -2.9 to +6.1 points). The population is the repairs logged this year at Zulal, including tickets closed late in the system. The sample cannot tell a late repair from a late entry, and it cannot show that the contractors are equal: a gap of a few points either way remains possible.\"",
@@ -1479,7 +1533,7 @@
     {
       "deck": "day4",
       "id": "limits-worth-stating",
-      "n": 37,
+      "n": 39,
       "session": 4,
       "title": "Limits worth stating fall into four kinds",
       "text": "The part most briefs leave out Limits worth stating fall into four kinds Population Who the conclusion applies to: this year, these districts, surveyed households. Sampling How units were drawn, the unit resampled, what a sample this size cannot detect. Measurement What the recorded number is: a ticket closed late is not always a repair done late. Comparison Was assignment by lot or by rota, or are the groups different in other ways? What goes wrong. A ritual sentence, \"results should be interpreted with caution\". A limit names what could be wrong and in which direction.",
@@ -1488,7 +1542,7 @@
     {
       "deck": "day4",
       "id": "capstone-questions",
-      "n": 38,
+      "n": 40,
       "session": 4,
       "title": "Three questions you have not seen, each with a trap you have",
       "text": "Lab 4.4, step 5 Three questions you have not seen, each with a trap you have q1 · Meter replacement Did smart meters reduce estimated bills? Rolled out in 8 of the 20 districts of the first phase. q2 · Conservation message Did a monthly message cut consumption by at least 10 litres a day? 40 neighbourhoods, 20 by lot. q3 · Call-back change Did complaints get resolved faster after the new rule, and for which of six types? Or an approved public dataset. In the defence the assessor names a different resampling unit: you predict the effect on your interval, then show it.",
@@ -1497,7 +1551,7 @@
     {
       "deck": "day4",
       "id": "check-brief",
-      "n": 39,
+      "n": 41,
       "session": 4,
       "title": "Which draft is an inference brief?",
       "text": "Checkpoint Which draft is an inference brief? A trial sent a reminder letter to 3,000 customers chosen by lot; 3,000 others got none. Which draft could a manager act on? The letter worked: late payment differed significantly between the two groups of 3,000 (p = 0.004) Late payment was 2.1 points lower among the customers who got the letter than among the others We compared the groups with a permutation test and a bootstrap interval, both run with a fixed seed Late payment fell 2.1 points (95% interval 0.7 to 3.5; p = 0.004) among customers billed in March",
@@ -1506,7 +1560,7 @@
     {
       "deck": "day4",
       "id": "lab-4-4",
-      "n": 40,
+      "n": 42,
       "session": 4,
       "title": "One paragraph of a brief",
       "text": "Lab 4.4 · 25 min One paragraph of a brief Answer a new question, the share of repairs finished inside the 24-hour standard, with an estimate, an interval and a contractor comparison, draft the paragraph with its limits, then choose a capstone question and write its estimand. D4_4_brief_paragraph.ipynb A new question: the share inside the 24-hour standard 5 min An interval and a contractor comparison 7 min Draft the estimate, interval and limits paragraph 6 min Check the paragraph against the numbers 3 min Choose the capstone question and write its estimand 4 min ✱ Stretch: Count the coverage of your interval method over 500 studies",
@@ -1515,7 +1569,7 @@
     {
       "deck": "day4",
       "id": "wrap-up",
-      "n": 41,
+      "n": 43,
       "session": 4,
       "title": "What to keep",
       "text": "Day 4 in three lines What to keep A slope in units \"One more person goes with 98 litres more a day.\" A comparison between households, inside the range observed. An honest interval Bootstrap the households or use a robust standard error. Then look at the residuals. Name what is held fixed A second variable moved the slope to 86. State the question each slope answers, and the limits.",
@@ -1524,7 +1578,7 @@
     {
       "deck": "day4",
       "id": "next",
-      "n": 42,
+      "n": 44,
       "session": 4,
       "title": "Capstone day",
       "text": "Next Capstone day A two-page brief on your question, a notebook that reruns from the raw file, and an eight-minute defence of one result. Start from labs/capstone/README.md: what the repository must hold, the coverage check, the rubric. Commit as you work: the history and the seeded run log are part of the evidence. After the course: an inference brief on a table of the national Open Data Platform within two weeks (labs/followup).",

@@ -1,7 +1,7 @@
 ---
 course: "Statistical Inference by Simulation"
 code: "DS-201"
-version: "2027.1.0"
+version: "2027.2.0"
 deck: "day2"
 day: 2
 language: "en"
@@ -286,7 +286,6 @@ Run 500 studies of 40 repairs, count how often a t interval and a percentile boo
 *The hidden assumption*
 
 - Households of one district share the same pipes, crews and service office.
-- The 60th household of D05 tells you little that the first 59 did not.
 - Another survey would have visited six **other districts**. That is the largest source of variation, and the rows alone do not show it.
 
 - **The estimate.** 6.60 from this sample. Truth, all 9,000 responses: 6.67. The question is the width of the interval.
@@ -345,6 +344,34 @@ boot = dm.to_numpy()[idx].mean(axis=1)
 ```
 
 With 60 responses in every district, the mean of a resample of districts is the mean of their district means. With unequal counts, carry each drawn district's rows along.
+
+#### [day2#oversample-rare-group] Oversample a rare group, and every row stands for a different number of households
+
+*Another design: a rare group drawn more often*
+
+| group, n drawn | N | N / n | mean |
+| --- | --- | --- | --- |
+| 9+ people, 150 | 1,809 | 12.1 | 970.5 |
+| 1 to 8, 250 | 78,191 | 312.8 | 460.7 |
+
+N: households on file. n: households drawn. N / n: the design weight. Mean: sample mean consumption, litres a day.
+
+- Planners need a figure for the largest households, which are 2.3% of the region: a plain random 400 would hold about 9 of them.
+- So the design draws 150 of them on purpose. Good design for the group; a trap for the regional mean.
+
+#### [day2#design-weights] Weight each row by N / n and the regional mean comes back
+
+*Restoring the population*
+
+| Item | Value |
+| --- | --- |
+| plain mean of the 400 | 651.9 |
+| weighted mean | 472.2 |
+| truth, all 80,000 | 470.4 |
+
+- **The weighted mean.** (12.1 × 150 × 970.5 + 312.8 × 250 × 460.7) ÷ (12.1 × 150 + 312.8 × 250): each group counts as many households as it has on file. Over 1,000 such samples the plain mean averages 653.6 and the weighted 470.1.
+
+> **Not more data, a different question.** The plain mean answers "the average of the rows I happened to draw"; the weighted mean answers the regional question. Weights go with every row into every resample.
 
 #### [day2#check-unit] What is the unit to resample?
 

@@ -1,7 +1,7 @@
 ---
 course: "Statistical Inference by Simulation"
 code: "DS-201"
-version: "2027.1.0"
+version: "2027.2.0"
 scope: "course"
 language: "en"
 view: "trainee"
@@ -807,7 +807,6 @@ Run 500 studies of 40 repairs, count how often a t interval and a percentile boo
 *The hidden assumption*
 
 - Households of one district share the same pipes, crews and service office.
-- The 60th household of D05 tells you little that the first 59 did not.
 - Another survey would have visited six **other districts**. That is the largest source of variation, and the rows alone do not show it.
 
 - **The estimate.** 6.60 from this sample. Truth, all 9,000 responses: 6.67. The question is the width of the interval.
@@ -866,6 +865,34 @@ boot = dm.to_numpy()[idx].mean(axis=1)
 ```
 
 With 60 responses in every district, the mean of a resample of districts is the mean of their district means. With unequal counts, carry each drawn district's rows along.
+
+#### [day2#oversample-rare-group] Oversample a rare group, and every row stands for a different number of households
+
+*Another design: a rare group drawn more often*
+
+| group, n drawn | N | N / n | mean |
+| --- | --- | --- | --- |
+| 9+ people, 150 | 1,809 | 12.1 | 970.5 |
+| 1 to 8, 250 | 78,191 | 312.8 | 460.7 |
+
+N: households on file. n: households drawn. N / n: the design weight. Mean: sample mean consumption, litres a day.
+
+- Planners need a figure for the largest households, which are 2.3% of the region: a plain random 400 would hold about 9 of them.
+- So the design draws 150 of them on purpose. Good design for the group; a trap for the regional mean.
+
+#### [day2#design-weights] Weight each row by N / n and the regional mean comes back
+
+*Restoring the population*
+
+| Item | Value |
+| --- | --- |
+| plain mean of the 400 | 651.9 |
+| weighted mean | 472.2 |
+| truth, all 80,000 | 470.4 |
+
+- **The weighted mean.** (12.1 × 150 × 970.5 + 312.8 × 250 × 460.7) ÷ (12.1 × 150 + 312.8 × 250): each group counts as many households as it has on file. Over 1,000 such samples the plain mean averages 653.6 and the weighted 470.1.
+
+> **Not more data, a different question.** The plain mean answers "the average of the rows I happened to draw"; the weighted mean answers the regional question. Weights go with every row into every resample.
 
 #### [day2#check-unit] What is the unit to resample?
 
@@ -1416,7 +1443,6 @@ Report the contractors' satisfaction gap as a raw and a standardised effect with
 
 - Mean or median? All tickets or closed ones? This quarter or the last two? Districts or zones?
 - An analyst who tries a few and reports the one that "works" has run many tests and shown one.
-- Nobody need cheat: each choice seems reasonable in the light of the data.
 
 - **The remedy: a plan before the data.** Write down the question, the estimand, the unit, the test and the list of comparisons first. Report every comparison on the list, and mark anything added later as exploration.
 
@@ -1454,6 +1480,32 @@ Figure: One audit: estimated ratio of repair time, district against the others.
 - Districts with no true difference and under 60 audited repairs are off by 11% on average; those with 150 or more by 6%.
 - A league table sorted by estimate puts small districts at both ends, different ones each quarter.
 - Before ranking units of unequal size, plot the estimate against the size.
+
+#### [day3#worst-five-recover] Pick the worst districts and they improve next time, with nothing done
+
+*The lowest five, measured again*
+
+| district | wave 1 | wave 2 | all responses |
+| --- | --- | --- | --- |
+| D25 (13 replies) | 5.08 | 6.57 | 5.73 |
+| D03 (12) | 5.33 | 5.67 | 6.43 |
+| D01 (160) | 5.73 | 5.71 | 5.79 |
+| D09 (47) | 5.74 | 6.49 | 6.29 |
+| D19 (14) | 5.79 | 6.75 | 6.35 |
+| **average** | **5.53** | **6.24** |  |
+
+- Two survey waves of 1,500 replies each, drawn from the same 9,000. Nothing changed between them.
+- The five lowest in wave 1 rose by 0.70 points. Over 1,000 pairs of waves they rise by 0.37 on average, in 92% of pairs.
+- D01 is large and truly low, and stays put. The small ones were low partly by luck, and luck does not repeat.
+
+#### [day3#extremes-need-a-control] Among equally extreme districts, treat half by lot and compare the changes
+
+*Designing the comparison*
+
+- **Before and after on the treated five.** A call-back programme with a true effect of +0.30 points reads as **+0.53**: the rise of the mean is credited to the programme.
+- **The ten lowest, five treated by lot.** Change in the treated five minus change in the other five: **+0.29** on average. Both halves regress alike, so the rise cancels.
+
+> **If a lot is impossible,** measure the baseline again before starting, on a fresh sample, and judge the change from that second baseline.
 
 #### [day3#which-correction] The cost of a false flag decides the correction
 
@@ -1905,7 +1957,6 @@ Behind it: a notebook that reruns from the raw file with a seed, and a README wi
 | --- | --- |
 | "What share of repairs meet the 24-hour standard?" | The share of this year's 12,000 repairs that took 24 hours or less |
 | "Is one contractor better at it?" | The difference between the contractors in that share |
-| "Did the message reduce consumption?" | The difference between message and control neighbourhoods in the mean change of litres a day per household |
 
 > **Write it before you open the data.** With the unit you will resample and the comparisons you will make: that is the analysis plan of Day 3.
 
@@ -1921,6 +1972,34 @@ Behind it: a notebook that reruns from the raw file with a seed, and a README wi
 - Bootstrap for both intervals; a permutation test for the gap: p = 0.51.
 - Truth, all 12,000 repairs: 95.2%. Inside the interval.
 - Coverage of this interval method over 500 studies: 93.6%.
+
+#### [day4#balanced-test-precision] A leak flag checked on 300 leaks and 300 sound households reports a precision the field will not see
+
+*A share from a sample drawn by class*
+
+| test set | households | flagged |
+| --- | --- | --- |
+| confirmed leak | 300 | 243 |
+| no leak | 300 | 28 |
+| **precision on the set** |  | **243 / 271 = 89.7%** |
+
+- The night-flow flag catches 81.0% of leaks and wrongly flags 9.3% of sound households. Those two rates belong to each class and carry over.
+- The set is half leaks; the region is 3.0% leaks, 2,400 of 80,000 households.
+- Precision and prevalence depend on the mix, so they do not carry over.
+
+#### [day4#precision-reweighted] Weight each class back to its count on file, then recompute the share
+
+*Put the population mix back*
+
+| class, n = 300 each | N | N / n | flagged × N / n |
+| --- | --- | --- | --- |
+| leak | 2,400 | 8.0 | 1,944 |
+| no leak | 77,600 | 258.7 | 7,243 |
+
+N: households on file. n: households in the test set. N / n: the weight of each household in the set.
+
+- **Precision in the region.** 1,944 / (1,944 + 7,243) = **21.2%**. True value, all 80,000: 19.8%. About one visit in five finds a leak, not nine in ten.
+- **The same as a formula.** sensitivity × prevalence ÷ (sensitivity × prevalence + false-alarm rate × (1 − prevalence))
 
 #### [day4#brief-paragraph] One paragraph: estimate, interval, comparison, population, limits
 

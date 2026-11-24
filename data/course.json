@@ -2,9 +2,9 @@
   "v": 1,
   "engine": "1.0.0",
   "build": {
-    "at": "2026-11-15T11:16:10Z",
-    "version": "2027.1.0",
-    "commit": "705e303"
+    "at": "2026-11-24T15:05:10Z",
+    "version": "2027.2.0",
+    "commit": "cd267f6"
   },
   "lang": "en",
   "dir": "ltr",
@@ -15,7 +15,7 @@
   "course": {
     "id": "ds-201",
     "code": "DS-201",
-    "version": "2027.1.0",
+    "version": "2027.2.0",
     "title": "Statistical Inference by Simulation",
     "tagline": "Answer a manager's question with an estimate, an interval, a test and an effect size, each computed by simulation and checked against a known truth",
     "description": "Participants learn inference by computing it. On synthetic data from a fictional water utility whose true population is known, they draw repeated samples, build bootstrap intervals, run permutation tests beside classical ones, and report effect sizes with intervals instead of bare p-values. They see how testing 30 districts at once produces false findings and correct for it, then fit and read a first linear regression.",

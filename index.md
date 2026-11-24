@@ -1,7 +1,7 @@
 ---
 course: "Statistical Inference by Simulation"
 code: "DS-201"
-version: "2027.1.0"
+version: "2027.2.0"
 language: "en"
 view: "trainee"
 source: "https://sdaiaacademy.github.io/ds-201/index.html"
@@ -201,4 +201,4 @@ An inference brief on one of three synthetic questions or an approved public dat
 
 SDAIA Academy · Data Science Track · Statistical Inference by Simulation
 
-Course version 2027.1.0 · engine 1.0.0 · built 2026-11-15 · commit 705e303
+Course version 2027.2.0 · engine 1.0.0 · built 2026-11-24 · commit cd267f6

@@ -4011,6 +4011,12 @@
   0.7233333333333334,
   0.9366666666666666
  ],
+ "oversampled": [
+  6.4527777777777775,
+  6.744737962962962,
+  6.381177777777777,
+  6.677378244444443
+ ],
  "text": "The survey sampled 6 districts first and households inside them, so the district is the unit that was drawn at random and the unit to resample. Resampling households keeps the same 6 districts in every resample and so ignores that another survey would have visited other districts, which makes the interval about half as wide as it should be.",
  "width_12": 0.6388888888888893
 }

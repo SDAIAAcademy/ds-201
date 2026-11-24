@@ -1,7 +1,7 @@
 ---
 course: "Statistical Inference by Simulation"
 code: "DS-201"
-version: "2027.1.0"
+version: "2027.2.0"
 deck: "day4"
 day: 4
 language: "en"
@@ -406,7 +406,6 @@ Behind it: a notebook that reruns from the raw file with a seed, and a README wi
 | --- | --- |
 | "What share of repairs meet the 24-hour standard?" | The share of this year's 12,000 repairs that took 24 hours or less |
 | "Is one contractor better at it?" | The difference between the contractors in that share |
-| "Did the message reduce consumption?" | The difference between message and control neighbourhoods in the mean change of litres a day per household |
 
 > **Write it before you open the data.** With the unit you will resample and the comparisons you will make: that is the analysis plan of Day 3.
 
@@ -422,6 +421,34 @@ Behind it: a notebook that reruns from the raw file with a seed, and a README wi
 - Bootstrap for both intervals; a permutation test for the gap: p = 0.51.
 - Truth, all 12,000 repairs: 95.2%. Inside the interval.
 - Coverage of this interval method over 500 studies: 93.6%.
+
+#### [day4#balanced-test-precision] A leak flag checked on 300 leaks and 300 sound households reports a precision the field will not see
+
+*A share from a sample drawn by class*
+
+| test set | households | flagged |
+| --- | --- | --- |
+| confirmed leak | 300 | 243 |
+| no leak | 300 | 28 |
+| **precision on the set** |  | **243 / 271 = 89.7%** |
+
+- The night-flow flag catches 81.0% of leaks and wrongly flags 9.3% of sound households. Those two rates belong to each class and carry over.
+- The set is half leaks; the region is 3.0% leaks, 2,400 of 80,000 households.
+- Precision and prevalence depend on the mix, so they do not carry over.
+
+#### [day4#precision-reweighted] Weight each class back to its count on file, then recompute the share
+
+*Put the population mix back*
+
+| class, n = 300 each | N | N / n | flagged × N / n |
+| --- | --- | --- | --- |
+| leak | 2,400 | 8.0 | 1,944 |
+| no leak | 77,600 | 258.7 | 7,243 |
+
+N: households on file. n: households in the test set. N / n: the weight of each household in the set.
+
+- **Precision in the region.** 1,944 / (1,944 + 7,243) = **21.2%**. True value, all 80,000: 19.8%. About one visit in five finds a leak, not nine in ten.
+- **The same as a formula.** sensitivity × prevalence ÷ (sensitivity × prevalence + false-alarm rate × (1 − prevalence))
 
 #### [day4#brief-paragraph] One paragraph: estimate, interval, comparison, population, limits
 

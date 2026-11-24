@@ -1,7 +1,7 @@
 ---
 course: "Statistical Inference by Simulation"
 code: "DS-201"
-version: "2027.1.0"
+version: "2027.2.0"
 deck: "day3"
 day: 3
 language: "en"
@@ -407,7 +407,6 @@ Report the contractors' satisfaction gap as a raw and a standardised effect with
 
 - Mean or median? All tickets or closed ones? This quarter or the last two? Districts or zones?
 - An analyst who tries a few and reports the one that "works" has run many tests and shown one.
-- Nobody need cheat: each choice seems reasonable in the light of the data.
 
 - **The remedy: a plan before the data.** Write down the question, the estimand, the unit, the test and the list of comparisons first. Report every comparison on the list, and mark anything added later as exploration.
 
@@ -445,6 +444,32 @@ Figure: One audit: estimated ratio of repair time, district against the others.
 - Districts with no true difference and under 60 audited repairs are off by 11% on average; those with 150 or more by 6%.
 - A league table sorted by estimate puts small districts at both ends, different ones each quarter.
 - Before ranking units of unequal size, plot the estimate against the size.
+
+#### [day3#worst-five-recover] Pick the worst districts and they improve next time, with nothing done
+
+*The lowest five, measured again*
+
+| district | wave 1 | wave 2 | all responses |
+| --- | --- | --- | --- |
+| D25 (13 replies) | 5.08 | 6.57 | 5.73 |
+| D03 (12) | 5.33 | 5.67 | 6.43 |
+| D01 (160) | 5.73 | 5.71 | 5.79 |
+| D09 (47) | 5.74 | 6.49 | 6.29 |
+| D19 (14) | 5.79 | 6.75 | 6.35 |
+| **average** | **5.53** | **6.24** |  |
+
+- Two survey waves of 1,500 replies each, drawn from the same 9,000. Nothing changed between them.
+- The five lowest in wave 1 rose by 0.70 points. Over 1,000 pairs of waves they rise by 0.37 on average, in 92% of pairs.
+- D01 is large and truly low, and stays put. The small ones were low partly by luck, and luck does not repeat.
+
+#### [day3#extremes-need-a-control] Among equally extreme districts, treat half by lot and compare the changes
+
+*Designing the comparison*
+
+- **Before and after on the treated five.** A call-back programme with a true effect of +0.30 points reads as **+0.53**: the rise of the mean is credited to the programme.
+- **The ten lowest, five treated by lot.** Change in the treated five minus change in the other five: **+0.29** on average. Both halves regress alike, so the rise cancels.
+
+> **If a lot is impossible,** measure the baseline again before starting, on a fresh sample, and judge the change from that second baseline.
 
 #### [day3#which-correction] The cost of a false flag decides the correction
 
