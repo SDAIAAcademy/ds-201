@@ -489,10 +489,9 @@ slopes = num / (xc ** 2).mean(axis=1)</code></pre>
     <tr><th>The manager says</th><th>The estimand</th></tr>
     <tr><td>"What share of repairs meet the 24-hour standard?"</td><td>The share of this year's 12,000 repairs that took 24 hours or less</td></tr>
     <tr><td>"Is one contractor better at it?"</td><td>The difference between the contractors in that share</td></tr>
-    <tr><td>"Did the message reduce consumption?"</td><td>The difference between message and control neighbourhoods in the mean change of litres a day per household</td></tr>
   </table>
   <div class="callout tip mt"><b>Write it before you open the data.</b> With the unit you will resample and the comparisons you will make: that is the analysis plan of Day 3.</div>
-  <aside class="notes"><p>An estimand has a quantity, a population and, for a comparison, the two things compared. If the estimand cannot be written in one sentence, the question is not yet clear enough to analyse. The third row is one of the capstone questions.</p></aside>
+  <aside class="notes"><p>An estimand has a quantity, a population and, for a comparison, the two things compared. If the estimand cannot be written in one sentence, the question is not yet clear enough to analyse.</p></aside>
 </section>
 
 <section class="slide" id="share-is-a-mean" data-lo="LO6" data-label="A new statistic">
@@ -511,6 +510,41 @@ slopes = num / (xc ** 2).mean(axis=1)</code></pre>
     </ul>
   </div>
   <aside class="notes"><p>Solution run of lab 4.4. Nothing here was taught as "inference for proportions": the same bootstrap, the same shuffle. That is the pay-off of learning inference by simulation; the recipe does not change when the statistic does.</p></aside>
+</section>
+
+<section class="slide" id="balanced-test-precision" data-lo="LO6" data-label="A balanced test set">
+  <div class="kicker">A share from a sample drawn by class</div>
+  <h2>A leak flag checked on 300 leaks and 300 sound households reports a precision the field will not see</h2>
+  <div class="cols cols-2">
+    <table class="t">
+      <tr><th>test set</th><th class="num">households</th><th class="num">flagged</th></tr>
+      <tr><td>confirmed leak</td><td class="num">300</td><td class="num">243</td></tr>
+      <tr><td>no leak</td><td class="num">300</td><td class="num">28</td></tr>
+      <tr><td><b>precision on the set</b></td><td></td><td class="num"><b>243 / 271 = 89.7%</b></td></tr>
+    </table>
+    <ul class="bullets">
+      <li>The night-flow flag catches 81.0% of leaks and wrongly flags 9.3% of sound households. Those two rates belong to each class and carry over.</li>
+      <li>The set is half leaks; the region is 3.0% leaks, 2,400 of 80,000 households.</li>
+      <li>Precision and prevalence depend on the mix, so they do not carry over.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Computed by labs/_tools/weights_and_extremes.py (seed offset 231) on a synthetic leak status for the 80,000 households: 3% leak, the flag catches about 80% of leaks and fires on about 10% of sound households. Ask before the next slide: if the crews visit every flagged household, what share of visits find a leak?</p></aside>
+</section>
+
+<section class="slide" id="precision-reweighted" data-lo="LO6" data-label="Reweight by class">
+  <div class="kicker">Put the population mix back</div>
+  <h2>Weight each class back to its count on file, then recompute the share</h2>
+  <table class="t">
+    <tr><th>class, n = 300 each</th><th class="num">N</th><th class="num">N / n</th><th class="num">flagged × N / n</th></tr>
+    <tr><td>leak</td><td class="num">2,400</td><td class="num">8.0</td><td class="num">1,944</td></tr>
+    <tr><td>no leak</td><td class="num">77,600</td><td class="num">258.7</td><td class="num">7,243</td></tr>
+  </table>
+  <p class="small">N: households on file. n: households in the test set. N / n: the weight of each household in the set.</p>
+  <div class="cols cols-2">
+    <div class="card c-teal"><h4>Precision in the region</h4><p class="mb0">1,944 / (1,944 + 7,243) = <b>21.2%</b>. True value, all 80,000: 19.8%. About one visit in five finds a leak, not nine in ten.</p></div>
+    <div class="card c-navy"><h4>The same as a formula</h4><p class="small mb0">sensitivity × prevalence ÷ (sensitivity × prevalence + false-alarm rate × (1 − prevalence))</p></div>
+  </div>
+  <aside class="notes"><p>Same script. It is the design weight of Day 2 again: the set drew leaks 32 times more often than the region holds them. A parallel case for discussion: the same flag in a district where 1% of households leak has a precision of 8.1%. The prevalence itself cannot be read from the set at all, since the analyst fixed it at 50%.</p></aside>
 </section>
 
 <section class="slide" id="brief-paragraph" data-lo="LO6" data-label="The paragraph">

@@ -30,14 +30,14 @@ The population truths are also in `truth.json`.
 **Day 2**
 - 2.1: bootstrap 95% interval for the median repair time of the sample: 5.0 to 7.5 hours (truth 6.5); bootstrap standard error 0.553 against the real 0.513. Stretch: the percentile interval for the median covers the truth in 958 of 1,000 fresh samples of 150 (95.8%).
 - 2.2: on closed tickets, coverage of the bootstrap interval is a little under 95% (93% to 94% at n = 40 and n = 200). With all tickets the interval for the mean covers far less often: most samples hold no late ticket.
-- 2.3: 6 districts of 60 households. Resampling rows covers the truth in 72.3% of studies, resampling districts in 93.7%.
+- 2.3: 6 districts of 60 households. Resampling rows covers the truth in 72.3% of studies, resampling districts in 93.7%. Stretch 2: the six smallest districts (D03, D18, D19, D23, D25, D26) hold 440 of 9,000 responses with mean 6.24 against 6.69 elsewhere; with 40 calls in each and 120 elsewhere, one survey gives a plain mean of 6.45 and a weighted mean of 6.74 (truth 6.67); over 500 surveys the plain mean averages 6.38 and the weighted 6.68.
 - 2.4: ratio of medians B to A, interval 0.96 to 1.44 for the lab's sample; coverage of the ratio interval 95.0% over 300 studies. Stretch: coverage of the interval for the difference of means on closed tickets 94.3% over 1,000 studies.
 
 **Day 3**
 - 3.1: observed difference in mean satisfaction 0.295; permutation p = 0.031, Welch t = 2.18 with p = 0.029; for the difference of medians the permutation p is 0.038.
 - 3.2: the marked sheet is checked against `report_sentences_key.json`; six of eight is the pass mark.
 - 3.3: effect 0.295 points (95% interval 0.03 to 0.55), standardised 0.154; the interval excludes zero and includes the threshold of 0.5: "real, not settled". A sample of about 1,170 per group would be needed for the planned interval width.
-- 3.4: with no correction the audit flags 4 of the 5 planted districts and 3 that do not differ; Holm flags 3 and 0; Benjamini-Hochberg 4 and 0. When no district differs, 75% of audits flag at least one district without correction and 3% with Holm.
+- 3.4: with no correction the audit flags 4 of the 5 planted districts and 3 that do not differ; Holm flags 3 and 0; Benjamini-Hochberg 4 and 0. When no district differs, 75% of audits flag at least one district without correction and 3% with Holm. Stretch 2: the five slowest districts of the audit (D19, D04, D21, D07, D27) are 25% slower than the others; in an independent audit with nothing changed they are 11% slower. The two planted ones (D19, D21) stay slow; D04, D07 and D27 fall back to about 1.0.
 
 **Day 4**
 - 4.1: line 63.7 + 98.48 × people; 98 litres a day is 3.0 cubic metres a month; predictions 261 and 655 for 2 and 6 people; population line 71.4 + 96.21.

@@ -1675,6 +1675,99 @@
       "pool": "practice",
       "weight": 1,
       "timer": 60
+    },
+    {
+      "id": "q-weights-01",
+      "type": "single",
+      "prompt": "Zulal surveys customer satisfaction. To report on its 200 commercial customers it phones 100 of them, and it phones 300 of its 40,000 residential customers at random. Commercial customers score 5.0 on average in the sample, residential 7.0. What estimate of mean satisfaction over all 40,200 customers follows from the design?",
+      "options": [
+        "6.5, the mean of all 400 responses",
+        "6.0, the mean of the two group means",
+        "5.5, because the commercial customers were drawn more carefully and so count for more",
+        "About 7.0, each group weighted by its N / n"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Each commercial response stands for 2 customers and each residential one for about 133. Weighted, the residential group dominates: (200 × 5.0 + 40,000 × 7.0) / 40,200 is about 6.99.",
+      "misconceptions": [
+        "Counts every row the same, so the oversampled group gets a quarter of the weight instead of half a percent",
+        "Gives the two groups equal weight although one is 200 times larger",
+        "Confuses the care of the design with the size of the group it stands for",
+        ""
+      ],
+      "lo": [
+        "LO2"
+      ],
+      "day": "day2",
+      "session": 3,
+      "slide": "design-weights",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-extremes-01",
+      "type": "single",
+      "prompt": "Ilyas ranks the 30 districts by a quarterly complaint rate and sends a support team to the five worst. Next quarter their rate falls by a third, and Nizar wants to roll the team out everywhere. Most of the five are small districts. What should Ilyas say first?",
+      "options": [
+        "The fall is real, because it is large and happened in all five districts at once",
+        "The team works only if a before-and-after test on the five gives p below 0.05",
+        "Compare the five with the five best districts over the same quarter",
+        "Part of the fall is expected anyway; compare with equally bad districts left out by lot"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Districts picked for being extreme, especially small ones, are partly extreme by chance and drift back next quarter. A concurrent comparison among equally extreme districts, assigned by lot, regresses the same way on both sides and isolates the team's effect.",
+      "misconceptions": [
+        "Takes the size and consistency of the fall as proof, although selection on extremes produces both",
+        "A significant before-and-after test still credits regression to the mean to the team",
+        "The best districts drift down as the worst drift up, so this comparison doubles the bias instead of removing it",
+        ""
+      ],
+      "lo": [
+        "LO4"
+      ],
+      "day": "day3",
+      "session": 4,
+      "slide": "extremes-need-a-control",
+      "level": "analyze",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
+    },
+    {
+      "id": "q-precision-01",
+      "type": "single",
+      "prompt": "A meter-fault flag is checked on 200 faulty meters and 200 sound ones: it flags 180 faulty and 20 sound, a precision of 90% on the set. In the region 2% of meters are faulty. What share of flagged meters will be faulty in the field?",
+      "options": [
+        "90%, the precision measured on the balanced set of 400 meters",
+        "50%, the share of faulty meters among the 400 that were checked",
+        "About 16%, once each class is weighted back",
+        "2%, the share of faulty meters in the region as a whole"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Sensitivity 0.9 and false-alarm rate 0.1 carry over; the mix does not. 0.9 × 0.02 / (0.9 × 0.02 + 0.1 × 0.98) is about 0.155.",
+      "misconceptions": [
+        "Treats precision as a property of the flag, although it depends on how common faults are",
+        "Reads the prevalence from a set whose mix the analyst fixed at half and half",
+        "",
+        "Forgets that the flag raises the share above the base rate by selecting likely faults"
+      ],
+      "lo": [
+        "LO6"
+      ],
+      "day": "day4",
+      "session": 4,
+      "slide": "precision-reweighted",
+      "level": "apply",
+      "pool": "practice",
+      "weight": 1,
+      "timer": 60
     }
   ]
 }

@@ -16,6 +16,7 @@
 # - [ ] 4 · Coverage of both over 300 studies (6')
 # - [ ] 5 · Explain the difference in two sentences (4')
 # - [ ] ✱ Stretch · Redraw with 12 districts of 30 responses and compare the widths
+# - [ ] ✱ Stretch 2 · Oversample the six smallest districts and restore the regional mean with design weights
 
 # %%
 import os, sys, subprocess
@@ -193,6 +194,54 @@ try:
     U.keep("d2_3", "width_12", stretch())
 except NotImplementedError:
     print("✱ stretch not done")
+
+# %% [markdown]
+# ## ✱ Stretch 2 · Oversample the small districts, then weight them back
+#
+# Jamila also wants a number for each of the six smallest districts, and a handful of calls in each would be useless. So another survey design phones **40** households in each of the six smallest districts and **120** households at random from the other 24: 360 calls again, but two thirds of them in districts that hold under 5% of the responses.
+#
+# Each response then stands for a different number of responses in the population: its **design weight** is `N / n` of its group (responses on file in the group divided by responses drawn from it). The plain mean of the sample answers the wrong question; the weighted mean answers the regional one.
+#
+# ✏️ **Exercise** · Write `oversampled_estimates(gen)`: draw the sample above, and return `(plain_mean, weighted_mean)`.
+
+# %%
+COUNTS = survey["district"].value_counts()
+SMALL6 = sorted(COUNTS.nsmallest(6).index)
+SCORE = survey["satisfaction"].to_numpy(dtype=float)
+IS_SMALL = survey["district"].isin(SMALL6).to_numpy()
+ROWS_BY_DISTRICT = {d: np.flatnonzero(survey["district"].to_numpy() == d) for d in SMALL6}
+OTHER_ROWS = np.flatnonzero(~IS_SMALL)
+
+
+def oversampled_estimates(gen):
+    # BEGIN SOLUTION
+    values, weights = [], []
+    for d in SMALL6:
+        rows = ROWS_BY_DISTRICT[d]
+        values.append(SCORE[gen.choice(rows, 40, replace=False)])
+        weights.append(np.full(40, len(rows) / 40))
+    values.append(SCORE[gen.choice(OTHER_ROWS, 120, replace=False)])
+    weights.append(np.full(120, len(OTHER_ROWS) / 120))
+    y, w = np.concatenate(values), np.concatenate(weights)
+    return float(y.mean()), float(np.sum(w * y) / np.sum(w))
+    # END SOLUTION
+
+
+try:
+    one_over = oversampled_estimates(U.rng(77))
+    gen = U.rng(78)
+    many_over = np.array([oversampled_estimates(gen) for _ in range(U.pick(500, 100))])
+    print(f"six smallest districts {SMALL6}: {IS_SMALL.sum()} of {len(survey):,} responses ({IS_SMALL.mean():.1%}), mean {SCORE[IS_SMALL].mean():.2f}; the other 24: {SCORE[~IS_SMALL].mean():.2f}")
+    print(f"one oversampled survey: plain mean {one_over[0]:.2f}, weighted mean {one_over[1]:.2f}, truth {TRUE:.2f}")
+    print(f"over {len(many_over)} surveys: plain mean {many_over[:, 0].mean():.2f} on average, weighted {many_over[:, 1].mean():.2f}, truth {TRUE:.2f}")
+    U.check(abs(many_over[:, 1].mean() - TRUE) < 0.05 < abs(many_over[:, 0].mean() - TRUE),
+            "the plain mean of the oversampled survey misses the regional mean; the weighted mean lands on it")
+    U.keep("d2_3", "oversampled", [one_over[0], one_over[1], float(many_over[:, 0].mean()), float(many_over[:, 1].mean())])
+except NotImplementedError:
+    print("✱ stretch 2 not done")
+
+# %% [markdown]
+# **Look at.** Oversampling a small group is good design when the group must be reported on its own; it only becomes an error when the regional number is computed as if every row counted the same. Keep the weight beside every row, and say in the brief that the regional estimate is weighted. A bootstrap of such a sample resamples within each group and carries the weights along.
 
 # %%
 U.note(f"Checked against the truth: coverage of the mean of all 9,000 responses ({TRUE:.2f}) over {STUDIES} two-stage studies: household {cov[0]:.0%}, district {cov[1]:.0%}.",

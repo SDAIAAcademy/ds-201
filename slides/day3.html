@@ -492,7 +492,6 @@
     <ul class="bullets">
       <li>Mean or median? All tickets or closed ones? This quarter or the last two? Districts or zones?</li>
       <li>An analyst who tries a few and reports the one that "works" has run many tests and shown one.</li>
-      <li>Nobody need cheat: each choice seems reasonable in the light of the data.</li>
     </ul>
     <div class="card c-teal"><h4>The remedy: a plan before the data</h4><p class="small mb0">Write down the question, the estimand, the unit, the test and the list of comparisons first. Report every comparison on the list, and mark anything added later as exploration.</p></div>
   </div>
@@ -596,6 +595,39 @@ reject = multipletests(p, alpha=0.05, method="holm")[0]      # or method="fdr_bh
     </ul>
   </div>
   <aside class="notes"><p>The funnel is the responsible-use point of the course: a "worst district" list built on raw estimates mostly names small districts, and in a small district a number is close to pointing at households. The smallest planted district sits among the noise and cannot be told apart at this sample size.</p></aside>
+</section>
+
+<section class="slide" id="worst-five-recover" data-lo="LO4" data-label="Regression to the mean">
+  <div class="kicker">The lowest five, measured again</div>
+  <h2>Pick the worst districts and they improve next time, with nothing done</h2>
+  <div class="cols cols-32">
+    <table class="t small">
+      <tr><th>district</th><th class="num">wave 1</th><th class="num">wave 2</th><th class="num">all responses</th></tr>
+      <tr><td>D25 (13 replies)</td><td class="num">5.08</td><td class="num">6.57</td><td class="num">5.73</td></tr>
+      <tr><td>D03 (12)</td><td class="num">5.33</td><td class="num">5.67</td><td class="num">6.43</td></tr>
+      <tr><td>D01 (160)</td><td class="num">5.73</td><td class="num">5.71</td><td class="num">5.79</td></tr>
+      <tr><td>D09 (47)</td><td class="num">5.74</td><td class="num">6.49</td><td class="num">6.29</td></tr>
+      <tr><td>D19 (14)</td><td class="num">5.79</td><td class="num">6.75</td><td class="num">6.35</td></tr>
+      <tr><td><b>average</b></td><td class="num"><b>5.53</b></td><td class="num"><b>6.24</b></td><td class="num"></td></tr>
+    </table>
+    <ul class="bullets">
+      <li>Two survey waves of 1,500 replies each, drawn from the same 9,000. Nothing changed between them.</li>
+      <li>The five lowest in wave 1 rose by 0.70 points. Over 1,000 pairs of waves they rise by 0.37 on average, in 92% of pairs.</li>
+      <li>D01 is large and truly low, and stays put. The small ones were low partly by luck, and luck does not repeat.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Computed by labs/_tools/weights_and_extremes.py on the survey (seed offsets 221 and 222). This is regression to the mean: units chosen because they are extreme are partly extreme by chance, so a second measurement pulls them back towards the rest. Read the table row by row: which district moved, and which did not? Stretch 2 of lab 3.4 shows the same with repair audits.</p></aside>
+</section>
+
+<section class="slide" id="extremes-need-a-control" data-lo="LO4" data-label="The comparison">
+  <div class="kicker">Designing the comparison</div>
+  <h2>Among equally extreme districts, treat half by lot and compare the changes</h2>
+  <div class="cols cols-2">
+    <div class="card c-coral"><h4>Before and after on the treated five</h4><p class="mb0">A call-back programme with a true effect of +0.30 points reads as <b>+0.53</b>: the rise of the mean is credited to the programme.</p></div>
+    <div class="card c-teal"><h4>The ten lowest, five treated by lot</h4><p class="mb0">Change in the treated five minus change in the other five: <b>+0.29</b> on average. Both halves regress alike, so the rise cancels.</p></div>
+  </div>
+  <div class="callout tip mt"><b>If a lot is impossible,</b> measure the baseline again before starting, on a fresh sample, and judge the change from that second baseline.</div>
+  <aside class="notes"><p>Same script, 1,000 pairs of waves with the effect planted at +0.30. The randomised estimate is noisy in one study (sd 0.35 with five districts per arm) but centred on the truth; the before-and-after estimate is centred on the wrong number however many studies are run.</p></aside>
 </section>
 
 <section class="slide" id="which-correction" data-lo="LO4" data-label="Which one">

@@ -16,6 +16,7 @@
 # - [ ] 4 · 200 audits: true and false discoveries by method (6')
 # - [ ] 5 · Plot each estimate against its district's size (4')
 # - [ ] ✱ Stretch · Shuffle the district labels and count how often at least one district is flagged
+# - [ ] ✱ Stretch 2 · Audit the five slowest districts again, with nothing changed
 
 # %%
 import os, sys, subprocess
@@ -238,6 +239,37 @@ try:
     U.keep("d3_4", "global_null", stretch())
 except NotImplementedError:
     print("✱ stretch not done")
+
+# %% [markdown]
+# ## ✱ Stretch 2 · The five slowest districts, audited again
+#
+# Nizar proposes to send a coaching team to the five districts with the **highest** estimated ratio in this audit, and to judge the coaching by the next audit. Before any coaching happens, look at what the next audit shows when **nothing changes**: draw a second, independent audit of 4,000 repairs from the same population and estimate the same five districts again.
+#
+# ✏️ **Exercise** · Write `audit_again(tests, gen)`: take the five districts with the highest `ratio` in `tests`, draw a new audit with `draw_audit(gen)`, test it, and return a table with the columns `district`, `ratio_first`, `ratio_again`.
+
+# %%
+def audit_again(tests, gen):
+    # BEGIN SOLUTION
+    top5 = tests.nlargest(5, "ratio")[["district", "ratio"]].rename(columns={"ratio": "ratio_first"})
+    again = test_districts(draw_audit(gen))[["district", "ratio"]].rename(columns={"ratio": "ratio_again"})
+    return top5.merge(again, on="district")
+    # END SOLUTION
+
+
+try:
+    again = audit_again(tests, U.rng(124))
+    again["planted"] = again["district"].isin(PLANTED)
+    print(again.round(3).to_string(index=False))
+    excess_first = float(np.exp(np.log(again["ratio_first"]).mean()) - 1)
+    excess_again = float(np.exp(np.log(again["ratio_again"]).mean()) - 1)
+    print(f"the five slowest: {excess_first:+.0%} slower than the others in the first audit, {excess_again:+.0%} in the second, with nothing changed")
+    U.check(excess_again < excess_first, "the five most extreme districts look less extreme in an independent audit, with no coaching at all")
+    U.keep("d3_4", "audit_again", [excess_first, excess_again])
+except NotImplementedError:
+    print("✱ stretch 2 not done")
+
+# %% [markdown]
+# **Look at.** The five were picked **because** they were extreme, and part of being extreme was luck in that audit; the luck does not repeat, so the next audit pulls them back towards the rest. That is regression to the mean, and a before-and-after comparison would credit it to the coaching. The comparison that removes it: take the ten slowest districts, coach five of them **chosen by lot**, and compare the change in the coached five with the change in the other five, which regress just as much.
 
 # %%
 U.note(f"Checked against the planted truth over {AUDITS} audits: false flags per audit {summary['none'][1]:.2f} (none), {summary['holm'][1]:.2f} (Holm), {summary['fdr_bh'][1]:.2f} (Benjamini-Hochberg); true discoveries {summary['none'][0]:.2f}, {summary['holm'][0]:.2f}, {summary['fdr_bh'][0]:.2f} of 5.",

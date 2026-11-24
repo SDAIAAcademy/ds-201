@@ -318,8 +318,7 @@ coverage = hits / 500</code></pre>
   <div class="cols cols-2">
     <ul class="bullets">
       <li>Households of one district share the same pipes, crews and service office.</li>
-      <li>The 60th household of D05 tells you little that the first 59 did not.</li>
-      <li>Another survey would have visited six <b>other districts</b>. That is the largest source of variation, and the rows alone do not show it.</li>
+        <li>Another survey would have visited six <b>other districts</b>. That is the largest source of variation, and the rows alone do not show it.</li>
     </ul>
     <div class="card c-coral"><h4>The estimate</h4><p class="mb0">6.60 from this sample.</p><p class="small mb0">Truth, all 9,000 responses: 6.67. The question is the width of the interval.</p></div>
   </div>
@@ -411,6 +410,37 @@ boot = dm.to_numpy()[idx].mean(axis=1)</code></pre>
   </div>
   <p class="small mt">With 60 responses in every district, the mean of a resample of districts is the mean of their district means. With unequal counts, carry each drawn district's rows along.</p>
   <aside class="notes"><p>The simplicity is the danger: both versions run, both print an interval, and nothing in the output says which is right. Only the knowledge of how the data were collected does.</p></aside>
+</section>
+
+<section class="slide" id="oversample-rare-group" data-lo="LO2" data-label="Oversampling">
+  <div class="kicker">Another design: a rare group drawn more often</div>
+  <h2>Oversample a rare group, and every row stands for a different number of households</h2>
+  <table class="t">
+    <tr><th>group, n drawn</th><th class="num">N</th><th class="num">N / n</th><th class="num">mean</th></tr>
+    <tr><td>9+ people, 150</td><td class="num">1,809</td><td class="num">12.1</td><td class="num">970.5</td></tr>
+    <tr><td>1 to 8, 250</td><td class="num">78,191</td><td class="num">312.8</td><td class="num">460.7</td></tr>
+  </table>
+  <p class="small">N: households on file. n: households drawn. N / n: the design weight. Mean: sample mean consumption, litres a day.</p>
+  <ul class="bullets">
+    <li>Planners need a figure for the largest households, which are 2.3% of the region: a plain random 400 would hold about 9 of them.</li>
+    <li>So the design draws 150 of them on purpose. Good design for the group; a trap for the regional mean.</li>
+  </ul>
+  <aside class="notes"><p>Computed by labs/_tools/weights_and_extremes.py on the 80,000 households (seed offset 211). Ask the room: what is the regional mean consumption from these 400 rows? Let them say "the mean of the 400" before the next slide. The design weight is the number of households on file that each drawn household stands for.</p></aside>
+</section>
+
+<section class="slide" id="design-weights" data-lo="LO2" data-label="Design weights">
+  <div class="kicker">Restoring the population</div>
+  <h2>Weight each row by N / n and the regional mean comes back</h2>
+  <div class="cols cols-2">
+    <div class="bars">
+      <div class="row"><span>plain mean of the 400</span><div class="bar c-coral" style="--w:100%"></div><span class="val">651.9</span></div>
+      <div class="row"><span>weighted mean</span><div class="bar c-teal" style="--w:72.4%"></div><span class="val">472.2</span></div>
+      <div class="row"><span>truth, all 80,000</span><div class="bar c-navy" style="--w:72.2%"></div><span class="val">470.4</span></div>
+    </div>
+    <div class="card c-navy"><h4>The weighted mean</h4><p class="small mb0">(12.1 × 150 × 970.5 + 312.8 × 250 × 460.7) ÷ (12.1 × 150 + 312.8 × 250): each group counts as many households as it has on file.</p><p class="small mb0">Over 1,000 such samples the plain mean averages 653.6 and the weighted 470.1.</p></div>
+  </div>
+  <div class="callout warn mt"><b>Not more data, a different question.</b> The plain mean answers "the average of the rows I happened to draw"; the weighted mean answers the regional question. Weights go with every row into every resample.</div>
+  <aside class="notes"><p>Same script, 1,000 samples (seed offset 212). The bias of the plain mean, 183 litres, does not shrink with more data: it is built into the design. Stretch 2 of lab 2.3 does the same with the survey and the six smallest districts. A bootstrap of such a sample resamples within each group and carries the weights.</p></aside>
 </section>
 
 <section class="slide" id="check-unit" data-lo="LO2">
